@@ -38,7 +38,7 @@ export function IndustryGrid() {
                     <h3 className="font-display text-[1.25rem] text-ink">
                       {solution.name}
                     </h3>
-                    <ArrowRight className="h-4 w-4 text-fog-2 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-ink" />
+                    <ArrowRight className="h-4 w-4 text-fog transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-ink" />
                   </div>
                   <p className="mt-3 text-small text-fog">{solution.summary}</p>
 

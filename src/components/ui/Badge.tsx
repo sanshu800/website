@@ -12,12 +12,12 @@ const accentChip: Record<Accent, string> = {
 };
 
 const accentSolid: Record<Accent, string> = {
-  ink: "bg-accent text-white",
-  tangerine: "bg-tangerine text-white",
-  jade: "bg-jade text-white",
-  azure: "bg-azure text-white",
-  magenta: "bg-magenta text-white",
-  neutral: "bg-ink text-white",
+  ink: "bg-accent text-on-accent",
+  tangerine: "bg-tangerine-ink text-on-tangerine",
+  jade: "bg-jade-ink text-on-jade",
+  azure: "bg-azure-ink text-on-azure",
+  magenta: "bg-magenta-ink text-on-magenta",
+  neutral: "bg-night text-white",
 };
 
 const accentDot: Record<Accent, string> = {
@@ -26,7 +26,7 @@ const accentDot: Record<Accent, string> = {
   jade: "bg-jade",
   azure: "bg-azure",
   magenta: "bg-magenta",
-  neutral: "bg-fog-2",
+  neutral: "bg-fog",
 };
 
 export function Badge({

@@ -107,7 +107,7 @@ export function ContentField({
         {field.hint && (
           <p className="mt-1 text-[0.75rem] text-fog">{field.hint}</p>
         )}
-        <div className="flex items-center gap-3 text-[0.6875rem] text-fog-2">
+        <div className="flex items-center gap-3 text-[0.6875rem] text-fog">
           {status.tone === "saving" && (
             <span className="inline-flex items-center gap-1 text-fog">
               <Loader2 className="h-3 w-3 animate-spin" /> saving
@@ -167,7 +167,7 @@ export function ContentField({
             type="button"
             onClick={() => void save()}
             disabled={readOnly || busy || !dirty || value.trim() === ""}
-            className="inline-flex h-10 items-center rounded-lg bg-ink px-3.5 text-[0.8125rem] font-medium text-on-ink transition-colors hover:bg-accent-2 disabled:opacity-40"
+            className="inline-flex h-10 items-center rounded-lg bg-night px-3.5 text-[0.8125rem] font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-40"
           >
             Save
           </button>
@@ -189,7 +189,7 @@ export function ContentField({
       </div>
 
       {edited && !dirty && (
-        <p className="mt-2 text-[0.6875rem] leading-relaxed text-fog-2">
+        <p className="mt-2 text-[0.6875rem] leading-relaxed text-fog">
           Shipped copy: <span className="text-fog">{field.fallback.slice(0, 160)}</span>
           {field.fallback.length > 160 ? "…" : ""}
         </p>

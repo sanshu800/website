@@ -38,7 +38,7 @@ function Chrome({
       <div
         className={cn(
           "flex shrink-0 items-center gap-3 border-b px-4 py-2.5",
-          dark ? "border-white/10 bg-ink-3" : "border-line bg-mist",
+          dark ? "border-white/10 bg-night-3" : "border-line bg-mist",
         )}
       >
         <div className="flex gap-1.5" aria-hidden="true">
@@ -55,14 +55,14 @@ function Chrome({
         <div
           className={cn(
             "flex flex-1 items-center gap-2 rounded-md px-2.5 py-1 font-mono text-[0.6875rem]",
-            dark ? "bg-white/5 text-on-ink-2" : "bg-paper text-fog",
+            dark ? "bg-white/5 text-on-night-2" : "bg-paper text-fog",
           )}
         >
           <span className={cn("h-1.5 w-1.5 rounded-full", dark ? "bg-jade" : "bg-jade")} />
           {title}
         </div>
       </div>
-      <div className={cn("flex-1", dark ? "bg-ink-2" : "bg-paper")}>{children}</div>
+      <div className={cn("flex-1", dark ? "bg-night-2" : "bg-paper")}>{children}</div>
     </div>
   );
 }
@@ -124,7 +124,7 @@ export function IntakeScreen({ className }: { className?: string }) {
               className={cn(
                 "rounded-full px-2.5 py-1 text-[0.6875rem]",
                 i === 0
-                  ? "bg-ink text-white"
+                  ? "bg-night text-white"
                   : "border border-line text-fog",
               )}
             >
@@ -148,17 +148,17 @@ export function IntakeScreen({ className }: { className?: string }) {
                 <span className="truncate text-[0.8125rem] font-medium text-ink">
                   {row.client}
                 </span>
-                <span className="font-mono text-[0.625rem] text-fog-2">{row.ref}</span>
+                <span className="font-mono text-[0.625rem] text-fog">{row.ref}</span>
               </div>
               <span className="truncate text-[0.75rem] text-fog">{row.matter}</span>
             </div>
             <div className="hidden min-w-0 items-center gap-2 sm:flex">
               {row.source === "Shared inbox" ? (
-                <Mail className="h-3.5 w-3.5 shrink-0 text-fog-2" />
+                <Mail className="h-3.5 w-3.5 shrink-0 text-fog" />
               ) : row.source === "Phone call" || row.source === "WhatsApp" ? (
-                <Phone className="h-3.5 w-3.5 shrink-0 text-fog-2" />
+                <Phone className="h-3.5 w-3.5 shrink-0 text-fog" />
               ) : (
-                <FileText className="h-3.5 w-3.5 shrink-0 text-fog-2" />
+                <FileText className="h-3.5 w-3.5 shrink-0 text-fog" />
               )}
               <span className="truncate text-[0.75rem] text-fog">{row.source}</span>
             </div>
@@ -175,7 +175,7 @@ export function IntakeScreen({ className }: { className?: string }) {
               )}
             </div>
             <div className="flex items-center gap-3">
-              <span className="hidden font-mono text-[0.6875rem] text-fog-2 sm:inline">
+              <span className="hidden font-mono text-[0.6875rem] text-fog sm:inline">
                 {row.age}
               </span>
               <StatusPill status={row.status} />
@@ -189,7 +189,7 @@ export function IntakeScreen({ className }: { className?: string }) {
           <Sparkles className="h-3.5 w-3.5 text-accent" />
           The agent answered 4 enquiries and booked 2 visits
         </span>
-        <span className="font-mono text-[0.6875rem] text-fog-2">median first reply 9s</span>
+        <span className="font-mono text-[0.6875rem] text-fog">median first reply 9s</span>
       </div>
     </Chrome>
   );
@@ -231,7 +231,7 @@ export function EngageScreen({ className }: { className?: string }) {
                   {seq.name}
                 </span>
               </div>
-              <span className="shrink-0 font-mono text-[0.6875rem] text-fog-2">
+              <span className="shrink-0 font-mono text-[0.6875rem] text-fog">
                 {seq.stage}
               </span>
             </div>
@@ -300,12 +300,12 @@ export function DeliverScreen({ className }: { className?: string }) {
             ) : item.state === "waiting" ? (
               <Clock className="h-4 w-4 shrink-0 text-caution" />
             ) : (
-              <CircleDashed className="h-4 w-4 shrink-0 text-fog-2" />
+              <CircleDashed className="h-4 w-4 shrink-0 text-fog" />
             )}
             <span
               className={cn(
                 "flex-1 text-[0.8125rem]",
-                item.state === "todo" ? "text-fog-2" : "text-fg-2",
+                item.state === "todo" ? "text-fog" : "text-fg-2",
               )}
             >
               {item.label}
@@ -352,7 +352,7 @@ export function InsightScreen({ className }: { className?: string }) {
           { label: "Gross margin", value: "41%", delta: "-1.4%" },
         ].map((metric) => (
           <div key={metric.label} className="px-4 py-3">
-            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
               {metric.label}
             </p>
             <p className="mt-1 font-display text-[1.125rem] text-ink">{metric.value}</p>
@@ -382,7 +382,7 @@ export function InsightScreen({ className }: { className?: string }) {
             </div>
           ))}
         </div>
-        <div className="mt-2 flex justify-between font-mono text-[0.625rem] text-fog-2">
+        <div className="mt-2 flex justify-between font-mono text-[0.625rem] text-fog">
           <span>Q1</span>
           <span>Q4</span>
         </div>

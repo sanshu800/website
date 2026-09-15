@@ -33,7 +33,7 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
       </div>
       <div className="flex gap-2.5">
         <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10">
-          <Sparkles className="h-3.5 w-3.5 text-on-ink" />
+          <Sparkles className="h-3.5 w-3.5 text-on-night" />
         </span>
         <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-paper p-4">
           <p className="text-[0.8125rem] text-fg-2">{copy.intro}</p>
@@ -71,7 +71,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
           </span>
           <div>
             <p className="text-[0.875rem] font-medium text-ink">{copy.title}</p>
-            <p className="font-mono text-[0.6875rem] text-fog-2">{copy.meta}</p>
+            <p className="font-mono text-[0.6875rem] text-fog">{copy.meta}</p>
           </div>
         </div>
         <Badge accent="ink">{copy.badge}</Badge>
@@ -80,14 +80,14 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
       <div className="mt-5 space-y-4">
         {copy.blocks.map((block) => (
           <div key={block.label}>
-            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
               {block.label}
             </p>
             <p className="mt-1.5 text-[0.8125rem] text-fg-2">{block.body}</p>
           </div>
         ))}
         <div>
-          <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+          <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
             {copy.promisesLabel}
           </p>
           <ul className="mt-1.5 space-y-1.5">
@@ -129,7 +129,7 @@ function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
           ))}
         </ol>
       </div>
-      <p className="mt-4 text-[0.75rem] text-fog-2">{copy.note}</p>
+      <p className="mt-4 text-[0.75rem] text-fog">{copy.note}</p>
     </div>
   );
 }
@@ -144,7 +144,7 @@ export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
   const panel = current.panel in copy.conversation ? current.panel : "alerts";
 
   return (
-    <section className="section bg-ink text-on-ink" id="agents">
+    <section className="section bg-night text-on-night" id="agents">
       <Container width="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
@@ -193,7 +193,7 @@ export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
                     <span
                       className={cn(
                         "font-mono text-[0.6875rem]",
-                        isActive ? "text-accent-3" : "text-on-ink-2/60",
+                        isActive ? "text-accent-3" : "text-on-night-2/60",
                       )}
                     >
                       {tab.index}
@@ -202,12 +202,12 @@ export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
                       <span
                         className={cn(
                           "block text-[0.9375rem] font-medium",
-                          isActive ? "text-on-ink" : "text-on-ink-2",
+                          isActive ? "text-on-night" : "text-on-night-2",
                         )}
                       >
                         {tab.title}
                       </span>
-                      <span className="mt-1 block text-micro text-on-ink-2">
+                      <span className="mt-1 block text-micro text-on-night-2">
                         {tab.body}
                       </span>
                     </span>
@@ -237,13 +237,13 @@ export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
                 aria-hidden="true"
                 className="absolute -inset-4 rounded-3xl bg-[radial-gradient(60%_60%_at_50%_20%,rgba(10,10,11,0.16),transparent_70%)] blur-xl"
               />
-              <div className="relative rounded-2xl border border-white/10 bg-ink-2 p-4 shadow-xl sm:p-6">
+              <div className="relative rounded-2xl border border-white/10 bg-night-2 p-4 shadow-xl sm:p-6">
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="flex items-center gap-2 font-mono text-[0.6875rem] text-on-ink-2">
+                  <span className="flex items-center gap-2 font-mono text-[0.6875rem] text-on-night-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-jade" />
                     {copy.statusLabel}
                   </span>
-                  <span className="font-mono text-[0.6875rem] text-on-ink-2/70">
+                  <span className="font-mono text-[0.6875rem] text-on-night-2/70">
                     {copy.statusNote}
                   </span>
                 </div>

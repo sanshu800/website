@@ -168,7 +168,7 @@ export default async function PostPage({
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
                   href="/guides"
-                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.875rem] font-medium text-white transition-colors hover:bg-accent-2"
+                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.875rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
                 >
                   Get the playbooks
                 </Link>
@@ -186,7 +186,7 @@ export default async function PostPage({
 
       <section className="border-t border-line bg-paper py-12 sm:py-14">
         <Container width="narrow">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">Keep reading</h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog">Keep reading</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {suggestions.map((item) => (
               <Reveal key={item.slug}>

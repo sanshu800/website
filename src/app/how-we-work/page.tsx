@@ -42,7 +42,7 @@ export default function HowWeWorkPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -69,7 +69,7 @@ export default function HowWeWorkPage() {
                 <div key={item.label} className="flex gap-4">
                   <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                    <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                       {item.label}
                     </dt>
                     <dd className="mt-1.5 text-[0.9375rem] font-medium text-ink">
@@ -107,15 +107,15 @@ export default function HowWeWorkPage() {
         </Container>
       </section>
 
-      <section className="section bg-ink text-on-ink">
+      <section className="section bg-night text-on-night">
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
-              <p className="font-mono text-eyebrow uppercase text-on-ink-2">
+              <p className="font-mono text-eyebrow uppercase text-on-night-2">
                 {copy.managed.eyebrow}
               </p>
-              <h2 className="mt-5 text-display-l text-on-ink">{managed.name}</h2>
-              <p className="mt-5 max-w-[36rem] text-body-lg text-on-ink-2">
+              <h2 className="mt-5 text-display-l text-on-night">{managed.name}</h2>
+              <p className="mt-5 max-w-[36rem] text-body-lg text-on-night-2">
                 {managed.summary}
               </p>
               <Link
@@ -130,11 +130,11 @@ export default function HowWeWorkPage() {
               <RevealGroup className="grid gap-5 sm:grid-cols-2">
                 {managed.features.slice(0, 4).map((capability) => (
                   <RevealItem key={capability.title}>
-                    <div className="rounded-2xl border border-white/12 bg-ink-2 p-5">
-                      <h3 className="text-[0.9375rem] font-medium text-on-ink">
+                    <div className="rounded-2xl border border-white/12 bg-night-2 p-5">
+                      <h3 className="text-[0.9375rem] font-medium text-on-night">
                         {capability.title}
                       </h3>
-                      <p className="mt-2 text-micro text-on-ink-2">{capability.body}</p>
+                      <p className="mt-2 text-micro text-on-night-2">{capability.body}</p>
                     </div>
                   </RevealItem>
                 ))}

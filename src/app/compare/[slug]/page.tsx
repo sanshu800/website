@@ -52,7 +52,7 @@ export default async function ComparePage({
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               Book a free AI audit
             </Link>
@@ -102,10 +102,10 @@ export default async function ComparePage({
             <table className="w-full min-w-[640px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-line-strong">
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">
+                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
                     Dimension
                   </th>
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">
+                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
                     {comparison.name}
                   </th>
                   <th scope="col" className="py-3 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
@@ -167,7 +167,7 @@ export default async function ComparePage({
             </ul>
           </div>
 
-          <h2 className="mt-12 font-mono text-eyebrow uppercase text-fog-2">{detail.otherHeading}</h2>
+          <h2 className="mt-12 font-mono text-eyebrow uppercase text-fog">{detail.otherHeading}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((item) => (
               <Link
@@ -176,7 +176,7 @@ export default async function ComparePage({
                 className="group flex items-center justify-between rounded-xl border border-line px-5 py-4 transition-colors hover:bg-mist"
               >
                 <span className="text-[0.9375rem] font-medium text-ink">{item.short}</span>
-                <ArrowRight className="h-4 w-4 text-fog-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             ))}
           </div>

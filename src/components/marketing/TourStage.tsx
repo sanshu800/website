@@ -82,7 +82,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
                 <span
                   className={cn(
                     "font-mono text-[0.625rem]",
-                    selected ? "text-accent" : "text-fog-2",
+                    selected ? "text-accent" : "text-fog",
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}

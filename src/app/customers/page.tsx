@@ -56,12 +56,12 @@ export default function CustomersPage() {
           <SectionHeading eyebrow={copy.featured.eyebrow} title={copy.featured.title} />
           <div className="mt-10 grid gap-6 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
-              <div className="rounded-2xl bg-ink p-8 text-on-ink sm:p-10">
+              <div className="rounded-2xl bg-night p-8 text-on-night sm:p-10">
                 <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
-                <blockquote className="mt-6 font-display text-[1.5rem] leading-snug text-on-ink">
+                <blockquote className="mt-6 font-display text-[1.5rem] leading-snug text-on-night">
                   “{testimonials[0]!.quote}”
                 </blockquote>
-                <p className="mt-7 border-t border-white/10 pt-6 text-micro text-on-ink-2">
+                <p className="mt-7 border-t border-white/10 pt-6 text-micro text-on-night-2">
                   {testimonials[0]!.name}, {testimonials[0]!.role},{" "}
                   {testimonials[0]!.company}
                 </p>
@@ -72,7 +72,7 @@ export default function CustomersPage() {
               {copy.narrative.map((item) => (
                 <Reveal key={item.label}>
                   <div className="rounded-2xl border border-line p-6">
-                    <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                    <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                       {item.label}
                     </p>
                     <p className="mt-2 text-body-lg font-medium text-ink">{item.value}</p>
@@ -82,7 +82,7 @@ export default function CustomersPage() {
             </div>
           </div>
 
-          <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
+          <p className="mt-6 font-mono text-[0.6875rem] text-fog">
             {copy.narrativeNote}
           </p>
         </Container>
@@ -110,7 +110,7 @@ export default function CustomersPage() {
               </RevealItem>
             ))}
           </RevealGroup>
-          <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
+          <p className="mt-6 font-mono text-[0.6875rem] text-fog">
             {disclosures.customersPage}
           </p>
         </Container>
@@ -118,7 +118,7 @@ export default function CustomersPage() {
 
       <section className="section-sm bg-paper">
         <Container width="wide">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">By industry</h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog">By industry</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {solutions.map((solution) => (
               <Link
@@ -127,7 +127,7 @@ export default function CustomersPage() {
                 className="group flex items-center justify-between rounded-xl border border-line px-5 py-4 transition-colors hover:bg-mist"
               >
                 <span className="text-[0.9375rem] font-medium text-ink">{solution.name}</span>
-                <ArrowRight className="h-4 w-4 text-fog-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             ))}
           </div>

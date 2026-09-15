@@ -25,9 +25,7 @@
   /* ---- Text ------------------------------------------------------------- */
   --color-fg: #101010;
   --color-fg-2: #3a3a3a;
-  --color-fog: #6b6b6b; /* 5.1:1 on paper */
-  --color-fog-2: #767676; /* 4.54:1 on paper — the quietest tone that still passes AA. Was #8c8c8c
-                              (3.36:1), which made every 10–11px label it carried unreadable. */
+  --color-fog: #6b6b6b; /* 5.1:1 on paper, 4.9:1 on mist */
   --color-on-ink: #f7f7f7;
   --color-on-ink-2: #a9a9a9;
 
@@ -83,6 +81,34 @@
   --color-danger-line: #f3c4c4;
   --color-positive-ink: #0a6b45;
   --color-info-ink: #0f4bb0;
+
+  /* ---- Text on a solid colour fill --------------------------------------- */
+  /* White on the saturated fill in light mode; the matching deep tint in dark
+     mode, because the fills themselves lighten and white-on-light-green is not
+     text, it is decoration. Every solid colour chip reads from this set. */
+  --color-on-tangerine: #ffffff;
+  --color-on-jade: #ffffff;
+  --color-on-azure: #ffffff;
+  --color-on-magenta: #ffffff;
+  --color-on-caution: #ffffff;
+  --color-on-danger: #ffffff;
+  --color-on-positive: #ffffff;
+  --color-on-info: #ffffff;
+
+  /* ---- Night surfaces ---------------------------------------------------- */
+  /* The site's high-contrast blocks. `ink` is a *text* colour and flips in dark
+     mode; these do not. A dark hero, a screenshot frame and a code panel are
+     dark because of what they are, so they keep their value in both themes —
+     and every `text-on-ink` that sat on them moved to `on-night` with them. */
+  --color-night: #0a0a0a;
+  --color-night-2: #141414;
+  --color-night-3: #1d1d1d;
+  --color-night-4: #2b2b2b;
+  --color-on-night: #f7f7f7;
+  --color-on-night-2: #a9a9a9;
+  /* Text on an accent-filled control. Accent is black in light mode and near
+     white in dark mode, so this flips with it. */
+  --color-on-accent: #ffffff;
 
   /* ---- Control boundaries ------------------------------------------------ */
   /* A form field's border is the only thing identifying it, so it has to clear
@@ -189,6 +215,108 @@
 /* ==========================================================================
    BASE
    ========================================================================== */
+
+/*
+   Dark mode.
+   ----------------------------------------------------------------------------
+   The whole theme is tokenised, so this is a value map rather than a second
+   stylesheet: nothing in `src/` contains a colour literal, and no component
+   needs a `dark:` variant. Three deliberate decisions:
+
+     - `night` does not flip (a dark hero stays dark), while `ink` does, because
+       `ink` is a text colour first and a fill second;
+     - the accent flips to near-white — the brand is black, and "black, but
+       legible on black" is `#f5f5f5` — so `on-accent` flips with it;
+     - contrast was computed for every pair below rather than eyeballed. The
+       ratios in the comments are measured, not estimated, and `text-*` values
+       clear 4.5:1 on both `paper` and the elevated `mist` ramp.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Surfaces, light to raised */
+    --color-paper: #0b0b0b;
+    --color-mist: #131313;
+    --color-mist-2: #1a1a1a;
+    --color-mist-3: #232323;
+    --color-line: #262626;
+    --color-line-strong: #3d3d3d;
+
+    /* Text */
+    --color-fg: #f2f2f2; /* 16.4:1 on paper */
+    --color-fg-2: #c8c8c8; /* 10.6:1 */
+    --color-fog: #a6a6a6; /* 7.5:1 */
+      --color-ink: #f5f5f5;
+    --color-ink-2: #ededed;
+    --color-ink-3: #e2e2e2;
+    --color-ink-4: #d4d4d4;
+
+    /* Accent: the brand inverts */
+    --color-accent: #f5f5f5;
+    --color-accent-2: #dcdcdc;
+    --color-accent-3: #3a3a3a;
+    --color-accent-soft: #1b1b1b;
+    --color-accent-soft-2: #232323;
+    --color-accent-line: #333333;
+    --color-on-accent: #0b0b0b;
+
+    /* A field's boundary is the only thing identifying it */
+    --color-field: #7a7a7a; /* 4.4:1 on paper, 4.1:1 on mist */
+
+    /* Night surfaces lift slightly off the page so blocks read as raised */
+    --color-night: #141414;
+    --color-night-2: #1b1b1b;
+    --color-night-3: #242424;
+    --color-night-4: #303030;
+
+    --color-on-tangerine: #2b160d;
+    --color-on-jade: #08281a;
+    --color-on-azure: #061733;
+    --color-on-magenta: #2a1022;
+    --color-on-caution: #2a1f0c;
+    --color-on-danger: #2c1414;
+    --color-on-positive: #08281a;
+    --color-on-info: #061733;
+
+    /* Editorial accents: the graphic tone darkens, the text tone lightens */
+    --color-tangerine: #ff8f5c;
+    --color-tangerine-soft: #2b160d;
+    --color-tangerine-ink: #ffab7a; /* 8.3:1 on paper */
+    --color-tangerine-line: #5a2c17;
+    --color-jade: #34c281;
+    --color-jade-soft: #10281d;
+    --color-jade-ink: #6ee0a8; /* 11.4:1 on paper */
+    --color-jade-line: #1f4b36;
+    --color-azure: #5f96ff;
+    --color-azure-soft: #0f1c33;
+    --color-azure-ink: #8fb8ff; /* 9.4:1 */
+    --color-azure-line: #23437a;
+    --color-magenta: #f06cc4;
+    --color-magenta-soft: #2a1022;
+    --color-magenta-ink: #f79ad3; /* 8.8:1 */
+    --color-magenta-line: #552146;
+
+    /* Semantic */
+    --color-positive: #34c281;
+    --color-positive-soft: #10281d;
+    --color-positive-ink: #6ee0a8;
+    --color-caution: #e0a33c;
+    --color-caution-soft: #2a1f0c;
+    --color-caution-ink: #f0c274; /* 11.9:1 */
+    --color-caution-line: #57431c;
+    --color-danger: #f07373;
+    --color-danger-soft: #2c1414;
+    --color-danger-ink: #ff9d9d; /* 9.2:1 */
+    --color-danger-line: #5c2a2a;
+    --color-info: #5f96ff;
+    --color-info-soft: #0f1c33;
+    --color-info-ink: #8fb8ff;
+  }
+
+  /* The hero film's scrim is built for a dark frame; keep the poster dark too. */
+  html {
+    color-scheme: dark;
+  }
+}
 
 @layer base {
   html {

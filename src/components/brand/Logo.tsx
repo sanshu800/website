@@ -74,7 +74,7 @@ export function ReygentWordmark({
       <span
         className={cn(
           "font-display text-[1.25rem] font-semibold leading-none tracking-[-0.035em]",
-          tone === "on-ink" ? "text-on-ink" : "text-ink",
+          tone === "on-ink" ? "text-on-night" : "text-ink",
         )}
       >
         {label}

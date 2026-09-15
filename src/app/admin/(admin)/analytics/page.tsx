@@ -71,7 +71,7 @@ export default function AnalyticsPage() {
                   <span className="text-[0.875rem] text-ink">{step.label}</span>
                   <span className="flex items-baseline gap-3">
                     <span className="font-mono text-[0.875rem] text-ink">{step.count}</span>
-                    <span className="w-14 text-right text-[0.75rem] text-fog-2">
+                    <span className="w-14 text-right text-[0.75rem] text-fog">
                       {step.ofPrevious}%
                     </span>
                   </span>
@@ -146,7 +146,7 @@ export default function AnalyticsPage() {
                   <p className="truncate text-[0.8125rem] text-ink">
                     {entry.detail ?? "exception without a message"}
                   </p>
-                  <p className="mt-1 font-mono text-[0.6875rem] text-fog-2">
+                  <p className="mt-1 font-mono text-[0.6875rem] text-fog">
                     {entry.path ?? "unknown page"} · {relativeTime(entry.created_at)}
                   </p>
                 </li>

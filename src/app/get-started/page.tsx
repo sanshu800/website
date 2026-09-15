@@ -104,7 +104,7 @@ export default function GetStartedPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-[0.75rem] leading-relaxed text-fog-2">
+                  <p className="mt-3 text-[0.75rem] leading-relaxed text-fog">
                     The audit fee is credited against your build if you continue, and you own
                     everything we produce either way.
                   </p>

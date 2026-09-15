@@ -19,12 +19,16 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const FIELD: Record<string, string> = {
-  ink: "bg-accent",
-  tangerine: "bg-tangerine",
-  jade: "bg-jade",
-  azure: "bg-azure",
-  magenta: "bg-magenta",
+/*
+ * Fill and the text that sits on it, kept together: the fill lightens in dark
+ * mode, so white text would stop being readable on the greens and oranges.
+ */
+const FIELD: Record<string, { fill: string; on: string }> = {
+  ink: { fill: "bg-accent", on: "text-on-accent" },
+  tangerine: { fill: "bg-tangerine-ink", on: "text-on-tangerine" },
+  jade: { fill: "bg-jade-ink", on: "text-on-jade" },
+  azure: { fill: "bg-azure-ink", on: "text-on-azure" },
+  magenta: { fill: "bg-magenta-ink", on: "text-on-magenta" },
 };
 
 export default function ProductsIndex() {
@@ -48,8 +52,9 @@ export default function ProductsIndex() {
                     <div className="flex items-center gap-3">
                       <span
                         className={cn(
-                          "flex h-8 w-8 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium text-white",
-                          FIELD[service.accent],
+                          "flex h-8 w-8 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium",
+                          FIELD[service.accent]?.fill,
+                          FIELD[service.accent]?.on,
                         )}
                       >
                         {String(cardIndex + 1).padStart(2, "0")}

@@ -37,7 +37,7 @@ export default function HomePage() {
       <section className="border-b border-line bg-paper py-14 sm:py-16">
         <Container width="wide">
           <LogoMarquee label={home.proof.label} />
-          <p className="mt-6 text-center font-mono text-[0.6875rem] text-fog-2">
+          <p className="mt-6 text-center font-mono text-[0.6875rem] text-fog">
             {home.proof.disclosure}
           </p>
         </Container>

@@ -52,7 +52,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex h-12 items-center justify-center rounded-lg bg-accent px-6 text-[0.9375rem] font-medium text-white transition-colors duration-200 hover:bg-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="inline-flex h-12 items-center justify-center rounded-lg bg-accent px-6 text-[0.9375rem] font-medium text-on-accent transition-colors duration-200 hover:bg-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             Try again
           </button>

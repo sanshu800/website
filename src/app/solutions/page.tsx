@@ -34,7 +34,7 @@ export default function SolutionsPage() {
                   href={`/solutions/${solution.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line p-7 transition-colors hover:bg-mist/60 sm:p-8"
                 >
-                  <span className="font-mono text-[0.6875rem] text-fog-2">
+                  <span className="font-mono text-[0.6875rem] text-fog">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h2 className="mt-4 font-display text-[1.5rem] text-ink">
@@ -66,7 +66,7 @@ export default function SolutionsPage() {
 
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">{copy.modulesTitle}</h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog">{copy.modulesTitle}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {core.map((module) => (
               <Link

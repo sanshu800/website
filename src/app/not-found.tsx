@@ -24,7 +24,7 @@ export default function NotFound() {
       <Container width="wide" className="relative">
         <div className="flex items-center gap-3">
           <ReygentMark className="h-6 w-6 text-accent" />
-          <p className="font-mono text-eyebrow uppercase text-fog-2">Error 404</p>
+          <p className="font-mono text-eyebrow uppercase text-fog">Error 404</p>
         </div>
 
         <h1 className="mt-8 max-w-[36rem] text-display-xl text-ink">
@@ -38,7 +38,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/"
-            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
           >
             Back to the homepage <ArrowRight className="h-4 w-4" />
           </Link>

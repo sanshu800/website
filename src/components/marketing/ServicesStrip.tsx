@@ -5,11 +5,11 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getHome, getServices } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
-const ACCENT_FIELD: Record<string, string> = {
-  ink: "bg-accent",
-  tangerine: "bg-tangerine",
-  jade: "bg-jade",
-  azure: "bg-azure",
+const ACCENT_FIELD: Record<string, { fill: string; on: string }> = {
+  ink: { fill: "bg-accent", on: "text-on-accent" },
+  tangerine: { fill: "bg-tangerine-ink", on: "text-on-tangerine" },
+  jade: { fill: "bg-jade-ink", on: "text-on-jade" },
+  azure: { fill: "bg-azure-ink", on: "text-on-azure" },
 };
 
 /**
@@ -49,13 +49,14 @@ export function ServicesStrip() {
                 <div className="flex items-center justify-between">
                   <span
                     className={cn(
-                      "flex h-9 w-9 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium text-white",
-                      ACCENT_FIELD[module.accent],
+                      "flex h-9 w-9 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium",
+                      ACCENT_FIELD[module.accent]?.fill,
+                      ACCENT_FIELD[module.accent]?.on,
                     )}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <ArrowRight className="h-4 w-4 text-fog-2 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-ink" />
+                  <ArrowRight className="h-4 w-4 text-fog transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-ink" />
                 </div>
 
                 <h3 className="mt-5 font-display text-[1.125rem] text-ink">
@@ -67,7 +68,7 @@ export function ServicesStrip() {
                 <dl className="mt-5 space-y-2 border-t border-line pt-4">
                   {module.flow.slice(0, 2).map((step) => (
                     <div key={step.step} className="flex items-baseline gap-3">
-                      <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                      <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                         {step.step}
                       </dt>
                       <dd className="text-[0.75rem] text-fg-2">{step.detail}</dd>
@@ -81,7 +82,7 @@ export function ServicesStrip() {
 
         <Reveal delay={0.1}>
           <div className="mt-8 flex flex-wrap items-center gap-4 rounded-2xl border border-line bg-mist p-5 sm:p-6">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink font-mono text-[0.6875rem] font-medium text-white">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-night font-mono text-[0.6875rem] font-medium text-white">
               05
             </span>
             <p className="flex-1 text-[0.9375rem] text-fg-2">

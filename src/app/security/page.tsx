@@ -30,7 +30,7 @@ export default function SecurityPage() {
           <>
             <Link
               href={copy.hero.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.primary.label}
             </Link>
@@ -49,7 +49,7 @@ export default function SecurityPage() {
           <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
             {copy.posture.map((item) => (
               <div key={item.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
-                <dt className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">
+                <dt className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
                   {item.label}
                 </dt>
                 <dd className="text-[0.9375rem] font-medium text-ink">{item.value}</dd>
@@ -83,32 +83,32 @@ export default function SecurityPage() {
         </Container>
       </section>
 
-      <section className="section-sm border-y border-line bg-ink text-on-ink">
+      <section className="section-sm border-y border-line bg-night text-on-night">
         <Container width="wide">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <ShieldCheck className="h-6 w-6 text-accent-3" aria-hidden="true" />
-              <h2 className="mt-5 text-display-m text-on-ink">
+              <h2 className="mt-5 text-display-m text-on-night">
                 {copy.disclosure.heading}
               </h2>
-              <p className="mt-4 max-w-[38rem] text-body-lg text-on-ink-2">
+              <p className="mt-4 max-w-[38rem] text-body-lg text-on-night-2">
                 {copy.disclosure.body}
               </p>
             </div>
             <div className="lg:col-span-5">
               <a
                 href={`mailto:${copy.disclosure.mailbox}`}
-                className="flex items-center gap-4 rounded-2xl border border-white/15 bg-ink-2 px-6 py-5 transition-colors hover:border-accent-3/40"
+                className="flex items-center gap-4 rounded-2xl border border-white/15 bg-night-2 px-6 py-5 transition-colors hover:border-accent-3/40"
               >
                 <Lock className="h-5 w-5 text-accent-3" aria-hidden="true" />
-                <span className="text-body text-on-ink">
+                <span className="text-body text-on-night">
                   {copy.disclosure.mailbox}
-                  <span className="mt-0.5 block text-[0.75rem] text-on-ink-2">
+                  <span className="mt-0.5 block text-[0.75rem] text-on-night-2">
                     {copy.disclosure.pgp}
                   </span>
                 </span>
               </a>
-              <p className="mt-4 text-[0.75rem] text-on-ink-2">
+              <p className="mt-4 text-[0.75rem] text-on-night-2">
                 {copy.disclosure.placeholderNote}
               </p>
             </div>

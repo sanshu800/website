@@ -122,7 +122,7 @@ export function SiteHeader({
   const overlay = mobileOpen || (pathname === "/" && !scrolled && !openMenu);
 
   const linkTone = overlay
-    ? "text-on-ink/75 hover:text-on-ink"
+    ? "text-on-night/75 hover:text-on-night"
     : "text-fg-2 hover:text-ink";
 
   return (
@@ -196,7 +196,7 @@ export function SiteHeader({
                 href={header.actions.primary.href}
                 className={cn(
                   "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 hover:scale-[1.03] active:scale-95",
-                  overlay ? "bg-on-ink text-ink" : "bg-accent text-white",
+                  overlay ? "bg-on-ink text-ink" : "bg-accent text-on-accent",
                 )}
               >
                 {header.actions.primary.label}
@@ -214,7 +214,7 @@ export function SiteHeader({
               className={cn(
                 "relative flex h-10 w-10 items-center justify-center rounded-lg border transition-transform duration-300 active:scale-90 lg:hidden",
                 overlay
-                  ? "border-on-ink/25 text-on-ink"
+                  ? "border-on-ink/25 text-on-night"
                   : "border-line-strong text-ink",
               )}
             >
@@ -266,7 +266,7 @@ export function SiteHeader({
                   </div>
                   {activeMenu.columns?.map((column) => (
                     <div key={column.title} className="col-span-4 border-l border-line pl-8">
-                      <p className="font-mono text-eyebrow uppercase text-fog-2">
+                      <p className="font-mono text-eyebrow uppercase text-fog">
                         {column.title}
                       </p>
                       <ul className="mt-4 space-y-2">
@@ -299,7 +299,7 @@ export function SiteHeader({
         aria-modal="true"
         aria-label="Menu"
         className={cn(
-          "fixed inset-x-0 top-0 z-[45] overflow-hidden bg-ink/98 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
+          "fixed inset-x-0 top-0 z-[45] overflow-hidden bg-night/98 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
           mobileOpen
             ? "pointer-events-auto h-[100svh] opacity-100"
             : "pointer-events-none h-0 opacity-0",
@@ -326,12 +326,12 @@ export function SiteHeader({
                         aria-expanded={expanded}
                         className="flex w-full items-center justify-between py-4 text-left"
                       >
-                        <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-ink/90">
+                        <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-night/90">
                           {item.label}
                         </span>
                         <ChevronDown
                           className={cn(
-                            "h-5 w-5 text-on-ink/50 transition-transform duration-300",
+                            "h-5 w-5 text-on-night/50 transition-transform duration-300",
                             expanded && "rotate-180",
                           )}
                         />
@@ -353,10 +353,10 @@ export function SiteHeader({
                                 <Link
                                   href={child.href}
                                   onClick={() => setMobileOpen(false)}
-                                  className="flex items-baseline justify-between gap-4 py-3 pl-4 text-[0.9375rem] text-on-ink/60 transition-colors hover:text-on-ink"
+                                  className="flex items-baseline justify-between gap-4 py-3 pl-4 text-[0.9375rem] text-on-night/60 transition-colors hover:text-on-night"
                                 >
                                   {child.label}
-                                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-on-ink/30" />
+                                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-on-night/30" />
                                 </Link>
                               </li>
                             ))}
@@ -370,10 +370,10 @@ export function SiteHeader({
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center justify-between py-4"
                     >
-                      <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-ink/90">
+                      <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-night/90">
                         {item.label}
                       </span>
-                      <ArrowRight className="h-4 w-4 text-on-ink/30" />
+                      <ArrowRight className="h-4 w-4 text-on-night/30" />
                     </Link>
                   )}
                 </li>

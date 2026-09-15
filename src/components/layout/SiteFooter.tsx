@@ -13,17 +13,17 @@ export function SiteFooter({
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-ink text-on-ink">
+    <footer className="border-t border-line bg-night text-on-night">
       <Container width="wide">
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <ReygentMark className="h-7 w-7" />
-              <span className="font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-on-ink">
+              <span className="font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-on-night">
                 {brand.name}
               </span>
             </Link>
-            <p className="mt-5 max-w-[20rem] text-small text-on-ink-2">
+            <p className="mt-5 max-w-[20rem] text-small text-on-night-2">
               {brand.tagline}
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -35,14 +35,14 @@ export function SiteFooter({
               </Link>
               <Link
                 href={footer.actions.secondary.href}
-                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-ink transition-colors hover:border-white/40"
+                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-night transition-colors hover:border-white/40"
               >
                 {footer.actions.secondary.label}
               </Link>
             </div>
             <a
               href={`mailto:${brand.email}`}
-              className="mt-6 inline-block font-mono text-[0.75rem] text-on-ink-2 transition-colors hover:text-on-ink"
+              className="mt-6 inline-block font-mono text-[0.75rem] text-on-night-2 transition-colors hover:text-on-night"
             >
               {brand.email}
             </a>
@@ -51,7 +51,7 @@ export function SiteFooter({
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
             {footer.columns.map((column: ChromeDoc["footer"]["columns"][number]) => (
               <nav key={column.title} aria-label={column.title}>
-                <h2 className="font-mono text-eyebrow uppercase text-on-ink-2">
+                <h2 className="font-mono text-eyebrow uppercase text-on-night-2">
                   {column.title}
                 </h2>
                 <ul className="mt-4 space-y-2.5">
@@ -59,7 +59,7 @@ export function SiteFooter({
                     <li key={`${column.title}-${item.label}`}>
                       <Link
                         href={item.href}
-                        className="text-small text-on-ink-2 transition-colors duration-200 hover:text-on-ink"
+                        className="text-small text-on-night-2 transition-colors duration-200 hover:text-on-night"
                       >
                         {item.label}
                       </Link>
@@ -72,18 +72,18 @@ export function SiteFooter({
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[0.75rem] text-on-ink-2">
+          <p className="font-mono text-[0.75rem] text-on-night-2">
             © {year} {brand.name}. {brand.copyright}
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="font-mono text-[0.75rem] text-on-ink-2">
+            <span className="font-mono text-[0.75rem] text-on-night-2">
               {footer.builtFor}
             </span>
             {Object.values(footer.legalLinks).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[0.75rem] text-on-ink-2 transition-colors hover:text-on-ink"
+                className="font-mono text-[0.75rem] text-on-night-2 transition-colors hover:text-on-night"
               >
                 {link.label}
               </Link>
@@ -95,7 +95,7 @@ export function SiteFooter({
           Placeholder disclosure. Client names and testimonials on this build are
           invented. Remove this line once real references are published.
         */}
-        <p className="border-t border-white/10 py-6 text-[0.6875rem] leading-relaxed text-on-ink-2/70">
+        <p className="border-t border-white/10 py-6 text-[0.6875rem] leading-relaxed text-on-night-2/70">
           {footer.disclosure}
         </p>
       </Container>

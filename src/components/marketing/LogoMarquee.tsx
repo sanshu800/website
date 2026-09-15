@@ -22,7 +22,7 @@ export function LogoMarquee({
       {label && (
         <p className={cn(
           "mb-7 text-center font-mono text-[0.6875rem] uppercase tracking-[0.14em]",
-          tone === "on-ink" ? "text-white/55" : "text-fog-2",
+          tone === "on-ink" ? "text-white/55" : "text-fog",
         )}>
           {label}
         </p>

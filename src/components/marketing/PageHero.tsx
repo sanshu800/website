@@ -38,7 +38,7 @@ export function PageHero({
     <section
       className={cn(
         "relative overflow-hidden border-b pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36",
-        onInk ? "border-white/10 bg-ink" : "border-line bg-paper",
+        onInk ? "border-white/10 bg-night" : "border-line bg-paper",
         className,
       )}
     >
@@ -62,7 +62,7 @@ export function PageHero({
                 <li key={crumb.label} className="flex items-center gap-1.5">
                   {index > 0 && (
                     <ChevronRight
-                      className={cn("h-3 w-3", onInk ? "text-white/35" : "text-fog-2")}
+                      className={cn("h-3 w-3", onInk ? "text-white/35" : "text-fog")}
                     />
                   )}
                   {crumb.href ? (
@@ -70,13 +70,13 @@ export function PageHero({
                       href={crumb.href}
                       className={cn(
                         "transition-colors",
-                        onInk ? "text-on-ink-2 hover:text-on-ink" : "text-fog hover:text-ink",
+                        onInk ? "text-on-night-2 hover:text-on-night" : "text-fog hover:text-ink",
                       )}
                     >
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className={onInk ? "text-on-ink" : "text-ink"}>{crumb.label}</span>
+                    <span className={onInk ? "text-on-night" : "text-ink"}>{crumb.label}</span>
                   )}
                 </li>
               ))}
@@ -110,7 +110,7 @@ export function PageHero({
               <h1
                 className={cn(
                   "mt-5 text-display-xl",
-                  onInk ? "text-on-ink" : "text-ink",
+                  onInk ? "text-on-night" : "text-ink",
                 )}
               >
                 {title}
@@ -121,7 +121,7 @@ export function PageHero({
                 <p
                   className={cn(
                     "mt-6 text-lead",
-                    onInk ? "text-on-ink-2" : "text-fog",
+                    onInk ? "text-on-night-2" : "text-fog",
                     align === "center" && !aside ? "mx-auto max-w-[40rem]" : "max-w-[42rem]",
                   )}
                 >
@@ -173,7 +173,7 @@ export function PageCTA({
           <div className="flex flex-wrap gap-3">
             <Link
               href={primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {primary.label}
             </Link>

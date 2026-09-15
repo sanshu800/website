@@ -87,9 +87,18 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/**
+ * The browser's own chrome, which is the part of "dark mode" a stylesheet
+ * cannot reach: form controls, scrollbars, the mobile toolbar. `light dark`
+ * tells the browser both are supported and lets the CSS decide, and the two
+ * `themeColor` entries paint the toolbar to match whichever is in play.
+ */
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0b" },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -103,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-small focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-night focus:px-4 focus:py-2 focus:text-small focus:text-white"
         >
           Skip to content
         </a>

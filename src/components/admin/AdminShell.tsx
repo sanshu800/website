@@ -58,7 +58,7 @@ export function AdminShell({
                 Reygent AI
               </span>
             </Link>
-            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
               Admin
             </span>
           </div>
@@ -71,7 +71,7 @@ export function AdminShell({
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "inline-flex h-9 items-center gap-2 rounded-lg px-3 text-[0.875rem] font-medium transition-colors",
-                  isActive(item.href) ? "bg-ink text-on-ink" : "text-fog hover:bg-mist hover:text-ink",
+                  isActive(item.href) ? "bg-night text-on-night" : "text-fog hover:bg-mist hover:text-ink",
                 )}
               >
                 <item.icon className="h-3.5 w-3.5" />
@@ -88,11 +88,11 @@ export function AdminShell({
             )}
             <div className="hidden text-right sm:block">
               <p className="text-[0.8125rem] font-medium leading-tight text-ink">{user.name}</p>
-              <p className="font-mono text-[0.6875rem] leading-tight text-fog-2">{user.role}</p>
+              <p className="font-mono text-[0.6875rem] leading-tight text-fog">{user.role}</p>
             </div>
             <span
               aria-hidden="true"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-ink font-mono text-[0.6875rem] text-on-ink"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-night font-mono text-[0.6875rem] text-on-night"
             >
               {initials(user.name)}
             </span>
@@ -118,7 +118,7 @@ export function AdminShell({
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg text-[0.875rem] font-medium transition-colors",
-                  isActive(item.href) ? "bg-ink text-on-ink" : "text-fog hover:bg-mist hover:text-ink",
+                  isActive(item.href) ? "bg-night text-on-night" : "text-fog hover:bg-mist hover:text-ink",
                 )}
               >
                 <item.icon className="h-3.5 w-3.5" />
@@ -132,7 +132,7 @@ export function AdminShell({
       <main className="mx-auto w-full max-w-[1240px] px-5 py-8 sm:px-6">{children}</main>
 
       <footer className="mx-auto w-full max-w-[1240px] px-5 pb-10 sm:px-6">
-        <p className="text-[0.6875rem] leading-relaxed text-fog-2">
+        <p className="text-[0.6875rem] leading-relaxed text-fog">
           Private admin. Not linked from the public site and excluded from search engines.
           Every save is validated, attributed and reversible from the History screen.
         </p>
@@ -156,7 +156,7 @@ export function AdminHeader({
     <div className="mb-6 flex flex-wrap items-start justify-between gap-5">
       <div>
         {eyebrow && (
-          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">
+          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
             {eyebrow}
           </p>
         )}

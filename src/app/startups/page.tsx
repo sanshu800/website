@@ -31,7 +31,7 @@ export default function StartupsPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -74,7 +74,7 @@ export default function StartupsPage() {
                   <li key={criterion}>{criterion}</li>
                 ))}
               </ul>
-              <p className="mt-6 text-micro text-fog-2">{copy.eligibility.note}</p>
+              <p className="mt-6 text-micro text-fog">{copy.eligibility.note}</p>
             </div>
           </Reveal>
         </Container>
@@ -88,7 +88,7 @@ export default function StartupsPage() {
                 <dd className="font-display text-[2rem] leading-none text-ink">
                   {stat.value}
                 </dd>
-                <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                   {stat.label}
                 </dt>
                 <dd className="mt-1.5 text-[0.75rem] text-fog">{stat.detail}</dd>

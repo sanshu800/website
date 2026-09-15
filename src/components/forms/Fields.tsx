@@ -50,7 +50,7 @@ export function Label({
           </span>
         )}
       </label>
-      {hint && <span className="text-[0.6875rem] text-fog-2">{hint}</span>}
+      {hint && <span className="text-[0.6875rem] text-fog">{hint}</span>}
     </span>
   );
 }
@@ -287,7 +287,7 @@ export function FormSuccess({
       role="status"
       className="rounded-2xl border border-jade/30 bg-jade-soft p-7 sm:p-8"
     >
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-jade text-white">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-jade text-on-jade">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M20 6 9 17l-5-5" />
         </svg>

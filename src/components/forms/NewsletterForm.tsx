@@ -101,7 +101,7 @@ export function NewsletterForm({
           <FormError>{error}</FormError>
         </div>
       )}
-      <p className="mt-3 text-[0.6875rem] text-fog-2">
+      <p className="mt-3 text-[0.6875rem] text-fog">
         One email a month. No newsletter platform is connected on this build, so
         addresses are stored in our own database and nothing is sent yet.
       </p>

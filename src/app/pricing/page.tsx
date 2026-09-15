@@ -49,7 +49,7 @@ export default function PricingPage() {
                   <div className="flex items-center justify-between">
                     <h2 className="font-display text-[1.25rem] text-ink">{tier.name}</h2>
                     {tier.highlight && (
-                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-on-accent">
                         {plans.popularBadge}
                       </span>
                     )}
@@ -62,7 +62,7 @@ export default function PricingPage() {
                       <span className="text-micro text-fog">{plans.unit}</span>
                     )}
                   </p>
-                  <p className="mt-2 text-[0.75rem] text-fog-2">{tier.priceNote}</p>
+                  <p className="mt-2 text-[0.75rem] text-fog">{tier.priceNote}</p>
                   <p className="mt-5 text-micro text-fog">{tier.summary}</p>
 
                   <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
@@ -82,7 +82,7 @@ export default function PricingPage() {
                     className={cn(
                       "mt-7 inline-flex h-11 items-center justify-center rounded-lg text-[0.9375rem] font-medium transition-colors",
                       tier.highlight
-                        ? "bg-accent text-white hover:bg-accent-2"
+                        ? "bg-accent text-on-accent hover:bg-accent-2"
                         : "border border-line-strong text-ink hover:bg-mist",
                     )}
                   >
@@ -113,7 +113,7 @@ export default function PricingPage() {
                 <tr className="border-b border-line-strong">
                   <th
                     scope="col"
-                    className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2"
+                    className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog"
                   >
                     {comparison.featureColumn}
                   </th>
@@ -123,7 +123,7 @@ export default function PricingPage() {
                       scope="col"
                       className={cn(
                         "py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide",
-                        index === 1 ? "text-accent" : "text-fog-2",
+                        index === 1 ? "text-accent" : "text-fog",
                       )}
                     >
                       {name}

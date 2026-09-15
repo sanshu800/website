@@ -58,7 +58,7 @@ export default async function LegalPage({
           </div>
 
           <nav className="mt-14 border-t border-line pt-8">
-            <p className="font-mono text-eyebrow uppercase text-fog-2">Other policies</p>
+            <p className="font-mono text-eyebrow uppercase text-fog">Other policies</p>
             <ul className="mt-4 flex flex-wrap gap-3">
               {slugs.filter((item) => item !== slug).map((item) => (
                 <li key={item}>

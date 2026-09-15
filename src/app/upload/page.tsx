@@ -31,7 +31,7 @@ export default async function UploadPage({
   return (
     <section className="border-b border-line bg-paper pb-20 pt-32">
       <Container width="narrow">
-        <p className="font-mono text-eyebrow uppercase text-fog-2">Utility</p>
+        <p className="font-mono text-eyebrow uppercase text-fog">Utility</p>
         <h1 className="mt-5 text-display-l text-ink">Send the hero file</h1>
         <p className="mt-4 text-lead text-fog">
           This deployment has no outbound access to Drive or CDNs, so the file has to

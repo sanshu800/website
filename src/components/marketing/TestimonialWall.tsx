@@ -50,23 +50,23 @@ export function TestimonialWall() {
         <div className="mt-14 grid gap-6 lg:grid-cols-12">
           {/* Featured quote */}
           <Reveal className="lg:col-span-5" variant="up">
-            <figure className="flex h-full flex-col rounded-2xl bg-ink p-7 text-on-ink sm:p-9">
+            <figure className="flex h-full flex-col rounded-2xl bg-night p-7 text-on-night sm:p-9">
               <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
-              <blockquote className="mt-6 flex-1 font-display text-[1.375rem] leading-snug tracking-[-0.015em] text-on-ink">
+              <blockquote className="mt-6 flex-1 font-display text-[1.375rem] leading-snug tracking-[-0.015em] text-on-night">
                 “{featured.quote}”
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-3 border-t border-white/10 pt-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-[0.8125rem] font-semibold text-on-ink">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-[0.8125rem] font-semibold text-on-night">
                   {featured.name
                     .split(" ")
                     .map((part) => part[0])
                     .join("")}
                 </span>
                 <span>
-                  <span className="block text-[0.9375rem] font-medium text-on-ink">
+                  <span className="block text-[0.9375rem] font-medium text-on-night">
                     {featured.name}
                   </span>
-                  <span className="block text-micro text-on-ink-2">
+                  <span className="block text-micro text-on-night-2">
                     {featured.role}, {featured.company} · {featured.sector}
                   </span>
                 </span>
@@ -100,7 +100,7 @@ export function TestimonialWall() {
           </div>
         </div>
 
-        <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
+        <p className="mt-6 font-mono text-[0.6875rem] text-fog">
           {copy.disclosure}
         </p>
       </Container>

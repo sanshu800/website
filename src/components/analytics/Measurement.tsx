@@ -91,7 +91,7 @@ export function Measurement() {
         <button
           type="button"
           onClick={() => writeConsent("granted")}
-          className="inline-flex h-9 items-center rounded-lg bg-ink px-3.5 text-[0.8125rem] font-medium text-white transition-colors pointer-coarse:min-h-11 hover:bg-accent-2"
+          className="inline-flex h-9 items-center rounded-lg bg-night px-3.5 text-[0.8125rem] font-medium text-on-accent transition-colors pointer-coarse:min-h-11 hover:bg-accent-2"
         >
           Allow measurement
         </button>

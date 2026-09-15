@@ -58,7 +58,7 @@ export default function AboutPage() {
                   <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8">
                     {siteStats.slice(0, 4).map((stat) => (
                       <div key={stat.label}>
-                        <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                        <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                           {stat.label}
                         </dt>
                         <dd className="mt-2 font-display text-[1.5rem] leading-none text-ink">

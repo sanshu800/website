@@ -53,7 +53,7 @@ export default function ContentHistoryPage() {
                 <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.6875rem] text-fog">
                   {orphan.doc.title}
                 </span>
-                <span className="font-mono text-[0.6875rem] text-fog-2">{orphan.path}</span>
+                <span className="font-mono text-[0.6875rem] text-fog">{orphan.path}</span>
                 <span className="flex-1 text-[0.8125rem] text-fog">“{orphan.value.slice(0, 80)}”</span>
                 <RevertButton keyName={orphan.key} label="Drop" />
               </li>
@@ -84,21 +84,21 @@ export default function ContentHistoryPage() {
                     <span className="text-[0.8125rem] font-medium text-ink">
                       {titleForPath(revision.path)}
                     </span>
-                    <span className="text-[0.75rem] text-fog-2">
+                    <span className="text-[0.75rem] text-fog">
                       {ACTION_LABEL[revision.action] ?? revision.action}
                     </span>
                   </div>
 
                   <div className="mt-2 grid gap-2 text-[0.8125rem] sm:grid-cols-2">
                     <p className="rounded-lg bg-mist px-3 py-2 text-fog">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                         before
                       </span>
                       <br />
                       {revision.old_value ? revision.old_value : "— shipped copy —"}
                     </p>
                     <p className="rounded-lg bg-paper px-3 py-2 text-ink ring-1 ring-inset ring-line">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                         after
                       </span>
                       <br />
@@ -107,7 +107,7 @@ export default function ContentHistoryPage() {
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-[0.6875rem] text-fog-2">
+                    <span className="text-[0.6875rem] text-fog">
                       {revision.actor ?? "unknown"}
                       {revision.actor_email ? ` · ${revision.actor_email}` : ""} ·{" "}
                       {relativeTime(revision.at)}

@@ -9,14 +9,14 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent text-white shadow-[0_1px_2px_rgba(11,11,16,0.12)] hover:bg-accent-2 hover:shadow-accent active:translate-y-px",
+    "bg-accent text-on-accent shadow-[0_1px_2px_rgba(11,11,16,0.12)] hover:bg-accent-2 hover:shadow-accent active:translate-y-px",
   secondary:
     "border border-line-strong bg-paper text-ink hover:border-ink/25 hover:bg-mist active:translate-y-px",
   ghost: "text-fg-2 hover:bg-mist hover:text-ink",
   inverse:
     "bg-paper text-ink hover:bg-mist-2 active:translate-y-px border border-transparent",
   danger:
-    "bg-danger text-white hover:brightness-95 active:translate-y-px shadow-xs",
+    "bg-danger text-on-danger hover:brightness-95 active:translate-y-px shadow-xs",
 };
 
 /*

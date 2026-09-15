@@ -61,7 +61,7 @@ export function UploadPanel({ token }: { token: string }) {
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex h-11 items-center rounded-lg bg-ink px-5 text-[0.9375rem] font-medium text-on-ink"
+          className="mt-6 inline-flex h-11 items-center rounded-lg bg-night px-5 text-[0.9375rem] font-medium text-on-night"
         >
           Back to the site
         </Link>
@@ -119,7 +119,7 @@ export function UploadPanel({ token }: { token: string }) {
       <button
         type="submit"
         disabled={status === "sending" || !file}
-        className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-ink text-[0.9375rem] font-medium text-on-ink transition-colors hover:bg-accent-2 disabled:opacity-45"
+        className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-night text-[0.9375rem] font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-45"
       >
         {status === "sending" ? (
           <>
@@ -130,7 +130,7 @@ export function UploadPanel({ token }: { token: string }) {
         )}
       </button>
 
-      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog-2">
+      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog">
         The file is written to <span className="font-mono">public/video/hero.*</span> in the
         project. Nothing is sent anywhere else.
       </p>

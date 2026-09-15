@@ -43,16 +43,16 @@ export default function GuidesPage() {
                 >
                   <div className="flex items-center justify-between">
                     <FileText className="h-5 w-5 text-accent" aria-hidden="true" />
-                    <ArrowUpRight className="h-4 w-4 text-fog-2 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <ArrowUpRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
-                  <p className="mt-6 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                  <p className="mt-6 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                     {guide.category}
                   </p>
                   <h2 className="mt-3 font-display text-[1.25rem] text-ink">
                     {guide.title}
                   </h2>
                   <p className="mt-3 flex-1 text-micro text-fog">{guide.summary}</p>
-                  <p className="mt-6 border-t border-line pt-4 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                  <p className="mt-6 border-t border-line pt-4 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                     {guide.format}
                   </p>
                 </Link>

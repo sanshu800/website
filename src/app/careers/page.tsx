@@ -58,7 +58,7 @@ export default function CareersPage() {
                       <MapPin className="h-3.5 w-3.5" />
                       {role.location}
                     </span>
-                    <ArrowRight className="h-4 w-4 text-fog-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
                   </div>
                 </Link>
               </RevealItem>
@@ -83,7 +83,7 @@ export default function CareersPage() {
           </RevealGroup>
 
           <div className="mt-16">
-            <h2 className="font-mono text-eyebrow uppercase text-fog-2">
+            <h2 className="font-mono text-eyebrow uppercase text-fog">
               {careers.workingHere.lookingFor}
             </h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

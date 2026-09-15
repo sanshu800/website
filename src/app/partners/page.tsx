@@ -30,7 +30,7 @@ export default function PartnersPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>

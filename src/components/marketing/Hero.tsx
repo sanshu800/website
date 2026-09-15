@@ -51,7 +51,7 @@ export function Hero() {
   const { hero } = getHome();
 
   return (
-    <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-ink">
+    <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-night">
       {/* 1. Film — see HeroFilm for the data-saver behaviour. */}
       <HeroFilm
         src={video.src}
@@ -70,11 +70,11 @@ export function Hero() {
       {/* 2. Scrims — legibility, not decoration */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/65"
+        className="absolute inset-0 bg-gradient-to-t from-night via-night/55 to-night/65"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/40 to-transparent lg:from-ink/80"
+        className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/40 to-transparent lg:from-night/80"
       />
 
       {/* 3. Content */}
@@ -82,7 +82,7 @@ export function Hero() {
         {/* Top: badge + headline */}
         <Container width="wide">
           <div className="max-w-[46rem]">
-            <p className="animate-[fadeSlideUp_0.8s_ease_0.2s_both] text-[0.75rem] text-on-ink/90 sm:text-[0.875rem]">
+            <p className="animate-[fadeSlideUp_0.8s_ease_0.2s_both] text-[0.75rem] text-on-night/90 sm:text-[0.875rem]">
               <span className="inline-flex items-center gap-2.5">
                 <span
                   aria-hidden="true"
@@ -92,7 +92,7 @@ export function Hero() {
               </span>
             </p>
 
-            <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-[2rem] font-medium leading-[1.08] tracking-[-0.035em] text-on-ink sm:mt-6 sm:text-[3rem] md:text-[3.75rem] lg:text-[4.25rem]">
+            <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-[2rem] font-medium leading-[1.08] tracking-[-0.035em] text-on-night sm:mt-6 sm:text-[3rem] md:text-[3.75rem] lg:text-[4.25rem]">
               {hero.titleLines.map((line, index) => (
                 <span key={line}>
                   {index > 0 && <br />}
@@ -107,7 +107,7 @@ export function Hero() {
         <Container width="wide">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div className="max-w-[26rem] sm:max-w-[32rem]">
-              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-[0.875rem] leading-relaxed text-on-ink/60 sm:mb-6 sm:text-[1rem] md:text-[1.125rem]">
+              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-[0.875rem] leading-relaxed text-on-night/60 sm:mb-6 sm:text-[1rem] md:text-[1.125rem]">
                 {hero.summary}
               </p>
 
@@ -122,14 +122,14 @@ export function Hero() {
                   </Link>
                   <Link
                     href={hero.secondaryCta.href}
-                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-[0.875rem] font-medium text-on-ink backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
+                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-[0.875rem] font-medium text-on-night backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
                   >
                     <Play className="h-3.5 w-3.5" />
                     {hero.secondaryCta.label}
                   </Link>
                 </div>
 
-                <p className="mt-4 text-[0.75rem] text-on-ink/45 sm:text-[0.8125rem]">
+                <p className="mt-4 text-[0.75rem] text-on-night/45 sm:text-[0.8125rem]">
                   {hero.footnote}
                 </p>
               </div>
@@ -142,10 +142,10 @@ export function Hero() {
                   key={fact.label}
                   className="animate-[fadeSlideUp_0.8s_ease_1.05s_both]"
                 >
-                  <dd className="font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-ink">
+                  <dd className="font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-night">
                     {fact.value}
                   </dd>
-                  <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-on-ink/45">
+                  <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-on-night/45">
                     {fact.label}
                   </dt>
                 </div>

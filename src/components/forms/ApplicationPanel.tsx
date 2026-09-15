@@ -131,7 +131,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
         )}
       </Button>
 
-      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog-2">
+      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog">
         Applications are stored in our own database and read by the hiring manager for
         this role. No third-party ATS is involved.
       </p>

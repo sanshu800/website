@@ -40,13 +40,13 @@ export default function BuildLogPage() {
             <Reveal>
               <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-on-accent">
                     {log.latestBadge}
                   </span>
                   <span className="font-mono text-[0.6875rem] text-accent">
                     {latest.issue}
                   </span>
-                  <time className="font-mono text-[0.6875rem] text-fog-2">
+                  <time className="font-mono text-[0.6875rem] text-fog">
                     {latest.date}
                   </time>
                 </div>
@@ -83,7 +83,7 @@ export default function BuildLogPage() {
               >
                 <div className="lg:col-span-3">
                   <p className="font-mono text-[0.75rem] text-ink">{note.issue}</p>
-                  <time className="mt-1.5 block font-mono text-[0.6875rem] text-fog-2">
+                  <time className="mt-1.5 block font-mono text-[0.6875rem] text-fog">
                     {note.date}
                   </time>
                 </div>
@@ -112,7 +112,7 @@ export default function BuildLogPage() {
             ))}
           </div>
 
-          <p className="mt-10 text-micro text-fog-2">
+          <p className="mt-10 text-micro text-fog">
             {log.digest.before}{" "}
             <Link href="/newsletter" className="text-accent underline underline-offset-2">
               {log.digest.linkLabel}

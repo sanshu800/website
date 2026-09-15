@@ -84,7 +84,7 @@ export function ServiceTabs({
                 <span
                   className={cn(
                     "font-mono text-[0.625rem] uppercase tracking-[0.14em]",
-                    isActive ? "text-accent" : "text-fog-2",
+                    isActive ? "text-accent" : "text-fog",
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -100,7 +100,7 @@ export function ServiceTabs({
                 <span
                   className={cn(
                     "mt-1 block text-[0.6875rem]",
-                    isActive ? "text-accent-2/80" : "text-fog-2",
+                    isActive ? "text-accent-2/80" : "text-fog",
                   )}
                 >
                   {tab.kicker}
@@ -164,7 +164,7 @@ export function ServiceTabs({
                     <Screen name={current.home.screen} />
                   </div>
                 </div>
-                <p className="mt-3 font-mono text-[0.6875rem] text-fog-2">
+                <p className="mt-3 font-mono text-[0.6875rem] text-fog">
                   {current.panelCaption} · illustrative interface
                 </p>
               </div>

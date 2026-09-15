@@ -90,7 +90,7 @@ export default async function MediaPage() {
                     </span>
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-mono text-[0.8125rem] text-ink">{file.name}</p>
-                      <p className="mt-0.5 text-[0.75rem] text-fog-2">
+                      <p className="mt-0.5 text-[0.75rem] text-fog">
                         {formatBytes(file.bytes)} · {file.updatedAt.toISOString().slice(0, 10)}
                       </p>
                     </div>

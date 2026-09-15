@@ -20,7 +20,7 @@ export function ProblemSection() {
   const { problem: copy } = getHome();
 
   return (
-    <section className="relative bg-ink py-24 text-on-ink sm:py-28 lg:py-32">
+    <section className="relative bg-night py-24 text-on-night sm:py-28 lg:py-32">
       <div
         aria-hidden="true"
         className="grid-field-dark pointer-events-none absolute inset-0 opacity-40"
@@ -51,7 +51,7 @@ export function ProblemSection() {
               className="group h-full"
               variant="up"
             >
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-2">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-night-2">
                 <div className={cn("relative aspect-[16/11] overflow-hidden", problem.field)}>
                   <Image
                     src={problem.image}
@@ -62,14 +62,14 @@ export function ProblemSection() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="text-display-s text-on-ink">{problem.title}</h3>
-                  <p className="mt-3 text-small text-on-ink-2">{problem.body}</p>
+                  <h3 className="text-display-s text-on-night">{problem.title}</h3>
+                  <p className="mt-3 text-small text-on-night-2">{problem.body}</p>
 
                   <div className="mt-6 flex items-baseline gap-3 border-t border-white/10 pt-5">
-                    <span className="font-display text-[1.75rem] leading-none text-on-ink">
+                    <span className="font-display text-[1.75rem] leading-none text-on-night">
                       {problem.stat.value}
                     </span>
-                    <span className="text-[0.75rem] leading-snug text-on-ink-2">
+                    <span className="text-[0.75rem] leading-snug text-on-night-2">
                       {problem.stat.label}
                     </span>
                   </div>
@@ -79,7 +79,7 @@ export function ProblemSection() {
                       aria-hidden="true"
                       className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-3"
                     />
-                    <p className="text-[0.8125rem] leading-snug text-on-ink">
+                    <p className="text-[0.8125rem] leading-snug text-on-night">
                       {problem.fix}
                     </p>
                   </div>
@@ -89,7 +89,7 @@ export function ProblemSection() {
           ))}
         </div>
 
-        <p className="mt-12 max-w-[46rem] border-t border-white/10 pt-8 text-body-lg text-on-ink-2">
+        <p className="mt-12 max-w-[46rem] border-t border-white/10 pt-8 text-body-lg text-on-night-2">
           {copy.closing}
         </p>
       </Container>

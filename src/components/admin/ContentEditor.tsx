@@ -54,7 +54,7 @@ export function ContentEditor({
     <div>
       <div className="sticky top-0 z-10 -mx-1 mb-6 flex flex-wrap items-center gap-3 border-b border-line bg-paper/95 px-1 py-4 backdrop-blur">
         <div className="relative min-w-[240px] flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fog-2" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fog" />
           <input
             type="search"
             value={query}
@@ -72,7 +72,7 @@ export function ContentEditor({
           className={cn(
             "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-[0.8125rem] font-medium transition-colors",
             onlyEdited
-              ? "border-accent bg-accent text-white"
+              ? "border-accent bg-accent text-on-accent"
               : "border-field text-fog hover:bg-mist hover:text-ink",
           )}
         >
@@ -80,7 +80,7 @@ export function ContentEditor({
           <span className="font-mono text-[0.6875rem] opacity-80">{editedCount}</span>
         </button>
 
-        <p className="text-[0.75rem] text-fog-2">
+        <p className="text-[0.75rem] text-fog">
           <span className="font-mono text-ink">{visible.length}</span> of {fields.length} fields
         </p>
       </div>
@@ -97,7 +97,7 @@ export function ContentEditor({
             <div className="flex items-center gap-3">
               <h2 className="font-display text-[1.0625rem] text-ink">{group}</h2>
               <span className="h-px flex-1 bg-line" />
-              <span className="font-mono text-[0.6875rem] text-fog-2">
+              <span className="font-mono text-[0.6875rem] text-fog">
                 {groupFields.length} field{groupFields.length === 1 ? "" : "s"}
               </span>
             </div>

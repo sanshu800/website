@@ -52,7 +52,7 @@ export default async function BlogIndex({
                 className={cn(
                   "shrink-0 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
                   item === active
-                    ? "border-accent bg-accent text-white"
+                    ? "border-accent bg-accent text-on-accent"
                     : "border-line text-fg-2 hover:bg-mist",
                 )}
               >
@@ -95,7 +95,7 @@ export default async function BlogIndex({
                     {featured.author.name}
                   </p>
                   <p className="text-[0.75rem] text-fog">{featured.author.role}</p>
-                  <div className="mt-4 flex items-center gap-3 font-mono text-[0.6875rem] text-fog-2">
+                  <div className="mt-4 flex items-center gap-3 font-mono text-[0.6875rem] text-fog">
                     <time dateTime={featured.publishedAt}>
                       {formatDate(featured.publishedAt)}
                     </time>
@@ -123,7 +123,7 @@ export default async function BlogIndex({
                     {post.title}
                   </h3>
                   <p className="mt-3 flex-1 text-micro text-fog">{post.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between border-t border-line pt-4 font-mono text-[0.6875rem] text-fog-2">
+                  <div className="mt-5 flex items-center justify-between border-t border-line pt-4 font-mono text-[0.6875rem] text-fog">
                     <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
                     <span>{post.readingMinutes} min</span>
                   </div>

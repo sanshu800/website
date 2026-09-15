@@ -52,8 +52,8 @@ export default async function AdminLoginPage({
           </div>
 
           <div className="mt-6 flex items-start gap-3 border-t border-line pt-5">
-            <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fog-2" aria-hidden="true" />
-            <p className="text-[0.6875rem] leading-relaxed text-fog-2">
+            <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fog" aria-hidden="true" />
+            <p className="text-[0.6875rem] leading-relaxed text-fog">
               Passwords are hashed with scrypt. Sessions are opaque tokens stored as
               SHA-256 hashes and sent in an httpOnly cookie; no third-party identity
               provider is involved.
@@ -61,7 +61,7 @@ export default async function AdminLoginPage({
           </div>
         </div>
 
-        <p className="mt-6 text-center text-[0.6875rem] text-fog-2">
+        <p className="mt-6 text-center text-[0.6875rem] text-fog">
           Not an administrator?{" "}
           <Link href="/" className="text-accent underline underline-offset-2">
             Back to the site

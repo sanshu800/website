@@ -37,7 +37,7 @@ export default function IntegrationsPage() {
           <>
             <Link
               href={copy.heroActions.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.heroActions.primary.label}
             </Link>
@@ -102,10 +102,10 @@ export default function IntegrationsPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <div className="grid gap-10 rounded-2xl border border-line bg-ink p-8 text-on-ink sm:p-10 lg:grid-cols-12">
+          <div className="grid gap-10 rounded-2xl border border-line bg-night p-8 text-on-night sm:p-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="text-display-m text-on-ink">{copy.api.heading}</h2>
-              <p className="mt-4 text-body-lg text-on-ink-2">{copy.api.body}</p>
+              <h2 className="text-display-m text-on-night">{copy.api.heading}</h2>
+              <p className="mt-4 text-body-lg text-on-night-2">{copy.api.body}</p>
               <Link
                 href="/contact"
                 className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
@@ -115,7 +115,7 @@ export default function IntegrationsPage() {
               </Link>
             </div>
             <div className="lg:col-span-7">
-              <pre className="overflow-x-auto rounded-xl border border-white/10 bg-ink-2 p-5 font-mono text-[0.75rem] leading-relaxed text-on-ink-2">
+              <pre className="overflow-x-auto rounded-xl border border-white/10 bg-night-2 p-5 font-mono text-[0.75rem] leading-relaxed text-on-night-2">
 {`GET /v1/companies?stage=Onboarding&limit=2
 
 {

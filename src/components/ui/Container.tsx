@@ -42,8 +42,8 @@ export function Section({
   const tones = {
     paper: "bg-paper text-fg",
     mist: "bg-mist text-fg",
-    ink: "bg-ink text-on-ink",
-    accent: "bg-accent text-white",
+    ink: "bg-night text-on-night",
+    accent: "bg-accent text-on-accent",
   } as const;
 
   const sizes = {
@@ -71,7 +71,7 @@ export function Eyebrow({
   const tones = {
     accent: "text-accent",
     ink: "text-ink",
-    "on-ink": "text-on-ink-2",
+    "on-ink": "text-on-night-2",
     fog: "text-fog",
   } as const;
   return (
@@ -126,7 +126,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-5 text-display-l",
-          onInk ? "text-on-ink" : "text-ink",
+          onInk ? "text-on-night" : "text-ink",
           titleClassName,
         )}
       >
@@ -136,7 +136,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-5 text-lead",
-            onInk ? "text-on-ink-2" : "text-fog",
+            onInk ? "text-on-night-2" : "text-fog",
             align === "center" && "mx-auto",
           )}
         >

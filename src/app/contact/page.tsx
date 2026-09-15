@@ -48,7 +48,7 @@ export default function ContactPage() {
             <div className="lg:col-span-4">
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
-                  <h2 className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                  <h2 className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                     {copy.channelsHeading}
                   </h2>
                   <ul className="mt-6 space-y-6">
@@ -58,7 +58,7 @@ export default function ContactPage() {
                         <li key={channel.label} className="flex gap-4">
                           <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                           <div>
-                            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
+                            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
                               {channel.label}
                             </p>
                             <p className="mt-1.5 text-[0.9375rem] font-medium text-ink">
@@ -79,7 +79,7 @@ export default function ContactPage() {
                     {copy.evaluating.heading}
                   </h2>
                   <p className="mt-2.5 text-micro text-fog">{copy.evaluating.body}</p>
-                  <p className="mt-4 text-[0.6875rem] text-fog-2">{copy.evaluating.note}</p>
+                  <p className="mt-4 text-[0.6875rem] text-fog">{copy.evaluating.note}</p>
                 </div>
               </Reveal>
             </div>

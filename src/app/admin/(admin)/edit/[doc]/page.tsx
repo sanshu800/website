@@ -99,7 +99,7 @@ export default async function ContentDocPage({
               <ul className="mt-3 space-y-2">
                 {orphans.map((orphan) => (
                   <li key={orphan.key} className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[0.6875rem] text-fog-2">{orphan.path}</span>
+                    <span className="font-mono text-[0.6875rem] text-fog">{orphan.path}</span>
                     <span className="text-[0.75rem] text-fog">“{orphan.value.slice(0, 60)}”</span>
                     <RevertButton keyName={orphan.key} label="Drop" />
                   </li>
@@ -112,7 +112,7 @@ export default async function ContentDocPage({
 
       <ContentEditor doc={def.id} fields={fields} readOnly={readOnly} />
 
-      <p className="mt-8 text-[0.75rem] text-fog-2">
+      <p className="mt-8 text-[0.75rem] text-fog">
         Looking for a different surface?{" "}
         <Link href="/admin" className="text-accent underline underline-offset-2">
           All content

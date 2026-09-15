@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { testimonials } from "@/lib/content/marketing";
+import { getHome, getShared } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 /**
@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils";
  * time.
  */
 export function TestimonialWall() {
+  const { testimonials } = getShared();
+  const { testimonials: copy } = getHome();
   const featured = testimonials.find((item) => item.featured) ?? testimonials[0]!;
   const rest = testimonials.filter((item) => item !== featured).slice(0, 4);
 
@@ -23,11 +25,15 @@ export function TestimonialWall() {
       <Container width="wide">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Customers"
+            eyebrow={copy.eyebrow}
             title={
               <>
-                Firms that stopped losing
-                <br className="hidden sm:block" /> work between the tools.
+                {copy.titleLines.map((line, index) => (
+                  <span key={line}>
+                    {index > 0 && <br className="hidden sm:block" />}
+                    {index > 0 ? ` ${line}` : line}
+                  </span>
+                ))}
               </>
             }
             className="max-w-[38rem]"
@@ -36,7 +42,7 @@ export function TestimonialWall() {
             href="/customers"
             className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
           >
-            All customer stories
+            {copy.cta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </div>
@@ -95,8 +101,7 @@ export function TestimonialWall() {
         </div>
 
         <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
-          Placeholder testimonials — invented for design purposes, not real customers.
-          Replace before publishing.
+          {copy.disclosure}
         </p>
       </Container>
     </section>

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { DemoForm } from "@/components/forms/DemoForm";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { testimonials } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Book a demo",
@@ -21,6 +21,8 @@ const AGENDA = [
 ];
 
 export default function DemoPage() {
+  const { testimonials } = getShared();
+
   return (
     <>
       <PageHero

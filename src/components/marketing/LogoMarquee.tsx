@@ -1,4 +1,4 @@
-import { clients } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,8 @@ export function LogoMarquee({
   label?: string;
   tone?: "ink" | "on-ink";
 }) {
+  const { clients } = getShared();
+
   return (
     <div className={cn("group/marquee", className)}>
       {label && (

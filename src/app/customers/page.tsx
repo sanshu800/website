@@ -4,9 +4,9 @@ import { ArrowRight, Quote } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { clients, testimonials } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
-import { solutions } from "@/lib/content/compare";
+import { getSolutions } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Customers",
@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default function CustomersPage() {
+  const { clients, testimonials, disclosures } = getShared();
+  const { items: solutions } = getSolutions();
+
   return (
     <>
       <PageHero
@@ -113,7 +116,7 @@ export default function CustomersPage() {
             ))}
           </RevealGroup>
           <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
-            Placeholder testimonials — invented for design purposes.
+            {disclosures.customersPage}
           </p>
         </Container>
       </section>

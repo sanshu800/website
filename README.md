@@ -178,17 +178,24 @@ and the homepage preview, and **Reset** restores the shipped copy.
   is reported under *History → Orphaned edits* and can be dropped or restored, rather
   than silently hanging around.
 
-**Wired today:** pricing (hero, plans, comparison matrix, FAQ, CTA — and the homepage
-plan preview and `/get-started` plan picker read the same document), products index and
-all five detail pages, solutions index and all four practice pages, all six comparisons,
-the blog index and every article body, and the legal pages. That is a few thousand
-editable strings.
+**Wired today** — every string in these surfaces is editable:
 
-**Not wired yet** (still rendered from the content modules, so they need a developer,
-and the admin lists them under "Not editable yet"): the homepage sections, the header
-and footer navigation, and the standalone pages — about, careers, customers,
-integrations, guides, release notes, security, contact, demo, startups, partners,
-newsletter, get-started and the page-level meta descriptions.
+| Surface | Includes |
+| --- | --- |
+| Homepage | Hero headline lines, badge, summary, both CTAs, the footnote and the three hero stats; the proof band; the problem section (all three problems, their stats and image alt text); how it works (all four stages); the Foundation blurb; the testimonial and integrations headings; the closing block |
+| Pricing | Hero, all three plans, the comparison matrix, the FAQ, the CTA — and the homepage preview and `/get-started` plan picker read the same document |
+| Products | Index hero and the five module pages: name, kicker, headline, intro, flow, features, outcomes and the shared detail headings |
+| Solutions | Index and the four practice pages |
+| Comparisons | Index and all six approach-by-approach pages |
+| Blog | Index, categories, and every article's title, dek, category, byline, reading time and body blocks |
+| Legal | Privacy, terms, DPA, sub-processors |
+| Shared content | Client marks, testimonials, integration surfaces, capability counts and the placeholder disclosures — edited once, applied on the homepage, `/customers`, `/about`, `/integrations` and `/demo` |
+
+**Not wired yet** (still rendered from the content modules, so they need a developer, and
+the admin lists them under "Not editable yet"): the header and footer navigation, the
+sample conversation inside the Foundation panel, the standalone pages — get started,
+about, careers, guides, release notes, security, contact, startups, partners, newsletter
+— and the page-level meta descriptions.
 
 ## Environment variables
 
@@ -282,7 +289,10 @@ admin — the whole loop end to end over HTTP:
   product edit shows on `/products`, the detail page and the homepage tabs);
 - the derived `<meta name="description">` on `/pricing` follows edited plan prices;
 - **Reset** restores the shipped copy everywhere it was changed, and every write left a
-  revision row with the before and after values.
+  revision row with the before and after values;
+- an edit to shared content lands on every page that uses it — a testimonial quote
+  changed on the homepage and `/customers`, an integration blurb on the homepage and
+  `/integrations`, a module name on `/products`, the detail page and the homepage tabs.
 
 **Not verified here:** the admin's client-side interactions (per-keystroke state, the
 search filter, the sticky toolbar, the save/reset buttons repainting) were exercised

@@ -7,7 +7,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/ProductScreens";
 import { getSolutions } from "@/lib/cms/content";
-import { testimonials } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 
 export function generateStaticParams() {
   return getSolutions().items.map((solution) => ({ slug: solution.slug }));
@@ -41,6 +41,7 @@ export default async function SolutionPage({
   if (!solution) notFound();
 
   const others = items.filter((item) => item.slug !== solution.slug);
+  const { testimonials } = getShared();
   const proof = testimonials.filter(
     (item) => item.sector.toLowerCase() === solution.name.toLowerCase(),
   );

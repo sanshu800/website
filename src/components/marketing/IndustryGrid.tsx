@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { solutions } from "@/lib/content/compare";
+import { getHome, getSolutions } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 const FIELD: Record<string, string> = {
@@ -13,13 +13,16 @@ const FIELD: Record<string, string> = {
 };
 
 export function IndustryGrid() {
+  const { items: solutions } = getSolutions();
+  const { industries: copy } = getHome();
+
   return (
     <section className="section bg-paper">
       <Container width="wide">
         <SectionHeading
-          eyebrow="Built for your practice"
-          title="The same operation, different vocabulary."
-          lede="A brief in a law firm is an engagement in a consultancy and a client in an accountancy. The underlying operation is identical: work arrives, must be qualified, delivered and reported on."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          lede={copy.lede}
         />
 
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">

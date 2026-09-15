@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { integrations } from "@/lib/content/marketing";
+import { getHome, getShared } from "@/lib/cms/content";
 
 /**
  * Integrations described by capability rather than by partner logo. Naming and
@@ -10,21 +10,24 @@ import { integrations } from "@/lib/content/marketing";
  * surfaces are listed instead — which is also more useful to a buyer.
  */
 export function IntegrationsStrip() {
+  const { integrations } = getShared();
+  const { integrations: copy } = getHome();
+
   return (
     <section className="section bg-paper">
       <Container width="wide">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Integrations"
-            title="Runs alongside what you already use."
-            lede="Forty-plus integration surfaces across the systems a professional-services firm already depends on. Nothing needs to be ripped out to start."
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            lede={copy.lede}
             className="max-w-[40rem]"
           />
           <Link
             href="/integrations"
             className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
           >
-            All integrations
+            {copy.cta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </div>

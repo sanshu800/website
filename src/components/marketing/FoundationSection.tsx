@@ -6,7 +6,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
-import { foundation } from "@/lib/content/products";
+import type { Product } from "@/lib/content/products";
+import type { HomeDoc } from "@/lib/content/pages/home";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -180,10 +181,16 @@ const PANELS = {
   answer: AnswerAnswer,
 } as const;
 
-export function FoundationSection() {
+export function FoundationSection({
+  copy,
+  tabs,
+}: {
+  copy: HomeDoc["foundation"];
+  tabs: NonNullable<Product["tabs"]>;
+}) {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
-  const tabs = foundation.tabs ?? [];
+  /* tabs arrive from the server component, already merged with any edits */
   const current = tabs[Math.min(active, tabs.length - 1)]!;
   const Panel = PANELS[current.panel];
 
@@ -194,9 +201,9 @@ export function FoundationSection() {
           <div className="lg:col-span-5">
             <SectionHeading
               tone="ink"
-              eyebrow="Foundation"
-              title={<>Meet Ask Reygent.</>}
-              lede="Type a question about a client, an engagement or the whole book. Reygent reasons across everything the firm knows and cites the exact email, document or call behind every answer — in the app, and in your messaging tool."
+              eyebrow={copy.eyebrow}
+              title={<>{copy.title}</>}
+              lede={copy.lede}
             />
 
             <div

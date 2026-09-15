@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { modules } from "@/lib/content/products";
+import { getHome, getProducts } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 const ACCENT_FIELD: Record<string, string> = {
@@ -18,18 +18,25 @@ const ACCENT_FIELD: Record<string, string> = {
  * between modules is the point of the layout.
  */
 export function ModulesStrip() {
+  const { modules } = getProducts();
+  const { modules: copy } = getHome();
+
   return (
     <section className="section-sm bg-paper">
       <Container width="wide">
         <SectionHeading
-          eyebrow="How it fits together"
+          eyebrow={copy.eyebrow}
           title={
             <>
-              One operation, four jobs,
-              <br className="hidden sm:block" /> handed over cleanly.
+              {copy.titleLines.map((line, index) => (
+                <span key={line}>
+                  {index > 0 && <br className="hidden sm:block" />}
+                  {index > 0 ? ` ${line}` : line}
+                </span>
+              ))}
             </>
           }
-          lede="Most firms run these as separate processes with a person in between. Each handover is where time is lost and context is dropped."
+          lede={copy.lede}
         />
 
         <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

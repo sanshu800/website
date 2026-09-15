@@ -27,6 +27,9 @@ const READONLY_KEYS = new Set([
   "tone",
   "category",
   "kind",
+  "image",
+  "field",
+  "panel",
 ]);
 
 /** Long-form gets a textarea in the admin; short-form gets an input. */

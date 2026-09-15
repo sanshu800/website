@@ -4,7 +4,7 @@ import { ArrowRight, Plug, RefreshCw, Shield, Webhook } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { integrations } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Integrations",
@@ -37,6 +37,8 @@ const CAPABILITIES = [
 ];
 
 export default function IntegrationsPage() {
+  const { integrations } = getShared();
+
   return (
     <>
       <PageHero

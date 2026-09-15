@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { getHome } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 /**
@@ -12,49 +13,12 @@ import { cn } from "@/lib/utils";
  * to the problem to keep one visual language across the site.
  */
 
-type Problem = {
-  title: string;
-  body: string;
-  image: string;
-  alt: string;
-  /** Colour field behind the image. */
-  field: string;
-  /** The fix, stated as an outcome. */
-  fix: string;
-  stat: { value: string; label: string };
-};
-
-const PROBLEMS: Problem[] = [
-  {
-    title: "Enquiries sit in somebody's inbox",
-    body: "A web form nobody owns, a shared mailbox and a partner's phone notes. Nobody can say how many enquiries arrived this month, or how many were answered.",
-    image: "/images/problem-scattered.png",
-    alt: "An overhead view of a desk buried in scattered printed spreadsheets, folders and paper notes",
-    field: "bg-magenta",
-    fix: "One record per enquiry, with an owner and a dated next step.",
-    stat: { value: "38m", label: "typical discovery: slowest firm replies in 22 hours" },
-  },
-  {
-    title: "The chasing never stops",
-    body: "Half of client correspondence is asking for something again — a document, an approval, a signature. It is invisible work that consumes senior time every week.",
-    image: "/images/problem-chasing.png",
-    alt: "A professional at an office desk on a headset, surrounded by open folders and paperwork",
-    field: "bg-tangerine",
-    fix: "Requests that carry their own status and chase themselves.",
-    stat: { value: "1 in 3", label: "client emails in a typical firm are chasing something" },
-  },
-  {
-    title: "Reporting is a reconstruction",
-    body: "Month-end means exports, cleanup and a manual join. Two people produce two numbers, and the review meeting spends its first twenty minutes agreeing on which one is right.",
-    image: "/images/problem-reporting.png",
-    alt: "Hands at a keyboard in a dim office with spreadsheet grids visible on monitors behind",
-    field: "bg-azure",
-    fix: "Reports assembled from the operating record, on a schedule.",
-    stat: { value: "3 days", label: "average month-end reporting effort, per firm" },
-  },
-];
+/* The three problems are content: they live in the `home` document so the copy,
+   the stats and the image alt text are editable. */
 
 export function ProblemSection() {
+  const { problem: copy } = getHome();
+
   return (
     <section className="relative bg-ink py-24 text-on-ink sm:py-28 lg:py-32">
       <div
@@ -64,19 +28,23 @@ export function ProblemSection() {
       <Container width="wide" className="relative">
         <SectionHeading
           tone="ink"
-          eyebrow="The problem"
+          eyebrow={copy.eyebrow}
           title={
             <>
-              Your tools each see a fragment.
-              <br className="hidden sm:block" /> None of them sees the client.
+              {copy.titleLines.map((line, index) => (
+                <span key={line}>
+                  {index > 0 && <br className="hidden sm:block" />}
+                  {index > 0 ? ` ${line}` : line}
+                </span>
+              ))}
             </>
           }
-          lede="An inbox sees threads. A CRM sees fields. A document store sees files. The work that holds a firm together happens between them — where an enquiry becomes a client, and where most of it goes missing."
+          lede={copy.lede}
           className="max-w-[54rem]"
         />
 
         <div className="mt-16 space-y-6 sm:mt-20 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0">
-          {PROBLEMS.map((problem, index) => (
+          {copy.items.map((problem, index) => (
             <Reveal
               key={problem.title}
               delay={index * 0.08 }

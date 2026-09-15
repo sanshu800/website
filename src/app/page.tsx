@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/marketing/Hero";
-import { getProducts } from "@/lib/cms/content";
+import { getHome, getProducts } from "@/lib/cms/content";
 import { ProblemSection } from "@/components/marketing/ProblemSection";
 import { ProductTabs } from "@/components/marketing/ProductTabs";
 import { ModulesStrip } from "@/components/marketing/ModulesStrip";
@@ -25,6 +25,9 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function HomePage() {
+  const home = getHome();
+  const products = getProducts();
+
   return (
     <>
       <Hero />
@@ -32,19 +35,19 @@ export default function HomePage() {
       {/* Proof band immediately after the film — quiet, light, one line. */}
       <section className="border-b border-line bg-paper py-14 sm:py-16">
         <Container width="wide">
-          <LogoMarquee label="Operations teams at firms like these" />
+          <LogoMarquee label={home.proof.label} />
           <p className="mt-6 text-center font-mono text-[0.6875rem] text-fog-2">
-            Placeholder client marks — invented for design purposes.
+            {home.proof.disclosure}
           </p>
         </Container>
       </section>
 
       <ModulesStrip />
       <ProblemSection />
-      <ProductTabs products={[...getProducts().modules, getProducts().foundation]} />
-      <FoundationSection />
+      <ProductTabs products={[...products.modules, products.foundation]} />
+      <FoundationSection copy={home.foundation} tabs={products.foundation.tabs ?? []} />
       <MetricsBand />
-      <HowItWorksSection />
+      <HowItWorksSection copy={home.howItWorks} />
       <TestimonialWall />
       <IndustryGrid />
       <IntegrationsStrip />

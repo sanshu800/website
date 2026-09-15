@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { platformFacts } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 
 /**
  * Capability band.
@@ -10,6 +10,8 @@ import { platformFacts } from "@/lib/content/marketing";
  * needs a customer reference to be true.
  */
 export function MetricsBand() {
+  const { platformFacts } = getShared();
+
   return (
     <section className="border-y border-line bg-paper py-14 sm:py-16">
       <Container width="wide">

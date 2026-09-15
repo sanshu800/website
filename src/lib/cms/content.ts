@@ -2,6 +2,7 @@ import { getDoc, type BlogDoc, type CompareDoc, type LegalDoc, type PricingDoc, 
 import type { Product } from "@/lib/content/products";
 import type { Comparison, Solution } from "@/lib/content/compare";
 import type { Post } from "@/lib/content/blog";
+import type { HomeDoc, SharedDoc } from "@/lib/cms/documents";
 
 /**
  * Typed access to the merged content documents.
@@ -53,4 +54,12 @@ export function getBlog(): BlogDoc & { bySlug: Record<string, Post> } {
 
 export function getLegal(): LegalDoc {
   return getDoc<LegalDoc>("legal");
+}
+
+export function getHome(): HomeDoc {
+  return getDoc<HomeDoc>("home");
+}
+
+export function getShared(): SharedDoc {
+  return getDoc<SharedDoc>("shared");
 }

@@ -6,7 +6,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { companyValues, timeline, siteStats } from "@/lib/content/company";
-import { testimonials } from "@/lib/content/marketing";
+import { getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const { testimonials } = getShared();
+
   return (
     <>
       <PageHero

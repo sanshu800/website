@@ -6,6 +6,8 @@ import { solutionsDoc } from "@/lib/content/pages/solutions";
 import { compareDoc } from "@/lib/content/pages/compare";
 import { blogDoc } from "@/lib/content/pages/blog";
 import { legalDoc } from "@/lib/content/pages/legal";
+import { homeDoc } from "@/lib/content/pages/home";
+import { sharedDoc } from "@/lib/content/pages/shared";
 
 /**
  * The content documents an editor can change, and the bridge between them and
@@ -29,6 +31,27 @@ export type DocDef = {
 };
 
 export const DOCS: DocDef[] = [
+  {
+    id: "home",
+    title: "Homepage",
+    where: [{ label: "/", href: "/" }],
+    blurb:
+      "Hero headline and calls to action, the proof band, the problem section, how it works, the Foundation blurb, and the closing block.",
+    build: homeDoc,
+  },
+  {
+    id: "shared",
+    title: "Shared content",
+    where: [
+      { label: "/", href: "/" },
+      { label: "/customers", href: "/customers" },
+      { label: "/integrations", href: "/integrations" },
+      { label: "/about", href: "/about" },
+    ],
+    blurb:
+      "Content used on more than one page: client marks, testimonials, integration surfaces and the capability counts. Placeholder disclosures are here too.",
+    build: sharedDoc,
+  },
   {
     id: "pricing",
     title: "Pricing",
@@ -103,6 +126,8 @@ export type { SolutionsDoc } from "@/lib/content/pages/solutions";
 export type { CompareDoc } from "@/lib/content/pages/compare";
 export type { BlogDoc } from "@/lib/content/pages/blog";
 export type { LegalDoc } from "@/lib/content/pages/legal";
+export type { HomeDoc } from "@/lib/content/pages/home";
+export type { SharedDoc } from "@/lib/content/pages/shared";
 
 export const DOC_BY_ID = new Map(DOCS.map((doc) => [doc.id, doc]));
 

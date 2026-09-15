@@ -11,9 +11,9 @@ import { relativeTime } from "@/lib/utils";
 export const metadata: Metadata = { title: "Content" };
 
 const NOT_WIRED = [
-  "Homepage sections — hero, proof band, metrics, testimonials",
   "Header and footer navigation",
-  "Get started, about, careers, customers, integrations and the other standalone pages",
+  "The sample conversation inside the Foundation panel",
+  "Get started, about, careers, guides, release notes, security, contact and the other standalone pages",
   "Page titles and meta descriptions",
 ];
 

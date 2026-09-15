@@ -4,8 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { solutions } from "@/lib/content/compare";
-import { modules } from "@/lib/content/products";
+import { getProducts, getSolutions } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -15,20 +14,16 @@ export const metadata: Metadata = {
 };
 
 export default function SolutionsPage() {
+  const { items: solutions, index: copy } = getSolutions();
+  const { modules } = getProducts();
+
   return (
     <>
-      <PageHero
-        eyebrow="Solutions"
-        title="The same foundation, shaped to your practice."
-        summary="A legal firm's intake is a conflict check. An accountancy practice's is a scope conversation. The coordination problem is identical; the record is not. Pick your practice and we will show you the configured version."
-      />
+      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading
-            eyebrow="By practice"
-            title="Four sectors, in production."
-          />
+          <SectionHeading eyebrow={copy.sectorEyebrow} title={copy.sectorTitle} />
           <RevealGroup className="mt-12 grid gap-6 lg:grid-cols-2">
             {solutions.map((solution, index) => (
               <RevealItem key={solution.slug}>
@@ -68,9 +63,7 @@ export default function SolutionsPage() {
 
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">
-            The modules behind every solution
-          </h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog-2">{copy.modulesTitle}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {modules.map((module) => (
               <Link

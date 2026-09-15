@@ -4,7 +4,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { posts, blogCategories } from "@/lib/content/blog";
+import { getBlog } from "@/lib/cms/content";
 import { formatDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,8 @@ export default async function BlogIndex({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category = "All" } = await searchParams;
-  const active = blogCategories.includes(category as (typeof blogCategories)[number])
+  const { posts, categories, index: copy } = getBlog();
+  const active = categories.includes(category as (typeof categories)[number])
     ? category
     : "All";
   const filtered =
@@ -32,15 +33,15 @@ export default async function BlogIndex({
   return (
     <>
       <PageHero
-        eyebrow="Blog"
-        title="Writing about how firms actually operate."
-        summary="No thought leadership. Practical measurement, process design and honest notes on where automation helps and where it does not."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        summary={copy.summary}
       />
 
       <section className="border-b border-line bg-paper py-5">
         <Container width="wide">
           <div className="flex gap-2 overflow-x-auto pb-1">
-            {blogCategories.map((item) => (
+            {categories.map((item) => (
               <Link
                 key={item}
                 href={item === "All" ? "/blog" : `/blog?category=${encodeURIComponent(item)}`}
@@ -63,7 +64,7 @@ export default async function BlogIndex({
         <Container width="wide">
           {filtered.length === 0 && (
             <p className="text-body-lg text-fog">
-              Nothing published in this category yet.
+              {copy.emptyState}
             </p>
           )}
 

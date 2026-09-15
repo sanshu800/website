@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { GetStartedForm } from "@/components/forms/GetStartedForm";
+import { getPricing } from "@/lib/cms/content";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function GetStartedPage() {
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <GetStartedForm />
+              <GetStartedForm plans={getPricing().plansList} />
             </div>
 
             <div className="lg:col-span-5">

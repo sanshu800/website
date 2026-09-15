@@ -7,11 +7,11 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/ProductScreens";
-import { products, productBySlug, modules } from "@/lib/content/products";
+import { getProducts } from "@/lib/cms/content";
 import { site } from "@/lib/content/marketing";
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return getProducts().items.map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = productBySlug[slug as keyof typeof productBySlug];
+  const product = getProducts().bySlug[slug];
   if (!product) return { title: "Not found" };
   return {
     title: `${product.name} — ${product.kicker}`,
@@ -40,7 +40,8 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = productBySlug[slug as keyof typeof productBySlug];
+  const { bySlug, modules, detail } = getProducts();
+  const product = bySlug[slug];
   if (!product) notFound();
 
   const related = modules.filter((module) => module.slug !== product.slug);
@@ -79,7 +80,7 @@ export default async function ProductPage({
               </div>
             </div>
             <p className="mt-3 font-mono text-[0.6875rem] text-fog-2">
-              {product.panelCaption} · illustrative interface
+              {product.panelCaption} · {detail.captionSuffix}
             </p>
           </Reveal>
         }
@@ -109,9 +110,9 @@ export default async function ProductPage({
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="What it does"
-            title={`Six jobs ${product.name} takes off your team.`}
-            lede="Each of these is work a firm currently does by hand, badly, on the weeks when it is busiest."
+            eyebrow={detail.capabilities.eyebrow}
+            title={detail.capabilities.titleTemplate.replace("{name}", product.name)}
+            lede={detail.capabilities.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {product.features.map((feature) => (
@@ -131,11 +132,8 @@ export default async function ProductPage({
         <Container width="wide">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="text-display-m text-ink">What changes for the firm</h2>
-              <p className="mt-4 text-body-lg text-fog">
-                Stated as operational outcomes rather than features, because this is
-                what a partner meeting actually asks about.
-              </p>
+              <h2 className="text-display-m text-ink">{detail.outcomes.heading}</h2>
+              <p className="mt-4 text-body-lg text-fog">{detail.outcomes.note}</p>
             </div>
             <ul className="lg:col-span-6 lg:col-start-7">
               {product.outcomes.map((outcome) => (
@@ -145,9 +143,7 @@ export default async function ProductPage({
                 </Reveal>
               ))}
               <li className="pt-5">
-                <Badge accent="neutral">
-                  Runs alongside email, calendar, documents and your ledger
-                </Badge>
+                <Badge accent="neutral">{detail.fits.alongside}</Badge>
               </li>
             </ul>
           </div>
@@ -158,9 +154,9 @@ export default async function ProductPage({
       <section className="section bg-mist">
         <Container width="wide">
           <SectionHeading
-            eyebrow="Where it fits"
-            title="Pairs with the rest of the platform."
-            lede="Reygent modules share one record. Context gathered in one is available in the others, with no integration work between them."
+            eyebrow={detail.fits.eyebrow}
+            title={detail.fits.title}
+            lede={detail.fits.lede}
           />
           <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-3">
             {related.map((module) => (

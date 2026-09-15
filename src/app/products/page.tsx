@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { products } from "@/lib/content/products";
+import { getProducts } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -23,18 +23,16 @@ const FIELD: Record<string, string> = {
 };
 
 export default function ProductsIndex() {
+  const { items: products, index: copy } = getProducts();
+
   return (
     <>
-      <PageHero
-        eyebrow="Products"
-        title="Four jobs. One record. No seams."
-        summary="Every professional-services firm runs the same four operations. Reygent gives each one a proper system, and puts all of them on a single memory layer so nothing is retyped between stages."
-      />
+      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
 
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5">
-            {products.map((product, index) => (
+            {products.map((product, cardIndex) => (
               <RevealItem key={product.slug}>
                 <Link
                   href={`/products/${product.slug}`}
@@ -48,7 +46,7 @@ export default function ProductsIndex() {
                           FIELD[product.accent],
                         )}
                       >
-                        {String(index + 1).padStart(2, "0")}
+                        {String(cardIndex + 1).padStart(2, "0")}
                       </span>
                       <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
                         {product.kicker}
@@ -74,7 +72,7 @@ export default function ProductsIndex() {
                   </div>
                   <div className="lg:col-span-2 lg:text-right">
                     <span className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent">
-                      Explore
+                      {copy.cardCta}
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   </div>

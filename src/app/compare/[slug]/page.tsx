@@ -5,10 +5,10 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { comparisons, comparisonBySlug } from "@/lib/content/compare";
+import { getComparisons } from "@/lib/cms/content";
 
 export function generateStaticParams() {
-  return comparisons.map((item) => ({ slug: item.slug }));
+  return getComparisons().items.map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const comparison = comparisonBySlug[slug];
+  const comparison = getComparisons().bySlug[slug];
   if (!comparison) return { title: "Not found" };
   return {
     title: `Reygent ${comparison.short}`,
@@ -32,10 +32,11 @@ export default async function ComparePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const comparison = comparisonBySlug[slug];
+  const { bySlug, items, detail } = getComparisons();
+  const comparison = bySlug[slug];
   if (!comparison) notFound();
 
-  const others = comparisons.filter((item) => item.slug !== comparison.slug);
+  const others = items.filter((item) => item.slug !== comparison.slug);
 
   return (
     <>
@@ -89,9 +90,9 @@ export default async function ComparePage({
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="Side by side"
-            title="The differences that show up in week three."
-            lede="Feature lists are easy to match. These are the operational differences that decide whether a system survives contact with a busy quarter."
+            eyebrow={detail.table.eyebrow}
+            title={detail.table.title}
+            lede={detail.table.lede}
           />
 
           <div className="mt-10 overflow-x-auto">
@@ -151,7 +152,7 @@ export default async function ComparePage({
         <Container width="wide">
           <div className="grid gap-8 rounded-2xl border border-line bg-mist p-7 sm:p-9 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <h2 className="font-display text-[1.25rem] text-ink">This is a good fit if</h2>
+              <h2 className="font-display text-[1.25rem] text-ink">{detail.goodFitHeading}</h2>
             </div>
             <ul className="space-y-3 lg:col-span-8">
               {comparison.bestFor.map((item) => (
@@ -163,9 +164,7 @@ export default async function ComparePage({
             </ul>
           </div>
 
-          <h2 className="mt-12 font-mono text-eyebrow uppercase text-fog-2">
-            Other comparisons
-          </h2>
+          <h2 className="mt-12 font-mono text-eyebrow uppercase text-fog-2">{detail.otherHeading}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((item) => (
               <Link

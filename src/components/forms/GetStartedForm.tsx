@@ -13,7 +13,7 @@ import {
   TextField,
 } from "./Fields";
 import { cn } from "@/lib/utils";
-import { tiers } from "@/lib/content/company";
+import type { Tier } from "@/lib/content/company";
 
 const SECTORS = [
   { value: "legal", label: "Legal" },
@@ -39,7 +39,7 @@ const INTENTS = [
   { value: "ai", label: "Use AI on our own client records safely" },
 ];
 
-export function GetStartedForm() {
+export function GetStartedForm({ plans }: { plans: Tier[] }) {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({
     name: "",
@@ -239,12 +239,13 @@ export function GetStartedForm() {
               Plan
             </legend>
             <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              {tiers.map((tier) => {
-                const value = tier.name.toLowerCase();
+              {plans.map((tier) => {
+                const value = tier.slug;
+                const label = tier.name;
                 const active = values.plan === value;
                 return (
                   <button
-                    key={tier.name}
+                    key={tier.slug}
                     type="button"
                     aria-pressed={active}
                     onClick={() =>
@@ -258,7 +259,7 @@ export function GetStartedForm() {
                     )}
                   >
                     <span className="block text-[0.9375rem] font-medium text-ink">
-                      {tier.name}
+                      {label}
                     </span>
                     <span className="mt-1 block text-[0.75rem] text-fog">
                       {tier.price}

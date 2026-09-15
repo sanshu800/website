@@ -1,0 +1,178 @@
+import { applyOverrides, collectLeaves, groupFor, labelFor, type Leaf } from "@/lib/cms/paths";
+import { overrideRowsFor } from "@/lib/cms/store";
+import { pricingCopy } from "@/lib/content/pages/pricing";
+import { productsDoc } from "@/lib/content/pages/products";
+import { solutionsDoc } from "@/lib/content/pages/solutions";
+import { compareDoc } from "@/lib/content/pages/compare";
+import { blogDoc } from "@/lib/content/pages/blog";
+import { legalDoc } from "@/lib/content/pages/legal";
+
+/**
+ * The content documents an editor can change, and the bridge between them and
+ * the pages.
+ *
+ * A document is the *complete* default copy for one surface — assembled from
+ * the content modules where the data already lived, plus the page copy that
+ * used to be inline in the components. `getDoc` clones it, layers the stored
+ * overrides on top, and hands the result to the page. A page that renders from
+ * a document is editable end to end; a page that still imports a module
+ * directly is not, which is why the registry grows one surface at a time.
+ */
+
+export type DocDef = {
+  id: string;
+  title: string;
+  /** Where this copy appears, for the admin's "view live" links. */
+  where: { label: string; href: string }[];
+  blurb: string;
+  build: () => unknown;
+};
+
+export const DOCS: DocDef[] = [
+  {
+    id: "pricing",
+    title: "Pricing",
+    where: [
+      { label: "/pricing", href: "/pricing" },
+      { label: "Homepage plan preview", href: "/#pricing" },
+      { label: "/get-started", href: "/get-started" },
+    ],
+    blurb:
+      "Hero, all three plans, the full comparison matrix, the FAQ and the closing call to action.",
+    build: () => pricingCopy,
+  },
+  {
+    id: "products",
+    title: "Products",
+    where: [
+      { label: "/products", href: "/products" },
+      { label: "Product detail pages", href: "/products/intake" },
+    ],
+    blurb:
+      "Index hero, every module's name, headline, intro, feature list, outcomes and call-to-action labels, plus the headings shared by all detail pages.",
+    build: productsDoc,
+  },
+  {
+    id: "solutions",
+    title: "Solutions",
+    where: [
+      { label: "/solutions", href: "/solutions" },
+      { label: "Practice detail pages", href: "/solutions/legal" },
+    ],
+    blurb:
+      "The practice index, plus each practice's headline, pressure points, module fit and the copy shared across detail pages.",
+    build: solutionsDoc,
+  },
+  {
+    id: "compare",
+    title: "Comparisons",
+    where: [
+      { label: "/compare", href: "/compare" },
+      { label: "Each comparison", href: "/compare/spreadsheets" },
+    ],
+    blurb:
+      "Six approach-by-approach comparisons: the argument, the dimension table, where we lose and where we win.",
+    build: compareDoc,
+  },
+  {
+    id: "blog",
+    title: "Blog",
+    where: [
+      { label: "/blog", href: "/blog" },
+      { label: "Each article", href: "/blog" },
+    ],
+    blurb:
+      "Titles, dek, category, author byline, reading time and every body block of every article, plus the index copy.",
+    build: blogDoc,
+  },
+  {
+    id: "legal",
+    title: "Legal pages",
+    where: [{ label: "Privacy, terms, DPA, sub-processors", href: "/legal/privacy" }],
+    blurb:
+      "Privacy notice, terms, data-processing addendum and sub-processor list. This is reviewed copy — treat edits here as legal changes.",
+    build: legalDoc,
+  },
+];
+
+export type {
+  PricingCopy as PricingDoc,
+} from "@/lib/content/pages/pricing";
+export type { ProductsDoc } from "@/lib/content/pages/products";
+export type { SolutionsDoc } from "@/lib/content/pages/solutions";
+export type { CompareDoc } from "@/lib/content/pages/compare";
+export type { BlogDoc } from "@/lib/content/pages/blog";
+export type { LegalDoc } from "@/lib/content/pages/legal";
+
+export const DOC_BY_ID = new Map(DOCS.map((doc) => [doc.id, doc]));
+
+export function docById(id: string): DocDef | undefined {
+  return DOC_BY_ID.get(id);
+}
+
+/** The shipped copy for a document, untouched by any override. */
+export function getDocDefaults<T>(id: string): T {
+  const def = DOC_BY_ID.get(id);
+  if (!def) throw new Error(`Unknown content document: ${id}`);
+  return def.build() as T;
+}
+
+/** The copy the site renders: shipped defaults with stored overrides applied. */
+export function getDoc<T>(id: string): T {
+  const rows = overrideRowsFor(id);
+  return applyOverrides(
+    getDocDefaults<unknown>(id),
+    new Map(rows.map((row) => [row.path, row.value])),
+  ) as T;
+}
+
+export type DocField = Leaf & {
+  /** Display name for the input, e.g. `Title`. */
+  label: string;
+  /** Where it sits on the page, e.g. `Engage · Hero`. */
+  group: string;
+  /** True when an editor has changed this field from the shipped copy. */
+  edited: boolean;
+  /** What the site shows with no override. */
+  fallback: string;
+  /** What the site shows right now. */
+  current: string;
+  updatedAt: string | null;
+  updatedBy: string | null;
+};
+
+/** Every editable field in a document, with its override state. */
+export function docFields(id: string): DocField[] {
+  const rows = overrideRowsFor(id);
+  const byPath = new Map(rows.map((row) => [row.path, row]));
+  const leaves = collectLeaves(getDocDefaults<unknown>(id));
+
+  return leaves.map((leaf) => {
+    const override = byPath.get(leaf.key);
+    return {
+      ...leaf,
+      label: labelFor(leaf.key),
+      group: groupFor(leaf.key),
+      edited: override !== undefined,
+      fallback: leaf.value,
+      current: override?.value ?? leaf.value,
+      updatedAt: override?.updated_at ?? null,
+      updatedBy: override?.updated_by ?? null,
+    };
+  });
+}
+
+/** Fields an editor has changed, newest first — the "what is live" list. */
+export function editedFields(id: string): DocField[] {
+  return docFields(id)
+    .filter((field) => field.edited)
+    .sort((a, b) => (b.updatedAt ?? "").localeCompare(a.updatedAt ?? ""));
+}
+
+/** Overrides whose path no longer exists in the document (copy was renamed). */
+export function orphanedOverrides(id: string): { key: string; path: string; value: string }[] {
+  const known = new Set(collectLeaves(getDocDefaults<unknown>(id)).map((leaf) => leaf.key));
+  return overrideRowsFor(id)
+    .filter((row) => !known.has(row.path))
+    .map((row) => ({ key: row.key, path: row.path, value: row.value }));
+}

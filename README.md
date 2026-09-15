@@ -21,6 +21,7 @@ surface, real form capture, real authentication, real database, real mutations.
 | Search, filtering, pagination, sort | URL-driven on companies and contacts; saved views |
 | "Ask Reygent" | Deterministic query engine over the firm's records — every answer cites its rows |
 | Charts, tabs, marquees, reveals | Server-rendered markup + CSS/motion animation, reduced-motion aware |
+| Website content admin | Edit copy on pricing, products, solutions, comparisons, blog and legal pages from `/dashboard/content` — validated writes, audit log, one-click restore, no deploy |
 | Sitemap, robots, 404 | Present |
 | Payments | **Not wired** — see "Needs real credentials" |
 | Email delivery | **Not wired** — submissions are stored, not sent |
@@ -118,8 +119,76 @@ Session-authenticated unless noted. All JSON.
 | `POST` | `/api/auth/signup` · `/api/auth/login` · `/api/auth/logout` | Session lifecycle (public) |
 | `GET` `POST` `PATCH` | `/api/tasks` | List, create, toggle/delete tasks |
 | `GET` `POST` | `/api/ask` | Suggested questions; ask a question over the records |
+| `POST` | `/api/content` | Write site copy (`set`, `reset`, `revert`, `drop`). Owner/admin only |
 
 ---
+
+## Editing the site (content admin)
+
+`/dashboard/content` is a real CMS, not a mock screen. Whoever writes the copy can
+change it without a deploy, and every change is attributed and reversible.
+
+**How to reach it:** sign in (`demo@reygent.ai` / `demo1234`) → **Website content**
+in the sidebar. Three screens:
+
+| Screen | What it does |
+| --- | --- |
+| `/dashboard/content` | Every editable surface, how many fields each has, what has been changed, and the latest edits |
+| `/dashboard/content/<surface>` | The editor: search across every field, filter to edited ones, edit / save / reset per field |
+| `/dashboard/content/history` | The full audit log — before and after values, who changed what, restore any version |
+
+**How it works.** Each surface is a *content document*: one JSON tree holding the
+complete default copy for that part of the site, assembled from the content modules
+(plans, products, posts, legal pages) plus the page copy that used to sit inline in the
+components. Every string leaf in it has a stable dotted path — `hero.title`,
+`items.engage.kicker`, `plans.core.includes.2`. Saving a field writes one row to
+`content_overrides` keyed `<doc>#<path>` and appends a row to `content_revisions`.
+
+At render time the page asks for the merged document (`getPricing()`, `getProducts()`,
+…): the tree is deep-cloned and overridden values are layered on top. Typing the
+shipped value back in clears the override rather than freezing a copy of it, which is
+what the **Reset** button does too — so code stays the source of truth for anything
+nobody has deliberately changed.
+
+Array items that carry a `slug` are addressed by it (`items.engage`, `posts.<slug>`)
+rather than by index, so reordering the source array does not move anyone's edits.
+
+**Publishing.** Saves call `revalidatePath("/", "layout")`. The marketing pages are
+prerendered, so without that a change would sit invisible until the next build; with
+it, the next request regenerates the page. Verified: editing a price, a plan name or a
+product name changes the served HTML of `/pricing`, `/products`, `/products/engage`
+and the homepage preview, and **Reset** restores the shipped copy.
+
+**Guarantees the admin gives you**
+
+- **Roles.** `owner` and `admin` can publish; any other role sees the editor with
+  writes disabled, and the API answers `403`.
+- **Validated writes.** The endpoint checks the path against the document's own field
+  list, so a request cannot invent a key or edit something that is not copy. Slugs,
+  asset paths and icon names are not editable by construction.
+- **Limits.** Short fields 240 characters, prose 4,000, links 300 — and a link must
+  look like a link (`/`, `https://`, `mailto:`, `tel:`).
+- **No markup.** Values are stored and rendered as plain text; there is no path from
+  the editor to injected HTML. React escapes everything.
+- **Empty is not allowed.** A field cannot be blanked — use Reset to go back to the
+  shipped copy.
+- **Audit and undo.** Every set, reset and revert is logged with the previous value,
+  the actor and the timestamp. Restoring an old value is itself logged.
+- **Orphans are surfaced.** If a field is renamed or deleted in code, its stored value
+  is reported under *History → Orphaned edits* and can be dropped or restored, rather
+  than silently hanging around.
+
+**Wired today:** pricing (hero, plans, comparison matrix, FAQ, CTA — and the homepage
+plan preview and `/get-started` plan picker read the same document), products index and
+all five detail pages, solutions index and all four practice pages, all six comparisons,
+the blog index and every article body, and the legal pages. That is a few thousand
+editable strings.
+
+**Not wired yet** (still rendered from the content modules, so they need a developer,
+and the admin lists them under "Not editable yet"): the homepage sections, the header
+and footer navigation, and the standalone pages — about, careers, customers,
+integrations, guides, release notes, security, contact, demo, startups, partners,
+newsletter, get-started and the page-level meta descriptions.
 
 ## Environment variables
 
@@ -195,11 +264,30 @@ deployment assets, not source. Copy the clip into `public/video/` (or commit it 
 
 ## Verified vs not verified
 
-Verified: production build, TypeScript strict, ESLint, all marketing routes returning
-200 (unknown routes 404), every form endpoint accepting valid input and rejecting
-invalid input, the full auth lifecycle including the `/dashboard` guard, task
-create/toggle through the API with the audit trail confirmed in SQLite, and
-Ask Reygent returning cited answers for matched and unmatched questions.
+Verified: production build (74 pages), TypeScript strict, ESLint, all marketing routes
+returning 200 (unknown routes 404), every form endpoint accepting valid input and
+rejecting invalid input, the full auth lifecycle including the `/dashboard` guard, task
+create/toggle through the API with the audit trail confirmed in SQLite, Ask Reygent
+returning cited answers for matched and unmatched questions, and — for the content
+admin — the whole loop end to end over HTTP:
+
+- `/dashboard/content`, `/dashboard/content/<surface>` and `/dashboard/content/history`
+  return 200 for a signed-in operator and redirect when signed out;
+- `POST /api/content` returns 401 unauthenticated, 403 for a role that cannot publish,
+  422 for a field that does not exist, an over-long value or a blank value, and 200 for
+  a valid write;
+- a saved edit changes the **served HTML** of a prerendered page — plan name, hero
+  headline, product name and blog title were each verified on more than one route at
+  once (a plan edit shows on `/pricing`, the homepage preview and `/get-started`; a
+  product edit shows on `/products`, the detail page and the homepage tabs);
+- the derived `<meta name="description">` on `/pricing` follows edited plan prices;
+- **Reset** restores the shipped copy everywhere it was changed, and every write left a
+  revision row with the before and after values.
+
+**Not verified here:** the admin's client-side interactions (per-keystroke state, the
+search filter, the sticky toolbar, the save/reset buttons repainting) were exercised
+through their API contract and by rendering the pages, not by clicking them in a
+browser — there is no browser binary in this environment.
 
 **Not verified:** pixel-level visual review in a real browser. No browser binary is
 available in this environment, so rendering, responsive breakpoints, animation timing

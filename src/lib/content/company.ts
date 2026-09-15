@@ -1,6 +1,8 @@
 /** Company, pricing, careers, release notes, FAQ and legal content. */
 
 export type Tier = {
+  /** Stable identity for content overrides; not user-facing and not editable. */
+  slug: string;
   name: string;
   price: string;
   priceNote: string;
@@ -14,6 +16,7 @@ export type Tier = {
 
 export const tiers: Tier[] = [
   {
+    slug: "core",
     name: "Core",
     price: "$89",
     priceNote: "per user / month, billed annually",
@@ -36,6 +39,7 @@ export const tiers: Tier[] = [
     ],
   },
   {
+    slug: "pro",
     name: "Pro",
     price: "$149",
     priceNote: "per user / month, billed annually",
@@ -60,6 +64,7 @@ export const tiers: Tier[] = [
     ],
   },
   {
+    slug: "enterprise",
     name: "Enterprise",
     price: "Custom",
     priceNote: "annual agreement",

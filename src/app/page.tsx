@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/marketing/Hero";
+import { getProducts } from "@/lib/cms/content";
 import { ProblemSection } from "@/components/marketing/ProblemSection";
 import { ProductTabs } from "@/components/marketing/ProductTabs";
 import { ModulesStrip } from "@/components/marketing/ModulesStrip";
@@ -40,7 +41,7 @@ export default function HomePage() {
 
       <ModulesStrip />
       <ProblemSection />
-      <ProductTabs />
+      <ProductTabs products={[...getProducts().modules, getProducts().foundation]} />
       <FoundationSection />
       <MetricsBand />
       <HowItWorksSection />

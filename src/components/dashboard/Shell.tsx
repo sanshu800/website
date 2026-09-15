@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   ListChecks,
   Menu,
+  PenLine,
   Search,
   Sparkles,
   LogOut,
@@ -41,6 +42,7 @@ export function DashboardShell({
     { href: "/dashboard/tasks", label: "Tasks", icon: ListChecks, badge: counts.tasks },
     { href: "/dashboard/submissions", label: "Inbound", icon: Inbox, badge: counts.submissions },
     { href: "/dashboard/ask", label: "Ask Reygent", icon: Sparkles },
+    { href: "/dashboard/content", label: "Website content", icon: PenLine },
   ];
 
   const sidebar = (

@@ -5,12 +5,13 @@ import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
-import { posts, postBySlug, type Block } from "@/lib/content/blog";
+import { getBlog } from "@/lib/cms/content";
+import { type Block } from "@/lib/content/blog";
 import { formatDate, initials } from "@/lib/utils";
 import { site } from "@/lib/content/marketing";
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return getBlog().posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -19,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = postBySlug[slug];
+  const post = getBlog().bySlug[slug];
   if (!post) return { title: "Not found" };
   return {
     title: post.title,
@@ -89,7 +90,8 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = postBySlug[slug];
+  const { posts, bySlug } = getBlog();
+  const post = bySlug[slug];
   if (!post) notFound();
 
   const related = posts

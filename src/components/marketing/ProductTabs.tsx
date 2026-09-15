@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Screen } from "@/components/screens/ProductScreens";
-import { modules, foundation } from "@/lib/content/products";
+import type { Product } from "@/lib/content/products";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -18,13 +18,13 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * `aria-selected` / `aria-controls` wiring, and a panel that is present in the
  * DOM for screen readers and with motion disabled.
  */
-export function ProductTabs() {
+export function ProductTabs({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
   const [interacted, setInteracted] = useState(false);
   const reduce = useReducedMotion();
   const baseId = useId();
 
-  const tabs = [...modules, foundation];
+  const tabs = products;
   const current = tabs[Math.min(active, tabs.length - 1)]!;
 
   function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {

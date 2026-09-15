@@ -3,13 +3,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
-import { legalPages } from "@/lib/content/company";
-
-type Slug = keyof typeof legalPages;
-const SLUGS = Object.keys(legalPages) as Slug[];
+import { getLegal } from "@/lib/cms/content";
 
 export function generateStaticParams() {
-  return SLUGS.map((slug) => ({ slug }));
+  return Object.keys(getLegal().pages).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +15,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const page = legalPages[slug as Slug];
+  const { pages } = getLegal();
+  const page = pages[slug as keyof typeof pages];
   if (!page) return { title: "Not found" };
   return {
     title: page.title,
@@ -33,8 +31,11 @@ export default async function LegalPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const page = legalPages[slug as Slug];
+  const { pages } = getLegal();
+  const page = pages[slug as keyof typeof pages];
   if (!page) notFound();
+
+  const slugs = Object.keys(pages);
 
   return (
     <>
@@ -58,13 +59,13 @@ export default async function LegalPage({
           <nav className="mt-14 border-t border-line pt-8">
             <p className="font-mono text-eyebrow uppercase text-fog-2">Other policies</p>
             <ul className="mt-4 flex flex-wrap gap-3">
-              {SLUGS.filter((item) => item !== slug).map((item) => (
+              {slugs.filter((item) => item !== slug).map((item) => (
                 <li key={item}>
                   <Link
                     href={`/legal/${item}`}
                     className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
                   >
-                    {legalPages[item].title}
+                    {pages[item as keyof typeof pages].title}
                   </Link>
                 </li>
               ))}

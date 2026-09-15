@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { comparisons } from "@/lib/content/compare";
+import { getComparisons } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Compare",
@@ -14,13 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default function CompareIndex() {
+  const { items: comparisons, index: copy } = getComparisons();
+
   return (
     <>
-      <PageHero
-        eyebrow="Compare"
-        title="Honest comparisons, including the ones we lose."
-        summary="We compare approaches rather than named competitors — partly because it is fairer, and partly because the category argument is the one that actually decides the purchase."
-      />
+      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5 sm:grid-cols-2">
@@ -38,7 +36,7 @@ export default function CompareIndex() {
                   </h2>
                   <p className="mt-3 flex-1 text-micro text-fog">{comparison.summary}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent">
-                    Read the comparison
+                    {copy.cardCta}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
                 </Link>

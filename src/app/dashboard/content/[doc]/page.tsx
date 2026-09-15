@@ -1,0 +1,129 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ExternalLink, TriangleAlert } from "lucide-react";
+import { DashboardHeader } from "@/components/dashboard/Shell";
+import { Card } from "@/components/dashboard/Bits";
+import { ContentEditor } from "@/components/dashboard/ContentEditor";
+import type { EditableField } from "@/components/dashboard/ContentField";
+import { RevertButton } from "@/components/dashboard/RevertButton";
+import { getSession } from "@/lib/auth";
+import { DOCS, docById, docFields, editedFields, orphanedOverrides } from "@/lib/cms/documents";
+
+export function generateStaticParams() {
+  return DOCS.map((doc) => ({ doc: doc.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ doc: string }>;
+}): Promise<Metadata> {
+  const { doc: id } = await params;
+  const doc = docById(id);
+  return { title: doc ? `Edit ${doc.title}` : "Content" };
+}
+
+export default async function ContentDocPage({
+  params,
+}: {
+  params: Promise<{ doc: string }>;
+}) {
+  const { doc: id } = await params;
+  const def = docById(id);
+  if (!def) notFound();
+
+  const session = await getSession();
+  const readOnly = !(session?.role === "owner" || session?.role === "admin");
+
+  const fields: EditableField[] = docFields(def.id).map((field) => ({
+    key: field.key,
+    label: field.label,
+    group: field.group,
+    kind: field.kind,
+    current: field.current,
+    fallback: field.fallback,
+    edited: field.edited,
+    updatedAt: field.updatedAt,
+    updatedBy: field.updatedBy,
+  }));
+
+  const changed = editedFields(def.id);
+  const orphans = orphanedOverrides(def.id);
+
+  return (
+    <>
+      <DashboardHeader
+        eyebrow="Website"
+        title={def.title}
+        summary={def.blurb}
+      />
+
+      <div className="mb-5 flex flex-wrap items-center gap-3 text-[0.75rem] text-fog">
+        <span className="font-mono text-ink">{fields.length}</span> editable strings ·
+        <span className="font-mono text-ink">{changed.length}</span> changed from the shipped copy
+        <span className="h-4 w-px bg-line-strong" />
+        {def.where.map((place) => (
+          <a
+            key={place.href}
+            href={place.href}
+            className="inline-flex items-center gap-1 text-accent underline underline-offset-2"
+          >
+            {place.label}
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        ))}
+      </div>
+
+      {readOnly && (
+        <p className="mb-5 rounded-xl border border-magenta/30 bg-magenta-soft px-4 py-3 text-[0.8125rem] text-ink">
+          Your role can read the content admin but not publish. Ask an owner or admin in this
+          workspace to make the change.
+        </p>
+      )}
+
+      {orphans.length > 0 && (
+        <Card className="mb-5 border-magenta/30">
+          <div className="flex items-start gap-3">
+            <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-magenta" />
+            <div className="flex-1">
+              <p className="text-[0.875rem] font-medium text-ink">
+                {orphans.length} stored {orphans.length === 1 ? "edit" : "edits"} no longer match a
+                field
+              </p>
+              <p className="mt-1 text-[0.8125rem] leading-relaxed text-fog">
+                The copy was renamed or removed in code, so these values are not rendered anywhere.
+                Drop them, or restore the field in code to bring the text back.
+              </p>
+              <ul className="mt-3 space-y-2">
+                {orphans.map((orphan) => (
+                  <li key={orphan.key} className="flex flex-wrap items-center gap-2">
+                    <span className="font-mono text-[0.6875rem] text-fog-2">{orphan.path}</span>
+                    <span className="text-[0.75rem] text-fog">“{orphan.value.slice(0, 60)}”</span>
+                    <RevertButton keyName={orphan.key} label="Drop" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      <ContentEditor doc={def.id} fields={fields} readOnly={readOnly} />
+
+      <p className="mt-8 text-[0.75rem] text-fog-2">
+        Looking for a different surface?{" "}
+        <Link href="/dashboard/content" className="text-accent underline underline-offset-2">
+          All content
+        </Link>{" "}
+        ·{" "}
+        <Link
+          href="/dashboard/content/history"
+          className="text-accent underline underline-offset-2"
+        >
+          Change history
+        </Link>
+      </p>
+    </>
+  );
+}

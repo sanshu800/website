@@ -6,7 +6,7 @@ import { solutions } from "@/lib/content/compare";
 import { cn } from "@/lib/utils";
 
 const FIELD: Record<string, string> = {
-  legal: "bg-accent",
+  legal: "bg-magenta",
   accounting: "bg-jade",
   consulting: "bg-tangerine",
   advisory: "bg-azure",

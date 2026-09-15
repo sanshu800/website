@@ -30,7 +30,7 @@ const PROBLEMS: Problem[] = [
     body: "A web form nobody owns, a shared mailbox and a partner's phone notes. Nobody can say how many enquiries arrived this month, or how many were answered.",
     image: "/images/problem-scattered.png",
     alt: "An overhead view of a desk buried in scattered printed spreadsheets, folders and paper notes",
-    field: "bg-accent",
+    field: "bg-magenta",
     fix: "One record per enquiry, with an owner and a dated next step.",
     stat: { value: "38m", label: "typical discovery: slowest firm replies in 22 hours" },
   },

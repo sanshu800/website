@@ -19,13 +19,56 @@ export const newsletterSchema = z.object({
   role: z.string().max(80).optional(),
 });
 
+/**
+ * The qualification form on `/contact`. Selects are enums rather than free
+ * text: the value has to be one we can route on, and the browser sends the slug
+ * we shipped rather than a label somebody retyped.
+ */
 export const contactSchema = z.object({
-  name: z.string().trim().min(2).max(120),
+  firstName: z.string().trim().min(1, { error: "Your first name, please" }).max(80),
+  lastName: z.string().trim().min(1, { error: "Your last name, please" }).max(80),
   email,
-  company: z.string().trim().max(160).optional(),
-  topic: z.string().trim().max(80).optional(),
-  message: z.string().trim().min(10).max(4000),
+  company: z.string().trim().min(2, { error: "Which company are you with?" }).max(160),
+  /* The enum messages are the ones a person sees under the field, so they are
+     written as instructions rather than as schema diagnostics. */
+  companySize: z.enum(["1-5", "6-15", "16-40", "41-120", "120-plus"], {
+    error: "Choose a company size",
+  }),
+  revenue: z.enum(
+    [
+      "pre-revenue",
+      "under-250k",
+      "250k-1m",
+      "1m-5m",
+      "5m-20m",
+      "20m-plus",
+      "undisclosed",
+    ],
+    { error: "Choose a revenue range" },
+  ),
+  title: z.enum(["owner", "operations", "finance", "sales", "service", "it", "other"], {
+    error: "Choose your role",
+  }),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  topic: z.enum(
+    ["audit", "project", "client", "partnership", "security", "careers", "other"],
+    { error: "Choose a topic" },
+  ),
+  budget: z.enum(["not-sure", "under-5k", "5k-15k", "15k-50k", "50k-plus", "discuss"], {
+    error: "Choose a budget range, or pick “prefer to discuss”",
+  }),
+  message: z
+    .string()
+    .trim()
+    .min(10, { error: "A sentence or two, so the first reply is useful" })
+    .max(4000),
+  referral: z.string().trim().max(120).optional().or(z.literal("")),
 });
+
+/** The row is stored under one display name, so the inbox reads like a person. */
+export function contactDisplayName(data: { firstName: string; lastName: string }): string {
+  return `${data.firstName} ${data.lastName}`.trim();
+}
 
 /** The audit request on `/get-started` — the only funnel a service business needs. */
 export const auditSchema = z.object({

@@ -6,9 +6,15 @@ import { cn } from "@/lib/utils";
 /**
  * Form primitives.
  *
- * One visual language for every field on the site: mono uppercase label, 44px
- * control height, accent focus ring, error text wired with aria-describedby so
- * screen readers hear the same thing sighted users see.
+ * One visual language for every field on the site: 44px control height, accent
+ * focus ring, error text wired with aria-describedby so screen readers hear the
+ * same thing sighted users see.
+ *
+ * Labels come in two variants. `mono` is the compact uppercase label used in
+ * chrome — newsletters, job applications, the audit stepper. `text` is the
+ * sentence-case label used on the long qualification form on `/contact`, where
+ * a dozen fields in a row need to be scannable and every required field carries
+ * a visible asterisk.
  */
 
 const control =
@@ -18,29 +24,48 @@ export function Label({
   children,
   htmlFor,
   hint,
+  variant = "mono",
+  required,
 }: {
   children: React.ReactNode;
   htmlFor?: string;
   hint?: string;
+  variant?: LabelVariant;
+  required?: boolean;
 }) {
   return (
     <span className="flex items-baseline justify-between gap-3">
       <label
         htmlFor={htmlFor}
-        className="font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+        className={
+          variant === "text"
+            ? "text-[0.9375rem] font-medium text-ink"
+            : "font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+        }
       >
         {children}
+        {required && (
+          <span className="ml-1 text-danger" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       {hint && <span className="text-[0.6875rem] text-fog-2">{hint}</span>}
     </span>
   );
 }
 
+type LabelVariant = "mono" | "text";
+
 type BaseProps = {
   label: string;
   error?: string;
   hint?: string;
   className?: string;
+  /** Label treatment. Defaults to the compact mono label used across the site. */
+  labelVariant?: LabelVariant;
+  /** Renders the asterisk on the label; the attribute is passed through to the control. */
+  required?: boolean;
 };
 
 export function TextField({
@@ -48,17 +73,20 @@ export function TextField({
   error,
   hint,
   className,
+  labelVariant,
+  required,
   ...rest
 }: BaseProps & React.InputHTMLAttributes<HTMLInputElement>) {
   const id = useId();
   const errorId = `${id}-error`;
   return (
     <div className={className}>
-      <Label htmlFor={id} hint={hint}>
+      <Label htmlFor={id} hint={hint} variant={labelVariant} required={required}>
         {label}
       </Label>
       <input
         id={id}
+        required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
         className={cn(control, "mt-2 h-11", error ? "border-danger" : "border-line-strong")}
@@ -78,6 +106,8 @@ export function TextArea({
   error,
   hint,
   className,
+  labelVariant,
+  required,
   rows = 5,
   ...rest
 }: BaseProps & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
@@ -85,12 +115,13 @@ export function TextArea({
   const errorId = `${id}-error`;
   return (
     <div className={className}>
-      <Label htmlFor={id} hint={hint}>
+      <Label htmlFor={id} hint={hint} variant={labelVariant} required={required}>
         {label}
       </Label>
       <textarea
         id={id}
         rows={rows}
+        required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
         className={cn(
@@ -116,6 +147,8 @@ export function SelectField({
   options,
   placeholder,
   className,
+  labelVariant,
+  required,
   ...rest
 }: BaseProps & {
   options: { value: string; label: string }[];
@@ -125,11 +158,12 @@ export function SelectField({
   const errorId = `${id}-error`;
   return (
     <div className={className}>
-      <Label htmlFor={id} hint={hint}>
+      <Label htmlFor={id} hint={hint} variant={labelVariant} required={required}>
         {label}
       </Label>
       <select
         id={id}
+        required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
         className={cn(

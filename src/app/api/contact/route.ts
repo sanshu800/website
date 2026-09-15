@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactSchema, recordSubmission } from "@/lib/submissions";
+import { contactDisplayName, contactSchema, recordSubmission } from "@/lib/submissions";
 import { fieldErrors } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   const id = recordSubmission({
     kind: "contact",
-    name: parsed.data.name,
+    name: contactDisplayName(parsed.data),
     email: parsed.data.email,
     company: parsed.data.company,
     payload: parsed.data,

@@ -44,9 +44,9 @@ export function pagesDoc() {
         summary:
           "Every message is read by a person who can actually answer it. If your question is technical, expect a technical reply rather than a brochure.",
       },
-      formHeading: "Send a message",
+      formHeading: "Tell us what you need",
       formNote:
-        "Required fields are marked by their labels being visible. Everything is validated on the server as well as here.",
+        "Fill in the form below and we will come back to you within one business day. The detail we ask for here is the detail that lets the first reply be useful rather than a request for more information.",
       channelsHeading: "Direct channels",
       channels: [
         {

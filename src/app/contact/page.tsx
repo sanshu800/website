@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Talk to the Reygent team about pricing, security review, partnerships or support.",
+    "Tell us what you need automated and what it is costing you. A person replies to every enquiry within one business day.",
   alternates: { canonical: "/contact" },
 };
 
@@ -33,8 +33,8 @@ export default function ContactPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-8">
               <h2 className="font-display text-[1.5rem] text-ink">{copy.formHeading}</h2>
               <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
               <div className="mt-8">
@@ -42,7 +42,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-4">
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
                   <h2 className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">

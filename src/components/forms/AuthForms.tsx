@@ -25,10 +25,10 @@ export function AuthShell({
     <section className="relative flex min-h-[100svh] items-center border-b border-line bg-paper pb-16 pt-28 sm:pt-32">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(91,52,242,0.09),transparent_72%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(10,10,11,0.07),transparent_72%)]"
       />
       <div className="relative mx-auto w-full max-w-[var(--container-narrow)] px-5 sm:px-6">
-        <p className="font-mono text-eyebrow uppercase text-violet">{eyebrow}</p>
+        <p className="font-mono text-eyebrow uppercase text-accent">{eyebrow}</p>
         <h1 className="mt-5 text-display-l text-ink">{title}</h1>
         <p className="mt-4 text-lead text-fog">{summary}</p>
         <div className="mt-10 rounded-2xl border border-line p-7 sm:p-8">{children}</div>
@@ -111,7 +111,7 @@ export function LoginForm({ next = "/dashboard" }: { next?: string }) {
 
       <div className="flex items-center justify-between gap-4">
         <CheckboxField label="Keep me signed in for 30 days" defaultChecked />
-        <Link href="/contact" className="text-[0.75rem] text-violet underline underline-offset-2">
+        <Link href="/contact" className="text-[0.75rem] text-accent underline underline-offset-2">
           Forgotten password?
         </Link>
       </div>
@@ -141,7 +141,7 @@ export function LoginForm({ next = "/dashboard" }: { next?: string }) {
         <button
           type="button"
           onClick={useDemo}
-          className="mt-2 text-[0.75rem] font-medium text-violet underline underline-offset-2"
+          className="mt-2 text-[0.75rem] font-medium text-accent underline underline-offset-2"
         >
           Fill the demo credentials
         </button>
@@ -284,11 +284,11 @@ export function SignupForm() {
         label={
           <>
             I agree to the{" "}
-            <Link href="/legal/terms" className="text-violet underline underline-offset-2">
+            <Link href="/legal/terms" className="text-accent underline underline-offset-2">
               terms of service
             </Link>{" "}
             and{" "}
-            <Link href="/legal/privacy" className="text-violet underline underline-offset-2">
+            <Link href="/legal/privacy" className="text-accent underline underline-offset-2">
               privacy notice
             </Link>
             .

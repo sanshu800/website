@@ -17,8 +17,8 @@ const KINDS = [
   { value: "careers", label: "Applications" },
 ];
 
-const TONE: Record<string, "violet" | "jade" | "azure" | "caution" | "neutral"> = {
-  "get-started": "violet",
+const TONE: Record<string, "accent" | "jade" | "azure" | "caution" | "neutral"> = {
+  "get-started": "accent",
   demo: "azure",
   contact: "caution",
   newsletter: "neutral",
@@ -55,7 +55,7 @@ export default async function SubmissionsPage({
 
       <div className="grid gap-4 sm:grid-cols-3">
         <StatCard label="Total captured" value={String(stats.total)} />
-        <StatCard label="Last 24 hours" value={String(last24h)} tone={last24h > 0 ? "violet" : "paper"} />
+        <StatCard label="Last 24 hours" value={String(last24h)} tone={last24h > 0 ? "accent" : "paper"} />
         <StatCard
           label="Trial requests"
           value={String(stats.byKind.find((entry) => entry.kind === "get-started")?.n ?? 0)}
@@ -90,7 +90,7 @@ export default async function SubmissionsPage({
             action={
               <Link
                 href="/contact"
-                className="inline-flex h-10 items-center rounded-full bg-violet px-4 text-[0.8125rem] font-medium text-white"
+                className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.8125rem] font-medium text-white"
               >
                 Open the contact form
               </Link>
@@ -115,7 +115,7 @@ export default async function SubmissionsPage({
                   {row.email && (
                     <a
                       href={`mailto:${row.email}`}
-                      className="mt-1 inline-block text-[0.75rem] text-violet hover:underline"
+                      className="mt-1 inline-block text-[0.75rem] text-accent hover:underline"
                     >
                       {row.email}
                     </a>

@@ -24,14 +24,14 @@ export function PricingPreview() {
                 className={cn(
                   "flex h-full flex-col rounded-2xl border p-7",
                   tier.highlight
-                    ? "border-violet bg-violet-soft shadow-md"
+                    ? "border-accent bg-accent-soft shadow-md"
                     : "border-line bg-paper",
                 )}
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-display text-[1.125rem] text-ink">{tier.name}</h3>
                   {tier.highlight && (
-                    <span className="rounded-full bg-violet px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                    <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
                       Most popular
                     </span>
                   )}
@@ -52,7 +52,7 @@ export function PricingPreview() {
                 <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
                   {tier.includes.slice(0, 5).map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-small text-fg-2">
-                      <Check className="mt-[4px] h-3.5 w-3.5 shrink-0 text-violet" />
+                      <Check className="mt-[4px] h-3.5 w-3.5 shrink-0 text-accent" />
                       {item}
                     </li>
                   ))}
@@ -74,7 +74,7 @@ export function PricingPreview() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/pricing"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet"
+            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
           >
             Compare every plan limit
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

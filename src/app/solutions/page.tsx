@@ -55,7 +55,7 @@ export default function SolutionsPage() {
                     ))}
                   </ul>
 
-                  <span className="mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet">
+                  <span className="mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent">
                     Read the solution
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
@@ -76,7 +76,7 @@ export default function SolutionsPage() {
               <Link
                 key={module.slug}
                 href={`/products/${module.slug}`}
-                className="group rounded-xl border border-line bg-paper px-5 py-4 transition-colors hover:border-violet/40"
+                className="group rounded-xl border border-line bg-paper px-5 py-4 transition-colors hover:border-accent/40"
               >
                 <span className="block text-[0.9375rem] font-medium text-ink">
                   {module.name}

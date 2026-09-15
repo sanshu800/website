@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 
-export type Accent = "violet" | "tangerine" | "jade" | "azure" | "magenta" | "neutral";
+export type Accent = "ink" | "tangerine" | "jade" | "azure" | "magenta" | "neutral";
 
 const accentChip: Record<Accent, string> = {
-  violet: "bg-violet-soft text-violet-2 border-violet-line",
+  ink: "bg-accent-soft text-accent-2 border-accent-line",
   tangerine: "bg-tangerine-soft text-[#a83c05] border-[#ffc9a8]",
   jade: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
   azure: "bg-azure-soft text-[#0f4bb0] border-[#b9d0fb]",
@@ -12,7 +12,7 @@ const accentChip: Record<Accent, string> = {
 };
 
 const accentSolid: Record<Accent, string> = {
-  violet: "bg-violet text-white",
+  ink: "bg-accent text-white",
   tangerine: "bg-tangerine text-white",
   jade: "bg-jade text-white",
   azure: "bg-azure text-white",
@@ -21,7 +21,7 @@ const accentSolid: Record<Accent, string> = {
 };
 
 const accentDot: Record<Accent, string> = {
-  violet: "bg-violet",
+  ink: "bg-accent",
   tangerine: "bg-tangerine",
   jade: "bg-jade",
   azure: "bg-azure",
@@ -67,7 +67,7 @@ export function Badge({
 export function StatusPill({ status }: { status: string }) {
   const map: Record<string, string> = {
     new: "bg-azure-soft text-[#0f4bb0] border-[#b9d0fb]",
-    qualified: "bg-violet-soft text-violet-2 border-violet-line",
+    qualified: "bg-accent-soft text-accent-2 border-accent-line",
     engaged: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
     proposal: "bg-caution-soft text-caution border-[#f0d3a0]",
     won: "bg-jade text-white border-transparent",
@@ -78,7 +78,7 @@ export function StatusPill({ status }: { status: string }) {
     risk: "bg-danger-soft text-danger border-[#f3c4c4]",
     healthy: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
     watch: "bg-caution-soft text-caution border-[#f0d3a0]",
-    onboarding: "bg-violet-soft text-violet-2 border-violet-line",
+    onboarding: "bg-accent-soft text-accent-2 border-accent-line",
   };
   return (
     <span

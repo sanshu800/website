@@ -12,7 +12,7 @@ const HEALTH_STYLE: Record<string, string> = {
 const STAGE_STYLE: Record<string, string> = {
   Discovery: "bg-mist text-fog",
   Qualified: "bg-azure-soft text-azure",
-  Proposal: "bg-violet-soft text-violet",
+  Proposal: "bg-accent-soft text-accent",
   Negotiation: "bg-tangerine-soft text-tangerine",
   Onboarding: "bg-jade-soft text-jade",
   Won: "bg-ink text-on-ink",
@@ -32,12 +32,12 @@ export function Pill({
   className,
 }: {
   children: React.ReactNode;
-  tone?: "neutral" | "violet" | "jade" | "azure" | "caution" | "danger" | "ink";
+  tone?: "neutral" | "accent" | "jade" | "azure" | "caution" | "danger" | "ink";
   className?: string;
 }) {
   const tones = {
     neutral: "bg-mist text-fog",
-    violet: "bg-violet-soft text-violet",
+    accent: "bg-accent-soft text-accent",
     jade: "bg-jade-soft text-jade",
     azure: "bg-azure-soft text-azure",
     caution: "bg-caution-soft text-caution",
@@ -107,14 +107,14 @@ export function StatCard({
   label: string;
   value: string;
   detail?: string;
-  tone?: "paper" | "violet" | "ink";
+  tone?: "paper" | "accent" | "ink";
   href?: string;
 }) {
   const body = (
     <div
       className={cn(
         "flex h-full flex-col rounded-2xl border p-5",
-        tone === "violet" && "border-violet/25 bg-violet-soft",
+        tone === "accent" && "border-accent/25 bg-accent-soft",
         tone === "ink" && "border-ink bg-ink text-on-ink",
         tone === "paper" && "border-line bg-paper",
       )}
@@ -122,7 +122,7 @@ export function StatCard({
       <p
         className={cn(
           "font-mono text-[0.625rem] uppercase tracking-wide",
-          tone === "ink" ? "text-on-ink-2" : tone === "violet" ? "text-violet" : "text-fog-2",
+          tone === "ink" ? "text-on-ink-2" : tone === "accent" ? "text-accent" : "text-fog-2",
         )}
       >
         {label}
@@ -234,7 +234,7 @@ export function TrendChart({
               {point.value > 0 ? point.value.toLocaleString() : ""}
             </span>
             <div
-              className="w-full rounded-t-[4px] bg-violet/85 transition-colors group-hover:bg-violet"
+              className="w-full rounded-t-[4px] bg-accent/85 transition-colors group-hover:bg-accent"
               style={{ height: `${Math.max(3, (point.value / max) * 100)}%` }}
             />
           </div>

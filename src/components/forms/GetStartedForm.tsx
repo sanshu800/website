@@ -139,7 +139,7 @@ export function GetStartedForm() {
             <span
               className={cn(
                 "flex h-6 w-6 items-center justify-center rounded-full font-mono text-[0.625rem]",
-                index <= step ? "bg-violet text-white" : "bg-mist-2 text-fog",
+                index <= step ? "bg-accent text-white" : "bg-mist-2 text-fog",
               )}
             >
               {index + 1}
@@ -253,7 +253,7 @@ export function GetStartedForm() {
                     className={cn(
                       "rounded-xl border p-4 text-left transition-colors",
                       active
-                        ? "border-violet bg-violet-soft"
+                        ? "border-accent bg-accent-soft"
                         : "border-line-strong hover:border-ink/25",
                     )}
                   >
@@ -276,7 +276,7 @@ export function GetStartedForm() {
             label={
               <>
                 Our firm is under three years old — check eligibility for the{" "}
-                <Link href="/startups" className="text-violet underline underline-offset-2">
+                <Link href="/startups" className="text-accent underline underline-offset-2">
                   startup programme
                 </Link>
                 .

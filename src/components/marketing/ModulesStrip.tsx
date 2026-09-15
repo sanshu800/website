@@ -6,7 +6,7 @@ import { modules } from "@/lib/content/products";
 import { cn } from "@/lib/utils";
 
 const ACCENT_FIELD: Record<string, string> = {
-  violet: "bg-violet",
+  ink: "bg-accent",
   tangerine: "bg-tangerine",
   jade: "bg-jade",
   azure: "bg-azure",
@@ -19,7 +19,7 @@ const ACCENT_FIELD: Record<string, string> = {
  */
 export function ModulesStrip() {
   return (
-    <section className="section-sm bg-paper pt-0">
+    <section className="section-sm bg-paper">
       <Container width="wide">
         <SectionHeading
           eyebrow="How it fits together"
@@ -84,7 +84,7 @@ export function ModulesStrip() {
             </p>
             <Link
               href="/products/foundation"
-              className="group inline-flex items-center gap-2 text-[0.875rem] font-medium text-violet"
+              className="group inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent"
             >
               How it works
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

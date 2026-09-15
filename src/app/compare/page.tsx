@@ -30,14 +30,14 @@ export default function CompareIndex() {
                   href={`/compare/${comparison.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line p-7 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
                     {comparison.short}
                   </span>
                   <h2 className="mt-4 font-display text-[1.25rem] text-ink">
                     {comparison.headline}
                   </h2>
                   <p className="mt-3 flex-1 text-micro text-fog">{comparison.summary}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-violet">
+                  <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent">
                     Read the comparison
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>

@@ -31,13 +31,13 @@ export default function PartnersPage() {
           <>
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Apply to partner <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Talk to partnerships
             </Link>
@@ -81,7 +81,7 @@ export default function PartnersPage() {
           <ol className="mt-12 grid gap-6 lg:grid-cols-4">
             {partnersProgram.steps.map((step, index) => (
               <li key={step.title} className="border-t border-line-strong pt-5">
-                <span className="font-mono text-[0.6875rem] text-violet">
+                <span className="font-mono text-[0.6875rem] text-accent">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 font-display text-[1.125rem] text-ink">{step.title}</h3>

@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils";
  * Form primitives.
  *
  * One visual language for every field on the site: mono uppercase label, 44px
- * control height, violet focus ring, error text wired with aria-describedby so
+ * control height, accent focus ring, error text wired with aria-describedby so
  * screen readers hear the same thing sighted users see.
  */
 
 const control =
-  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog-2/80 outline-none transition-[border-color,box-shadow] duration-200 focus-visible:border-violet focus-visible:shadow-[0_0_0_3px_rgba(91,52,242,0.14)] disabled:opacity-60";
+  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog-2/80 outline-none transition-[border-color,box-shadow] duration-200 focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)] disabled:opacity-60";
 
 export function Label({
   children,
@@ -174,7 +174,7 @@ export function CheckboxField({
         <input
           id={id}
           type="checkbox"
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-line-strong accent-violet"
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-line-strong accent-ink"
           {...rest}
         />
         <label htmlFor={id} className="text-[0.8125rem] leading-relaxed text-fog">
@@ -225,7 +225,7 @@ export function ChipGroup({
               className={cn(
                 "rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
                 active
-                  ? "border-violet bg-violet-soft text-violet"
+                  ? "border-accent bg-accent-soft text-accent"
                   : "border-line-strong text-fog hover:border-ink/25 hover:text-ink",
               )}
             >

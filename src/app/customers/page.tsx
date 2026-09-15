@@ -53,7 +53,7 @@ export default function CustomersPage() {
           <div className="mt-10 grid gap-6 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <div className="rounded-2xl bg-ink p-8 text-on-ink sm:p-10">
-                <Quote className="h-7 w-7 text-violet-3" aria-hidden="true" />
+                <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
                 <blockquote className="mt-6 font-display text-[1.5rem] leading-snug text-on-ink">
                   “{testimonials[0]!.quote}”
                 </blockquote>

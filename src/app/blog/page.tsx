@@ -48,7 +48,7 @@ export default async function BlogIndex({
                 className={cn(
                   "shrink-0 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
                   item === active
-                    ? "border-violet bg-violet text-white"
+                    ? "border-accent bg-accent text-white"
                     : "border-line text-fg-2 hover:bg-mist",
                 )}
               >
@@ -74,14 +74,14 @@ export default async function BlogIndex({
                 className="group grid gap-8 rounded-2xl border border-line p-7 transition-all duration-300 hover:border-line-strong hover:shadow-md sm:p-9 lg:grid-cols-12"
               >
                 <div className="lg:col-span-7">
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
                     Featured · {featured.category}
                   </span>
                   <h2 className="mt-4 font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-ink">
                     {featured.title}
                   </h2>
                   <p className="mt-4 text-body-lg text-fog">{featured.excerpt}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-violet">
+                  <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent">
                     Read the article
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
@@ -112,7 +112,7 @@ export default async function BlogIndex({
                   href={`/blog/${post.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
-                  <span className="font-mono text-[0.625rem] uppercase tracking-wide text-violet">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
                     {post.category}
                   </span>
                   <h3 className="mt-3 font-display text-[1.125rem] leading-snug text-ink">

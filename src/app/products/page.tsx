@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const FIELD: Record<string, string> = {
-  violet: "bg-violet",
+  ink: "bg-accent",
   tangerine: "bg-tangerine",
   jade: "bg-jade",
   azure: "bg-azure",
@@ -57,7 +57,7 @@ export default function ProductsIndex() {
                     <h2 className="mt-4 font-display text-[1.5rem] tracking-[-0.02em] text-ink">
                       {product.name}
                     </h2>
-                    <p className="mt-2 text-micro text-violet">{product.headline}</p>
+                    <p className="mt-2 text-micro text-accent">{product.headline}</p>
                   </div>
                   <div className="lg:col-span-6">
                     <p className="text-body-lg text-fog">{product.summary}</p>
@@ -73,7 +73,7 @@ export default function ProductsIndex() {
                     </ul>
                   </div>
                   <div className="lg:col-span-2 lg:text-right">
-                    <span className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet">
+                    <span className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent">
                       Explore
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>

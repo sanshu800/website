@@ -35,13 +35,13 @@ export default function SecurityPage() {
           <>
             <Link
               href="/legal/security"
-              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Full security documentation
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Request our DPA
             </Link>
@@ -74,7 +74,7 @@ export default function SecurityPage() {
             {page.sections.map((section, index) => (
               <RevealItem key={section.h}>
                 <div className="flex gap-5 border-t border-line pt-5">
-                  <span className="font-mono text-[0.6875rem] text-violet">
+                  <span className="font-mono text-[0.6875rem] text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
@@ -92,7 +92,7 @@ export default function SecurityPage() {
         <Container width="wide">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <ShieldCheck className="h-6 w-6 text-violet-3" aria-hidden="true" />
+              <ShieldCheck className="h-6 w-6 text-accent-3" aria-hidden="true" />
               <h2 className="mt-5 text-display-m text-on-ink">
                 Report a vulnerability
               </h2>
@@ -106,9 +106,9 @@ export default function SecurityPage() {
             <div className="lg:col-span-5">
               <a
                 href="mailto:security@reygent.ai"
-                className="flex items-center gap-4 rounded-2xl border border-white/15 bg-ink-2 px-6 py-5 transition-colors hover:border-violet-3/40"
+                className="flex items-center gap-4 rounded-2xl border border-white/15 bg-ink-2 px-6 py-5 transition-colors hover:border-accent-3/40"
               >
-                <Lock className="h-5 w-5 text-violet-3" aria-hidden="true" />
+                <Lock className="h-5 w-5 text-accent-3" aria-hidden="true" />
                 <span className="text-body text-on-ink">
                   security@reygent.ai
                   <span className="mt-0.5 block text-[0.75rem] text-on-ink-2">

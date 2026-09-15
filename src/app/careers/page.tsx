@@ -47,7 +47,7 @@ export default function CareersPage() {
                 >
                   <div className="lg:col-span-5">
                     <h2 className="font-display text-[1.25rem] text-ink">{role.title}</h2>
-                    <p className="mt-1.5 font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+                    <p className="mt-1.5 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
                       {role.team}
                     </p>
                   </div>

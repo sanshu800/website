@@ -47,13 +47,13 @@ export default function PricingPage() {
                 <div
                   className={cn(
                     "flex h-full flex-col rounded-2xl border p-7 sm:p-8",
-                    tier.highlight ? "border-violet bg-violet-soft shadow-md" : "border-line",
+                    tier.highlight ? "border-accent bg-accent-soft shadow-md" : "border-line",
                   )}
                 >
                   <div className="flex items-center justify-between">
                     <h2 className="font-display text-[1.25rem] text-ink">{tier.name}</h2>
                     {tier.highlight && (
-                      <span className="rounded-full bg-violet px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
                         Most popular
                       </span>
                     )}
@@ -72,7 +72,7 @@ export default function PricingPage() {
                   <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
                     {tier.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-small text-fg-2">
-                        <Check className="mt-[4px] h-3.5 w-3.5 shrink-0 text-violet" />
+                        <Check className="mt-[4px] h-3.5 w-3.5 shrink-0 text-accent" />
                         {item}
                       </li>
                     ))}
@@ -81,9 +81,9 @@ export default function PricingPage() {
                   <Link
                     href={tier.href}
                     className={cn(
-                      "mt-7 inline-flex h-11 items-center justify-center rounded-full text-[0.9375rem] font-medium transition-colors",
+                      "mt-7 inline-flex h-11 items-center justify-center rounded-lg text-[0.9375rem] font-medium transition-colors",
                       tier.highlight
-                        ? "bg-violet text-white hover:bg-violet-2"
+                        ? "bg-accent text-white hover:bg-accent-2"
                         : "border border-line-strong text-ink hover:bg-mist",
                     )}
                   >
@@ -97,7 +97,7 @@ export default function PricingPage() {
           <p className="mt-6 text-center text-micro text-fog-2">
             Education and non-profit discounts available. Firms under three years old
             may qualify for the{" "}
-            <Link href="/startups" className="text-violet underline underline-offset-2">
+            <Link href="/startups" className="text-accent underline underline-offset-2">
               startup programme
             </Link>
             .
@@ -121,7 +121,7 @@ export default function PricingPage() {
                       scope="col"
                       className={cn(
                         "py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide",
-                        name === "Pro" ? "text-violet" : "text-fog-2",
+                        name === "Pro" ? "text-accent" : "text-fog-2",
                       )}
                     >
                       {name}

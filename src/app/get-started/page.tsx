@@ -46,7 +46,7 @@ export default function GetStartedPage() {
                   <ul className="mt-6 space-y-3">
                     {INCLUDED.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-micro text-fog">
-                        <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-violet" />
+                        <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
                         {item}
                       </li>
                     ))}
@@ -61,16 +61,16 @@ export default function GetStartedPage() {
                   </h2>
                   <ol className="mt-5 space-y-4 text-micro text-fog">
                     <li className="flex gap-3">
-                      <span className="font-mono text-[0.625rem] text-violet">01</span>
+                      <span className="font-mono text-[0.625rem] text-accent">01</span>
                       The request is stored and acknowledged — no silent submission.
                     </li>
                     <li className="flex gap-3">
-                      <span className="font-mono text-[0.625rem] text-violet">02</span>
+                      <span className="font-mono text-[0.625rem] text-accent">02</span>
                       You create an account and land in the dashboard with sample data
                       loaded.
                     </li>
                     <li className="flex gap-3">
-                      <span className="font-mono text-[0.625rem] text-violet">03</span>
+                      <span className="font-mono text-[0.625rem] text-accent">03</span>
                       Import a slice of your real records, or book an onboarding session
                       and we will do it with you.
                     </li>

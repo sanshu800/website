@@ -47,7 +47,7 @@ export default async function TasksPage({
       />
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="Overdue" value={String(overdue)} tone={overdue > 0 ? "violet" : "paper"} />
+        <StatCard label="Overdue" value={String(overdue)} tone={overdue > 0 ? "accent" : "paper"} />
         <StatCard label="Unassigned and open" value={String(unassigned)} />
         <StatCard label="Total tracked" value={String(all.length)} />
       </div>
@@ -126,7 +126,7 @@ export default async function TasksPage({
                             (task.company_id ? (
                               <Link
                                 href={`/dashboard/companies/${task.company_id}`}
-                                className="mt-1.5 inline-block text-[0.75rem] text-violet hover:underline"
+                                className="mt-1.5 inline-block text-[0.75rem] text-accent hover:underline"
                               >
                                 {task.company}
                               </Link>
@@ -172,7 +172,7 @@ export default async function TasksPage({
                   required
                   minLength={3}
                   placeholder="Send the redlined engagement letter"
-                  className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-violet"
+                  className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-accent"
                 />
               </div>
 
@@ -187,7 +187,7 @@ export default async function TasksPage({
                   id="assignee"
                   name="assignee"
                   placeholder="Whoever owns it"
-                  className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-violet"
+                  className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-accent"
                 />
               </div>
 
@@ -203,7 +203,7 @@ export default async function TasksPage({
                     id="priority"
                     name="priority"
                     defaultValue="normal"
-                    className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-violet"
+                    className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-accent"
                   >
                     {PRIORITIES.map((priority) => (
                       <option key={priority} value={priority}>
@@ -223,14 +223,14 @@ export default async function TasksPage({
                     id="dueAt"
                     name="dueAt"
                     type="date"
-                    className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-violet"
+                    className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-accent"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-violet text-[0.875rem] font-medium text-white transition-colors hover:bg-violet-2"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-accent text-[0.875rem] font-medium text-white transition-colors hover:bg-accent-2"
               >
                 <Plus className="h-4 w-4" />
                 Create task

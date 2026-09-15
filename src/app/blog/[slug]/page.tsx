@@ -70,8 +70,8 @@ function BlockView({ block }: { block: Block }) {
       );
     case "callout":
       return (
-        <aside className="rounded-xl border-l-2 border-violet bg-violet-soft/60 p-5">
-          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+        <aside className="rounded-xl border-l-2 border-accent bg-accent-soft/60 p-5">
+          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
             {block.title}
           </p>
           <p className="mt-2 text-[1rem] text-fg-2">{block.text}</p>
@@ -110,7 +110,7 @@ export default async function PostPage({
               <ArrowLeft className="h-3.5 w-3.5" />
               All articles
             </Link>
-            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
               {post.category}
             </p>
             <h1 className="mt-4 text-display-l text-ink">{post.title}</h1>
@@ -118,7 +118,7 @@ export default async function PostPage({
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-6">
               <span className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-soft font-display text-[0.75rem] font-semibold text-violet-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-[0.75rem] font-semibold text-accent-2">
                   {initials(post.author.name)}
                 </span>
                 <span>
@@ -162,7 +162,7 @@ export default async function PostPage({
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
                   href="/guides"
-                  className="inline-flex h-10 items-center rounded-full bg-violet px-4 text-[0.875rem] font-medium text-white transition-colors hover:bg-violet-2"
+                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.875rem] font-medium text-white transition-colors hover:bg-accent-2"
                 >
                   Get the scorecard
                 </Link>
@@ -188,7 +188,7 @@ export default async function PostPage({
                   href={`/blog/${item.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-line p-5 transition-all duration-300 hover:border-line-strong hover:shadow-sm"
                 >
-                  <span className="font-mono text-[0.625rem] uppercase tracking-wide text-violet">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
                     {item.category}
                   </span>
                   <span className="mt-2 flex-1 font-display text-[1.0625rem] leading-snug text-ink">

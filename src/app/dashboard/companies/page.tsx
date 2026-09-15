@@ -87,7 +87,7 @@ export default async function CompaniesPage({
                 type="search"
                 defaultValue={params.q ?? ""}
                 placeholder="Name, domain or city"
-                className="h-11 w-full rounded-lg border border-line-strong bg-paper pl-10 pr-4 text-[0.875rem] outline-none focus-visible:border-violet"
+                className="h-11 w-full rounded-lg border border-line-strong bg-paper pl-10 pr-4 text-[0.875rem] outline-none focus-visible:border-accent"
               />
             </div>
           </div>
@@ -122,7 +122,7 @@ export default async function CompaniesPage({
               id="sort"
               name="sort"
               defaultValue={params.sort ?? "recent"}
-              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-violet"
+              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-accent"
             >
               {SORTS.map((sort) => (
                 <option key={sort.value} value={sort.value}>
@@ -136,7 +136,7 @@ export default async function CompaniesPage({
         <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-4">
           <button
             type="submit"
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-violet px-4 text-[0.8125rem] font-medium text-white transition-colors hover:bg-violet-2"
+            className="inline-flex h-10 items-center gap-2 rounded-lg bg-accent px-4 text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-2"
           >
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Apply filters
@@ -187,7 +187,7 @@ export default async function CompaniesPage({
                     <th scope="row" className="px-5 py-3.5 text-left">
                       <Link
                         href={`/dashboard/companies/${company.id}`}
-                        className="text-[0.875rem] font-medium text-ink hover:text-violet"
+                        className="text-[0.875rem] font-medium text-ink hover:text-accent"
                       >
                         {company.name}
                       </Link>
@@ -289,7 +289,7 @@ function FilterSelect({
         id={id}
         name={id}
         defaultValue={value}
-        className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] capitalize outline-none focus-visible:border-violet"
+        className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] capitalize outline-none focus-visible:border-accent"
       >
         {options.map((option) => (
           <option key={option} value={option}>

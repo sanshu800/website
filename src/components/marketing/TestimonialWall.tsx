@@ -34,7 +34,7 @@ export function TestimonialWall() {
           />
           <Link
             href="/customers"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet"
+            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
           >
             All customer stories
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -45,7 +45,7 @@ export function TestimonialWall() {
           {/* Featured quote */}
           <Reveal className="lg:col-span-5" variant="up">
             <figure className="flex h-full flex-col rounded-2xl bg-ink p-7 text-on-ink sm:p-9">
-              <Quote className="h-7 w-7 text-violet-3" aria-hidden="true" />
+              <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
               <blockquote className="mt-6 flex-1 font-display text-[1.375rem] leading-snug tracking-[-0.015em] text-on-ink">
                 “{featured.quote}”
               </blockquote>

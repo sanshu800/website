@@ -46,7 +46,7 @@ export default async function RolePage({
             <ArrowLeft className="h-3.5 w-3.5" />
             All roles
           </Link>
-          <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+          <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
             {role.team}
           </p>
           <h1 className="mt-4 text-display-xl text-ink">{role.title}</h1>
@@ -78,7 +78,7 @@ export default async function RolePage({
                   <li key={item} className="flex items-start gap-3 text-body-lg text-fog">
                     <span
                       aria-hidden="true"
-                      className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet"
+                      className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                     />
                     {item}
                   </li>
@@ -93,7 +93,7 @@ export default async function RolePage({
                   <li key={item} className="flex items-start gap-3 text-body-lg text-fog">
                     <span
                       aria-hidden="true"
-                      className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet"
+                      className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                     />
                     {item}
                   </li>
@@ -112,7 +112,7 @@ export default async function RolePage({
                     "A decision within five working days of the final conversation.",
                   ].map((step, index) => (
                     <li key={step} className="flex gap-3">
-                      <span className="font-mono text-[0.6875rem] text-violet">
+                      <span className="font-mono text-[0.6875rem] text-accent">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       {step}

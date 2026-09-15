@@ -49,6 +49,29 @@ Sign-up also works and creates a real account with a scrypt-hashed password.
 
 ---
 
+## Design system
+
+- **Black is the brand.** The wordmark is plain type, the mark is a black square
+  with three white rules (favicon and app chrome only), and every interactive
+  element is black or grey. Colour is *reserved for data* — status pills, health
+  flags, charts — so it always means something rather than decorating.
+- **Geist / Space Grotesk / Geist Mono**, self-hosted. Body and hero copy are
+  Geist; section headlines are Space Grotesk; labels are Geist Mono.
+- **Radii:** 8px on buttons and inputs, 12–28px on cards and surfaces, full on
+  filters, chips, avatars and dots. Squared controls, soft surfaces.
+- **Motion:** a staggered `fadeSlideUp` on the hero, a marquee strip, reveal-on-
+  scroll sections and a scroll-progress rail. All of it collapses under
+  `prefers-reduced-motion`, where the hero falls back to a still frame.
+
+### The hero film
+
+The homepage opens with a full-bleed looping video behind the headline, with a
+gradient scrim for legibility and a poster frame committed at
+`public/images/hero-poster.jpg` so the hero is never a black rectangle while the
+video loads. The clip is referenced from its CDN because it is several megabytes:
+for production, download it to `public/video/hero.mp4` and point `heroVideo.src`
+in `src/lib/content/marketing.ts` at that local path.
+
 ## Stack decisions (made, not asked)
 
 - **Next.js 16 App Router + React 19 + TypeScript (strict)** — one framework for the

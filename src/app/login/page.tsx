@@ -29,11 +29,11 @@ export default async function LoginPage({
       footer={
         <>
           No account yet?{" "}
-          <Link href="/signup" className="text-violet underline underline-offset-2">
+          <Link href="/signup" className="text-accent underline underline-offset-2">
             Create one
           </Link>{" "}
           ·{" "}
-          <Link href="/pricing" className="text-violet underline underline-offset-2">
+          <Link href="/pricing" className="text-accent underline underline-offset-2">
             See pricing
           </Link>
         </>

@@ -26,6 +26,19 @@ export const site = {
   locale: "en_US",
 } as const;
 
+/**
+ * Hero film.
+ *
+ * Served from the CDN the asset is hosted on because it is several megabytes —
+ * for production, download it into `public/video/hero.mp4` and switch `src` to
+ * `/video/hero.mp4` so the hero does not depend on a third-party host.
+ * `/images/hero-poster.jpg` is the fallback frame and is in this repository.
+ */
+export const heroVideo = {
+  src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_204221_5339e40b-e73d-4ab0-9c65-79c18c66fd50.mp4",
+  poster: "/images/hero-poster.jpg",
+} as const;
+
 export type NavChild = { label: string; href: string; blurb: string };
 export type NavGroup = {
   label: string;

@@ -1,107 +1,141 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Play } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
-import { IntakeScreen } from "@/components/screens/ProductScreens";
-import { LogoMarquee } from "./LogoMarquee";
+import { heroVideo } from "@/lib/content/marketing";
 
 /**
- * Home hero: the four questions answered above the fold — what it is, who it
- * is for, what it replaces, and what to do next — with the real interface
- * visible immediately rather than behind a scroll.
+ * Home hero — full-bleed motion, one message, two ways forward.
+ *
+ * The film runs edge to edge behind everything (no z-index, per the reference
+ * treatment), with two scrims layered over it: one vertical for the headline
+ * block, one horizontal so the left column stays legible whichever part of the
+ * frame is behind it. If the video never loads — slow network, blocked host,
+ * reduced data — the poster is already a finished composition, so the hero is
+ * never a black rectangle.
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-16 sm:pt-36 lg:pt-40">
-      {/* Ambient field: soft violet wash + hairline grid, both static. */}
+    <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-ink">
+      {/* 1. Film */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/images/hero-poster.jpg"
+        aria-hidden="true"
+        tabIndex={-1}
+        className="absolute inset-0 h-full w-full object-cover object-[70%_center] motion-reduce:hidden"
+      >
+        <source src={heroVideo.src} type="video/mp4" />
+      </video>
+
+      {/* Poster stays put underneath, and carries the hero when motion is off. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-[radial-gradient(60%_55%_at_50%_0%,rgba(91,52,242,0.10),transparent_70%)]"
+        className="absolute inset-0 hidden bg-[url('/images/hero-poster.jpg')] bg-cover bg-[70%_center] motion-reduce:block"
+      />
+
+      {/* 2. Scrims — legibility, not decoration */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/65"
       />
       <div
         aria-hidden="true"
-        className="grid-field pointer-events-none absolute inset-x-0 top-0 h-[520px] opacity-70 [mask-image:radial-gradient(70%_60%_at_50%_0%,#000,transparent)]"
+        className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/40 to-transparent lg:from-ink/80"
       />
 
-      <Container width="wide" className="relative">
-        <div className="mx-auto max-w-[52rem] text-center">
-          <Reveal variant="fade">
-            <span className="inline-flex items-center gap-2 rounded-full border border-violet-line bg-violet-soft px-3.5 py-1.5 text-[0.8125rem] font-medium text-violet-2">
-              <Sparkles className="h-3.5 w-3.5" />
-              AI-native operations for professional-service firms
-            </span>
-          </Reveal>
+      {/* 3. Content */}
+      <div className="relative flex h-full flex-col justify-between pb-10 pt-24 sm:pb-12 sm:pt-28 md:pb-14 lg:px-0">
+        {/* Top: badge + headline */}
+        <Container width="wide">
+          <div className="max-w-[46rem]">
+            <p className="animate-[fadeSlideUp_0.8s_ease_0.2s_both] text-[0.75rem] text-on-ink/90 sm:text-[0.875rem]">
+              <span className="inline-flex items-center gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 rounded-full bg-on-ink/70"
+                />
+                AI-native operations for professional-service firms
+              </span>
+            </p>
 
-          <Reveal delay={0.06}>
-            <h1 className="mt-7 text-display-2xl text-ink">
-              One platform for your
-              <br className="hidden sm:block" /> entire client operation.
+            <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-[2rem] font-medium leading-[1.08] tracking-[-0.035em] text-on-ink sm:mt-6 sm:text-[3rem] md:text-[3.75rem] lg:text-[4.25rem]">
+              Your whole client
+              <br />
+              operation, on one
+              <br />
+              shared record.
             </h1>
-          </Reveal>
+          </div>
+        </Container>
 
-          <Reveal delay={0.12}>
-            <p className="mx-auto mt-6 max-w-[38rem] text-lead text-fog">
-              Reygent runs intake, client onboarding, follow-through and reporting
-              on one shared memory layer — so work stops falling into the gaps
-              between the tools your firm already uses.
-            </p>
-          </Reveal>
+        {/* Bottom: the promise, and the two ways forward */}
+        <Container width="wide">
+          <div className="flex flex-wrap items-end justify-between gap-8">
+            <div className="max-w-[26rem] sm:max-w-[32rem]">
+              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-[0.875rem] leading-relaxed text-on-ink/60 sm:mb-6 sm:text-[1rem] md:text-[1.125rem]">
+                Intake, onboarding, follow-through and reporting in one place — so work
+                stops falling into the gaps between the tools your firm already uses.
+              </p>
 
-          <Reveal delay={0.18}>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <ButtonLink href="/get-started" size="lg" iconRight={<ArrowRight className="h-4 w-4" />}>
-                Start free trial
-              </ButtonLink>
-              <ButtonLink href="/demo" variant="secondary" size="lg">
-                Book a demo
-              </ButtonLink>
-            </div>
-            <p className="mt-4 text-micro text-fog-2">
-              14 days free · No card required · Runs alongside your current tools
-            </p>
-          </Reveal>
-        </div>
+              <div className="animate-[fadeSlideUp_0.8s_ease_0.9s_both]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <Link
+                    href="/get-started"
+                    className="inline-flex items-center gap-2 rounded-lg bg-on-ink px-5 py-2.5 text-[0.875rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:px-6 sm:py-3"
+                  >
+                    Start free trial
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/product-tour"
+                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-[0.875rem] font-medium text-on-ink backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
+                  >
+                    <Play className="h-3.5 w-3.5" />
+                    See the product tour
+                  </Link>
+                </div>
 
-        {/* Product surface */}
-        <Reveal delay={0.24} variant="scale" duration={0.9} amount={0.05}>
-          <div className="relative mx-auto mt-14 max-w-[68rem] sm:mt-16">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-x-6 -bottom-8 top-10 rounded-[32px] bg-[radial-gradient(60%_60%_at_50%_100%,rgba(91,52,242,0.16),transparent_70%)] blur-2xl"
-            />
-            <div className="app-frame relative">
-              <div className="h-[340px] sm:h-[420px] lg:h-[480px]">
-                <IntakeScreen />
+                <p className="mt-4 text-[0.75rem] text-on-ink/45 sm:text-[0.8125rem]">
+                  14 days free · No card required · Runs alongside your current tools
+                </p>
               </div>
             </div>
 
-            {/* Floating annotations — real interface facts, not decoration. */}
-            <div className="absolute -left-3 top-1/4 hidden w-[186px] rounded-xl border border-line bg-paper p-3.5 shadow-lg lg:block">
-              <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
-                First reply
-              </p>
-              <p className="mt-1 font-display text-[1.5rem] leading-none text-ink">38m</p>
-              <p className="mt-1 text-[0.6875rem] text-fog">median, last 30 days</p>
-            </div>
-
-            <div className="absolute -right-3 top-[38%] hidden w-[196px] rounded-xl border border-line bg-paper p-3.5 shadow-lg lg:block">
-              <p className="flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-wide text-violet">
-                <Sparkles className="h-3 w-3" /> Ask Reygent
-              </p>
-              <p className="mt-1.5 text-[0.75rem] leading-snug text-fg-2">
-                “Which engagements are at risk this quarter?”
-              </p>
-              <p className="mt-1.5 text-[0.6875rem] text-fog">
-                3 named, with reasons and sources
-              </p>
-            </div>
+            {/* Live proof, so the bottom right of the frame is not empty */}
+            <dl className="hidden gap-10 lg:flex">
+              {[
+                { value: "38m", label: "Median first reply" },
+                { value: "99.95%", label: "Platform availability" },
+                { value: "30 days", label: "Typical time to value" },
+              ].map((fact) => (
+                <div
+                  key={fact.label}
+                  className="animate-[fadeSlideUp_0.8s_ease_1.05s_both]"
+                >
+                  <dd className="font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-ink">
+                    {fact.value}
+                  </dd>
+                  <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-on-ink/45">
+                    {fact.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
           </div>
-        </Reveal>
+        </Container>
+      </div>
 
-        <div className="mt-20 sm:mt-24">
-          <LogoMarquee />
-        </div>
-      </Container>
+      {/* 4. Scroll cue */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-1/2 hidden -translate-x-1/2 lg:block"
+      >
+        <span className="block h-14 w-px bg-gradient-to-b from-transparent to-on-ink/35" />
+      </div>
     </section>
   );
 }

@@ -129,7 +129,7 @@ export function DemoForm() {
             <span
               className={cn(
                 "flex h-6 w-6 items-center justify-center rounded-full font-mono text-[0.625rem]",
-                index <= step ? "bg-violet text-white" : "bg-mist-2 text-fog",
+                index <= step ? "bg-accent text-white" : "bg-mist-2 text-fog",
               )}
             >
               {index + 1}
@@ -239,7 +239,7 @@ export function DemoForm() {
                   className={cn(
                     "rounded-lg border py-2.5 font-mono text-[0.8125rem] transition-colors",
                     slot === option
-                      ? "border-violet bg-violet-soft text-violet"
+                      ? "border-accent bg-accent-soft text-accent"
                       : "border-line-strong text-fog hover:border-ink/25 hover:text-ink",
                   )}
                 >
@@ -250,7 +250,7 @@ export function DemoForm() {
           </fieldset>
 
           <div className="flex gap-4 rounded-xl border border-line bg-mist p-5">
-            <CalendarClock className="h-5 w-5 shrink-0 text-violet" aria-hidden="true" />
+            <CalendarClock className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <p className="text-micro text-fog">
               Thirty minutes, screenshare, no slides. Bring one live process and we will
               map it with you — you keep the map whether or not you become a customer.

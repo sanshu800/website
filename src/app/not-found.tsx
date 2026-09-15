@@ -19,11 +19,11 @@ export default function NotFound() {
     <section className="relative overflow-hidden border-b border-line bg-paper pb-20 pt-32 sm:pt-36">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(91,52,242,0.09),transparent_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(10,10,11,0.07),transparent_70%)]"
       />
       <Container width="wide" className="relative">
         <div className="flex items-center gap-3">
-          <ReygentMark className="h-6 w-6 text-violet" />
+          <ReygentMark className="h-6 w-6 text-accent" />
           <p className="font-mono text-eyebrow uppercase text-fog-2">Error 404</p>
         </div>
 
@@ -38,13 +38,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/"
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
           >
             Back to the homepage <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+            className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
           >
             Report a broken link
           </Link>
@@ -54,7 +54,7 @@ export default function NotFound() {
           {DESTINATIONS.map((destination) => (
             <li key={destination.href}>
               <Link href={destination.href} className="group flex items-start gap-3">
-                <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-violet transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-0.5" />
                 <span>
                   <span className="block text-[0.9375rem] font-medium text-ink">
                     {destination.label}

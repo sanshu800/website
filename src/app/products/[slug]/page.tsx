@@ -58,13 +58,13 @@ export default async function ProductPage({
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Start free trial
             </Link>
             <Link
               href="/demo"
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Book a demo
               <ArrowRight className="h-4 w-4" />
@@ -92,7 +92,7 @@ export default async function ProductPage({
             {product.flow.map((step, index) => (
               <RevealItem key={step.step} className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span aria-hidden="true" className="h-px flex-1 bg-line-strong" />
@@ -140,7 +140,7 @@ export default async function ProductPage({
             <ul className="lg:col-span-6 lg:col-start-7">
               {product.outcomes.map((outcome) => (
                 <Reveal as="li" key={outcome} className="flex items-start gap-3 border-b border-line py-4">
-                  <Check className="mt-[5px] h-4 w-4 shrink-0 text-violet" />
+                  <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
                   <span className="text-body-lg text-fg-2">{outcome}</span>
                 </Reveal>
               ))}

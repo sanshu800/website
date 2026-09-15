@@ -45,8 +45,8 @@ export function TaskToggle({
         "flex shrink-0 items-center justify-center rounded-md border transition-colors",
         size === "md" ? "mt-0.5 h-5 w-5" : "mt-0.5 h-4.5 w-4.5",
         done
-          ? "border-violet bg-violet text-white"
-          : "border-line-strong text-transparent hover:border-violet hover:text-violet/40",
+          ? "border-accent bg-accent text-white"
+          : "border-line-strong text-transparent hover:border-accent hover:text-accent/40",
         error && "border-danger",
       )}
     >

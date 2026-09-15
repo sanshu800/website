@@ -37,13 +37,13 @@ export default function ProductTourPage() {
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Start the real thing <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/demo"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Take it with a person
             </Link>
@@ -62,7 +62,7 @@ export default function ProductTourPage() {
               const Icon = item.icon;
               return (
                 <div key={item.label} className="flex gap-4">
-                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-violet" aria-hidden="true" />
+                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   <div>
                     <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
                       {item.label}
@@ -115,7 +115,7 @@ export default function ProductTourPage() {
               </p>
               <Link
                 href="/products/foundation"
-                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet-3"
+                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
               >
                 See how the memory layer works
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -154,13 +154,13 @@ export default function ProductTourPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/login"
-                  className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+                  className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
                 >
                   Sign in to the demo
                 </Link>
                 <Link
                   href="/signup"
-                  className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+                  className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
                 >
                   Create your own workspace
                 </Link>

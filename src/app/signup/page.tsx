@@ -29,7 +29,7 @@ export default async function SignupPage() {
       footer={
         <>
           Already have an account?{" "}
-          <Link href="/login" className="text-violet underline underline-offset-2">
+          <Link href="/login" className="text-accent underline underline-offset-2">
             Sign in
           </Link>
         </>
@@ -38,7 +38,7 @@ export default async function SignupPage() {
       <ul className="mb-8 space-y-2.5 border-b border-line pb-7">
         {INCLUDED.map((item) => (
           <li key={item} className="flex items-start gap-3 text-micro text-fog">
-            <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-violet" />
+            <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
             {item}
           </li>
         ))}

@@ -62,7 +62,7 @@ export function AskPanel({ suggestions }: { suggestions: string[] }) {
         <div className="rounded-2xl border border-line bg-paper">
           <div className="border-b border-line px-5 py-4">
             <h2 className="flex items-center gap-2 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
-              <Sparkles className="h-3.5 w-3.5 text-violet" />
+              <Sparkles className="h-3.5 w-3.5 text-accent" />
               Ask Reygent
             </h2>
           </div>
@@ -179,12 +179,12 @@ export function AskPanel({ suggestions }: { suggestions: string[] }) {
                 }}
                 rows={2}
                 placeholder="e.g. Which clients have gone quiet?"
-                className="min-h-[52px] w-full resize-y rounded-xl border border-line-strong bg-paper px-3.5 py-3 text-[0.875rem] outline-none focus-visible:border-violet"
+                className="min-h-[52px] w-full resize-y rounded-xl border border-line-strong bg-paper px-3.5 py-3 text-[0.875rem] outline-none focus-visible:border-accent"
               />
               <button
                 type="submit"
                 disabled={status === "asking"}
-                className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-violet px-4 text-[0.8125rem] font-medium text-white transition-colors hover:bg-violet-2 disabled:opacity-60"
+                className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg bg-accent px-4 text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-2 disabled:opacity-60"
               >
                 {status === "asking" ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -212,7 +212,7 @@ export function AskPanel({ suggestions }: { suggestions: string[] }) {
                   onClick={() => ask(suggestion)}
                   className={cn(
                     "w-full rounded-lg border border-line px-3.5 py-2.5 text-left text-[0.8125rem] text-fg-2 transition-colors",
-                    "hover:border-violet/40 hover:bg-violet-soft/50 hover:text-ink",
+                    "hover:border-accent/40 hover:bg-accent-soft/50 hover:text-ink",
                   )}
                 >
                   {suggestion}

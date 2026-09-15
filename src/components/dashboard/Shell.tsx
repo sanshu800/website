@@ -46,7 +46,7 @@ export function DashboardShell({
   const sidebar = (
     <div className="flex h-full flex-col">
       <Link href="/" className="flex items-center gap-2.5 px-5 py-5">
-        <ReygentMark className="h-6 w-6 text-violet" />
+        <ReygentMark className="h-6 w-6 text-accent" />
         <span className="font-display text-[1.0625rem] tracking-[-0.02em] text-ink">
           Reygent
         </span>
@@ -69,7 +69,7 @@ export function DashboardShell({
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[0.875rem] transition-colors",
                     active
-                      ? "bg-violet-soft font-medium text-violet"
+                      ? "bg-ink font-medium text-on-ink"
                       : "text-fg-2 hover:bg-mist hover:text-ink",
                   )}
                 >
@@ -79,7 +79,7 @@ export function DashboardShell({
                     <span
                       className={cn(
                         "rounded-full px-1.5 py-0.5 font-mono text-[0.625rem]",
-                        active ? "bg-violet text-white" : "bg-mist-2 text-fog",
+                        active ? "bg-white/20 text-white" : "bg-mist-2 text-fog",
                       )}
                     >
                       {item.badge}
@@ -146,13 +146,13 @@ export function DashboardShell({
               <div className="ml-auto flex items-center gap-2">
                 <Link
                   href="/"
-                  className="hidden rounded-full border border-line px-3.5 py-2 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist hover:text-ink sm:inline-flex"
+                  className="hidden rounded-lg border border-line px-3.5 py-2 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist hover:text-ink sm:inline-flex"
                 >
                   Marketing site
                 </Link>
                 <Link
                   href="/dashboard/ask"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-violet px-3.5 py-2 text-[0.8125rem] font-medium text-white transition-colors hover:bg-violet-2"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-2"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
                   Ask
@@ -188,7 +188,7 @@ function DashboardSearch() {
         onChange={(event) => setValue(event.target.value)}
         placeholder="Search companies by name, domain or city"
         aria-label="Search companies"
-        className="h-10 w-full rounded-full border border-line bg-mist pl-10 pr-4 text-[0.875rem] outline-none transition-[border-color,box-shadow] focus-visible:border-violet focus-visible:bg-paper focus-visible:shadow-[0_0_0_3px_rgba(91,52,242,0.14)]"
+        className="h-10 w-full rounded-lg border border-line bg-mist pl-10 pr-4 text-[0.875rem] outline-none transition-[border-color,box-shadow] focus-visible:border-accent focus-visible:bg-paper focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)]"
       />
     </form>
   );
@@ -285,7 +285,7 @@ export function DashboardHeader({
     <div className="mb-7 flex flex-wrap items-end justify-between gap-5">
       <div>
         {eyebrow && (
-          <p className="font-mono text-[0.625rem] uppercase tracking-wide text-violet">
+          <p className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
             {eyebrow}
           </p>
         )}

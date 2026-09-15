@@ -23,13 +23,13 @@ function AlertAnswer() {
   return (
     <div className="space-y-3">
       <div className="flex justify-end">
-        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-violet px-4 py-2.5 text-[0.8125rem] text-white">
+        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-accent px-4 py-2.5 text-[0.8125rem] text-white">
           Which engagements are at risk this quarter, and why?
         </p>
       </div>
       <div className="flex gap-2.5">
-        <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-soft">
-          <Sparkles className="h-3.5 w-3.5 text-violet" />
+        <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-soft">
+          <Sparkles className="h-3.5 w-3.5 text-accent" />
         </span>
         <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-paper p-4">
           <p className="text-[0.8125rem] text-fg-2">
@@ -79,7 +79,7 @@ function BriefAnswer() {
     <div className="rounded-2xl border border-line bg-paper p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-soft font-display text-[0.8125rem] font-semibold text-violet-2">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-[0.8125rem] font-semibold text-accent-2">
             PA
           </span>
           <div>
@@ -89,7 +89,7 @@ function BriefAnswer() {
             </p>
           </div>
         </div>
-        <Badge accent="violet">Brief</Badge>
+        <Badge accent="ink">Brief</Badge>
       </div>
 
       <div className="mt-5 space-y-4">
@@ -136,7 +136,7 @@ function AnswerAnswer() {
         How did we win the last three panel reviews like this one?
       </p>
       <div className="mt-4 rounded-xl bg-mist p-4">
-        <p className="font-mono text-[0.625rem] uppercase tracking-wide text-violet">
+        <p className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
           Pattern identified across 3 engagements
         </p>
         <ol className="mt-3 space-y-3">
@@ -155,7 +155,7 @@ function AnswerAnswer() {
             },
           ].map((row, index) => (
             <li key={row.step} className="flex gap-3">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet text-[0.625rem] font-semibold text-white">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[0.625rem] font-semibold text-white">
                 {index + 1}
               </span>
               <span>
@@ -230,14 +230,14 @@ export function FoundationSection() {
                     className={cn(
                       "flex w-full gap-4 rounded-xl border p-4 text-left transition-all duration-300",
                       isActive
-                        ? "border-violet-3/50 bg-white/[0.06]"
+                        ? "border-accent-3/50 bg-white/[0.06]"
                         : "border-white/10 hover:border-white/20 hover:bg-white/[0.03]",
                     )}
                   >
                     <span
                       className={cn(
                         "font-mono text-[0.6875rem]",
-                        isActive ? "text-violet-3" : "text-on-ink-2/60",
+                        isActive ? "text-accent-3" : "text-on-ink-2/60",
                       )}
                     >
                       {tab.index}
@@ -262,7 +262,7 @@ export function FoundationSection() {
 
             <Link
               href="/products/foundation"
-              className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet-3"
+              className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
             >
               Explore Foundation
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -279,7 +279,7 @@ export function FoundationSection() {
             >
               <div
                 aria-hidden="true"
-                className="absolute -inset-4 rounded-3xl bg-[radial-gradient(60%_60%_at_50%_20%,rgba(91,52,242,0.22),transparent_70%)] blur-xl"
+                className="absolute -inset-4 rounded-3xl bg-[radial-gradient(60%_60%_at_50%_20%,rgba(10,10,11,0.16),transparent_70%)] blur-xl"
               />
               <div className="relative rounded-2xl border border-white/10 bg-ink-2 p-4 shadow-xl sm:p-6">
                 <div className="mb-4 flex items-center justify-between">

@@ -30,9 +30,9 @@ export default async function DashboardOverview() {
         action={
           <Link
             href="/dashboard/ask"
-            className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-4 py-2.5 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist"
+            className="inline-flex items-center gap-2 rounded-lg border border-line bg-paper px-4 py-2.5 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist"
           >
-            <Sparkles className="h-3.5 w-3.5 text-violet" />
+            <Sparkles className="h-3.5 w-3.5 text-accent" />
             Ask about the book
           </Link>
         }
@@ -43,7 +43,7 @@ export default async function DashboardOverview() {
           label="Open pipeline"
           value={formatCurrency(totals.pipeline)}
           detail={`${totals.engagements} engagements across ${pipeline.filter((s) => s.deals > 0).length} stages`}
-          tone="violet"
+          tone="accent"
         />
         <StatCard
           label="Won to date"
@@ -72,7 +72,7 @@ export default async function DashboardOverview() {
           action={
             <Link
               href="/dashboard/engagements"
-              className="text-[0.75rem] font-medium text-violet"
+              className="text-[0.75rem] font-medium text-accent"
             >
               Open board
             </Link>
@@ -86,7 +86,7 @@ export default async function DashboardOverview() {
                 </span>
                 <span className="h-2 flex-1 overflow-hidden rounded-full bg-mist-2">
                   <span
-                    className="block h-full rounded-full bg-violet"
+                    className="block h-full rounded-full bg-accent"
                     style={{ width: `${(stage.value / maxStage) * 100}%` }}
                   />
                 </span>
@@ -116,7 +116,7 @@ export default async function DashboardOverview() {
           className="lg:col-span-5"
           padded={false}
           action={
-            <Link href="/dashboard/tasks" className="text-[0.75rem] font-medium text-violet">
+            <Link href="/dashboard/tasks" className="text-[0.75rem] font-medium text-accent">
               All tasks
             </Link>
           }
@@ -152,7 +152,7 @@ export default async function DashboardOverview() {
           <ul className="divide-y divide-line">
             {activity.map((item) => (
               <li key={item.id} className="flex gap-4 px-5 py-3.5">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet" aria-hidden="true" />
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                 <div className="min-w-0 flex-1">
                   <p className="text-[0.8125rem] text-fg-2">{item.summary}</p>
                   <p className="mt-1 text-[0.6875rem] text-fog-2">
@@ -176,7 +176,7 @@ export default async function DashboardOverview() {
           action={
             <Link
               href="/dashboard/companies"
-              className="text-[0.75rem] font-medium text-violet"
+              className="text-[0.75rem] font-medium text-accent"
             >
               All records
             </Link>

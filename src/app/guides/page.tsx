@@ -33,7 +33,7 @@ export default function GuidesPage() {
                   className="group flex h-full flex-col rounded-2xl border border-line p-7 transition-colors hover:bg-mist/60"
                 >
                   <div className="flex items-center justify-between">
-                    <FileText className="h-5 w-5 text-violet" aria-hidden="true" />
+                    <FileText className="h-5 w-5 text-accent" aria-hidden="true" />
                     <ArrowUpRight className="h-4 w-4 text-fog-2 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
                   <p className="mt-6 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">

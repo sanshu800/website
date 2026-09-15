@@ -58,7 +58,7 @@ export default async function CompanyDetailPage({
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Annual value" value={formatCurrency(company.arr)} />
-        <StatCard label="Open pipeline" value={formatCurrency(openValue)} tone="violet" />
+        <StatCard label="Open pipeline" value={formatCurrency(openValue)} tone="accent" />
         <StatCard
           label="Contacts"
           value={String(contacts.length)}
@@ -98,7 +98,7 @@ export default async function CompanyDetailPage({
                 <div className="mt-3 flex items-center gap-3">
                   <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-mist-2">
                     <span
-                      className="block h-full rounded-full bg-violet"
+                      className="block h-full rounded-full bg-accent"
                       style={{ width: `${engagement.probability}%` }}
                     />
                   </span>
@@ -128,7 +128,7 @@ export default async function CompanyDetailPage({
                     <p className="truncate text-[0.875rem] font-medium text-ink">
                       {contact.name}
                     </p>
-                    <Pill tone={contact.status === "champion" ? "violet" : "neutral"}>
+                    <Pill tone={contact.status === "champion" ? "accent" : "neutral"}>
                       {contact.status}
                     </Pill>
                   </div>
@@ -136,7 +136,7 @@ export default async function CompanyDetailPage({
                   <div className="mt-2 flex flex-wrap gap-3 text-[0.6875rem] text-fog-2">
                     <a
                       href={`mailto:${contact.email}`}
-                      className="inline-flex items-center gap-1.5 hover:text-violet"
+                      className="inline-flex items-center gap-1.5 hover:text-accent"
                     >
                       <Mail className="h-3 w-3" />
                       {contact.email}
@@ -198,7 +198,7 @@ export default async function CompanyDetailPage({
           <ol className="px-5 py-2">
             {activities.map((activity) => (
               <li key={activity.id} className="flex gap-4 py-3.5">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet" aria-hidden="true" />
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                 <div className="min-w-0 flex-1">
                   <p className="text-[0.8125rem] text-fg-2">{activity.summary}</p>
                   <p className="mt-1 text-[0.6875rem] text-fog-2">

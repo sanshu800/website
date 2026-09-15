@@ -66,7 +66,7 @@ export function HowItWorksSection() {
           <motion.span
             aria-hidden="true"
             style={{ scaleY: reduce ? 1 : smoothed }}
-            className="absolute bottom-2 left-[15px] top-2 w-px origin-top bg-violet"
+            className="absolute bottom-2 left-[15px] top-2 w-px origin-top bg-accent"
           />
 
           {STAGES.map((stage) => (
@@ -101,14 +101,14 @@ function StageRow({
       <motion.span
         aria-hidden="true"
         style={reduce ? undefined : { scale: dotScale, opacity }}
-        className="absolute left-[9px] top-[6px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-2 border-violet bg-paper"
+        className="absolute left-[9px] top-[6px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-2 border-accent bg-paper"
       >
-        <span className="h-[5px] w-[5px] rounded-full bg-violet" />
+        <span className="h-[5px] w-[5px] rounded-full bg-accent" />
       </motion.span>
 
       <motion.div style={reduce ? undefined : { opacity }} className="lg:col-span-5">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-violet">
+          <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
             {stage.index}
           </span>
           <Badge accent="neutral">{stage.duration}</Badge>
@@ -129,7 +129,7 @@ function StageRow({
             >
               <span
                 aria-hidden="true"
-                className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-violet"
+                className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-accent"
               />
               {item}
             </li>

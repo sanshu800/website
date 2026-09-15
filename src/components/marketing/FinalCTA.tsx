@@ -10,7 +10,7 @@ import { LogoMarquee } from "./LogoMarquee";
  */
 export function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-violet py-24 text-white sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-accent py-24 text-white sm:py-28 lg:py-32">
       <div
         aria-hidden="true"
         className="dot-field-dark pointer-events-none absolute inset-0 opacity-40"

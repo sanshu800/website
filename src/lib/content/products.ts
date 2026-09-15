@@ -27,7 +27,7 @@ export type Product = {
   summary: string;
   /** Product-page hero paragraph. */
   intro: string;
-  accent: "violet" | "tangerine" | "jade" | "azure" | "magenta";
+  accent: "ink" | "tangerine" | "jade" | "azure" | "magenta";
   icon: string;
   features: ProductFeature[];
   flow: { step: string; detail: string }[];
@@ -53,7 +53,7 @@ export const products: Product[] = [
       "Enquiries from every channel land in one place, are qualified the same way each time, and reach the right person with context attached.",
     intro:
       "Firms rarely lose work because nobody cared. They lose it in the gap between an enquiry arriving and somebody owning it. Intake closes that gap: one record per opportunity, one qualification standard, one owner, one next step.",
-    accent: "violet",
+    accent: "ink",
     icon: "Inbox",
     features: [
       {

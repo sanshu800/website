@@ -55,13 +55,13 @@ export default async function SolutionPage({
           <>
             <Link
               href="/demo"
-              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Book a demo
             </Link>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Start free trial
             </Link>
@@ -92,7 +92,7 @@ export default async function SolutionPage({
             {solution.pressurePoints.map((point) => (
               <RevealItem key={point.title}>
                 <div className="border-t border-line pt-5">
-                  <Factory className="h-5 w-5 text-violet" aria-hidden="true" />
+                  <Factory className="h-5 w-5 text-accent" aria-hidden="true" />
                   <h3 className="mt-4 text-[1.0625rem] font-medium text-ink">{point.title}</h3>
                   <p className="mt-2.5 text-micro text-fog">{point.body}</p>
                 </div>
@@ -145,7 +145,7 @@ export default async function SolutionPage({
         <section className="section-sm bg-paper">
           <Container width="wide">
             <div className="flex items-start gap-6 rounded-2xl bg-ink p-7 text-on-ink sm:p-9">
-              <TrendingUp className="mt-1 h-6 w-6 shrink-0 text-violet-3" aria-hidden="true" />
+              <TrendingUp className="mt-1 h-6 w-6 shrink-0 text-accent-3" aria-hidden="true" />
               <div>
                 <blockquote className="font-display text-[1.25rem] leading-snug text-on-ink">
                   “{proof[0]!.quote}”

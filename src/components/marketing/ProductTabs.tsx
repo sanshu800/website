@@ -80,14 +80,14 @@ export function ProductTabs() {
                 className={cn(
                   "group relative shrink-0 rounded-xl border px-4 py-3.5 text-left transition-all duration-300 lg:shrink",
                   isActive
-                    ? "border-violet bg-violet-soft"
+                    ? "border-accent bg-accent-soft"
                     : "border-line bg-paper hover:border-line-strong hover:bg-mist",
                 )}
               >
                 <span
                   className={cn(
                     "font-mono text-[0.625rem] uppercase tracking-[0.14em]",
-                    isActive ? "text-violet" : "text-fog-2",
+                    isActive ? "text-accent" : "text-fog-2",
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -95,7 +95,7 @@ export function ProductTabs() {
                 <span
                   className={cn(
                     "mt-2 block font-display text-[1.0625rem]",
-                    isActive ? "text-violet-2" : "text-ink",
+                    isActive ? "text-accent-2" : "text-ink",
                   )}
                 >
                   {tab.name}
@@ -103,7 +103,7 @@ export function ProductTabs() {
                 <span
                   className={cn(
                     "mt-1 block text-[0.6875rem]",
-                    isActive ? "text-violet-2/80" : "text-fog-2",
+                    isActive ? "text-accent-2/80" : "text-fog-2",
                   )}
                 >
                   {tab.kicker}
@@ -138,7 +138,7 @@ export function ProductTabs() {
                     <li key={feature.title} className="flex gap-3">
                       <span
                         aria-hidden="true"
-                        className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet"
+                        className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       />
                       <span>
                         <span className="text-[0.9375rem] font-medium text-ink">
@@ -154,7 +154,7 @@ export function ProductTabs() {
 
                 <Link
                   href={`/products/${current.slug}`}
-                  className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet"
+                  className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
                 >
                   Explore {current.name}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

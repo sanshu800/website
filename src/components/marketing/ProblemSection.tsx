@@ -30,7 +30,7 @@ const PROBLEMS: Problem[] = [
     body: "A web form nobody owns, a shared mailbox and a partner's phone notes. Nobody can say how many enquiries arrived this month, or how many were answered.",
     image: "/images/problem-scattered.png",
     alt: "An overhead view of a desk buried in scattered printed spreadsheets, folders and paper notes",
-    field: "bg-violet",
+    field: "bg-accent",
     fix: "One record per enquiry, with an owner and a dated next step.",
     stat: { value: "38m", label: "typical discovery: slowest firm replies in 22 hours" },
   },
@@ -109,7 +109,7 @@ export function ProblemSection() {
                   <div className="mt-6 flex items-start gap-2.5 rounded-lg bg-white/5 p-3.5">
                     <span
                       aria-hidden="true"
-                      className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet-3"
+                      className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-3"
                     />
                     <p className="text-[0.8125rem] leading-snug text-on-ink">
                       {problem.fix}

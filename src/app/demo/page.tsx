@@ -45,7 +45,7 @@ export default function DemoPage() {
                   <ol className="mt-6 space-y-5">
                     {AGENDA.map((item) => (
                       <li key={item.title} className="flex gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet" aria-hidden="true" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                         <div>
                           <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
                             {item.title}
@@ -60,7 +60,7 @@ export default function DemoPage() {
 
               <Reveal delay={0.05}>
                 <div className="mt-6 flex gap-4 rounded-2xl border border-line p-6">
-                  <Users className="h-5 w-5 shrink-0 text-violet" aria-hidden="true" />
+                  <Users className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                   <div>
                     <h2 className="text-[0.9375rem] font-medium text-ink">
                       Who should join
@@ -90,7 +90,7 @@ export default function DemoPage() {
 
               <Reveal delay={0.15}>
                 <div className="mt-6 flex gap-4 rounded-2xl border border-line bg-mist p-6">
-                  <CalendarClock className="h-5 w-5 shrink-0 text-violet" aria-hidden="true" />
+                  <CalendarClock className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                   <p className="text-micro text-fog">
                     Calendar booking is not connected on this build. Requests land in the
                     platform database and would be confirmed by email; wiring Google

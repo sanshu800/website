@@ -2,47 +2,75 @@ import { cn } from "@/lib/utils";
 import type { ClientLogo } from "@/lib/content/marketing";
 
 /**
- * Reygent mark: a rising step that resolves into a node — the moment a process
- * becomes a system. Drawn rather than imported so it scales cleanly and stays
- * legible at 16px in a browser tab.
+ * The mark: a black square with three white rules inside it — one record, three
+ * moving surfaces. Simple enough to read at 16px in a tab, monochrome so it
+ * never fights the interface, and drawn rather than imported so it stays sharp.
  */
-export function ReygentMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 28 28" fill="none" className={className} aria-hidden="true">
-      <rect width="28" height="28" rx="7" className="fill-violet" />
-      <path
-        d="M8 20.5V11.2l6.2-2.4"
-        stroke="white"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.5"
-      />
-      <path
-        d="M8 15.4h4.3l4.1-4.6"
-        stroke="white"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="19.2" cy="8.4" r="2.1" fill="white" />
-    </svg>
-  );
-}
-
-export function ReygentWordmark({
+export function ReygentMark({
   className,
   tone = "ink",
 }: {
   className?: string;
   tone?: "ink" | "on-ink";
 }) {
+  const dark = tone === "ink";
+  return (
+    <svg viewBox="0 0 28 28" fill="none" className={className} aria-hidden="true">
+      <rect
+        width="28"
+        height="28"
+        rx="7"
+        className={dark ? "fill-ink" : "fill-on-ink"}
+      />
+      <rect
+        x="7.5"
+        y="9.5"
+        width="13"
+        height="2.6"
+        rx="1.3"
+        className={dark ? "fill-on-ink" : "fill-ink"}
+      />
+      <rect
+        x="7.5"
+        y="14"
+        width="9"
+        height="2.6"
+        rx="1.3"
+        className={dark ? "fill-on-ink" : "fill-ink"}
+        opacity="0.72"
+      />
+      <rect
+        x="7.5"
+        y="18.5"
+        width="5.4"
+        height="2.6"
+        rx="1.3"
+        className={dark ? "fill-on-ink" : "fill-ink"}
+        opacity="0.45"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Wordmark. Text only — the mark is reserved for the favicon and the tab bar so
+ * the header stays quiet, which is the whole point of a black logo.
+ */
+export function ReygentWordmark({
+  className,
+  tone = "ink",
+  withMark = false,
+}: {
+  className?: string;
+  tone?: "ink" | "on-ink";
+  withMark?: boolean;
+}) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <ReygentMark className="h-7 w-7 shrink-0" />
+      {withMark && <ReygentMark className="h-6 w-6 shrink-0" tone={tone} />}
       <span
         className={cn(
-          "font-display text-[1.0625rem] font-semibold tracking-[-0.02em]",
+          "font-display text-[1.25rem] font-semibold leading-none tracking-[-0.035em]",
           tone === "on-ink" ? "text-on-ink" : "text-ink",
         )}
       >

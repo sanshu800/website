@@ -50,7 +50,7 @@ export function PageHero({
       ) : (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(91,52,242,0.08),transparent_70%)]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(10,10,11,0.07),transparent_70%)]"
         />
       )}
 
@@ -99,7 +99,7 @@ export function PageHero({
             {eyebrow && (
               <Reveal variant="fade">
                 <Eyebrow
-                  tone={onInk ? "on-ink" : "violet"}
+                  tone={onInk ? "on-ink" : "accent"}
                   className={align === "center" && !aside ? "justify-center" : undefined}
                 >
                   {eyebrow}
@@ -173,13 +173,13 @@ export function PageCTA({
           <div className="flex flex-wrap gap-3">
             <Link
               href={primary.href}
-              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               {primary.label}
             </Link>
             <Link
               href={secondary.href}
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               {secondary.label}
             </Link>

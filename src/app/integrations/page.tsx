@@ -47,13 +47,13 @@ export default function IntegrationsPage() {
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Start free trial
             </Link>
             <Link
               href="/security"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               How we handle data
             </Link>
@@ -98,7 +98,7 @@ export default function IntegrationsPage() {
               const Icon = capability.icon;
               return (
                 <RevealItem key={capability.title}>
-                  <Icon className="h-5 w-5 text-violet" aria-hidden="true" />
+                  <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
                   <h3 className="mt-4 text-[1.0625rem] font-medium text-ink">
                     {capability.title}
                   </h3>
@@ -122,7 +122,7 @@ export default function IntegrationsPage() {
               </p>
               <Link
                 href="/contact"
-                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet-3"
+                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
               >
                 Request API access
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

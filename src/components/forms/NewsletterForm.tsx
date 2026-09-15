@@ -71,7 +71,7 @@ export function NewsletterForm({
           onChange={(event) => setEmail(event.target.value)}
           placeholder="you@yourfirm.com"
           className={cn(
-            "h-11 w-full rounded-full border bg-paper px-5 text-[0.9375rem] outline-none transition-[border-color,box-shadow] focus-visible:border-violet focus-visible:shadow-[0_0_0_3px_rgba(91,52,242,0.14)]",
+            "h-11 w-full rounded-lg border bg-paper px-5 text-[0.9375rem] outline-none transition-[border-color,box-shadow] focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)]",
             status === "error" ? "border-danger" : "border-line-strong",
           )}
         />

@@ -41,7 +41,7 @@ export default async function EngagementsPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Open pipeline" value={formatCurrency(totals.pipeline)} tone="violet" />
+        <StatCard label="Open pipeline" value={formatCurrency(totals.pipeline)} tone="accent" />
         <StatCard label="Weighted forecast" value={formatCurrency(weighted)} />
         <StatCard label="Won" value={formatCurrency(totals.wonValue)} detail={`${won.length} engagements`} />
         <StatCard label="Win rate" value={`${winRate}%`} detail="Closed won vs closed lost" />
@@ -68,7 +68,7 @@ export default async function EngagementsPage() {
                       <li key={engagement.id}>
                         <Link
                           href={`/dashboard/companies/${engagement.company_id}`}
-                          className="block rounded-xl border border-line bg-paper p-3.5 transition-colors hover:border-violet/40"
+                          className="block rounded-xl border border-line bg-paper p-3.5 transition-colors hover:border-accent/40"
                         >
                           <span className="block text-[0.8125rem] font-medium text-ink">
                             {engagement.company}
@@ -135,7 +135,7 @@ export default async function EngagementsPage() {
                     <span className="flex items-center gap-3">
                       <span className="h-1.5 w-32 overflow-hidden rounded-full bg-mist-2">
                         <span
-                          className="block h-full rounded-full bg-violet"
+                          className="block h-full rounded-full bg-accent"
                           style={{
                             width: `${totals.pipeline > 0 ? (stage.value / totals.pipeline) * 100 : 0}%`,
                           }}

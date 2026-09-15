@@ -73,7 +73,7 @@ export default function ContactPage() {
                       const Icon = channel.icon;
                       return (
                         <li key={channel.label} className="flex gap-4">
-                          <Icon className="mt-0.5 h-4 w-4 shrink-0 text-violet" aria-hidden="true" />
+                          <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                           <div>
                             <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
                               {channel.label}

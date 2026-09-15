@@ -35,7 +35,7 @@ export function Section({
   children: React.ReactNode;
   className?: string;
   width?: keyof typeof widths;
-  tone?: "paper" | "mist" | "ink" | "violet";
+  tone?: "paper" | "mist" | "ink" | "accent";
   id?: string;
   size?: "default" | "sm" | "none";
 }) {
@@ -43,7 +43,7 @@ export function Section({
     paper: "bg-paper text-fg",
     mist: "bg-mist text-fg",
     ink: "bg-ink text-on-ink",
-    violet: "bg-violet text-white",
+    accent: "bg-accent text-white",
   } as const;
 
   const sizes = {
@@ -62,14 +62,14 @@ export function Section({
 export function Eyebrow({
   children,
   className,
-  tone = "violet",
+  tone = "accent",
 }: {
   children: React.ReactNode;
   className?: string;
-  tone?: "violet" | "ink" | "on-ink" | "fog";
+  tone?: "accent" | "ink" | "on-ink" | "fog";
 }) {
   const tones = {
-    violet: "text-violet",
+    accent: "text-accent",
     ink: "text-ink",
     "on-ink": "text-on-ink-2",
     fog: "text-fog",
@@ -117,7 +117,7 @@ export function SectionHeading({
     >
       {eyebrow && (
         <Eyebrow
-          tone={onInk ? "on-ink" : "violet"}
+          tone={onInk ? "on-ink" : "accent"}
           className={align === "center" ? "justify-center" : undefined}
         >
           {eyebrow}

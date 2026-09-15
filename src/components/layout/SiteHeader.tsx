@@ -4,15 +4,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink } from "@/components/ui/Button";
 import { ReygentWordmark } from "@/components/brand/Logo";
-import { primaryNav, site } from "@/lib/content/marketing";
+import { primaryNav } from "@/lib/content/marketing";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+/**
+ * Header.
+ *
+ * On the homepage the bar floats over the hero film with white type, then
+ * becomes a solid paper bar the moment the page moves or a menu opens — the
+ * same pattern as the hero reference, implemented without a scroll library.
+ */
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -24,13 +30,13 @@ export function SiteHeader() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Every navigation surface closes itself from its own link handlers, so no
+  // Every navigation surface closes itself from its own handlers, so no
   // route-change effect is needed (and none is wanted — see react-hooks).
 
   const openWithDelay = useCallback((label: string) => {
@@ -52,7 +58,7 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", onKey);
   }, [openMenu]);
 
-  // Mobile: lock scroll, trap focus, close on escape.
+  // Mobile sheet: lock scroll, trap focus, close on escape.
   useEffect(() => {
     if (!mobileOpen) return;
     const { body, documentElement } = document;
@@ -70,11 +76,13 @@ export function SiteHeader() {
       if (event.key !== "Tab") return;
       const panel = panelRef.current;
       if (!panel) return;
-      const focusable = Array.from(
+      const inside = Array.from(
         panel.querySelectorAll<HTMLElement>(
           'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
         ),
       );
+      const toggle = document.getElementById("mobile-nav-close");
+      const focusable = toggle ? [...inside, toggle] : inside;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (!first || !last) return;
@@ -101,20 +109,34 @@ export function SiteHeader() {
 
   const activeMenu = primaryNav.find((item) => item.label === openMenu);
 
+  /**
+   * Dark treatment: floating over the hero film at rest on the homepage, or
+   * sitting above the black mobile sheet.
+   */
+  const overlay = mobileOpen || (pathname === "/" && !scrolled && !openMenu);
+
+  const linkTone = overlay
+    ? "text-on-ink/75 hover:text-on-ink"
+    : "text-fg-2 hover:text-ink";
+
   return (
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled
-            ? "border-b border-line bg-paper/85 backdrop-blur-xl"
-            : "border-b border-transparent bg-paper/0",
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
+          overlay
+            ? "border-b border-transparent bg-transparent"
+            : "border-b border-line bg-paper/85 backdrop-blur-xl",
         )}
       >
         <Container width="wide">
           <div className="flex h-16 items-center justify-between gap-6">
-            <Link href="/" aria-label={`${site.name} — home`} className="shrink-0">
-              <ReygentWordmark />
+            <Link
+              href="/"
+              aria-label="Reygent — home"
+              className="shrink-0 transition-transform duration-300 hover:opacity-70"
+            >
+              <ReygentWordmark tone={overlay ? "on-ink" : "ink"} />
             </Link>
 
             <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
@@ -134,10 +156,8 @@ export function SiteHeader() {
                         setOpenMenu(openMenu === item.label ? null : item.label)
                       }
                       className={cn(
-                        "flex items-center gap-1 rounded-full px-3.5 py-2 text-small transition-colors duration-200",
-                        openMenu === item.label
-                          ? "text-ink"
-                          : "text-fg-2 hover:text-ink",
+                        "flex items-center gap-1 rounded-lg px-3.5 py-2 text-small transition-colors duration-200",
+                        openMenu === item.label ? "text-ink" : linkTone,
                       )}
                     >
                       {item.label}
@@ -155,8 +175,8 @@ export function SiteHeader() {
                     href={item.href ?? "/"}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
-                      "rounded-full px-3.5 py-2 text-small transition-colors duration-200",
-                      isActive(item.href) ? "text-ink" : "text-fg-2 hover:text-ink",
+                      "rounded-lg px-3.5 py-2 text-small transition-colors duration-200",
+                      isActive(item.href) && !overlay ? "text-ink" : linkTone,
                     )}
                   >
                     {item.label}
@@ -166,23 +186,53 @@ export function SiteHeader() {
             </nav>
 
             <div className="hidden items-center gap-2 lg:flex">
-              <ButtonLink href="/login" variant="ghost" size="sm">
+              <Link
+                href="/login"
+                className={cn(
+                  "rounded-lg px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-200",
+                  overlay ? "text-on-ink/80 hover:text-on-ink" : "text-fg-2 hover:text-ink",
+                )}
+              >
                 Log in
-              </ButtonLink>
-              <ButtonLink href="/get-started" size="sm">
+              </Link>
+              <Link
+                href="/get-started"
+                className={cn(
+                  "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 hover:scale-[1.03] active:scale-95",
+                  overlay ? "bg-on-ink text-ink" : "bg-accent text-white",
+                )}
+              >
                 Get started
-              </ButtonLink>
+              </Link>
             </div>
 
+            {/* Mobile: icon-only toggle, Menu rotating out as X rotates in. */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              className="flex h-9 items-center gap-2 rounded-full border border-line-strong px-3 text-fg-2 lg:hidden"
+              id="mobile-nav-close"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className={cn(
+                "relative flex h-10 w-10 items-center justify-center rounded-lg border transition-transform duration-300 active:scale-90 lg:hidden",
+                overlay
+                  ? "border-on-ink/25 text-on-ink"
+                  : "border-line-strong text-ink",
+              )}
             >
-              <Menu className="h-4 w-4" />
-              <span className="text-small">Menu</span>
+              <Menu
+                className={cn(
+                  "absolute h-5 w-5 transition-all duration-300",
+                  mobileOpen ? "rotate-90 scale-75 opacity-0" : "rotate-0 scale-100 opacity-100",
+                )}
+              />
+              <X
+                className={cn(
+                  "absolute h-5 w-5 transition-all duration-300",
+                  mobileOpen ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-75 opacity-0",
+                )}
+              />
             </button>
           </div>
         </Container>
@@ -206,11 +256,12 @@ export function SiteHeader() {
                       <Link
                         key={child.href + child.label}
                         href={child.href}
+                        onClick={() => setOpenMenu(null)}
                         className="group flex flex-col gap-1 rounded-lg p-3 transition-colors duration-200 hover:bg-mist"
                       >
                         <span className="flex items-center gap-2 text-[0.9375rem] font-medium text-ink">
                           {child.label}
-                          <span className="h-px w-0 bg-violet transition-all duration-300 group-hover:w-4" />
+                          <span className="h-px w-0 bg-accent transition-all duration-300 group-hover:w-4" />
                         </span>
                         <span className="text-micro text-fog">{child.blurb}</span>
                       </Link>
@@ -226,7 +277,8 @@ export function SiteHeader() {
                           <li key={item.href + item.label}>
                             <Link
                               href={item.href}
-                              className="text-small text-fg-2 transition-colors duration-200 hover:text-violet"
+                              onClick={() => setOpenMenu(null)}
+                              className="text-small text-fg-2 transition-colors duration-200 hover:text-ink"
                             >
                               {item.label}
                             </Link>
@@ -242,123 +294,115 @@ export function SiteHeader() {
         </AnimatePresence>
       </header>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            ref={panelRef}
-            id="mobile-nav"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-paper lg:hidden"
-          >
-            <div className="flex h-16 shrink-0 items-center justify-between px-5 sm:px-6">
-              <Link href="/" onClick={() => setMobileOpen(false)}>
-                <ReygentWordmark />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="flex h-9 items-center gap-2 rounded-full border border-line-strong px-3 text-fg-2"
-              >
-                <X className="h-4 w-4" />
-                <span className="text-small">Close</span>
-              </button>
-            </div>
-
-            <nav aria-label="Primary" className="flex-1 overflow-y-auto px-5 pb-8 sm:px-6">
-              <ul className="border-t border-line">
-                {primaryNav.map((item) => {
-                  const expanded = mobileSection === item.label;
-                  return (
-                    <li key={item.label} className="border-b border-line">
-                      {item.children ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setMobileSection(expanded ? null : item.label)
-                            }
-                            aria-expanded={expanded}
-                            className="flex w-full items-center justify-between py-4 text-left"
-                          >
-                            <span className="font-display text-[1.25rem] text-ink">
-                              {item.label}
-                            </span>
-                            <ChevronDown
-                              className={cn(
-                                "h-4 w-4 text-fog transition-transform duration-300",
-                                expanded && "rotate-180",
-                              )}
-                            />
-                          </button>
-                          <AnimatePresence initial={false}>
-                            {expanded && (
-                              <motion.ul
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.28, ease: EASE }}
-                                className="overflow-hidden"
-                              >
-                                {[...item.children, ...(item.columns?.flatMap((c) => c.items) ?? [])].map(
-                                  (child) => (
-                                    <li key={child.href + child.label}>
-                                      <Link
-                                        href={child.href}
-                                        onClick={() => setMobileOpen(false)}
-                                        className="flex items-baseline justify-between gap-4 py-3 pl-4 text-[0.9375rem] text-fg-2"
-                                      >
-                                        {child.label}
-                                        <span className="h-px w-4 shrink-0 bg-line-strong" />
-                                      </Link>
-                                    </li>
-                                  ),
-                                )}
-                              </motion.ul>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <Link
-                          href={item.href ?? "/"}
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center justify-between py-4"
-                        >
-                          <span className="font-display text-[1.25rem] text-ink">
-                            {item.label}
-                          </span>
-                          <span className="h-px w-5 bg-line-strong" />
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="mt-8 flex flex-col gap-3">
-                <ButtonLink href="/get-started" size="lg" full>
-                  Get started
-                </ButtonLink>
-                <ButtonLink href="/login" variant="secondary" size="lg" full>
-                  Log in
-                </ButtonLink>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="mt-4 text-center text-micro text-fog"
-                >
-                  {site.email}
-                </a>
-              </div>
-            </nav>
-          </motion.div>
+      {/* Mobile sheet — black, full height, one link per line. */}
+      <div
+        ref={panelRef}
+        id="mobile-nav"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        className={cn(
+          "fixed inset-x-0 top-0 z-[45] overflow-hidden bg-ink/98 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
+          mobileOpen
+            ? "pointer-events-auto h-[100svh] opacity-100"
+            : "pointer-events-none h-0 opacity-0",
         )}
-      </AnimatePresence>
+      >
+        <nav
+          aria-label="Primary"
+          className={cn(
+            "flex h-[100svh] flex-col overflow-y-auto px-6 pb-16 pt-16 transition-all delay-100 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:px-8",
+            mobileOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+          )}
+        >
+          <div className="my-auto w-full">
+          <ul className="border-t border-white/10">
+            {primaryNav.map((item) => {
+              const expanded = mobileSection === item.label;
+              return (
+                <li key={item.label} className="border-b border-white/10">
+                  {item.children ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setMobileSection(expanded ? null : item.label)}
+                        aria-expanded={expanded}
+                        className="flex w-full items-center justify-between py-4 text-left"
+                      >
+                        <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-ink/90">
+                          {item.label}
+                        </span>
+                        <ChevronDown
+                          className={cn(
+                            "h-5 w-5 text-on-ink/50 transition-transform duration-300",
+                            expanded && "rotate-180",
+                          )}
+                        />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {expanded && (
+                          <motion.ul
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.28, ease: EASE }}
+                            className="overflow-hidden"
+                          >
+                            {[
+                              ...item.children,
+                              ...(item.columns?.flatMap((column) => column.items) ?? []),
+                            ].map((child) => (
+                              <li key={child.href + child.label}>
+                                <Link
+                                  href={child.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className="flex items-baseline justify-between gap-4 py-3 pl-4 text-[0.9375rem] text-on-ink/60 transition-colors hover:text-on-ink"
+                                >
+                                  {child.label}
+                                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-on-ink/30" />
+                                </Link>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href ?? "/"}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center justify-between py-4"
+                    >
+                      <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-ink/90">
+                        {item.label}
+                      </span>
+                      <ArrowRight className="h-4 w-4 text-on-ink/30" />
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="mt-8 flex flex-col gap-3 sm:max-w-[24rem]">
+            <Link
+              href="/get-started"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-[1rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
+            >
+              Get started <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/login"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex h-12 items-center justify-center rounded-lg border border-on-ink/25 text-[1rem] font-medium text-on-ink transition-colors hover:bg-on-ink/10"
+            >
+              Log in
+            </Link>
+          </div>
+          </div>
+        </nav>
+      </div>
     </>
   );
 }

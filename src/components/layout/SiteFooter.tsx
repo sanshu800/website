@@ -31,13 +31,13 @@ export function SiteFooter() {
             <div className="mt-6 flex flex-wrap gap-2">
               <Link
                 href="/get-started"
-                className="inline-flex h-9 items-center rounded-full bg-paper px-4 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist-2"
+                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist-2"
               >
                 Start free trial
               </Link>
               <Link
                 href="/demo"
-                className="inline-flex h-9 items-center rounded-full border border-white/20 px-4 text-[0.8125rem] font-medium text-on-ink transition-colors hover:border-white/40"
+                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-ink transition-colors hover:border-white/40"
               >
                 Book a demo
               </Link>

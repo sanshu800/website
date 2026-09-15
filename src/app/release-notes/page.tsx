@@ -34,12 +34,12 @@ export default function ReleaseNotesPage() {
         <Container width="wide">
           {latest && (
             <Reveal>
-              <article className="rounded-2xl border border-violet/30 bg-violet-soft p-7 sm:p-9">
+              <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="rounded-full bg-violet px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
                     Latest
                   </span>
-                  <span className="font-mono text-[0.6875rem] text-violet">
+                  <span className="font-mono text-[0.6875rem] text-accent">
                     v{latest.version}
                   </span>
                   <time className="font-mono text-[0.6875rem] text-fog-2">
@@ -52,7 +52,7 @@ export default function ReleaseNotesPage() {
                 <p className="mt-3 max-w-[42rem] text-body-lg text-fog">
                   {latest.summary}
                 </p>
-                <ul className="mt-7 space-y-3 border-t border-violet/20 pt-6">
+                <ul className="mt-7 space-y-3 border-t border-accent/20 pt-6">
                   {latest.items.map((item) => (
                     <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                       <span
@@ -110,7 +110,7 @@ export default function ReleaseNotesPage() {
 
           <p className="mt-10 text-micro text-fog-2">
             Prefer it in your inbox?{" "}
-            <Link href="/newsletter" className="text-violet underline underline-offset-2">
+            <Link href="/newsletter" className="text-accent underline underline-offset-2">
               Subscribe to the release digest
             </Link>
             .

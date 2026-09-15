@@ -74,7 +74,7 @@ function Avatar({ name, className }: { name: string; className?: string }) {
     .join("");
   // Deterministic tint so avatars are stable between server and client render.
   const palette = [
-    "bg-violet-soft text-violet-2",
+    "bg-accent-soft text-accent-2",
     "bg-tangerine-soft text-[#a83c05]",
     "bg-jade-soft text-[#0a6b45]",
     "bg-azure-soft text-[#0f4bb0]",
@@ -110,7 +110,7 @@ export function IntakeScreen({ className }: { className?: string }) {
     <Chrome title="app.reygent.ai/intake" className={cn("h-full", className)}>
       <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
         <div className="flex items-center gap-2">
-          <Inbox className="h-4 w-4 text-violet" />
+          <Inbox className="h-4 w-4 text-accent" />
           <span className="text-[0.8125rem] font-medium text-ink">Intake queue</span>
           <span className="rounded-full bg-mist-2 px-2 py-[1px] font-mono text-[0.625rem] text-fg-2">
             18 open
@@ -185,7 +185,7 @@ export function IntakeScreen({ className }: { className?: string }) {
 
       <div className="flex items-center justify-between border-t border-line bg-mist px-4 py-2.5">
         <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
-          <Sparkles className="h-3.5 w-3.5 text-violet" />
+          <Sparkles className="h-3.5 w-3.5 text-accent" />
           Reygent routed 3 new enquiries to owners automatically
         </span>
         <span className="font-mono text-[0.6875rem] text-fog-2">median first reply 38m</span>
@@ -237,7 +237,7 @@ export function EngageScreen({ className }: { className?: string }) {
             <div className="mt-2.5 flex items-center gap-4">
               <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-mist-2">
                 <div
-                  className="h-full rounded-full bg-violet"
+                  className="h-full rounded-full bg-accent"
                   style={{ width: `${Math.round((seq.replied / seq.sent) * 100)}%` }}
                 />
               </div>
@@ -249,10 +249,10 @@ export function EngageScreen({ className }: { className?: string }) {
         ))}
       </div>
 
-      <div className="border-t border-line bg-violet-soft/60 px-4 py-3">
+      <div className="border-t border-line bg-accent-soft/60 px-4 py-3">
         <div className="flex items-start gap-2">
-          <Sparkles className="mt-[3px] h-3.5 w-3.5 shrink-0 text-violet" />
-          <p className="text-[0.75rem] leading-relaxed text-violet-2">
+          <Sparkles className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
+          <p className="text-[0.75rem] leading-relaxed text-accent-2">
             <strong className="font-semibold">Escalation:</strong> Marlow Advisory has
             not replied to 3 touches. Assigned to P. Raghavan with the thread attached.
           </p>
@@ -320,7 +320,7 @@ export function DeliverScreen({ className }: { className?: string }) {
         <span className="font-mono text-[0.6875rem] text-fog">
           5 of 7 complete · client portal up to date
         </span>
-        <span className="flex items-center gap-1 font-mono text-[0.6875rem] text-violet">
+        <span className="flex items-center gap-1 font-mono text-[0.6875rem] text-accent">
           open portal <ArrowUpRight className="h-3 w-3" />
         </span>
       </div>
@@ -374,7 +374,7 @@ export function InsightScreen({ className }: { className?: string }) {
               <div
                 className={cn(
                   "w-full rounded-t-[3px]",
-                  i === BARS.length - 1 ? "bg-violet" : "bg-violet-soft-2",
+                  i === BARS.length - 1 ? "bg-accent" : "bg-accent-soft-2",
                 )}
                 style={{ height: `${height}px` }}
               />

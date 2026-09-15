@@ -78,7 +78,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
 
       <div className="grid gap-4 sm:grid-cols-3">
         <StatCard label="Contacts" value={String(total)} />
-        <StatCard label="Champions" value={String(champions)} tone="violet" />
+        <StatCard label="Champions" value={String(champions)} tone="accent" />
         <StatCard label="Firms covered" value={String(companies)} />
       </div>
 
@@ -97,7 +97,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
               type="search"
               defaultValue={params.q ?? ""}
               placeholder="Name, email or firm"
-              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-violet"
+              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[0.875rem] outline-none focus-visible:border-accent"
             />
           </div>
           <div className="sm:col-span-3">
@@ -111,7 +111,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
               id="seniority"
               name="seniority"
               defaultValue={seniority}
-              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-violet"
+              className="mt-2 h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-[0.875rem] outline-none focus-visible:border-accent"
             >
               {SENIORITIES.map((option) => (
                 <option key={option} value={option}>
@@ -123,7 +123,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
           <div className="flex items-end sm:col-span-2">
             <button
               type="submit"
-              className="h-11 w-full rounded-full bg-violet text-[0.8125rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="h-11 w-full rounded-lg bg-accent text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Filter
             </button>
@@ -176,7 +176,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
                     <td className="px-5 py-3.5">
                       <Link
                         href={`/dashboard/companies/${contact.company_id}`}
-                        className="text-[0.8125rem] text-ink hover:text-violet"
+                        className="text-[0.8125rem] text-ink hover:text-accent"
                       >
                         {contact.company}
                       </Link>
@@ -188,7 +188,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Sea
                       {contact.seniority}
                     </td>
                     <td className="px-5 py-3.5">
-                      <Pill tone={contact.status === "champion" ? "violet" : "neutral"}>
+                      <Pill tone={contact.status === "champion" ? "accent" : "neutral"}>
                         {contact.status}
                       </Pill>
                     </td>

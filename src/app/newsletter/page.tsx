@@ -34,7 +34,7 @@ export default function NewsletterPage() {
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-6">
               <div className="rounded-2xl border border-line bg-mist p-7 sm:p-8">
-                <Mail className="h-5 w-5 text-violet" aria-hidden="true" />
+                <Mail className="h-5 w-5 text-accent" aria-hidden="true" />
                 <h2 className="mt-5 font-display text-[1.5rem] text-ink">
                   Subscribe
                 </h2>
@@ -74,7 +74,7 @@ export default function NewsletterPage() {
               <ul className="mt-6 divide-y divide-line border-y border-line">
                 {ISSUES.map((issue) => (
                   <li key={issue.number} className="flex gap-5 py-6">
-                    <span className="font-mono text-[0.75rem] text-violet">
+                    <span className="font-mono text-[0.75rem] text-accent">
                       {issue.number}
                     </span>
                     <div>

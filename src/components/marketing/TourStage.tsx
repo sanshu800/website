@@ -75,14 +75,14 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
                 className={cn(
                   "shrink-0 rounded-xl border px-4 py-3.5 text-left transition-colors lg:w-full",
                   selected
-                    ? "border-violet bg-violet-soft"
+                    ? "border-accent bg-accent-soft"
                     : "border-line hover:border-ink/20 hover:bg-mist/60",
                 )}
               >
                 <span
                   className={cn(
                     "font-mono text-[0.625rem]",
-                    selected ? "text-violet" : "text-fog-2",
+                    selected ? "text-accent" : "text-fog-2",
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -115,7 +115,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
           <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             {current.bullets.map((bullet) => (
               <li key={bullet} className="flex items-center gap-2 text-micro text-fg-2">
-                <Check className="h-3.5 w-3.5 text-violet" />
+                <Check className="h-3.5 w-3.5 text-accent" />
                 {bullet}
               </li>
             ))}
@@ -130,7 +130,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
             <span className="text-[0.75rem] text-fog">{current.caption}</span>
             <Link
               href={current.href}
-              className="group inline-flex items-center gap-2 text-[0.8125rem] font-medium text-violet"
+              className="group inline-flex items-center gap-2 text-[0.8125rem] font-medium text-accent"
             >
               Learn more about {current.name}
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

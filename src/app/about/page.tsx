@@ -28,7 +28,7 @@ export default function AboutPage() {
         <Container width="wide">
           <div className="grid gap-0 lg:grid-cols-12">
             <div className="relative aspect-[16/10] lg:col-span-6 lg:aspect-auto lg:min-h-[420px]">
-              <div className="absolute inset-0 bg-violet">
+              <div className="absolute inset-0 bg-accent">
                 <Image
                   src="/images/about-team.png"
                   alt="Three colleagues reviewing printed process diagrams on a wall during a working session"
@@ -41,7 +41,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 lg:p-10 xl:p-14">
               <RevealGroup>
                 <RevealItem>
-                  <p className="font-mono text-eyebrow uppercase text-violet">Why we exist</p>
+                  <p className="font-mono text-eyebrow uppercase text-accent">Why we exist</p>
                   <h2 className="mt-5 text-display-m text-ink">
                     Most firms do not need better software. They need one system.
                   </h2>
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 as="li"
                 className="grid gap-4 border-b border-line py-7 lg:grid-cols-12 lg:items-baseline"
               >
-                <span className="font-mono text-[0.875rem] text-violet lg:col-span-2">
+                <span className="font-mono text-[0.875rem] text-accent lg:col-span-2">
                   {item.year}
                 </span>
                 <h3 className="font-display text-[1.25rem] text-ink lg:col-span-4">
@@ -132,7 +132,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/customers"
-                className="group mt-6 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-violet"
+                className="group mt-6 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
               >
                 All customer stories
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

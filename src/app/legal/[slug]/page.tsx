@@ -62,7 +62,7 @@ export default async function LegalPage({
                 <li key={item}>
                   <Link
                     href={`/legal/${item}`}
-                    className="inline-flex items-center rounded-full border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
+                    className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
                   >
                     {legalPages[item].title}
                   </Link>
@@ -71,7 +71,7 @@ export default async function LegalPage({
               <li>
                 <Link
                   href="/security"
-                  className="inline-flex items-center rounded-full border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
+                  className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
                 >
                   Security
                 </Link>

@@ -24,13 +24,13 @@ export default function StartupsPage() {
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
               Start free trial <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
               Ask about eligibility
             </Link>
@@ -45,7 +45,7 @@ export default function StartupsPage() {
             {startupsProgram.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full gap-4 rounded-2xl border border-line p-6">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
                     <h3 className="text-[1.0625rem] font-medium text-ink">
                       {benefit.title}

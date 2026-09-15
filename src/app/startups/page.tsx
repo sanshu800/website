@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Founders programme",
-  description:
-    "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for $6,000.",
-  alternates: { canonical: "/startups" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/startups", {
+    title: "Founders programme",
+    description:
+      "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for $6,000.",
+    alternates: { canonical: "/startups" },
+  });
+}
 
 export default function StartupsPage() {
   const { startups: copy } = getPages();

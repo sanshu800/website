@@ -12,6 +12,7 @@ import { chromeDoc } from "@/lib/content/pages/chrome";
 import { companyDoc } from "@/lib/content/pages/company";
 import { resourcesDoc } from "@/lib/content/pages/resources";
 import { pagesDoc } from "@/lib/content/pages/pages";
+import { seoDefaults } from "@/lib/content/seo";
 
 /**
  * The content documents an editor can change, and the bridge between them and
@@ -33,6 +34,17 @@ export type DocDef = {
   blurb: string;
   build: () => unknown;
 };
+
+/**
+ * Search and sharing metadata is a flat list rather than a nested object: one
+ * row per route, addressed by its slug, so the admin can render it as a table
+ * of title/description pairs and reordering the source never moves an edit.
+ */
+export type SeoDoc = { pages: typeof seoDefaults };
+
+function seoDoc(): SeoDoc {
+  return { pages: seoDefaults };
+}
 
 export const DOCS: DocDef[] = [
   {
@@ -172,6 +184,17 @@ export const DOCS: DocDef[] = [
       "Privacy notice, service terms and the data handling notes. This is reviewed copy — treat edits here as legal changes.",
     build: legalDoc,
   },
+  {
+    id: "seo",
+    title: "Search & sharing",
+    where: [
+      { label: "Every page", href: "/" },
+      { label: "Search results", href: "/" },
+    ],
+    blurb:
+      "The title and description each page shows in Google and in a shared link, plus an optional share image. Leave a field blank to fall back to the copy that ships with the page.",
+    build: seoDoc,
+  },
 ];
 
 export type {
@@ -188,6 +211,7 @@ export type { ChromeDoc } from "@/lib/content/pages/chrome";
 export type { CompanyDoc } from "@/lib/content/pages/company";
 export type { ResourcesDoc } from "@/lib/content/pages/resources";
 export type { PagesDoc } from "@/lib/content/pages/pages";
+
 
 export const DOC_BY_ID = new Map(DOCS.map((doc) => [doc.id, doc]));
 

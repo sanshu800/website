@@ -2,20 +2,7 @@ export function cn(...parts: Array<string | false | null | undefined>): string {
   return parts.filter(Boolean).join(" ");
 }
 
-export function formatCurrency(value: number, compact = false): string {
-  if (compact && Math.abs(value) >= 1000) {
-    return `$${(value / 1000).toFixed(value >= 100_000 ? 0 : 1)}k`;
-  }
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
 
-export function formatNumber(value: number): string {
-  return new Intl.NumberFormat("en-US").format(value);
-}
 
 export function formatDate(value: string | Date, style: "short" | "long" = "short"): string {
   const date = typeof value === "string" ? new Date(value) : value;
@@ -43,10 +30,6 @@ export function relativeTime(value: string | Date): string {
 }
 
 /** Days until a date; negative when overdue. */
-export function daysUntil(value: string | Date): number {
-  const date = typeof value === "string" ? new Date(value) : value;
-  return Math.ceil((date.getTime() - Date.now()) / 86_400_000);
-}
 
 export function initials(name: string): string {
   return name
@@ -57,19 +40,6 @@ export function initials(name: string): string {
     .join("");
 }
 
-export function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
 
-export function pluralize(count: number, singular: string, plural?: string): string {
-  return count === 1 ? singular : (plural ?? `${singular}s`);
-}
 
 /** Clamp a page number into a range. */
-export function clampPage(page: number, totalPages: number): number {
-  if (totalPages <= 0) return 1;
-  return Math.min(Math.max(1, Math.trunc(page)), totalPages);
-}

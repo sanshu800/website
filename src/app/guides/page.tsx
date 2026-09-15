@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Guides & playbooks",
-  description:
-    "Downloadable implementation plans, scorecards and templates for professional-services operations teams.",
-  alternates: { canonical: "/guides" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/guides", {
+    title: "Guides & playbooks",
+    description:
+      "Downloadable implementation plans, scorecards and templates for professional-services operations teams.",
+    alternates: { canonical: "/guides" },
+  });
+}
 
 export default function GuidesPage() {
   const { guides } = getResources();

@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getCompany } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Careers",
-  description:
-    "Open roles at Reygent AI across engineering, product, design, operations research and go-to-market.",
-  alternates: { canonical: "/careers" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/careers", {
+    title: "Careers",
+    description:
+      "Open roles at Reygent AI across engineering, product, design, operations research and go-to-market.",
+    alternates: { canonical: "/careers" },
+  });
+}
 
 export default function CareersPage() {
   const { about, careers } = getCompany();

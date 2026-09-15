@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Partner programme",
-  description:
-    "Introduce the businesses you already advise, share in the work that follows, and keep the relationship. Contractual, not a promise.",
-  alternates: { canonical: "/partners" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/partners", {
+    title: "Partner programme",
+    description:
+      "Introduce the businesses you already advise, share in the work that follows, and keep the relationship. Contractual, not a promise.",
+    alternates: { canonical: "/partners" },
+  });
+}
 
 export default function PartnersPage() {
   const { partners: copy } = getPages();

@@ -8,6 +8,7 @@ import type {
   HomeDoc,
   PagesDoc,
   ResourcesDoc,
+  SeoDoc,
   SharedDoc,
 } from "@/lib/cms/documents";
 
@@ -71,6 +72,10 @@ export function getHome(): HomeDoc {
 
 export function getShared(): SharedDoc {
   return getDoc<SharedDoc>("shared");
+}
+
+export function getSeo(): SeoDoc {
+  return getDoc<SeoDoc>("seo");
 }
 
 export function getChrome(): ChromeDoc {

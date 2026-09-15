@@ -6,6 +6,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getComparisons } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
 export function generateStaticParams() {
   return getComparisons().items.map((item) => ({ slug: item.slug }));
@@ -19,13 +20,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const comparison = getComparisons().bySlug[slug];
   if (!comparison) return { title: "Not found" };
-  return {
-    /* The brand is part of the phrase ("Reygent AI vs. doing it yourself"), so
-       opt out of the layout's `%s — Reygent AI` template rather than repeat it. */
-    title: { absolute: `Reygent AI ${comparison.short}` },
+  /* The brand is part of the phrase ("Reygent AI vs. doing it yourself").
+     `withSeo` spots that and skips the layout's `%s — Reygent AI` suffix, which
+     is what used to produce "… — Reygent AI — Reygent AI" in a tab title. */
+  return withSeo(`/compare/${comparison.slug}`, {
+    title: `Reygent AI ${comparison.short}`,
     description: comparison.summary,
-    alternates: { canonical: `/compare/${comparison.slug}` },
-  };
+  });
 }
 
 export default async function ComparePage({

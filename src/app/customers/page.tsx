@@ -7,13 +7,16 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
 import { getSolutions } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Customers",
-  description:
-    "Real automations, what they replaced and what changed — written up honestly, including the parts that were harder than expected.",
-  alternates: { canonical: "/customers" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/customers", {
+    title: "Customers",
+    description:
+      "Real automations, what they replaced and what changed — written up honestly, including the parts that were harder than expected.",
+    alternates: { canonical: "/customers" },
+  });
+}
 
 export default function CustomersPage() {
   const { clients, testimonials, disclosures } = getShared();

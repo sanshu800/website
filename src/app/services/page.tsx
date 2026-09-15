@@ -5,14 +5,17 @@ import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getServices } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Five ways an AI agency takes work off your team: agents that answer and book, automation that connects your systems, document processing, business insight and a retainer that keeps it all running.",
-  alternates: { canonical: "/services" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/services", {
+    title: "Services",
+    description:
+      "Five ways an AI agency takes work off your team: agents that answer and book, automation that connects your systems, document processing, business insight and a retainer that keeps it all running.",
+    alternates: { canonical: "/services" },
+  });
+}
 
 const FIELD: Record<string, string> = {
   ink: "bg-accent",

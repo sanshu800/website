@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Integrations",
-  description:
-    "The CRM, inbox, calendar, accounting, telephony and industry systems we connect to — so agents work inside the tools your business already runs on.",
-  alternates: { canonical: "/integrations" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/integrations", {
+    title: "Integrations",
+    description:
+      "The CRM, inbox, calendar, accounting, telephony and industry systems we connect to — so agents work inside the tools your business already runs on.",
+    alternates: { canonical: "/integrations" },
+  });
+}
 
 /** Icons are code, not content: the document supplies the text, position pairs them. */
 const CAPABILITY_ICONS = [Plug, RefreshCw, Webhook, Shield];

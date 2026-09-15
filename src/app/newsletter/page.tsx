@@ -5,13 +5,16 @@ import { PageHero } from "@/components/marketing/PageHero";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Newsletter",
-  description:
-    "The Operations Briefing — one email a month on professional-services operations, with a new playbook each issue.",
-  alternates: { canonical: "/newsletter" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/newsletter", {
+    title: "Newsletter",
+    description:
+      "The Operations Briefing — one email a month on professional-services operations, with a new playbook each issue.",
+    alternates: { canonical: "/newsletter" },
+  });
+}
 
 export default function NewsletterPage() {
   const { newsletter, guides, releaseNotes } = getResources();

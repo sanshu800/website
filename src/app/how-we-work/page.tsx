@@ -5,14 +5,17 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getServices } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { TourStage } from "@/components/marketing/TourStage";
 
-export const metadata: Metadata = {
-  title: "How we work",
-  description:
-    "How a Reygent AI engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
-  alternates: { canonical: "/how-we-work" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/how-we-work", {
+    title: "How we work",
+    description:
+      "How a Reygent AI engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
+    alternates: { canonical: "/how-we-work" },
+  });
+}
 
 export default function HowWeWorkPage() {
   const { core, managed } = getServices();

@@ -5,13 +5,16 @@ import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getComparisons } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Compare",
-  description:
-    "How Reygent AI compares to spreadsheets, a traditional CRM, separate point tools, hiring an operations manager, building in-house, and doing nothing.",
-  alternates: { canonical: "/compare" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/compare", {
+    title: "Compare",
+    description:
+      "How Reygent AI compares to spreadsheets, a traditional CRM, separate point tools, hiring an operations manager, building in-house, and doing nothing.",
+    alternates: { canonical: "/compare" },
+  });
+}
 
 export default function CompareIndex() {
   const { items: comparisons, index: copy } = getComparisons();

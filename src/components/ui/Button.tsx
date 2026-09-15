@@ -19,9 +19,16 @@ const variants: Record<Variant, string> = {
     "bg-danger text-white hover:brightness-95 active:translate-y-px shadow-xs",
 };
 
+/*
+ * Height steps: 32 / 40 / 48px on a mouse, 36 / 44 / 48px on a touch screen.
+ * WCAG 2.5.8 passes at 24px, so the desktop sizes are legitimate — but a 40px
+ * control on a phone in a hurry gets mis-tapped, and both Apple (44px) and
+ * Material (48px) say so. `pointer-coarse` is the honest signal: it is the
+ * input device that decides, not the viewport width.
+ */
 const sizes: Record<Size, string> = {
-  sm: "h-8 px-3.5 text-[0.8125rem]",
-  md: "h-10 px-4.5 text-[0.875rem]",
+  sm: "h-8 pointer-coarse:h-9 px-3.5 text-[0.8125rem]",
+  md: "h-10 pointer-coarse:h-11 px-4.5 text-[0.875rem]",
   lg: "h-12 px-6 text-[0.9375rem]",
 };
 

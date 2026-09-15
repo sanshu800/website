@@ -6,13 +6,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getCompany, getShared } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Reygent AI is an AI agency for owner-run businesses. We map the process before writing a rule, build the agent that removes it, and measure whether it actually worked.",
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/about", {
+    title: "About",
+    description:
+      "Reygent AI is an AI agency for owner-run businesses. We map the process before writing a rule, build the agent that removes it, and measure whether it actually worked.",
+    alternates: { canonical: "/about" },
+  });
+}
 
 export default function AboutPage() {
   const { about } = getCompany();

@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getServices, getSolutions } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Solutions",
-  description:
-    "How we help professional services firms, property and trades businesses, online retailers and clinics automate the repetitive work behind their day.",
-  alternates: { canonical: "/solutions" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/solutions", {
+    title: "Solutions",
+    description:
+      "How we help professional services firms, property and trades businesses, online retailers and clinics automate the repetitive work behind their day.",
+    alternates: { canonical: "/solutions" },
+  });
+}
 
 export default function SolutionsPage() {
   const { items: solutions, index: copy } = getSolutions();

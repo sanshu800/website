@@ -4,14 +4,17 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { Reveal } from "@/components/motion/Reveal";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Tell us what you need automated and what it is costing you. A person replies to every enquiry within one business day.",
-  alternates: { canonical: "/contact" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/contact", {
+    title: "Contact",
+    description:
+      "Tell us what you need automated and what it is costing you. A person replies to every enquiry within one business day.",
+    alternates: { canonical: "/contact" },
+  });
+}
 
 /** Icons are code, not content: the document supplies the text, position pairs them. */
 const CHANNEL_ICONS = [Mail, MessageSquare, Clock, MapPin];

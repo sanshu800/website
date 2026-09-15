@@ -4,14 +4,17 @@ import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Build log",
-  description:
-    "Real automations that went into production for clients, with what each one replaced and what it taught us.",
-  alternates: { canonical: "/build-log" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/build-log", {
+    title: "Build log",
+    description:
+      "Real automations that went into production for clients, with what each one replaced and what it taught us.",
+    alternates: { canonical: "/build-log" },
+  });
+}
 
 const KIND_STYLE: Record<string, string> = {
   Shipped: "border-jade-line bg-jade-soft text-jade-ink",

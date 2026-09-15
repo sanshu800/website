@@ -5,13 +5,16 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getLegal, getPages } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
-export const metadata: Metadata = {
-  title: "Security",
-  description:
-    "How Reygent AI protects client data: encryption, tenant isolation, access control, audit logging, testing and incident response.",
-  alternates: { canonical: "/security" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/security", {
+    title: "Security",
+    description:
+      "How Reygent AI protects client data: encryption, tenant isolation, access control, audit logging, testing and incident response.",
+    alternates: { canonical: "/security" },
+  });
+}
 
 export default function SecurityPage() {
   const { security: copy } = getPages();

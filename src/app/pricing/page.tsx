@@ -5,6 +5,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPricing } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,11 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const prices = content.engagementsList
     .map((item) => `${item.name} ${item.price}`)
     .join(", ");
-  return {
+  return withSeo("/pricing", {
     title: "Engagements & pricing",
     description: `How we price AI work: a fixed-fee audit, a fixed-price build, and a monthly retainer. ${prices}.`,
     alternates: { canonical: "/pricing" },
-  };
+  });
 }
 
 /**

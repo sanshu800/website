@@ -4,14 +4,17 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages, getPricing } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { Reveal } from "@/components/motion/Reveal";
 
-export const metadata: Metadata = {
-  title: "Book a free AI audit",
-  description:
-    "Thirty minutes with an AI agency: we map the process costing you the most time and tell you honestly whether it is worth automating.",
-  alternates: { canonical: "/get-started" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/get-started", {
+    title: "Book a free AI audit",
+    description:
+      "Thirty minutes with an AI agency: we map the process costing you the most time and tell you honestly whether it is worth automating.",
+    alternates: { canonical: "/get-started" },
+  });
+}
 
 export default function GetStartedPage() {
   const { getStarted: copy } = getPages();

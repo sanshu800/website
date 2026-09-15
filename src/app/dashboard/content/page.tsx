@@ -10,11 +10,14 @@ import { relativeTime } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Content" };
 
+/**
+ * Honest coverage note. Everything a visitor reads is editable; what remains is
+ * deliberately out of scope: assets, and the per-page SEO metadata that is
+ * derived from the copy rather than typed twice.
+ */
 const NOT_WIRED = [
-  "Header and footer navigation",
-  "The sample conversation inside the Foundation panel",
-  "Get started, about, careers, guides, release notes, security, contact and the other standalone pages",
-  "Page titles and meta descriptions",
+  "Per-page meta descriptions and titles (page-level SEO metadata still lives in code)",
+  "The hero film source and the generated imagery (assets, not copy)",
 ];
 
 /**
@@ -114,11 +117,11 @@ export default function ContentAdminPage() {
             </ul>
           </Card>
 
-          <Card title="Not editable yet" className="mt-4">
+          <Card title="Deliberately not editable" className="mt-4">
             <p className="text-[0.8125rem] leading-relaxed text-fog">
-              These surfaces still render straight from the content modules, so changes there
-              need a developer. Each one is added to the list above as it is wired through the
-              same store.
+              Two things stay in code by design: the search metadata, which is derived from the
+              copy above rather than typed twice, and the artwork itself. Everything a visitor
+              reads on the marketing site is in the list above.
             </p>
             <ul className="mt-4 grid gap-2 text-[0.8125rem] text-fog-2 sm:grid-cols-2">
               {NOT_WIRED.map((item) => (

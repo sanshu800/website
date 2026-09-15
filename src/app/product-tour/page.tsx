@@ -4,7 +4,7 @@ import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { modules, foundation } from "@/lib/content/products";
+import { getPages, getProducts } from "@/lib/cms/content";
 import { TourStage } from "@/components/marketing/TourStage";
 
 export const metadata: Metadata = {
@@ -14,38 +14,40 @@ export const metadata: Metadata = {
   alternates: { canonical: "/product-tour" },
 };
 
-const STAGES = modules.map((module) => ({
-  slug: module.slug,
-  name: module.name,
-  title: module.headline,
-  body: module.intro,
-  screen: module.home.screen,
-  caption: module.panelCaption,
-  bullets: module.features.slice(0, 4).map((feature) => feature.title),
-  href: `/products/${module.slug}`,
-  accent: module.accent,
-}));
-
 export default function ProductTourPage() {
+  const { modules, foundation } = getProducts();
+  const { productTour: copy } = getPages();
+
+  const stages = modules.map((module) => ({
+    slug: module.slug,
+    name: module.name,
+    title: module.headline,
+    body: module.intro,
+    screen: module.home.screen,
+    caption: module.panelCaption,
+    bullets: module.features.slice(0, 4).map((feature) => feature.title),
+    href: `/products/${module.slug}`,
+  }));
+
   return (
     <>
       <PageHero
-        eyebrow="Product tour"
-        title="Five stops. Ten minutes. No sales call."
-        summary="The same walkthrough we give on a demo, laid out so you can take it at your own pace — and stop wherever the answer stops being relevant to your firm."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        summary={copy.hero.summary}
         actions={
           <>
             <Link
-              href="/get-started"
+              href={copy.hero.actions.primary.href}
               className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Start the real thing <ArrowRight className="h-4 w-4" />
+              {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/demo"
+              href={copy.hero.actions.secondary.href}
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Take it with a person
+              {copy.hero.actions.secondary.label}
             </Link>
           </>
         }
@@ -81,13 +83,13 @@ export default function ProductTourPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="Walkthrough"
-            title="Pick a stop, or work through them in order."
-            lede="Each panel is rendered from the same interface components the platform uses, so what you see here is the density you get after signing in — not a marketing illustration."
+            eyebrow={copy.walkthrough.eyebrow}
+            title={copy.walkthrough.title}
+            lede={copy.walkthrough.lede}
           />
           <div className="mt-12">
             <TourStage
-              stages={STAGES.map((stage) => ({
+              stages={stages.map((stage) => ({
                 slug: stage.slug,
                 name: stage.name,
                 title: stage.title,
@@ -107,7 +109,7 @@ export default function ProductTourPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
               <p className="font-mono text-eyebrow uppercase text-on-ink-2">
-                Underneath it all
+                {copy.foundation.eyebrow}
               </p>
               <h2 className="mt-5 text-display-l text-on-ink">{foundation.name}</h2>
               <p className="mt-5 max-w-[36rem] text-body-lg text-on-ink-2">
@@ -117,7 +119,7 @@ export default function ProductTourPage() {
                 href="/products/foundation"
                 className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
               >
-                See how the memory layer works
+                {copy.foundation.cta}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -144,25 +146,21 @@ export default function ProductTourPage() {
           <Reveal>
             <div className="rounded-2xl border border-line bg-mist p-7 sm:p-9">
               <h2 className="font-display text-[1.25rem] text-ink">
-                Want to click around for real?
+                {copy.workspace.heading}
               </h2>
-              <p className="mt-3 max-w-[42rem] text-micro text-fog">
-                The workspace on this build is a working application: sign in and the
-                sample firm is loaded, with real filters, real pagination, real server
-                actions and an audit trail that records what you change.
-              </p>
+              <p className="mt-3 max-w-[42rem] text-micro text-fog">{copy.workspace.body}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/login"
                   className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
                 >
-                  Sign in to the demo
+                  {copy.workspace.signIn}
                 </Link>
                 <Link
                   href="/signup"
                   className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
                 >
-                  Create your own workspace
+                  {copy.workspace.signUp}
                 </Link>
               </div>
             </div>
@@ -170,10 +168,7 @@ export default function ProductTourPage() {
         </Container>
       </section>
 
-      <PageCTA
-        title="Seen enough to talk specifics?"
-        summary="Bring one process to a thirty-minute session and we will map it against the same five stages on this page."
-      />
+      <PageCTA title={copy.cta.title} summary={copy.cta.summary} />
     </>
   );
 }

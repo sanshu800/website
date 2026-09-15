@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { site } from "@/lib/content/marketing";
+import { getChrome } from "@/lib/cms/content";
 import "./globals.css";
 
 /**
@@ -37,14 +38,22 @@ const geistMono = localFont({
   fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
 });
 
-export const metadata: Metadata = {
+/**
+ * The header, footer and social metadata all read the `chrome` content
+ * document, so nav labels, the footer and the site description are editable
+ * from the admin panel. The canonical host and locale stay in code — those are
+ * deployment facts, not copy.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const { brand } = getChrome();
+  return {
   metadataBase: new URL(site.url),
   title: {
-    default: "Reygent — The AI-native operations platform for professional-service firms",
-    template: "%s — Reygent",
+    default: brand.seoTitle,
+    template: `%s — ${brand.name}`,
   },
-  description: site.description,
-  applicationName: site.name,
+  description: brand.description,
+  applicationName: brand.name,
   keywords: [
     "professional services automation",
     "legal firm intake software",
@@ -53,21 +62,21 @@ export const metadata: Metadata = {
     "AI operations platform",
     "consulting firm CRM",
   ],
-  authors: [{ name: site.name }],
-  creator: site.name,
+  authors: [{ name: brand.name }],
+  creator: brand.name,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: site.locale,
     url: site.url,
-    siteName: site.name,
-    title: "Reygent — The AI-native operations platform",
-    description: site.description,
+    siteName: brand.name,
+    title: brand.ogTitle,
+    description: brand.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reygent — The AI-native operations platform",
-    description: site.description,
+    title: brand.ogTitle,
+    description: brand.description,
   },
   robots: {
     index: true,
@@ -75,7 +84,8 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
-};
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -83,6 +93,8 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const chrome = getChrome();
+
   return (
     <html
       lang="en"
@@ -95,9 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <SiteHeader />
+        <SiteHeader brand={chrome.brand} header={chrome.header} />
         <main id="main">{children}</main>
-        <SiteFooter />
+        <SiteFooter brand={chrome.brand} footer={chrome.footer} />
       </body>
     </html>
   );

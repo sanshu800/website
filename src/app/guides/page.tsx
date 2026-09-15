@@ -4,7 +4,7 @@ import { ArrowUpRight, FileText } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { guides } from "@/lib/content/company";
+import { getResources } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Guides & playbooks",
@@ -14,19 +14,25 @@ export const metadata: Metadata = {
 };
 
 export default function GuidesPage() {
+  const { guides } = getResources();
+  const { items, ...copy } = guides;
+
   return (
     <>
       <PageHero
-        eyebrow="Guides"
-        title="The work, written down."
-        summary="Everything here comes from implementations we have run. Take them, use them, and if you never buy the platform they were still worth your afternoon."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        summary={copy.hero.summary}
       />
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow="Library" title={`${guides.length} resources`} />
+          <SectionHeading
+            eyebrow={copy.library.eyebrow}
+            title={copy.library.titleTemplate.replace("{count}", String(items.length))}
+          />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {guides.map((guide) => (
+            {items.map((guide) => (
               <RevealItem key={guide.slug}>
                 <Link
                   href="/newsletter"
@@ -52,18 +58,16 @@ export default function GuidesPage() {
           </RevealGroup>
 
           <p className="mt-8 rounded-xl border border-line bg-mist px-5 py-4 text-micro text-fog">
-            On this build, resources are delivered by email rather than as hosted files —
-            the download flow is wired to the newsletter endpoint so you can see the
-            hand-off. Attach real PDFs to make it live.
+            {copy.note}
           </p>
         </Container>
       </section>
 
       <PageCTA
-        title="Want these as they land?"
-        summary="One email a month with the new playbook and two operational notes from live implementations."
-        primary={{ href: "/newsletter", label: "Subscribe" }}
-        secondary={{ href: "/blog", label: "Read the blog" }}
+        title={copy.cta.title}
+        summary={copy.cta.summary}
+        primary={copy.cta.primary}
+        secondary={copy.cta.secondary}
       />
     </>
   );

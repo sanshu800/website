@@ -178,24 +178,27 @@ and the homepage preview, and **Reset** restores the shipped copy.
   is reported under *History → Orphaned edits* and can be dropped or restored, rather
   than silently hanging around.
 
-**Wired today** — every string in these surfaces is editable:
+**Wired today** — 12 surfaces, **1,955 fields**. Every string a visitor reads on the
+marketing site is editable, including the header navigation and the footer.
 
 | Surface | Includes |
 | --- | --- |
-| Homepage | Hero headline lines, badge, summary, both CTAs, the footnote and the three hero stats; the proof band; the problem section (all three problems, their stats and image alt text); how it works (all four stages); the Foundation blurb; the testimonial and integrations headings; the closing block |
+| Homepage | Hero headline lines, badge, summary, both CTAs, the footnote and the three hero stats; the proof band; the problem section (all three problems, their stats and image alt text); how it works (all four stages); the Foundation blurb *and the three sample Ask Reygent conversations with their citations*; the testimonial and integrations headings; the closing block |
 | Pricing | Hero, all three plans, the comparison matrix, the FAQ, the CTA — and the homepage preview and `/get-started` plan picker read the same document |
 | Products | Index hero and the five module pages: name, kicker, headline, intro, flow, features, outcomes and the shared detail headings |
 | Solutions | Index and the four practice pages |
 | Comparisons | Index and all six approach-by-approach pages |
 | Blog | Index, categories, and every article's title, dek, category, byline, reading time and body blocks |
 | Legal | Privacy, terms, DPA, sub-processors |
-| Shared content | Client marks, testimonials, integration surfaces, capability counts and the placeholder disclosures — edited once, applied on the homepage, `/customers`, `/about`, `/integrations` and `/demo` |
+| Shared content | Client marks, testimonials, integration surfaces, capability counts, the company statistics and the placeholder disclosures — edited once, applied on the homepage, `/customers`, `/about`, `/integrations`, `/startups` and `/demo` |
+| Header, footer and brand | Site name, tagline, SEO title, social title, description, contact address, copyright; the three primary nav menus with their dropdown blurbs; the footer columns, the built-for line, the legal links and the placeholder disclosure |
+| About and careers | The about hero, story, six principles, company timeline and proof band; the careers hero, every open role's summary, responsibilities and requirements, the "working here" list, the perks and both closing blocks |
+| Guides and release notes | The guide library, every guide's description, the changelog with the reasoning behind each release, and the newsletter page including recent issues |
+| Standalone pages | Get started, contact, demo, customers, integrations, security, startups, partners and the product tour: hero copy, section headings, checklists, direct channels, security posture rows, eligibility criteria, partner types and every closing block |
 
-**Not wired yet** (still rendered from the content modules, so they need a developer, and
-the admin lists them under "Not editable yet"): the header and footer navigation, the
-sample conversation inside the Foundation panel, the standalone pages — get started,
-about, careers, guides, release notes, security, contact, startups, partners, newsletter
-— and the page-level meta descriptions.
+**Deliberately not editable:** the per-page SEO metadata (titles and descriptions are
+derived from the copy above rather than typed twice) and the artwork itself. Both are
+listed on the admin screen so the coverage claim stays honest.
 
 ## Environment variables
 

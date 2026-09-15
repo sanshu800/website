@@ -4,7 +4,7 @@ import { ArrowRight, Plug, RefreshCw, Shield, Webhook } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getShared } from "@/lib/cms/content";
+import { getPages, getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Integrations",
@@ -13,51 +13,36 @@ export const metadata: Metadata = {
   alternates: { canonical: "/integrations" },
 };
 
-const CAPABILITIES = [
-  {
-    icon: Plug,
-    title: "Two-way sync",
-    body: "Read and write on every connected surface. Replies logged where they happened, records updated without anyone typing.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Idempotent by default",
-    body: "Every sync is safe to retry. A misbehaving third-party API degrades one surface rather than the record.",
-  },
-  {
-    icon: Webhook,
-    title: "Open API and webhooks",
-    body: "Every object is addressable, every event is publishable. Build on the memory layer rather than beside it.",
-  },
-  {
-    icon: Shield,
-    title: "Scoped permissions",
-    body: "Connect a mailbox without granting full account access. Credentials are encrypted per tenant and revocable in one click.",
-  },
-];
+/** Icons are code, not content: the document supplies the text, position pairs them. */
+const CAPABILITY_ICONS = [Plug, RefreshCw, Webhook, Shield];
 
 export default function IntegrationsPage() {
   const { integrations } = getShared();
+  const { integrations: copy } = getPages();
+  const capabilities = copy.capabilities.map((capability, index) => ({
+    ...capability,
+    icon: CAPABILITY_ICONS[index] ?? Plug,
+  }));
 
   return (
     <>
       <PageHero
-        eyebrow="Integrations"
-        title="Runs alongside what you already use."
-        summary="Forty-plus integration surfaces across the systems a professional-services firm already depends on. Nothing needs to be ripped out to start — the coordination layer is what we replace."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        summary={copy.hero.summary}
         actions={
           <>
             <Link
-              href="/get-started"
+              href={copy.heroActions.primary.href}
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Start free trial
+              {copy.heroActions.primary.label}
             </Link>
             <Link
-              href="/security"
+              href={copy.heroActions.secondary.href}
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              How we handle data
+              {copy.heroActions.secondary.label}
             </Link>
           </>
         }
@@ -66,9 +51,9 @@ export default function IntegrationsPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="By category"
-            title="Described by what it does, not whose logo it is."
-            lede="We list capabilities rather than partner marks, because displaying another company's trademark implies an endorsement neither of us has signed."
+            eyebrow={copy.categories.eyebrow}
+            title={copy.categories.title}
+            lede={copy.categories.lede}
           />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {integrations.map((group) => (
@@ -96,7 +81,7 @@ export default function IntegrationsPage() {
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
           <RevealGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {CAPABILITIES.map((capability) => {
+            {capabilities.map((capability) => {
               const Icon = capability.icon;
               return (
                 <RevealItem key={capability.title}>
@@ -116,17 +101,13 @@ export default function IntegrationsPage() {
         <Container width="wide">
           <div className="grid gap-10 rounded-2xl border border-line bg-ink p-8 text-on-ink sm:p-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="text-display-m text-on-ink">Building on Reygent</h2>
-              <p className="mt-4 text-body-lg text-on-ink-2">
-                The API exposes the same objects the interface uses, so an integration
-                cannot drift from what your team sees. Authentication is per-tenant and
-                scoped to the records you grant.
-              </p>
+              <h2 className="text-display-m text-on-ink">{copy.api.heading}</h2>
+              <p className="mt-4 text-body-lg text-on-ink-2">{copy.api.body}</p>
               <Link
                 href="/contact"
                 className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
               >
-                Request API access
+                {copy.api.cta}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             </div>

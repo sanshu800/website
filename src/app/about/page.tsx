@@ -5,8 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { companyValues, timeline, siteStats } from "@/lib/content/company";
-import { getShared } from "@/lib/cms/content";
+import { getCompany, getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,14 +15,16 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const { testimonials } = getShared();
+  const { about } = getCompany();
+  const { valuesList, timeline: history } = about;
+  const { testimonials, siteStats } = getShared();
 
   return (
     <>
       <PageHero
-        eyebrow="About"
-        title="We build the layer between the tools."
-        summary="Reygent started as an operations consultancy. After mapping the same four bottlenecks in firm after firm, we stopped writing reports and started building the system that removes them."
+        eyebrow={about.hero.eyebrow}
+        title={about.hero.title}
+        summary={about.hero.summary}
       />
 
       <section className="border-b border-line bg-paper">
@@ -33,7 +34,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-accent">
                 <Image
                   src="/images/about-team.png"
-                  alt="Three colleagues reviewing printed process diagrams on a wall during a working session"
+                  alt={about.story.imageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover mix-blend-luminosity"
@@ -43,21 +44,12 @@ export default function AboutPage() {
             <div className="lg:col-span-6 lg:p-10 xl:p-14">
               <RevealGroup>
                 <RevealItem>
-                  <p className="font-mono text-eyebrow uppercase text-accent">Why we exist</p>
-                  <h2 className="mt-5 text-display-m text-ink">
-                    Most firms do not need better software. They need one system.
-                  </h2>
-                  <p className="mt-5 text-body-lg text-fog">
-                    Every engagement we ran started the same way: a partner describing
-                    a problem they assumed was inevitable. Enquiries answered late.
-                    Documents chased for weeks. Reports rebuilt by hand at month end.
+                  <p className="font-mono text-eyebrow uppercase text-accent">
+                    {about.story.eyebrow}
                   </p>
-                  <p className="mt-4 text-body-lg text-fog">
-                    None of it was inevitable. It was the predictable result of work
-                    crossing between systems that could not see each other. So we
-                    built the layer that sits underneath, and then we built the four
-                    applications that run on it.
-                  </p>
+                  <h2 className="mt-5 text-display-m text-ink">{about.story.title}</h2>
+                  <p className="mt-5 text-body-lg text-fog">{about.story.body1}</p>
+                  <p className="mt-4 text-body-lg text-fog">{about.story.body2}</p>
                 </RevealItem>
                 <RevealItem>
                   <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8">
@@ -83,12 +75,12 @@ export default function AboutPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="How we work"
-            title="Six principles that decide what we build."
-            lede="These are not values on a wall. Each one has killed a feature or a deal, and we can tell you which."
+            eyebrow={about.values.eyebrow}
+            title={about.values.title}
+            lede={about.values.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-            {companyValues.map((value) => (
+            {valuesList.map((value) => (
               <RevealItem key={value.title}>
                 <div className="border-t border-line pt-5">
                   <h3 className="text-[1.0625rem] font-medium text-ink">{value.title}</h3>
@@ -102,9 +94,9 @@ export default function AboutPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow="History" title="From audits to a platform." />
+          <SectionHeading eyebrow={about.history.eyebrow} title={about.history.title} />
           <ol className="mt-12 border-t border-line">
-            {timeline.map((item) => (
+            {history.map((item) => (
               <Reveal
                 key={item.year}
                 as="li"
@@ -127,16 +119,13 @@ export default function AboutPage() {
         <Container width="wide">
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="text-display-m text-ink">What firms say</h2>
-              <p className="mt-4 text-body-lg text-fog">
-                Placeholder testimonials on this build — the layout is real, the people
-                are not.
-              </p>
+              <h2 className="text-display-m text-ink">{about.proof.heading}</h2>
+              <p className="mt-4 text-body-lg text-fog">{about.proof.note}</p>
               <Link
                 href="/customers"
                 className="group mt-6 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
               >
-                All customer stories
+                {about.proof.cta}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -162,10 +151,10 @@ export default function AboutPage() {
       </section>
 
       <PageCTA
-        title="Want to see how we think?"
-        summary="The first call is a working session on your operation, not a product tour. Bring a real process and we will map it."
-        primary={{ href: "/careers", label: "We are hiring" }}
-        secondary={{ href: "/demo", label: "Book a demo" }}
+        title={about.cta.title}
+        summary={about.cta.summary}
+        primary={about.cta.primary}
+        secondary={about.cta.secondary}
       />
     </>
   );

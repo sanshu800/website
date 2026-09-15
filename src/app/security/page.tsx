@@ -4,7 +4,7 @@ import { Lock, ShieldCheck } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { legalPages } from "@/lib/content/company";
+import { getLegal, getPages } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Security",
@@ -13,37 +13,29 @@ export const metadata: Metadata = {
   alternates: { canonical: "/security" },
 };
 
-const POSTURE = [
-  { label: "Encryption in transit", value: "TLS 1.2+" },
-  { label: "Encryption at rest", value: "AES-256" },
-  { label: "Tenant isolation", value: "Per-firm boundary" },
-  { label: "Audit trail", value: "Append-only" },
-  { label: "Penetration test", value: "Annual, third party" },
-  { label: "SOC 2 Type II", value: "In progress" },
-];
-
 export default function SecurityPage() {
-  const page = legalPages.security;
+  const { security: copy } = getPages();
+  const page = getLegal().pages.security;
 
   return (
     <>
       <PageHero
-        eyebrow="Security"
-        title="Specifics, not adjectives."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
         summary={page.intro}
         actions={
           <>
             <Link
-              href="/legal/security"
+              href={copy.hero.primary.href}
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Full security documentation
+              {copy.hero.primary.label}
             </Link>
             <Link
-              href="/contact"
+              href={copy.hero.secondary.href}
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Request our DPA
+              {copy.hero.secondary.label}
             </Link>
           </>
         }
@@ -52,7 +44,7 @@ export default function SecurityPage() {
       <section className="section-sm border-b border-line bg-mist">
         <Container width="wide">
           <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {POSTURE.map((item) => (
+            {copy.posture.map((item) => (
               <div key={item.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
                 <dt className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">
                   {item.label}
@@ -67,8 +59,8 @@ export default function SecurityPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="Controls"
-            title="What we do, in the order it matters."
+            eyebrow={copy.controls.eyebrow}
+            title={copy.controls.title}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2">
             {page.sections.map((section, index) => (
@@ -94,30 +86,27 @@ export default function SecurityPage() {
             <div className="lg:col-span-7">
               <ShieldCheck className="h-6 w-6 text-accent-3" aria-hidden="true" />
               <h2 className="mt-5 text-display-m text-on-ink">
-                Report a vulnerability
+                {copy.disclosure.heading}
               </h2>
               <p className="mt-4 max-w-[38rem] text-body-lg text-on-ink-2">
-                We run a coordinated disclosure process and will not pursue legal action
-                against researchers who follow it. Send a description and reproduction
-                steps; we acknowledge within two working days and keep you updated until
-                the fix ships.
+                {copy.disclosure.body}
               </p>
             </div>
             <div className="lg:col-span-5">
               <a
-                href="mailto:security@reygent.ai"
+                href={`mailto:${copy.disclosure.mailbox}`}
                 className="flex items-center gap-4 rounded-2xl border border-white/15 bg-ink-2 px-6 py-5 transition-colors hover:border-accent-3/40"
               >
                 <Lock className="h-5 w-5 text-accent-3" aria-hidden="true" />
                 <span className="text-body text-on-ink">
-                  security@reygent.ai
+                  {copy.disclosure.mailbox}
                   <span className="mt-0.5 block text-[0.75rem] text-on-ink-2">
-                    PGP key available on request
+                    {copy.disclosure.pgp}
                   </span>
                 </span>
               </a>
               <p className="mt-4 text-[0.75rem] text-on-ink-2">
-                Placeholder address — point this at a real mailbox before publishing.
+                {copy.disclosure.placeholderNote}
               </p>
             </div>
           </div>
@@ -125,10 +114,10 @@ export default function SecurityPage() {
       </section>
 
       <PageCTA
-        title="Need our security pack?"
-        summary="Questionnaire responses, sub-processor list, penetration test summary under NDA and a draft DPA are available for firms in evaluation."
-        primary={{ href: "/contact", label: "Request the pack" }}
-        secondary={{ href: "/legal/privacy", label: "Privacy notice" }}
+        title={copy.cta.title}
+        summary={copy.cta.summary}
+        primary={copy.cta.primary}
+        secondary={copy.cta.secondary}
       />
     </>
   );

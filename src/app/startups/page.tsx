@@ -4,7 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { startupsProgram, siteStats } from "@/lib/content/company";
+import { getPages, getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Startup programme",
@@ -14,25 +14,29 @@ export const metadata: Metadata = {
 };
 
 export default function StartupsPage() {
+  const { startups: copy } = getPages();
+  const { program } = copy;
+  const { siteStats } = getShared();
+
   return (
     <>
       <PageHero
-        eyebrow="Startup programme"
-        title={startupsProgram.headline}
-        summary={startupsProgram.summary}
+        eyebrow={copy.hero.eyebrow}
+        title={program.headline}
+        summary={program.summary}
         actions={
           <>
             <Link
-              href="/get-started"
+              href={copy.hero.actions.primary.href}
               className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Start free trial <ArrowRight className="h-4 w-4" />
+              {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/contact"
+              href={copy.hero.actions.secondary.href}
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Ask about eligibility
+              {copy.hero.actions.secondary.label}
             </Link>
           </>
         }
@@ -40,9 +44,9 @@ export default function StartupsPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow="What is included" title="Four things, no asterisks." />
+          <SectionHeading eyebrow={copy.included.eyebrow} title={copy.included.title} />
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2">
-            {startupsProgram.benefits.map((benefit) => (
+            {program.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full gap-4 rounded-2xl border border-line p-6">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -59,18 +63,15 @@ export default function StartupsPage() {
 
           <Reveal className="mt-12">
             <div className="rounded-2xl bg-mist p-7 sm:p-9">
-              <h2 className="font-display text-[1.25rem] text-ink">Eligibility</h2>
+              <h2 className="font-display text-[1.25rem] text-ink">
+                {copy.eligibility.heading}
+              </h2>
               <ul className="mt-5 grid gap-3 text-body-lg text-fog sm:grid-cols-2">
-                <li>Firm incorporated within the last 36 months.</li>
-                <li>Between 2 and 25 people, including founders.</li>
-                <li>Trading and serving clients — not pre-revenue.</li>
-                <li>Not currently on a Reygent paid plan.</li>
+                {copy.eligibility.criteria.map((criterion) => (
+                  <li key={criterion}>{criterion}</li>
+                ))}
               </ul>
-              <p className="mt-6 text-micro text-fog-2">
-                One programme enrolment per firm. If you are near the boundary in
-                either direction, apply anyway and we will use our judgement rather
-                than the spreadsheet.
-              </p>
+              <p className="mt-6 text-micro text-fog-2">{copy.eligibility.note}</p>
             </div>
           </Reveal>
         </Container>
@@ -95,10 +96,10 @@ export default function StartupsPage() {
       </section>
 
       <PageCTA
-        title="Ready to apply?"
-        summary="Six questions, two minutes. We confirm eligibility within one working day and start the discount from your first paid month."
-        primary={{ href: "/get-started", label: "Apply now" }}
-        secondary={{ href: "/pricing", label: "See pricing" }}
+        title={copy.cta.title}
+        summary={copy.cta.summary}
+        primary={copy.cta.primary}
+        secondary={copy.cta.secondary}
       />
     </>
   );

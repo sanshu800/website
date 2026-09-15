@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { partnersProgram } from "@/lib/content/company";
+import { getPages } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Partner programme",
@@ -13,33 +13,29 @@ export const metadata: Metadata = {
   alternates: { canonical: "/partners" },
 };
 
-const PARTNER_TYPES = [
-  { title: "Operations consultants", body: "You are already mapping intake and delivery. Reygent becomes the system you hand over rather than a slide about one." },
-  { title: "Accountancy practices", body: "Advise clients on their own operations and configuration, with the platform implemented under your brand." },
-  { title: "Systems integrators", body: "You own the technical programme: migrations, data model design and integration work." },
-  { title: "Fractional COOs", body: "Run the operating cadence across several firms, with one platform underneath all of them." },
-];
-
 export default function PartnersPage() {
+  const { partners: copy } = getPages();
+  const { program } = copy;
+
   return (
     <>
       <PageHero
-        eyebrow="Partners"
-        title={partnersProgram.headline}
-        summary={partnersProgram.summary}
+        eyebrow={copy.hero.eyebrow}
+        title={program.headline}
+        summary={program.summary}
         actions={
           <>
             <Link
-              href="/contact"
+              href={copy.hero.actions.primary.href}
               className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Apply to partner <ArrowRight className="h-4 w-4" />
+              {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/contact"
+              href={copy.hero.actions.secondary.href}
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Talk to partnerships
+              {copy.hero.actions.secondary.label}
             </Link>
           </>
         }
@@ -47,9 +43,9 @@ export default function PartnersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow="Who partners with us" title="You already do the diagnosis." />
+          <SectionHeading eyebrow={copy.types.eyebrow} title={copy.types.title} />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {PARTNER_TYPES.map((type) => (
+            {copy.types.items.map((type) => (
               <RevealItem key={type.title}>
                 <h3 className="text-[1.0625rem] font-medium text-ink">{type.title}</h3>
                 <p className="mt-2.5 text-micro text-fog">{type.body}</p>
@@ -61,9 +57,9 @@ export default function PartnersPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow="The commercial part" title="What you get." />
+          <SectionHeading eyebrow={copy.commercial.eyebrow} title={copy.commercial.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {partnersProgram.benefits.map((benefit) => (
+            {program.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
                   <h3 className="font-display text-[1.0625rem] text-ink">{benefit.title}</h3>
@@ -77,9 +73,9 @@ export default function PartnersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow="How it works" title="Four steps, about a month." />
+          <SectionHeading eyebrow={copy.steps.eyebrow} title={copy.steps.title} />
           <ol className="mt-12 grid gap-6 lg:grid-cols-4">
-            {partnersProgram.steps.map((step, index) => (
+            {program.steps.map((step, index) => (
               <li key={step.title} className="border-t border-line-strong pt-5">
                 <span className="font-mono text-[0.6875rem] text-accent">
                   {String(index + 1).padStart(2, "0")}
@@ -93,10 +89,10 @@ export default function PartnersPage() {
       </section>
 
       <PageCTA
-        title="Apply to the programme"
-        summary="Tell us about your practice, the firms you advise, and where you think the platform fits. We reply to every application with a real answer."
-        primary={{ href: "/contact", label: "Start application" }}
-        secondary={{ href: "/about", label: "About Reygent" }}
+        title={copy.cta.title}
+        summary={copy.cta.summary}
+        primary={copy.cta.primary}
+        secondary={copy.cta.secondary}
       />
     </>
   );

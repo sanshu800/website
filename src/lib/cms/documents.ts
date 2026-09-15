@@ -8,6 +8,10 @@ import { blogDoc } from "@/lib/content/pages/blog";
 import { legalDoc } from "@/lib/content/pages/legal";
 import { homeDoc } from "@/lib/content/pages/home";
 import { sharedDoc } from "@/lib/content/pages/shared";
+import { chromeDoc } from "@/lib/content/pages/chrome";
+import { companyDoc } from "@/lib/content/pages/company";
+import { resourcesDoc } from "@/lib/content/pages/resources";
+import { pagesDoc } from "@/lib/content/pages/pages";
 
 /**
  * The content documents an editor can change, and the bridge between them and
@@ -32,6 +36,17 @@ export type DocDef = {
 
 export const DOCS: DocDef[] = [
   {
+    id: "chrome",
+    title: "Navigation and footer",
+    where: [
+      { label: "Every page", href: "/" },
+      { label: "Footer", href: "/#footer" },
+    ],
+    blurb:
+      "The header mega menu, the flat links, the log in and get started buttons, the footer columns, the legal links and the brand strings used in page titles and social cards.",
+    build: chromeDoc,
+  },
+  {
     id: "home",
     title: "Homepage",
     where: [{ label: "/", href: "/" }],
@@ -51,6 +66,48 @@ export const DOCS: DocDef[] = [
     blurb:
       "Content used on more than one page: client marks, testimonials, integration surfaces and the capability counts. Placeholder disclosures are here too.",
     build: sharedDoc,
+  },
+  {
+    id: "company",
+    title: "About and careers",
+    where: [
+      { label: "/about", href: "/about" },
+      { label: "/careers", href: "/careers" },
+      { label: "Each role", href: "/careers/senior-product-engineer" },
+    ],
+    blurb:
+      "The about page, the careers page, every open role's description and requirements, the six principles and the company timeline.",
+    build: companyDoc,
+  },
+  {
+    id: "resources",
+    title: "Guides and release notes",
+    where: [
+      { label: "/guides", href: "/guides" },
+      { label: "/release-notes", href: "/release-notes" },
+      { label: "/newsletter", href: "/newsletter" },
+    ],
+    blurb:
+      "The guide library, the changelog with its reasoning, and the newsletter page including recent issues.",
+    build: resourcesDoc,
+  },
+  {
+    id: "pages",
+    title: "Standalone pages",
+    where: [
+      { label: "/get-started", href: "/get-started" },
+      { label: "/contact", href: "/contact" },
+      { label: "/demo", href: "/demo" },
+      { label: "/customers", href: "/customers" },
+      { label: "/integrations", href: "/integrations" },
+      { label: "/security", href: "/security" },
+      { label: "/startups", href: "/startups" },
+      { label: "/partners", href: "/partners" },
+      { label: "/product-tour", href: "/product-tour" },
+    ],
+    blurb:
+      "Get started, contact, demo, customers, integrations, security, startups, partners and the product tour — hero copy, section headings, checklists and closing blocks.",
+    build: pagesDoc,
   },
   {
     id: "pricing",
@@ -128,6 +185,10 @@ export type { BlogDoc } from "@/lib/content/pages/blog";
 export type { LegalDoc } from "@/lib/content/pages/legal";
 export type { HomeDoc } from "@/lib/content/pages/home";
 export type { SharedDoc } from "@/lib/content/pages/shared";
+export type { ChromeDoc } from "@/lib/content/pages/chrome";
+export type { CompanyDoc } from "@/lib/content/pages/company";
+export type { ResourcesDoc } from "@/lib/content/pages/resources";
+export type { PagesDoc } from "@/lib/content/pages/pages";
 
 export const DOC_BY_ID = new Map(DOCS.map((doc) => [doc.id, doc]));
 

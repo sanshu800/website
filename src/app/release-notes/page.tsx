@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
-import { releaseNotes } from "@/lib/content/company";
+import { getResources } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -20,14 +20,15 @@ const KIND_STYLE: Record<string, string> = {
 };
 
 export default function ReleaseNotesPage() {
-  const [latest, ...rest] = releaseNotes;
+  const { releaseNotes } = getResources();
+  const [latest, ...rest] = releaseNotes.items;
 
   return (
     <>
       <PageHero
-        eyebrow="Release notes"
-        title="Every change, and why it exists."
-        summary="We publish the reasoning alongside the changelog. If a release does not improve a measurement we track for customers, it is worth explaining why we shipped it."
+        eyebrow={releaseNotes.hero.eyebrow}
+        title={releaseNotes.hero.title}
+        summary={releaseNotes.hero.summary}
       />
 
       <section className="section bg-paper">
@@ -37,7 +38,7 @@ export default function ReleaseNotesPage() {
               <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
-                    Latest
+                    {releaseNotes.latestBadge}
                   </span>
                   <span className="font-mono text-[0.6875rem] text-accent">
                     v{latest.version}
@@ -109,9 +110,9 @@ export default function ReleaseNotesPage() {
           </div>
 
           <p className="mt-10 text-micro text-fog-2">
-            Prefer it in your inbox?{" "}
+            {releaseNotes.digest.before}{" "}
             <Link href="/newsletter" className="text-accent underline underline-offset-2">
-              Subscribe to the release digest
+              {releaseNotes.digest.linkLabel}
             </Link>
             .
           </p>
@@ -119,10 +120,10 @@ export default function ReleaseNotesPage() {
       </section>
 
       <PageCTA
-        title="Want to influence the next one?"
-        summary="Pro customers get a monthly roadmap review, and Foundation requests are triaged in public view of the requesting firm."
-        primary={{ href: "/demo", label: "Book a demo" }}
-        secondary={{ href: "/contact", label: "Send feedback" }}
+        title={releaseNotes.cta.title}
+        summary={releaseNotes.cta.summary}
+        primary={releaseNotes.cta.primary}
+        secondary={releaseNotes.cta.secondary}
       />
     </>
   );

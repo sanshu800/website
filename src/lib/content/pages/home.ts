@@ -73,6 +73,71 @@ export function homeDoc() {
       title: "Meet Ask Reygent.",
       lede:
         "Type a question about a client, an engagement or the whole book. Reygent reasons across everything the firm knows and cites the exact email, document or call behind every answer — in the app, and in your messaging tool.",
+      cta: "Explore Foundation",
+      statusLabel: "Ask Reygent",
+      statusNote: "answers cite their sources",
+      conversation: {
+        alerts: {
+          question: "Which engagements are at risk this quarter, and why?",
+          intro: "Three engagements, ranked by exposure:",
+          items: [
+            {
+              name: "Marlowe Advisory — Restructure",
+              why: "Budget 82% consumed at 54% delivered. Two change requests unsigned.",
+            },
+            {
+              name: "Sterling Hoyt — Panel review",
+              why: "No contact in 41 days; the sponsor changed role last month.",
+            },
+            {
+              name: "Northgate — Phase 2",
+              why: "Proposal sent 19 days ago, opened twice, no reply.",
+            },
+          ],
+          sources: ["Budget report · 12 Aug", "Change log · 4 entries", "Email thread · 6 messages"],
+        },
+        brief: {
+          initials: "PA",
+          title: "Prior to your 14:00 — Pell & Rowe",
+          meta: "assembled from 47 records · 3 documents · 2 calls",
+          badge: "Brief",
+          blocks: [
+            {
+              label: "Where it stands",
+              body: "Year-end review signed in April. Two outstanding items from the March meeting; the ledger access request has been open 11 days without a reply.",
+            },
+          ],
+          promisesLabel: "What you promised",
+          promises: [
+            "A revised fee schedule by the 20th — not yet sent",
+            "An introduction to the VAT specialist — completed",
+          ],
+          risk:
+            "Open risk: partner raised fee sensitivity twice since January. Tone guidance suggests leading with the fixed-fee option.",
+        },
+        answer: {
+          question: "How did we win the last three panel reviews like this one?",
+          finding: "Pattern identified across 3 engagements",
+          steps: [
+            {
+              step: "Before the pitch",
+              detail:
+                "Send a one-page fee transparency summary 48 hours ahead. All three engagements that followed this shape progressed to second meeting.",
+            },
+            {
+              step: "In the meeting",
+              detail:
+                "Lead with the implementation timeline, not credentials. Notes from all three calls show the timeline question raised first.",
+            },
+            {
+              step: "After",
+              detail:
+                "Follow up within 6 hours with the timeline as a document. Conversion to signature was materially faster in these cases.",
+            },
+          ],
+          note: "Derived from 3 signed engagements and 11 call transcripts. Every claim links to the underlying record.",
+        },
+      },
     },
 
     howItWorks: {

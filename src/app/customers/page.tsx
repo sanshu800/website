@@ -4,7 +4,7 @@ import { ArrowRight, Quote } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getShared } from "@/lib/cms/content";
+import { getPages, getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
 import { getSolutions } from "@/lib/cms/content";
 
@@ -18,13 +18,14 @@ export const metadata: Metadata = {
 export default function CustomersPage() {
   const { clients, testimonials, disclosures } = getShared();
   const { items: solutions } = getSolutions();
+  const { customers: copy } = getPages();
 
   return (
     <>
       <PageHero
-        eyebrow="Customers"
-        title="Firms that stopped losing work between the tools."
-        summary="Case studies are being written up with named firms and published numbers. Until they are, this page shows the operational shape of the work and the quotes we have permission to use."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        summary={copy.hero.summary}
       />
 
       <section className="border-b border-line bg-paper py-10">
@@ -49,10 +50,7 @@ export default function CustomersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading
-            eyebrow="Featured"
-            title="“The last piece of software our practice needed.”"
-          />
+          <SectionHeading eyebrow={copy.featured.eyebrow} title={copy.featured.title} />
           <div className="mt-10 grid gap-6 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <div className="rounded-2xl bg-ink p-8 text-on-ink sm:p-10">
@@ -68,12 +66,7 @@ export default function CustomersPage() {
             </Reveal>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              {[
-                { label: "Before", value: "3 shared inboxes and a spreadsheet" },
-                { label: "After", value: "One intake record with owners" },
-                { label: "First change", value: "Median first reply, 22h to 38m" },
-                { label: "Time to value", value: "Measured inside 3 weeks" },
-              ].map((item) => (
+              {copy.narrative.map((item) => (
                 <Reveal key={item.label}>
                   <div className="rounded-2xl border border-line p-6">
                     <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
@@ -87,15 +80,14 @@ export default function CustomersPage() {
           </div>
 
           <p className="mt-6 font-mono text-[0.6875rem] text-fog-2">
-            Placeholder narrative — illustrative of the pattern, not a verified client
-            result. Replace before publishing.
+            {copy.narrativeNote}
           </p>
         </Container>
       </section>
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow="In their words" title="What partners tell us." />
+          <SectionHeading eyebrow={copy.quotes.eyebrow} title={copy.quotes.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((item) => (
               <RevealItem key={item.name}>

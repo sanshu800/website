@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ReygentWordmark } from "@/components/brand/Logo";
-import { primaryNav } from "@/lib/content/marketing";
+import type { ChromeDoc } from "@/lib/content/pages/chrome";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -19,7 +19,13 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * becomes a solid paper bar the moment the page moves or a menu opens — the
  * same pattern as the hero reference, implemented without a scroll library.
  */
-export function SiteHeader() {
+export function SiteHeader({
+  brand,
+  header,
+}: {
+  brand: ChromeDoc["brand"];
+  header: ChromeDoc["header"];
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -107,7 +113,7 @@ export function SiteHeader() {
   const isActive = (href?: string) =>
     href ? pathname === href || pathname.startsWith(`${href}/`) : false;
 
-  const activeMenu = primaryNav.find((item) => item.label === openMenu);
+  const activeMenu = header.nav.find((item) => item.label === openMenu);
 
   /**
    * Dark treatment: floating over the hero film at rest on the homepage, or
@@ -133,14 +139,14 @@ export function SiteHeader() {
           <div className="flex h-16 items-center justify-between gap-6">
             <Link
               href="/"
-              aria-label="Reygent — home"
+              aria-label={`${brand.name} — home`}
               className="shrink-0 transition-transform duration-300 hover:opacity-70"
             >
               <ReygentWordmark tone={overlay ? "on-ink" : "ink"} />
             </Link>
 
             <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
-              {primaryNav.map((item) =>
+              {header.nav.map((item) =>
                 item.children ? (
                   <div
                     key={item.label}
@@ -187,22 +193,22 @@ export function SiteHeader() {
 
             <div className="hidden items-center gap-2 lg:flex">
               <Link
-                href="/login"
+                href={header.actions.signIn.href}
                 className={cn(
                   "rounded-lg px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-200",
                   overlay ? "text-on-ink/80 hover:text-on-ink" : "text-fg-2 hover:text-ink",
                 )}
               >
-                Log in
+                {header.actions.signIn.label}
               </Link>
               <Link
-                href="/get-started"
+                href={header.actions.primary.href}
                 className={cn(
                   "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 hover:scale-[1.03] active:scale-95",
                   overlay ? "bg-on-ink text-ink" : "bg-accent text-white",
                 )}
               >
-                Get started
+                {header.actions.primary.label}
               </Link>
             </div>
 
@@ -317,7 +323,7 @@ export function SiteHeader() {
         >
           <div className="my-auto w-full">
           <ul className="border-t border-white/10">
-            {primaryNav.map((item) => {
+            {header.nav.map((item) => {
               const expanded = mobileSection === item.label;
               return (
                 <li key={item.label} className="border-b border-white/10">
@@ -386,18 +392,18 @@ export function SiteHeader() {
 
           <div className="mt-8 flex flex-col gap-3 sm:max-w-[24rem]">
             <Link
-              href="/get-started"
+              href={header.actions.primary.href}
               onClick={() => setMobileOpen(false)}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-[1rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
             >
-              Get started <ArrowRight className="h-4 w-4" />
+              {header.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/login"
+              href={header.actions.signIn.href}
               onClick={() => setMobileOpen(false)}
               className="inline-flex h-12 items-center justify-center rounded-lg border border-on-ink/25 text-[1rem] font-medium text-on-ink transition-colors hover:bg-on-ink/10"
             >
-              Log in
+              {header.actions.signIn.label}
             </Link>
           </div>
           </div>

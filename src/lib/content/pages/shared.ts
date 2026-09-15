@@ -4,6 +4,7 @@ import {
   platformFacts,
   testimonials,
 } from "@/lib/content/marketing";
+import { siteStats } from "@/lib/content/company";
 
 /**
  * Default copy shared across pages: the client marks, the testimonial wall, the
@@ -18,6 +19,7 @@ export function sharedDoc() {
     testimonials,
     integrations,
     platformFacts,
+    siteStats,
     disclosures: {
       clients: "Placeholder client marks — invented for design purposes.",
       testimonials:

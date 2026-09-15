@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { DemoForm } from "@/components/forms/DemoForm";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getShared } from "@/lib/cms/content";
+import { getPages, getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Book a demo",
@@ -13,22 +13,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/demo" },
 };
 
-const AGENDA = [
-  { title: "Minutes 0–8", body: "You describe one process that is currently painful. We map it on screen as you talk." },
-  { title: "Minutes 8–20", body: "We take the same process through the platform live — intake, handover, chase, report — using the record rather than slides." },
-  { title: "Minutes 20–27", body: "Honest assessment: what the platform fixes, what it does not, and what it would take to implement." },
-  { title: "Minutes 27–30", body: "Pricing, next steps, and the implementation shape if you want to proceed." },
-];
-
 export default function DemoPage() {
   const { testimonials } = getShared();
+  const { demo: copy } = getPages();
 
   return (
     <>
       <PageHero
-        eyebrow="Book a demo"
-        title="Bring one real process."
-        summary="Thirty minutes with someone who has mapped this before. No slides, no qualification script, and you keep the process map afterwards whether or not you buy."
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        summary={copy.hero.summary}
       />
 
       <section className="section bg-paper">
@@ -42,10 +36,10 @@ export default function DemoPage() {
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
                   <h2 className="font-display text-[1.0625rem] text-ink">
-                    How the thirty minutes runs
+                    {copy.agendaHeading}
                   </h2>
                   <ol className="mt-6 space-y-5">
-                    {AGENDA.map((item) => (
+                    {copy.agenda.map((item) => (
                       <li key={item.title} className="flex gap-4">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                         <div>
@@ -65,12 +59,9 @@ export default function DemoPage() {
                   <Users className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                   <div>
                     <h2 className="text-[0.9375rem] font-medium text-ink">
-                      Who should join
+                      {copy.whoHeading}
                     </h2>
-                    <p className="mt-2 text-micro text-fog">
-                      The person who owns operations, plus whoever owns the systems. Two
-                      people is ideal; six is a committee.
-                    </p>
+                    <p className="mt-2 text-micro text-fog">{copy.whoBody}</p>
                   </div>
                 </div>
               </Reveal>
@@ -86,18 +77,14 @@ export default function DemoPage() {
                   </figcaption>
                 </figure>
                 <p className="mt-3 font-mono text-[0.6875rem] text-fog-2">
-                  Placeholder testimonial — invented for design purposes.
+                  {copy.quoteNote}
                 </p>
               </Reveal>
 
               <Reveal delay={0.15}>
                 <div className="mt-6 flex gap-4 rounded-2xl border border-line bg-mist p-6">
                   <CalendarClock className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-                  <p className="text-micro text-fog">
-                    Calendar booking is not connected on this build. Requests land in the
-                    platform database and would be confirmed by email; wiring Google
-                    Calendar or Cal.com is the only change required.
-                  </p>
+                  <p className="text-micro text-fog">{copy.calendarNote}</p>
                 </div>
               </Reveal>
             </div>

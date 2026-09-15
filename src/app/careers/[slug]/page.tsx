@@ -4,11 +4,11 @@ import Link from "next/link";
 import { ArrowLeft, Briefcase, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
-import { roles } from "@/lib/content/company";
+import { getCompany } from "@/lib/cms/content";
 import { ApplicationPanel, CancelApplication } from "@/components/forms/ApplicationPanel";
 
 export function generateStaticParams() {
-  return roles.map((role) => ({ slug: role.slug }));
+  return getCompany().careers.roles.map((role) => ({ slug: role.slug }));
 }
 
 export async function generateMetadata({
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const role = roles.find((item) => item.slug === slug);
+  const role = getCompany().careers.roles.find((item) => item.slug === slug);
   if (!role) return { title: "Not found" };
   return {
     title: `${role.title} — ${role.team}`,
@@ -32,7 +32,8 @@ export default async function RolePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const role = roles.find((item) => item.slug === slug);
+  const { careers } = getCompany();
+  const role = careers.roles.find((item) => item.slug === slug);
   if (!role) notFound();
 
   return (
@@ -133,10 +134,10 @@ export default async function RolePage({
       </section>
 
       <PageCTA
-        title="Not the right role?"
-        summary="Send us a note describing the role you would create for yourself here. Several of our positions started that way."
-        primary={{ href: "/contact", label: "Get in touch" }}
-        secondary={{ href: "/about", label: "About Reygent" }}
+        title={careers.roleCta.title}
+        summary={careers.roleCta.summary}
+        primary={careers.roleCta.primary}
+        secondary={careers.roleCta.secondary}
       />
     </>
   );

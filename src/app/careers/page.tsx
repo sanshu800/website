@@ -4,7 +4,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { roles, companyValues } from "@/lib/content/company";
+import { getCompany } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -13,30 +13,28 @@ export const metadata: Metadata = {
   alternates: { canonical: "/careers" },
 };
 
-const PERKS = [
-  { title: "Remote-first, with real async habits", body: "Written-first by default. Meetings are for decisions, not for status." },
-  { title: "Every engineer talks to customers", body: "Implementation calls are open to the whole team. You should see the problem, not a ticket about it." },
-  { title: "Time to think", body: "A protected day each month with no meetings, for reading and for the work that never fits anywhere else." },
-  { title: "Equipment and learning budget", body: "Your setup, your choice, plus an annual budget with no approval theatre." },
-];
-
 export default function CareersPage() {
+  const { about, careers } = getCompany();
+  const valuesList = about.valuesList;
+  const { roles } = careers;
   const teams = [...new Set(roles.map((role) => role.team))];
 
   return (
     <>
       <PageHero
-        eyebrow="Careers"
-        title="Build systems that outlive the person who built them."
-        summary="We are a small team building operational infrastructure for firms that cannot afford to guess. If you like problems with a measurable answer, this is the right place."
+        eyebrow={careers.hero.eyebrow}
+        title={careers.hero.title}
+        summary={careers.hero.summary}
       />
 
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow="Open roles"
-            title={`${roles.length} positions across ${teams.length} teams.`}
-            lede="Every role below is live, with a real hiring manager and a defined process. If it is listed, we are reading applications."
+            eyebrow={careers.openRoles.eyebrow}
+            title={careers.openRoles.titleTemplate
+              .replace("{roles}", String(roles.length))
+              .replace("{teams}", String(teams.length))}
+            lede={careers.openRoles.lede}
           />
           <RevealGroup className="mt-12 border-t border-line">
             {roles.map((role) => (
@@ -68,9 +66,12 @@ export default function CareersPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow="Working here" title="What we actually offer." />
+          <SectionHeading
+            eyebrow={careers.workingHere.eyebrow}
+            title={careers.workingHere.title}
+          />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {PERKS.map((perk) => (
+            {careers.perks.map((perk) => (
               <RevealItem key={perk.title}>
                 <h3 className="text-[1.0625rem] font-medium text-ink">{perk.title}</h3>
                 <p className="mt-2.5 text-micro text-fog">{perk.body}</p>
@@ -80,10 +81,10 @@ export default function CareersPage() {
 
           <div className="mt-16">
             <h2 className="font-mono text-eyebrow uppercase text-fog-2">
-              What we look for
+              {careers.workingHere.lookingFor}
             </h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {companyValues.map((value) => (
+              {valuesList.map((value) => (
                 <li
                   key={value.title}
                   className="rounded-xl border border-line bg-paper px-5 py-4 text-[0.875rem] text-fg-2"
@@ -97,10 +98,10 @@ export default function CareersPage() {
       </section>
 
       <PageCTA
-        title="Nothing fits, but you think you should be here?"
-        summary="Tell us what you would build and why it matters for a firm that runs on client relationships. We read everything."
-        primary={{ href: "/contact", label: "Get in touch" }}
-        secondary={{ href: "/about", label: "About Reygent" }}
+        title={careers.cta.title}
+        summary={careers.cta.summary}
+        primary={careers.cta.primary}
+        secondary={careers.cta.secondary}
       />
     </>
   );

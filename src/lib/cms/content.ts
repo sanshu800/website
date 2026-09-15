@@ -2,7 +2,14 @@ import { getDoc, type BlogDoc, type CompareDoc, type LegalDoc, type PricingDoc, 
 import type { Product } from "@/lib/content/products";
 import type { Comparison, Solution } from "@/lib/content/compare";
 import type { Post } from "@/lib/content/blog";
-import type { HomeDoc, SharedDoc } from "@/lib/cms/documents";
+import type {
+  ChromeDoc,
+  CompanyDoc,
+  HomeDoc,
+  PagesDoc,
+  ResourcesDoc,
+  SharedDoc,
+} from "@/lib/cms/documents";
 
 /**
  * Typed access to the merged content documents.
@@ -62,4 +69,20 @@ export function getHome(): HomeDoc {
 
 export function getShared(): SharedDoc {
   return getDoc<SharedDoc>("shared");
+}
+
+export function getChrome(): ChromeDoc {
+  return getDoc<ChromeDoc>("chrome");
+}
+
+export function getCompany(): CompanyDoc {
+  return getDoc<CompanyDoc>("company");
+}
+
+export function getResources(): ResourcesDoc {
+  return getDoc<ResourcesDoc>("resources");
+}
+
+export function getPages(): PagesDoc {
+  return getDoc<PagesDoc>("pages");
 }

@@ -20,15 +20,15 @@ import {
  * from anyone else. It offers a real choice ("essential only" genuinely turns
  * measurement off) and it does not nag once the visitor has chosen.
  *
- * The stored choice is read through `useSyncExternalStore` rather than an effect:
- * the server snapshot is "unset", so the bar is absent from the server-rendered
- * HTML (no flash for visitors who already answered, nothing for crawlers to
- * index) and appears only once the browser value is genuinely known — with no
- * hydration mismatch, because React uses that same server snapshot for the first
- * client render.
+ * The stored choice is read through `useSyncExternalStore` rather than an effect.
+ * The server snapshot is `unresolved` — not `unset` — which is what keeps the bar
+ * out of the server-rendered HTML and stops it flashing at the visitors who have
+ * already answered; it appears a moment after hydration for first-time visitors.
+ * React uses that same snapshot for the first client render, so there is no
+ * hydration mismatch either way.
  */
 
-const SERVER_SNAPSHOT: Consent = "unset";
+const SERVER_SNAPSHOT: Consent = "unresolved";
 
 function subscribe(onChange: () => void) {
   window.addEventListener(CONSENT_EVENT, onChange);

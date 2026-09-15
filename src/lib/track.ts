@@ -22,7 +22,14 @@ export const CONSENT_EVENT = "reygent:consent";
 const CONSENT_KEY = "reygent.measurement";
 const SESSION_KEY = "reygent.visit";
 
-export type Consent = "granted" | "essential" | "unset";
+/**
+ * `unresolved` exists only on the server: it means "the browser has not told us
+ * yet". The consent bar renders for `unset` and hides for anything else, so
+ * starting from `unresolved` keeps it out of the server HTML and off the screen
+ * of a visitor who has already answered — the bar appears a moment after
+ * hydration for first-time visitors instead of flashing at everybody.
+ */
+export type Consent = "granted" | "essential" | "unset" | "unresolved";
 
 export function readConsent(): Consent {
   if (typeof window === "undefined") return "unset";

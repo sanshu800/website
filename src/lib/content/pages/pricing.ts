@@ -22,8 +22,12 @@ export const pricingCopy = {
     popularBadge: "Most start here",
     unit: "",
     footnoteBefore: "Business under three years old? Our founders programme builds one process for a fixed",
-    footnoteLink: "£4,500",
+    footnoteLink: "$6,000",
     quoteCta: "Not sure which one you need?",
+    /* Read by anyone outside the US or UK: names the currency, the currency we
+       will contract in, and that geography is not a filter. */
+    currencyNote:
+      "Prices are in USD. We work with clients worldwide and will contract in GBP or EUR if that suits your books better.",
   },
 
   engagementsList: engagements,
@@ -36,6 +40,8 @@ export const pricingCopy = {
       "Start with the audit. Most businesses go on to a build, and the ones that want us to stay on afterwards keep a retainer. You are never locked in — the code and the accounts are yours from day one.",
     compareLink: "What is included in each",
     footnote: "Fixed scope · Milestone payments · You own everything we build",
+    currencyNote:
+      "Prices in USD · we work with clients worldwide, in your timezone and your currency",
   },
 
   comparison: {
@@ -45,7 +51,7 @@ export const pricingCopy = {
     columnNames: ["AI audit", "Build project", "Managed AI"],
     rows: [
       { row: "Who it is for", core: "Before you commit to anything", pro: "You know the process to fix", ent: "You want it looked after" },
-      { row: "Typical price", core: "£2,400 fixed", pro: "£9,000 – £25,000 fixed", ent: "From £950 / month" },
+      { row: "Typical price", core: "$3,000 fixed", pro: "$12,000 – $32,000 fixed", ent: "From $1,200 / month" },
       { row: "Time involved", core: "One week", pro: "Four to eight weeks", ent: "Ongoing" },
       { row: "Your team's time", core: "4–5 hours", pro: "About an hour a week", ent: "One monthly review" },
       { row: "Ranked automation plan", core: "Included", pro: "Included", ent: "Kept current" },

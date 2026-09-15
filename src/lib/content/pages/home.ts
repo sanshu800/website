@@ -121,7 +121,7 @@ export function homeDoc() {
             },
             {
               name: "Northgate Supply — invoice query",
-              why: "Queried £4,180 against order 88-412. Two line items do not match the PO.",
+              why: "Queried $5,300 against order 88-412. Two line items do not match the PO.",
             },
             {
               name: "Halloran & Vance — renewal",

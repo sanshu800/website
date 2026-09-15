@@ -347,8 +347,8 @@ export function InsightScreen({ className }: { className?: string }) {
 
       <div className="grid grid-cols-3 divide-x divide-line border-b border-line">
         {[
-          { label: "Confirmed work", value: "£186k", delta: "+8.2%" },
-          { label: "Quotes outstanding", value: "£74k", delta: "+3.1%" },
+          { label: "Confirmed work", value: "$236k", delta: "+8.2%" },
+          { label: "Quotes outstanding", value: "$94k", delta: "+3.1%" },
           { label: "Gross margin", value: "41%", delta: "-1.4%" },
         ].map((metric) => (
           <div key={metric.label} className="px-4 py-3">

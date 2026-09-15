@@ -3,6 +3,7 @@ import path from "node:path";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { HeroFilm } from "./HeroFilm";
 import { heroVideo } from "@/lib/content/marketing";
 import { getHome } from "@/lib/cms/content";
 
@@ -14,7 +15,8 @@ import { getHome } from "@/lib/cms/content";
  * block, one horizontal so the left column stays legible whichever part of the
  * frame is behind it. If the video never loads — slow network, blocked host,
  * reduced data — the poster is already a finished composition, so the hero is
- * never a black rectangle.
+ * never a black rectangle. On a metered connection the film steps aside too —
+ * `HeroFilm` handles that, and `prefers-reduced-data` handles it in CSS.
  */
 /**
  * Resolution order for the film: a file dropped into the project wins, so the
@@ -41,20 +43,13 @@ export function Hero() {
 
   return (
     <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-ink">
-      {/* 1. Film */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
+      {/* 1. Film — see HeroFilm for the data-saver behaviour. */}
+      <HeroFilm
+        src={video.src}
+        type={video.type}
         poster="/images/hero-poster.jpg"
-        aria-hidden="true"
-        tabIndex={-1}
-        className="absolute inset-0 h-full w-full object-cover object-[70%_center] motion-reduce:hidden"
-      >
-        <source src={video.src} type={video.type} />
-      </video>
+        className="hero-film absolute inset-0 h-full w-full object-cover object-[70%_center] motion-reduce:hidden"
+      />
 
       {/* Poster stays put underneath, and carries the hero when motion is off. */}
       <div

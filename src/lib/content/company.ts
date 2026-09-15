@@ -19,7 +19,7 @@ export const engagements: Engagement[] = [
   {
     slug: "audit",
     name: "AI audit",
-    price: "£2,400",
+    price: "$3,000",
     priceNote: "one week, fixed fee, credited against your build",
     summary:
       "We spend a week inside your business, find every repetitive task worth automating, and give you a ranked plan with realistic savings against each one.",
@@ -43,7 +43,7 @@ export const engagements: Engagement[] = [
   {
     slug: "build",
     name: "Build project",
-    price: "from £9,000",
+    price: "from $12,000",
     priceNote: "fixed scope, fixed price, 4–8 weeks",
     summary:
       "We build the first automation, run it alongside your current process, and switch it on once the numbers prove it works.",
@@ -69,7 +69,7 @@ export const engagements: Engagement[] = [
   {
     slug: "managed",
     name: "Managed AI",
-    price: "from £950",
+    price: "from $1,200 / month",
     priceNote: "per month, cancellable with 30 days' notice",
     summary:
       "We monitor what we built, keep it accurate as your business changes, and come back every month with what to fix next.",
@@ -84,7 +84,7 @@ export const engagements: Engagement[] = [
       "Priority access when something urgent happens",
     ],
     limits: [
-      { label: "Response", value: "Same working day, urgent same hour" },
+      { label: "Response", value: "Same working day (UK hours), urgent same hour" },
       { label: "Review", value: "Monthly, with your team" },
       { label: "Minimum", value: "Three months, then rolling" },
       { label: "Leaving", value: "30 days' notice, keep everything" },
@@ -99,7 +99,7 @@ export const pricingFaqs = [
   },
   {
     q: "What does the project actually cost all in?",
-    a: "Most first builds land between £9,000 and £25,000, depending on how many systems are involved and how tidy your data is. You get a fixed price before anything starts, and we hold it unless you change the scope in writing.",
+    a: "Most first builds land between $12,000 and $32,000, depending on how many systems are involved and how tidy your data is. You get a fixed price before anything starts, and we hold it unless you change the scope in writing. Prices are in USD — roughly £9,000 to £25,000 — and we will contract in GBP or EUR if that suits your books better.",
   },
   {
     q: "What do you need from our side?",
@@ -552,11 +552,11 @@ export const legalPages = {
 export const startupsProgram = {
   headline: "A fixed-price first automation for businesses under three years old",
   summary:
-    "New businesses have an advantage: no inherited process, no legacy systems, and no committee. What they do not have is a spare £20,000. The Founders Programme is a smaller, fixed-scope version of our first build, priced for a business that is still proving itself.",
+    "New businesses have an advantage: no inherited process, no legacy systems, and no committee. What they do not have is a spare $25,000. The Founders Programme is a smaller, fixed-scope version of our first build, priced for a business that is still proving itself.",
   benefits: [
     {
       title: "One process, fixed price",
-      body: "Pick the one thing taking the most time this quarter. We scope it small, price it at £4,500, and build it in three weeks.",
+      body: "Pick the one thing taking the most time this quarter. We scope it small, price it at $6,000, and build it in three weeks.",
     },
     {
       title: "The audit is included",

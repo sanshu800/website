@@ -54,14 +54,8 @@ export async function generateMetadata(): Promise<Metadata> {
   },
   description: brand.description,
   applicationName: brand.name,
-  keywords: [
-    "professional services automation",
-    "ai agency for small business",
-    "workflow automation agency",
-    "client onboarding automation",
-    "AI operations platform",
-    "ai agents for business",
-  ],
+  /* No `keywords` tag: Google has ignored it for years, and the list still
+     advertised the retired "AI operations platform" positioning. */
   authors: [{ name: brand.name }],
   creator: brand.name,
   alternates: { canonical: "/" },
@@ -83,7 +77,10 @@ export async function generateMetadata(): Promise<Metadata> {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+  },
   };
 }
 

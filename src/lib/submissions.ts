@@ -11,7 +11,12 @@ import { newId, run, all, count } from "./db";
  * `forwardToCrm` below is the seam.
  */
 
-const email = z.string().trim().email().max(200).toLowerCase();
+const email = z
+  .string({ error: "Which email should we reply to?" })
+  .trim()
+  .email({ error: "That email address does not look right" })
+  .max(200)
+  .toLowerCase();
 
 export const newsletterSchema = z.object({
   email,
@@ -29,10 +34,20 @@ export const newsletterSchema = z.object({
  * copy — it is set by the form.
  */
 export const enquirySchema = z.object({
-  firstName: z.string().trim().min(1, { error: "Your first name, please" }).max(80),
-  lastName: z.string().trim().min(1, { error: "Your last name, please" }).max(80),
+  /* One field, not two. Splitting a name into first and last is a Western
+     convention: plenty of visitors have a single name, or put the family name
+     first, and a required second box turns that into a validation error. */
+  fullName: z
+    .string({ error: "Your name, please" })
+    .trim()
+    .min(2, { error: "Your name, please" })
+    .max(120),
   email,
-  company: z.string().trim().min(2, { error: "Which company are you with?" }).max(160),
+  company: z
+    .string({ error: "Which company are you with?" })
+    .trim()
+    .min(2, { error: "Which company are you with?" })
+    .max(160),
   /* The enum messages are the ones a person sees under the field, so they are
      written as instructions rather than as schema diagnostics. */
   companySize: z.enum(["1-5", "6-15", "16-40", "41-120", "120-plus"], {
@@ -62,7 +77,7 @@ export const enquirySchema = z.object({
     error: "Choose a budget range, or pick “prefer to discuss”",
   }),
   message: z
-    .string()
+    .string({ error: "A sentence or two, so the first reply is useful" })
     .trim()
     .min(10, { error: "A sentence or two, so the first reply is useful" })
     .max(4000),
@@ -72,8 +87,8 @@ export const enquirySchema = z.object({
 });
 
 /** The row is stored under one display name, so the inbox reads like a person. */
-export function contactDisplayName(data: { firstName: string; lastName: string }): string {
-  return `${data.firstName} ${data.lastName}`.trim();
+export function contactDisplayName(data: { fullName: string }): string {
+  return data.fullName.trim();
 }
 
 export const careersSchema = z.object({

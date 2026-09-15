@@ -89,13 +89,14 @@ export default function PricingPage() {
             ))}
           </RevealGroup>
 
-          <p className="mt-6 text-center text-micro text-fog-2">
+          <p className="mt-6 text-center text-micro text-fog">
             {plans.footnoteBefore}{" "}
             <Link href="/startups" className="text-accent underline underline-offset-2">
               {plans.footnoteLink}
             </Link>
             .
           </p>
+          <p className="mt-3 text-center text-micro text-fog">{plans.currencyNote}</p>
         </Container>
       </section>
 

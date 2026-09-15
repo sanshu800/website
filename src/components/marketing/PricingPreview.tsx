@@ -89,8 +89,10 @@ export function PricingPreview() {
             {preview.compareLink}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
-          <span className="text-micro text-fog-2">{preview.footnote}</span>
+          <span className="text-micro text-fog">{preview.footnote}</span>
         </div>
+
+        <p className="mt-4 text-center text-micro text-fog">{preview.currencyNote}</p>
       </Container>
     </section>
   );

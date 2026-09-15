@@ -18,7 +18,7 @@ public pages.
 | Area | Status |
 | --- | --- |
 | 33 marketing routes (services, industries, comparisons, blog, legal, engagements, how we work, build log) | Static-rendered, all live |
-| Inbound forms (enquiry, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook. The enquiry form is the full qualification form — first/last name, work email, company, size, revenue, role, phone, topic, budget, message, referral — and it is the same component behind the "Book a free AI audit" CTA and the contact page |
+| Inbound forms (enquiry, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook. The enquiry form is the full qualification form — full name, work email, company, size, revenue, role, phone, topic, budget, message, referral (one name field, not two: splitting a name is a Western convention) — and it is the same component behind the "Book a free AI audit" CTA and the contact page |
 | Content admin at `/admin` | Edit every string on the marketing site. Validated writes, audit log, one-click restore, no deploy |
 | Authentication | Sign-in and sign-out for admin accounts only. **No public sign-up** — accounts come from `npm run admin:create` |
 | Access control | Session guard on every `/admin/**` page; `owner`/`admin` role required to publish, others see a 403 |
@@ -26,6 +26,10 @@ public pages.
 | Search, filtering | Client-side search across every field of a content surface, plus an "edited only" filter |
 | Charts, tabs, marquees, reveals | Server-rendered markup + CSS/motion animation, reduced-motion aware |
 | Sitemap, robots, 404 | Present; `/admin` and `/api/` are disallowed for crawlers |
+| Share cards and install icons | `opengraph-image.tsx` (1200×630) + `twitter-image.tsx` + `apple-icon.tsx` (180×180) + `manifest.ts`, all generated from the brand |
+| Abuse control | Per-caller sliding window on the three public POST routes (8/hr enquiry, 10/hr generic, 5/hr newsletter) + a honeypot that answers bots with a success and stores nothing |
+| Error and loading states | `error.tsx`, `global-error.tsx`, and skeletons scoped to the two routes that actually wait (`/upload`, `/admin`) |
+| Currency | **USD primary**, GBP/EUR by arrangement — see below |
 | Payments | **Not wired** — see "Needs real credentials" |
 | Email delivery | **Not wired** — submissions are stored, not sent |
 
@@ -82,6 +86,14 @@ own tab always works.
   Geist; section headlines are Space Grotesk; labels are Geist Mono.
 - **Radii:** 8px on buttons and inputs, 12–28px on cards and surfaces, full on
   filters, chips, avatars and dots. Squared controls, soft surfaces.
+- **Colour is two-tier, and the tiers are not interchangeable.** The base tokens
+  (`--color-jade`, `--color-caution`, …) are *graphic* colours: they carry icons,
+  rules and fills, and they measure 2.9:1–5.1:1 against paper, so none of them may
+  hold a sentence. Text uses the `-ink` set (worst case 5.3:1 on paper, 5.4:1 on
+  its own soft tint) and chips pair them with a `-line` hairline. Control borders
+  use `--color-field` (3.36:1) rather than the decorative `line-strong` (1.56:1),
+  because a field's border is the only thing identifying it. Nothing outside
+  `globals.css` contains a colour literal.
 - **Motion:** a staggered `fadeSlideUp` on the hero, a marquee strip, reveal-on-
   scroll sections and a scroll-progress rail. All of it collapses under
   `prefers-reduced-motion`, where the hero falls back to a still frame.
@@ -93,7 +105,10 @@ gradient scrim for legibility and a poster frame committed at
 `public/images/hero-poster.jpg` so the hero is never a black rectangle while the
 video loads. The clip is referenced from its CDN because it is several megabytes:
 for production, download it to `public/video/hero.mp4` and point `heroVideo.src`
-in `src/lib/content/marketing.ts` at that local path.
+in `src/lib/content/marketing.ts` at that local path — the resolution order
+already prefers a local file. `HeroFilm` pauses the film when the browser reports
+a data-saver preference or a 2G-class connection, and `prefers-reduced-data`
+hides it in CSS; the poster underneath is a finished composition either way.
 
 ## Stack decisions (made, not asked)
 
@@ -155,6 +170,11 @@ Session-authenticated unless noted. All JSON.
 | `GET` | `/api/auth/session` | Who the server can see, so the form can report a dropped cookie |
 | `POST` | `/api/content` | Write site copy (`set`, `reset`, `revert`, `drop`). Owner/admin only |
 | `POST` | `/api/media` | Upload the hero film (opt-in, token-gated) |
+
+Every public POST route is rate-limited per caller (sliding window, in-process —
+single-instance coverage, documented in `src/lib/ratelimit.ts`) and checks a
+honeypot field first, answering a caught bot with `{ "ok": true }` and storing
+nothing.
 
 There is deliberately no sign-up route. `POST /api/auth/signup` was removed: it
 created accounts with the `owner` role, which would have handed the admin panel to
@@ -240,6 +260,21 @@ marketing site is editable, including the header navigation and the footer.
 derived from the copy above rather than typed twice) and the artwork itself. Both are
 listed on the admin screen so the coverage claim stays honest.
 
+## Currency and geography
+
+The commercial surface is priced in **USD** — $3,000 for the audit week, builds
+from $12,000, the retainer from $1,200/month, and $6,000 for the founders
+programme — because most of the audience is not British. GBP and EUR are offered
+as contracting currencies in the same breath (`pricingCopy.plans.currencyNote`),
+and the form's revenue and budget bands are in dollars to match. Salaries on
+`/careers` stay in GBP on purpose: those roles are advertised as remote UK/EU or
+hybrid London, so the employment market, not the sales market, sets the currency.
+
+Response-time promises say "UK hours (GMT/BST)" so a reader in another timezone
+can tell which clock is meant.
+
+---
+
 ## Environment variables
 
 Everything works with none set. Optional:
@@ -291,11 +326,14 @@ Copy `.env.example` if you want to set them.
 
 ## Hero film and other uploaded media
 
-The homepage hero plays a full-bleed looping video. Resolution happens at request
-time, in this order:
+The homepage hero plays a full-bleed looping video. Resolution happens when the
+page is rendered — at build, and again on every cache purge — in this order:
 
 1. `public/video/hero.mp4` / `hero.webm` / `hero.mov` — a file present in the
-   project always wins, and the hero picks it up **without a rebuild**.
+   project always wins, and the hero picks it up **without a rebuild**: the
+   homepage is statically rendered, and `POST /api/media` purges it after writing
+   a file (the same `revalidatePath` mechanism `/api/content` uses for copy
+   edits).
 2. `heroVideo.src` in `src/lib/content/marketing.ts` — the remote CDN reference.
 
 `public/images/hero-poster.jpg` is the poster frame and the fallback shown when the
@@ -344,6 +382,31 @@ content loop — the whole thing end to end over HTTP:
   homepage, `/pricing`, `/how-we-work`, `/about`, `/contact`, `/get-started` and
   `/careers`;
 - the public forms still capture: an audit request returns 201 and writes its row.
+
+Then, for the international/production pass:
+
+- the homepage is prerendered (`x-nextjs-prerender: 1`, `s-maxage=31536000`) where
+  it was previously `private, no-cache, no-store`; the other marketing routes were
+  already cached and CMS writes still change served HTML;
+- all six security headers are present on `/`; `/images/*` is immutable for a year
+  and uploaded media for a week; the image optimiser negotiates AVIF (33.9 KB where
+  the source PNG is 2.3 MB);
+- the limiter refuses the 9th enquiry in an hour with **429 + `Retry-After: 3600`**,
+  a filled honeypot returns **200 `{"ok":true}`** and writes nothing, and a missing
+  required field returns a human message rather than Zod's diagnostic;
+- `error.tsx` renders on a route that throws — verified by adding a temporary route
+  that throws, confirming the 500 response carries a digest plus `noindex`, and then
+  confirming the fallback copy ships in the chunk referenced by that response before
+  deleting the route (no browser is available, so this is bundle-level, not visual);
+- a root-level `loading.tsx` leaked a skeleton into every prerendered page's first
+  paint (`/pricing` shipped 16 `animate-pulse` divs before its real `<h1>`), so
+  loading states are scoped to `/upload` and `/admin`;
+- `og:image` (1200×630), `twitter:image`, `apple-touch-icon` (180×180) and
+  `/manifest.webmanifest` all return 200 with the right content types, and the
+  share card itself was rendered and reviewed;
+- the enquiry form posts `fullName` and returns 201; the retired `firstName`/
+  `lastName` payload returns 422;
+- 51 sitemap routes and every internal link in the rendered site return 200.
 
 **Retired, all returning 404:** `/login`, `/signup`, the whole `/dashboard` tree,
 `POST /api/auth/signup`, `/api/ask`, `/api/tasks` and the sample CRM screens behind

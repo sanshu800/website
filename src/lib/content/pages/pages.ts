@@ -18,7 +18,7 @@ export function pagesDoc() {
       },
       formHeading: "Tell us what you need",
       formNote:
-        "Fill in the form below and we will come back to you within one business day with either a straight answer or a short list of what we need to look at. Everything except your phone number is asked once, here, so the first conversation can start on your business rather than on your details.",
+        "Fill in the form below and we will come back to you within one business day (UK hours, GMT/BST) with either a straight answer or a short list of what we need to look at. Everything except your phone number is asked once, here, so the first conversation can start on your business rather than on your details. We work with clients worldwide and price in USD; GBP and EUR are both fine to contract in.",
       includedHeading: "What you get out of it",
       included: [
         "Your process mapped, including the exceptions nobody documented",
@@ -31,7 +31,7 @@ export function pagesDoc() {
       nextSteps: {
         heading: "What happens after you submit",
         steps: [
-          "You get a reply from a person within one working day — not an autoresponder.",
+          "You get a reply from a person within one working day, UK hours — not an autoresponder.",
           "We book a thirty-minute call, screen-shared, at a time that suits your week.",
           "If it looks worth pursuing, we follow up with a written scope and a fixed price.",
         ],
@@ -49,7 +49,7 @@ export function pagesDoc() {
       },
       formHeading: "Tell us what you need",
       formNote:
-        "Fill in the form below and we will come back to you within one business day. The detail we ask for here is the detail that lets the first reply be useful rather than a request for more information.",
+        "Fill in the form below and we will come back to you within one business day, UK hours. The detail we ask for here is the detail that lets the first reply be useful rather than a request for more information.",
       channelsHeading: "Direct channels",
       channels: [
         {

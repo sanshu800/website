@@ -26,7 +26,8 @@
   --color-fg: #101010;
   --color-fg-2: #3a3a3a;
   --color-fog: #6b6b6b; /* 5.1:1 on paper */
-  --color-fog-2: #8c8c8c; /* 3.1:1 — decorative only: never load-bearing, never text below 12px */
+  --color-fog-2: #767676; /* 4.54:1 on paper — the quietest tone that still passes AA. Was #8c8c8c
+                              (3.36:1), which made every 10–11px label it carried unreadable. */
   --color-on-ink: #f7f7f7;
   --color-on-ink-2: #a9a9a9;
 
@@ -400,6 +401,14 @@
 /* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
+
+/* Data-saver: the poster underneath is a finished composition, so the film is
+   the first thing to go when the visitor or their browser is being frugal. */
+@media (prefers-reduced-data: reduce) {
+  .hero-film {
+    display: none !important;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {

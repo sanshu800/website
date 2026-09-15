@@ -9,7 +9,7 @@ import { getPages, getShared } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Founders programme",
   description:
-    "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for £4,500.",
+    "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for $6,000.",
   alternates: { canonical: "/startups" },
 };
 

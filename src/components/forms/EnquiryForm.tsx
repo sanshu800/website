@@ -38,11 +38,11 @@ const COMPANY_SIZES = [
 
 const REVENUE = [
   { value: "pre-revenue", label: "Not trading yet" },
-  { value: "under-250k", label: "Under £250k" },
-  { value: "250k-1m", label: "£250k – £1m" },
-  { value: "1m-5m", label: "£1m – £5m" },
-  { value: "5m-20m", label: "£5m – £20m" },
-  { value: "20m-plus", label: "£20m+" },
+  { value: "under-250k", label: "Under $250k" },
+  { value: "250k-1m", label: "$250k – $1m" },
+  { value: "1m-5m", label: "$1m – $5m" },
+  { value: "5m-20m", label: "$5m – $20m" },
+  { value: "20m-plus", label: "$20m+" },
   { value: "undisclosed", label: "Prefer not to say" },
 ];
 
@@ -68,10 +68,10 @@ const TOPICS = [
 
 const BUDGETS = [
   { value: "not-sure", label: "Not sure yet — tell me what it takes" },
-  { value: "under-5k", label: "Under £5,000" },
-  { value: "5k-15k", label: "£5,000 – £15,000" },
-  { value: "15k-50k", label: "£15,000 – £50,000" },
-  { value: "50k-plus", label: "£50,000+" },
+  { value: "under-5k", label: "Under $5,000" },
+  { value: "5k-15k", label: "$5,000 – $15,000" },
+  { value: "15k-50k", label: "$15,000 – $50,000" },
+  { value: "50k-plus", label: "$50,000+" },
   { value: "discuss", label: "Prefer to discuss it on a call" },
 ];
 
@@ -94,8 +94,7 @@ export function EnquiryForm({
   successTitle,
 }: EnquiryFormProps) {
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     company: "",
     companySize: "",
@@ -122,8 +121,7 @@ export function EnquiryForm({
   /** Required selects, checked here so the answer is instant and local. */
   function firstProblem(): Record<string, string> {
     const problems: Record<string, string> = {};
-    if (values.firstName.trim().length < 1) problems.firstName = "Your first name, please";
-    if (values.lastName.trim().length < 1) problems.lastName = "Your last name, please";
+    if (values.fullName.trim().length < 2) problems.fullName = "Your name, please";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email))
       problems.email = "A working email address, so we can reply";
     if (values.company.trim().length < 2)
@@ -183,9 +181,9 @@ export function EnquiryForm({
     return (
       <FormSuccess title={successTitle ?? "Enquiry received"}>
         <p>
-          Thank you — {values.firstName || "we have your message"}. A person reads every
-          enquiry, and you will have a reply within one working day, with either a
-          straight answer or a short list of what we would need to look at.
+          Thank you — {values.fullName.split(" ")[0] || "we have your message"}. A person reads
+          every enquiry, and you will have a reply within one working day (UK hours, GMT/BST),
+          with either a straight answer or a short list of what we would need to look at.
         </p>
       </FormSuccess>
     );
@@ -196,30 +194,17 @@ export function EnquiryForm({
       <HoneypotField value={hp} onChange={setHp} />
       {formError && <FormError>{formError}</FormError>}
 
-      <div className="grid gap-6 sm:grid-cols-2">
-        <TextField
-          label="First name"
-          labelVariant="text"
-          name="firstName"
-          autoComplete="given-name"
-          placeholder="Priya"
-          value={values.firstName}
-          onChange={set("firstName")}
-          error={fields.firstName}
-          required
-        />
-        <TextField
-          label="Last name"
-          labelVariant="text"
-          name="lastName"
-          autoComplete="family-name"
-          placeholder="Raman"
-          value={values.lastName}
-          onChange={set("lastName")}
-          error={fields.lastName}
-          required
-        />
-      </div>
+      <TextField
+        label="Full name"
+        labelVariant="text"
+        name="fullName"
+        autoComplete="name"
+        placeholder="Priya Raman"
+        value={values.fullName}
+        onChange={set("fullName")}
+        error={fields.fullName}
+        required
+      />
 
       <div className="grid gap-6 sm:grid-cols-2">
         <TextField
@@ -228,7 +213,7 @@ export function EnquiryForm({
           name="email"
           type="email"
           autoComplete="email"
-          placeholder="priya@carrowproperty.co.uk"
+          placeholder="you@yourcompany.com"
           value={values.email}
           onChange={set("email")}
           error={fields.email}
@@ -291,8 +276,8 @@ export function EnquiryForm({
           name="phone"
           type="tel"
           autoComplete="tel"
-          placeholder="+44 7700 900000"
-          hint="optional"
+          placeholder="+1 415 555 0132"
+          hint="Optional · any country, include the dialling code"
           value={values.phone}
           onChange={set("phone")}
           error={fields.phone}

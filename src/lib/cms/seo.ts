@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { getChrome, getSeo } from "@/lib/cms/content";
+import { site } from "@/lib/content/marketing";
 import type { SeoEntry } from "@/lib/content/seo";
+
+/** `og:locale` uses underscores, not hyphens. */
+function siteLocale(): string {
+  return site.locale;
+}
 
 /**
  * Page metadata, with the admin panel in the loop.
@@ -50,26 +56,42 @@ export function withSeo(path: string, page: Metadata): Metadata {
   void _og;
   void _tw;
 
+  /* A link preview has no tab strip around it, so the brand belongs in the
+     title itself; in the browser it comes from the layout's template instead. */
+  const socialTitle = title
+    ? title.includes(brand.name)
+      ? title
+      : `${title} — ${brand.name}`
+    : undefined;
+
   return {
     ...rest,
-    ...(title
-      ? { title: title.includes(brand.name) ? { absolute: title } : title }
-      : {}),
+    ...(title ? { title: title.includes(brand.name) ? { absolute: title } : title } : {}),
     ...(description ? { description } : {}),
-    alternates: { canonical: path },
-    ...(title || description
+    alternates: {
+      canonical: path,
+      /*
+       * One English URL serving every market, declared rather than implied.
+       * `x-default` is the honest value for a site with no regional variants —
+       * pointing en-GB and en-US at the same page would be inventing a
+       * distinction that does not exist.
+       */
+      languages: { en: path, "x-default": path },
+    },
+    ...(socialTitle || description
       ? {
           openGraph: {
             type: "website",
             url: path,
             siteName: brand.name,
-            ...(title ? { title } : {}),
+            locale: siteLocale(),
+            ...(socialTitle ? { title: socialTitle } : {}),
             ...(description ? { description } : {}),
             ...(image ? { images: [{ url: image, alt: brand.name }] } : {}),
           },
           twitter: {
             card: "summary_large_image",
-            ...(title ? { title } : {}),
+            ...(socialTitle ? { title: socialTitle } : {}),
             ...(description ? { description } : {}),
             ...(image ? { images: [image] } : {}),
           },

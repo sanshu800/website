@@ -5,6 +5,7 @@ import { ArrowLeft, Briefcase, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
 import { getCompany } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 import { ApplicationPanel, CancelApplication } from "@/components/forms/ApplicationPanel";
 
 export function generateStaticParams() {
@@ -19,11 +20,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const role = getCompany().careers.roles.find((item) => item.slug === slug);
   if (!role) return { title: "Not found" };
-  return {
-    title: `${role.title} — ${role.team}`,
-    description: role.summary,
-    alternates: { canonical: `/careers/${role.slug}` },
-  };
+  return withSeo(`/careers/${role.slug}`, {
+      title: `${role.title} — ${role.team}`,
+      description: role.summary,
+      alternates: { canonical: `/careers/${role.slug}` },
+  });
 }
 
 export default async function RolePage({

@@ -6,8 +6,8 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/WorkScreens";
-import { getSolutions } from "@/lib/cms/content";
-import { getShared } from "@/lib/cms/content";
+import { getShared, getSolutions } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
 export function generateStaticParams() {
   return getSolutions().items.map((solution) => ({ slug: solution.slug }));
@@ -21,11 +21,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const solution = getSolutions().bySlug[slug];
   if (!solution) return { title: "Not found" };
-  return {
-    title: `${solution.name} — ${solution.headline}`,
-    description: solution.summary,
-    alternates: { canonical: `/solutions/${solution.slug}` },
-  };
+  return withSeo(`/solutions/${solution.slug}`, {
+      title: `${solution.name} — ${solution.headline}`,
+      description: solution.summary,
+      alternates: { canonical: `/solutions/${solution.slug}` },
+  });
 }
 
 const SCREENS = ["intake", "engage", "deliver", "insight"] as const;

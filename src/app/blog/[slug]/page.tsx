@@ -5,10 +5,12 @@ import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getBlog } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
+import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
 import { type Block } from "@/lib/content/blog";
 import { formatDate, initials } from "@/lib/utils";
-import { site } from "@/lib/content/marketing";
 
 export function generateStaticParams() {
   return getBlog().posts.map((post) => ({ slug: post.slug }));
@@ -22,18 +24,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlog().bySlug[slug];
   if (!post) return { title: "Not found" };
-  return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      type: "article",
+  return withSeo(`/blog/${post.slug}`, {
       title: post.title,
       description: post.excerpt,
-      url: `${site.url}/blog/${post.slug}`,
-      publishedTime: post.publishedAt,
-    },
-  };
+      alternates: { canonical: `/blog/${post.slug}` },
+  });
 }
 
 function BlockView({ block }: { block: Block }) {
@@ -102,6 +97,15 @@ export default async function PostPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleSchema(post),
+          breadcrumbSchema([
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
       <article>
         <header className="border-b border-line bg-paper pb-12 pt-28 sm:pt-32 lg:pt-36">
           <Container width="narrow">

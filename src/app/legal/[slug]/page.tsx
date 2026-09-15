@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { getLegal } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
 
 export function generateStaticParams() {
   return Object.keys(getLegal().pages).map((slug) => ({ slug }));
@@ -18,11 +19,11 @@ export async function generateMetadata({
   const { pages } = getLegal();
   const page = pages[slug as keyof typeof pages];
   if (!page) return { title: "Not found" };
-  return {
-    title: page.title,
-    description: page.intro,
-    alternates: { canonical: `/legal/${slug}` },
-  };
+  return withSeo(`/legal/${slug}`, {
+      title: page.title,
+      description: page.intro,
+      alternates: { canonical: `/legal/${slug}` },
+  });
 }
 
 export default async function LegalPage({

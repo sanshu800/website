@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { serviceListSchema } from "@/lib/structured-data";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -30,6 +32,7 @@ export default function ProductsIndex() {
 
   return (
     <>
+      <JsonLd data={serviceListSchema()} />
       <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
 
       <section className="section bg-paper">

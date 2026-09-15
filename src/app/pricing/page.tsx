@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema } from "@/lib/structured-data";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -30,6 +32,7 @@ export default function PricingPage() {
 
   return (
     <>
+      <JsonLd data={faqSchema()} />
       <PageHero eyebrow={hero.eyebrow} title={hero.title} summary={hero.summary} />
 
       <section className="section bg-paper">

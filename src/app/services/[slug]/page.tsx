@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, serviceSchema } from "@/lib/structured-data";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/WorkScreens";
 import { getServices } from "@/lib/cms/content";
-import { site } from "@/lib/content/marketing";
+import { withSeo } from "@/lib/cms/seo";
 
 export function generateStaticParams() {
   return getServices().items.map((service) => ({ slug: service.slug }));
@@ -22,16 +24,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServices().bySlug[slug];
   if (!service) return { title: "Not found" };
-  return {
-    title: `${service.name} — ${service.kicker}`,
-    description: service.summary,
-    alternates: { canonical: `/services/${service.slug}` },
-    openGraph: {
-      title: `Reygent AI ${service.name}`,
+  return withSeo(`/services/${service.slug}`, {
+      title: `${service.name} — ${service.kicker}`,
       description: service.summary,
-      url: `${site.url}/services/${service.slug}`,
-    },
-  };
+      alternates: { canonical: `/services/${service.slug}` },
+  });
 }
 
 export default async function ProductPage({
@@ -50,6 +47,10 @@ export default async function ProductPage({
 
   return (
     <>
+      <JsonLd data={[serviceSchema(service), breadcrumbSchema([
+        { name: "Services", path: "/services" },
+        { name: service.name, path: `/services/${service.slug}` },
+      ])]} />
       <PageHero
         eyebrow={service.kicker}
         crumbs={[{ label: "Services", href: "/services" }, { label: service.name }]}

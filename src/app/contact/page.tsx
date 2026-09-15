@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Mail, MapPin, MessageSquare } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages } from "@/lib/cms/content";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
               <h2 className="font-display text-[1.5rem] text-ink">{copy.formHeading}</h2>
               <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
               <div className="mt-8">
-                <ContactForm />
+                <EnquiryForm kind="contact" />
               </div>
             </div>
 

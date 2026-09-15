@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
-import { AuditForm } from "@/components/forms/AuditForm";
+import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages, getPricing } from "@/lib/cms/content";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -27,12 +27,23 @@ export default function GetStartedPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <AuditForm />
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-8">
+              <h2 className="font-display text-[1.5rem] text-ink">{copy.formHeading}</h2>
+              <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
+              <div className="mt-8">
+                {/* The CTA and the contact page open the same form; the topic is
+                    pre-set because on this page the ask is specifically the audit. */}
+                <EnquiryForm
+                  kind="audit"
+                  defaultTopic="audit"
+                  submitLabel="Request the free audit"
+                  successTitle="Audit request received"
+                />
+              </div>
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-4">
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
                   <h2 className="font-display text-[1.0625rem] text-ink">

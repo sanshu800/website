@@ -16,6 +16,9 @@ export function pagesDoc() {
         summary:
           "Tell us the one job that eats your week. We will map it live, say whether AI should touch it, and give you a straight answer on cost and timeframe. No slides, no obligation, and you keep the notes.",
       },
+      formHeading: "Tell us what you need",
+      formNote:
+        "Fill in the form below and we will come back to you within one business day with either a straight answer or a short list of what we need to look at. Everything except your phone number is asked once, here, so the first conversation can start on your business rather than on your details.",
       includedHeading: "What you get out of it",
       included: [
         "Your process mapped, including the exceptions nobody documented",

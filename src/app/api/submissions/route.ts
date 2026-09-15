@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import {
-  auditSchema,
-  contactSchema,
+  enquirySchema,
   newsletterSchema,
   recordSubmission,
   listSubmissions,
@@ -44,8 +43,9 @@ export async function POST(request: Request) {
   }
 
   const { kind, payload } = parsed.data;
-  const schema =
-    kind === "newsletter" ? newsletterSchema : kind === "contact" ? contactSchema : auditSchema;
+  /* Both lead paths share the qualification schema; `kind` is what separates
+     them in the table. */
+  const schema = kind === "newsletter" ? newsletterSchema : enquirySchema;
 
   const validated = schema.safeParse(payload);
   if (!validated.success) {

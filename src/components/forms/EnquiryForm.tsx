@@ -6,17 +6,19 @@ import { Button } from "@/components/ui/Button";
 import { FormError, FormSuccess, SelectField, TextArea, TextField } from "./Fields";
 
 /**
- * The qualification form on `/contact`.
+ * The one qualification form on the site.
  *
- * Deliberately longer than a "name, email, message" box: the fields below are
- * the ones that let a first reply be useful rather than a request for more
- * information. Size, revenue, role and budget are asked once, here, instead of
- * across three emails. Everything except the phone number and the referral
- * source is required, and the browser is told so (the form is `noValidate` and
- * checks on the server too).
+ * Both lead paths use it: the "Book a free AI audit" CTA on `/get-started` and
+ * the contact page. It is deliberately longer than a "name, email, message"
+ * box — company size, revenue, role and budget are the fields that make a first
+ * reply useful instead of a request for more information, and asking them once
+ * here saves three emails later. Everything except the phone number and the
+ * referral source is required, and the browser is told so (the form is
+ * `noValidate`, and the same rules are enforced by `enquirySchema` on the
+ * server).
  *
- * Values are slugs; labels are for humans. The server validates both against
- * the same lists in `src/lib/submissions.ts`.
+ * Values are slugs; labels are for humans. The server accepts only the slugs
+ * this file ships, against the same lists in `src/lib/submissions.ts`.
  */
 
 const COMPANY_SIZES = [
@@ -66,7 +68,24 @@ const BUDGETS = [
   { value: "discuss", label: "Prefer to discuss it on a call" },
 ];
 
-export function ContactForm() {
+export type EnquiryFormProps = {
+  /**
+   * Which lead path this is. Stored with the submission so the two funnels can
+   * be told apart in the data without guessing from the payload.
+   */
+  kind: "audit" | "contact";
+  /** Pre-selects a topic — used on `/get-started`, where the ask is the audit. */
+  defaultTopic?: string;
+  submitLabel?: string;
+  successTitle?: string;
+};
+
+export function EnquiryForm({
+  kind,
+  defaultTopic = "",
+  submitLabel = "Submit enquiry",
+  successTitle,
+}: EnquiryFormProps) {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -76,7 +95,7 @@ export function ContactForm() {
     revenue: "",
     title: "",
     phone: "",
-    topic: "",
+    topic: defaultTopic,
     budget: "",
     message: "",
     referral: "",
@@ -131,7 +150,7 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, kind }),
       });
       const data = (await response.json()) as { fields?: Record<string, string> };
       if (!response.ok) {
@@ -153,11 +172,11 @@ export function ContactForm() {
 
   if (status === "done") {
     return (
-      <FormSuccess title="Enquiry received">
+      <FormSuccess title={successTitle ?? "Enquiry received"}>
         <p>
           Thank you — {values.firstName || "we have your message"}. A person reads every
-          enquiry, and you will have a reply within one working day. If it is urgent,
-          mention that in the reply and we will pick it up sooner.
+          enquiry, and you will have a reply within one working day, with either a
+          straight answer or a short list of what we would need to look at.
         </p>
       </FormSuccess>
     );
@@ -324,7 +343,7 @@ export function ContactForm() {
           disabled={status === "sending"}
           iconRight={status === "sending" ? <Loader2 className="h-4 w-4 animate-spin" /> : undefined}
         >
-          {status === "sending" ? "Sending" : "Submit enquiry"}
+          {status === "sending" ? "Sending" : submitLabel}
         </Button>
       </div>
 

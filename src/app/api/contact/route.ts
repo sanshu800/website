@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactDisplayName, contactSchema, recordSubmission } from "@/lib/submissions";
+import { contactDisplayName, enquirySchema, recordSubmission } from "@/lib/submissions";
 import { fieldErrors } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid json" }, { status: 400 });
   }
 
-  const parsed = contactSchema.safeParse(json);
+  const parsed = enquirySchema.safeParse(json);
   if (!parsed.success) {
     return NextResponse.json(
       { error: "validation failed", fields: fieldErrors(parsed.error) },
@@ -22,7 +22,9 @@ export async function POST(request: Request) {
   }
 
   const id = recordSubmission({
-    kind: "contact",
+    /* Set by the form, not the visitor: an audit request from the CTA lands as
+       `audit`, everything from the contact page lands as `contact`. */
+    kind: parsed.data.kind,
     name: contactDisplayName(parsed.data),
     email: parsed.data.email,
     company: parsed.data.company,

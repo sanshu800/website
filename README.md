@@ -18,7 +18,7 @@ public pages.
 | Area | Status |
 | --- | --- |
 | 33 marketing routes (services, industries, comparisons, blog, legal, engagements, how we work, build log) | Static-rendered, all live |
-| Inbound forms (contact, audit request, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook. The contact form is the full qualification form — name, company, size, revenue, role, phone, topic, budget, message, referral |
+| Inbound forms (enquiry, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook. The enquiry form is the full qualification form — first/last name, work email, company, size, revenue, role, phone, topic, budget, message, referral — and it is the same component behind the "Book a free AI audit" CTA and the contact page |
 | Content admin at `/admin` | Edit every string on the marketing site. Validated writes, audit log, one-click restore, no deploy |
 | Authentication | Sign-in and sign-out for admin accounts only. **No public sign-up** — accounts come from `npm run admin:create` |
 | Access control | Session guard on every `/admin/**` page; `owner`/`admin` role required to publish, others see a 403 |
@@ -128,11 +128,17 @@ archive/            the previous rejected design, kept for reference, excluded f
 
 Form capture lives in `src/lib/submissions.ts`, so every public form — and the
 optional CRM webhook — shares one definition of what an inbound lead is. The
-contact form's dropdowns are enums on both sides: the browser sends a slug, the
+enquiry form's dropdowns are enums on both sides: the browser sends a slug, the
 server accepts only the slugs it shipped, and the messages the schema returns are
 written as instructions because they are the ones a person reads under the field.
-The two field-label treatments (`mono` for chrome and compact forms, `text` for
-the long qualification form) live in `src/components/forms/Fields.tsx`.
+
+Both lead paths render `src/components/forms/EnquiryForm.tsx`: the audit CTA on
+`/get-started` (`kind="audit"`, topic pre-set to the audit, button reads "Request
+the free audit") and the contact page (`kind="contact"`). `kind` is set by the
+component, validated as part of `enquirySchema`, and stored on the row, so the two
+funnels can be counted separately without guessing from the payload. The two
+field-label treatments (`mono` for chrome and compact forms, `text` for the long
+qualification form) live in `src/components/forms/Fields.tsx`.
 
 ---
 

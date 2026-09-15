@@ -20,11 +20,15 @@ export const newsletterSchema = z.object({
 });
 
 /**
- * The qualification form on `/contact`. Selects are enums rather than free
- * text: the value has to be one we can route on, and the browser sends the slug
- * we shipped rather than a label somebody retyped.
+ * The qualification form used by both lead paths — the audit CTA on
+ * `/get-started` and the contact page.
+ *
+ * Selects are enums rather than free text: the value has to be one we can route
+ * on, and the browser sends the slug we shipped rather than a label somebody
+ * retyped. `kind` says which funnel produced the row, and is not user-editable
+ * copy — it is set by the form.
  */
-export const contactSchema = z.object({
+export const enquirySchema = z.object({
   firstName: z.string().trim().min(1, { error: "Your first name, please" }).max(80),
   lastName: z.string().trim().min(1, { error: "Your last name, please" }).max(80),
   email,
@@ -63,24 +67,14 @@ export const contactSchema = z.object({
     .min(10, { error: "A sentence or two, so the first reply is useful" })
     .max(4000),
   referral: z.string().trim().max(120).optional().or(z.literal("")),
+  /** Which funnel this came from. Defaults to the contact page. */
+  kind: z.enum(["audit", "contact"]).default("contact"),
 });
 
 /** The row is stored under one display name, so the inbox reads like a person. */
 export function contactDisplayName(data: { firstName: string; lastName: string }): string {
   return `${data.firstName} ${data.lastName}`.trim();
 }
-
-/** The audit request on `/get-started` — the only funnel a service business needs. */
-export const auditSchema = z.object({
-  name: z.string().trim().min(2).max(120),
-  email,
-  company: z.string().trim().min(2).max(160),
-  teamSize: z.string().max(40).optional(),
-  sector: z.string().max(60).optional(),
-  systems: z.array(z.string().max(60)).max(12).optional(),
-  preferredTime: z.string().max(20).optional(),
-  notes: z.string().trim().max(2000).optional(),
-});
 
 export const careersSchema = z.object({
   role: z.string().trim().max(80),

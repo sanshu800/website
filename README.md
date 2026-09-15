@@ -1,11 +1,11 @@
-# Reygent — operations platform for professional-services firms
+# Reygent — marketing site with a private content admin
 
-A production-shaped marketing site **and** a working application: the public pages a
-prospective firm reads, plus the authenticated workspace where their client records
-actually live.
+The public pages a prospective firm reads, plus a private admin at `/admin` where
+whoever writes the copy edits it without a deploy.
 
-Built as a reference implementation of a premium SaaS product site — marketing
-surface, real form capture, real authentication, real database, real mutations.
+There are **no customer accounts and no user dashboard**: this build is the marketing
+site and its CMS. The only authentication is the admin, and it is never linked from
+the public pages.
 
 ---
 
@@ -14,15 +14,14 @@ surface, real form capture, real authentication, real database, real mutations.
 | Area | Status |
 | --- | --- |
 | 30+ marketing routes (products, solutions, comparisons, blog, legal, pricing, tour) | Static-rendered, all live |
-| Inbound forms (contact, demo, trial request, newsletter, job application) | POST → validated with Zod → written to SQLite |
-| Authentication | Sign-up, sign-in, sign-out, session guard on `/dashboard/**` |
-| Dashboard workspace | Overview, companies (+ detail), contacts, engagements, tasks, submissions, Ask Reygent |
-| Mutations | Task create / complete / reopen via server actions **and** JSON API, with an append-only activity trail |
-| Search, filtering, pagination, sort | URL-driven on companies and contacts; saved views |
-| "Ask Reygent" | Deterministic query engine over the firm's records — every answer cites its rows |
+| Inbound forms (contact, demo, trial request, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook |
+| Content admin at `/admin` | Edit every string on the marketing site. Validated writes, audit log, one-click restore, no deploy |
+| Authentication | Sign-in and sign-out for admin accounts only. **No public sign-up** — accounts come from `npm run admin:create` |
+| Access control | Session guard on every `/admin/**` page; `owner`/`admin` role required to publish, others see a 403 |
+| CSRF | Mutating API calls from another origin are rejected (`Sec-Fetch-Site`) |
+| Search, filtering | Client-side search across every field of a content surface, plus an "edited only" filter |
 | Charts, tabs, marquees, reveals | Server-rendered markup + CSS/motion animation, reduced-motion aware |
-| Website content admin | Edit copy on pricing, products, solutions, comparisons, blog and legal pages from `/dashboard/content` — validated writes, audit log, one-click restore, no deploy |
-| Sitemap, robots, 404 | Present |
+| Sitemap, robots, 404 | Present; `/admin` and `/api/` are disallowed for crawlers |
 | Payments | **Not wired** — see "Needs real credentials" |
 | Email delivery | **Not wired** — submissions are stored, not sent |
 
@@ -39,22 +38,33 @@ npm start            # http://localhost:3000
 
 Development: `npm run dev`. Checks: `npm run typecheck && npm run lint`.
 
-### Demo accounts
+### Admin accounts
+
+The dev seed creates two accounts so you can look around immediately:
 
 | Email | Password | Role |
 | --- | --- | --- |
 | `demo@reygent.ai` | `demo1234` | owner |
 | `ops@reygent.ai` | `demo1234` | admin |
 
-Sign-up also works and creates a real account with a scrypt-hashed password.
+Sign in at **`/admin`** — the URL is the only way in, by design.
+
+For a real deployment, do **not** run the demo seed. Create your own account instead:
+
+```bash
+npm run admin:create -- --email you@yourfirm.com --name "Your Name"
+# prompts for a password (never passed as an argument, so it stays out of shell history)
+```
+
+Running it again for an existing email resets that account's password.
 
 **If sign-in appears to do nothing**, the browser dropped the session cookie. The
 session cookie is set `SameSite=None; Secure; Partitioned` precisely so that it
 survives being viewed inside an embedded preview frame, where the app's own
-origin counts as cross-site — a `Lax` cookie is withheld there and the dashboard
-guard sends you straight back to the login form. The form now checks the session
-immediately after signing in and tells you if the browser refused it; opening the
-preview in its own tab always works.
+origin counts as cross-site — a `Lax` cookie is withheld there and the admin guard
+sends you straight back to the sign-in form. The form checks the session immediately
+after signing in and tells you if the browser refused it; opening the admin in its
+own tab always works.
 
 ---
 
@@ -84,8 +94,8 @@ in `src/lib/content/marketing.ts` at that local path.
 ## Stack decisions (made, not asked)
 
 - **Next.js 16 App Router + React 19 + TypeScript (strict)** — one framework for the
-  marketing site, the app surface and the API. Server Components keep the marketing
-  pages static; the dashboard streams from SQLite per request.
+  marketing site, the admin and the API. Server Components keep the marketing
+  pages static; admin pages stream from SQLite per request.
 - **Tailwind v4, CSS-first tokens** — the whole design system is in
   `src/app/globals.css` under `@theme static`. No `tailwind.config.js` to drift.
 - **`node:sqlite` (Node 22+ built-in)** — real, durable SQL with no native build step
@@ -101,17 +111,19 @@ in `src/lib/content/marketing.ts` at that local path.
 ### Layout of the code
 
 ```
-src/app/            routes (marketing, dashboard, api)
-src/components/     ui · brand · layout · marketing · screens · motion · forms · dashboard
-src/lib/            db · auth · queries (read model) · mutations (write model) · ask · content
+src/app/            routes (marketing, admin, api)
+src/components/     ui · brand · layout · marketing · screens · motion · forms · admin
+src/lib/            db · auth · submissions · validation
+src/lib/cms/        the content admin: documents, paths, store, accessors
 src/lib/content/    all copy and sample data, typed
-scripts/seed.ts     idempotent seed (--reset to rebuild)
+scripts/seed.ts     dev seed: creates the database and two admin accounts
+scripts/admin.ts    admin:create — the only way an account is created
 data/reygent.db     local database (gitignored; recreate with npm run db:reset)
 archive/            the previous rejected design, kept for reference, excluded from build
 ```
 
-Writes live in `src/lib/mutations.ts` and reads in `src/lib/queries.ts`, so server
-actions, API routes and pages share one definition of what the data means.
+Form capture lives in `src/lib/submissions.ts`, so every public form — and the
+optional CRM webhook — shares one definition of what an inbound lead is.
 
 ---
 
@@ -121,29 +133,33 @@ Session-authenticated unless noted. All JSON.
 
 | Method | Route | Purpose |
 | --- | --- | --- |
-| `POST` | `/api/submissions` | Generic inbound capture (`kind` + payload) |
-| `POST` | `/api/contact` · `/api/demo` · `/api/newsletter` · `/api/careers` | Form-specific endpoints |
-| `GET` | `/api/submissions` | List inbound submissions (operator) |
-| `POST` | `/api/auth/signup` · `/api/auth/login` · `/api/auth/logout` | Session lifecycle (public) |
-| `GET` `POST` `PATCH` | `/api/tasks` | List, create, toggle/delete tasks |
-| `GET` `POST` | `/api/ask` | Suggested questions; ask a question over the records |
+| `POST` | `/api/submissions` | Generic inbound capture (`kind` + payload) — public |
+| `POST` | `/api/contact` · `/api/demo` · `/api/newsletter` · `/api/careers` | Form-specific endpoints — public |
+| `GET` | `/api/submissions` | List inbound submissions (admin session required) |
+| `POST` | `/api/auth/login` · `/api/auth/logout` | Admin session lifecycle |
+| `GET` | `/api/auth/session` | Who the server can see, so the form can report a dropped cookie |
 | `POST` | `/api/content` | Write site copy (`set`, `reset`, `revert`, `drop`). Owner/admin only |
+| `POST` | `/api/media` | Upload the hero film (opt-in, token-gated) |
+
+There is deliberately no sign-up route. `POST /api/auth/signup` was removed: it
+created accounts with the `owner` role, which would have handed the admin panel to
+anyone who found it.
 
 ---
 
 ## Editing the site (content admin)
 
-`/dashboard/content` is a real CMS, not a mock screen. Whoever writes the copy can
-change it without a deploy, and every change is attributed and reversible.
+`/admin` is a real CMS, not a mock screen. Whoever writes the copy can change it
+without a deploy, and every change is attributed and reversible.
 
-**How to reach it:** sign in (`demo@reygent.ai` / `demo1234`) → **Website content**
-in the sidebar. Three screens:
+**How to reach it:** go to `/admin` and sign in. It is not linked from anywhere on
+the public site and is disallowed in `robots.txt`. Three screens:
 
 | Screen | What it does |
 | --- | --- |
-| `/dashboard/content` | Every editable surface, how many fields each has, what has been changed, and the latest edits |
-| `/dashboard/content/<surface>` | The editor: search across every field, filter to edited ones, edit / save / reset per field |
-| `/dashboard/content/history` | The full audit log — before and after values, who changed what, restore any version |
+| `/admin` | Every editable surface, how many fields each has, what has been changed, and the latest edits |
+| `/admin/edit/<surface>` | The editor: search across every field, filter to edited ones, edit / save / reset per field |
+| `/admin/history` | The full audit log — before and after values, who changed what, restore any version |
 
 **How it works.** Each surface is a *content document*: one JSON tree holding the
 complete default copy for that part of the site, assembled from the content modules
@@ -234,8 +250,9 @@ Copy `.env.example` if you want to set them.
 - **Integrations** are listed as capability surfaces rather than third-party logos, to
   avoid implying endorsements that do not exist.
 - **Contact addresses** (`hello@`, `support@`, `security@`) are placeholders.
-- **Sample workspace data** — 24 firms, 69 contacts, 20 engagements, tasks and
-  activities — is invented. The queries over it are real.
+- **Interface panels** on the product pages are rendered from real components with
+  illustrative data, and captioned as such. The sample CRM dataset that used to back a
+  demo dashboard has been removed along with the screens.
 
 ## Needs real credentials before go-live
 
@@ -246,7 +263,10 @@ Copy `.env.example` if you want to set them.
    submissions send confirmations and the newsletter actually sends.
 3. **CRM / routing** — set `CRM_WEBHOOK_URL` to push inbound to the sales tool.
 4. **Calendar** — Google Calendar or Cal.com to turn demo requests into booked slots.
-5. **SSO / SAML + SCIM** — required by the Enterprise tier as sold on `/pricing`.
+5. **Admin authentication hardening** — the admin is a single password-protected
+   account. Real deployment wants SSO or 2FA, plus rate limiting on `/api/auth/login`.
+   (There are no customer accounts, so the SAML/SCIM line the pricing page mentions is
+   a product claim, not something this site implements.)
 6. **Postgres + object storage** — once there is more than one node, or document
    uploads are needed.
 7. **Domain and DNS** — `reygent.ai` appears in metadata, robots and sitemap.
@@ -282,35 +302,37 @@ deployment assets, not source. Copy the clip into `public/video/` (or commit it 
 
 ## Verified vs not verified
 
-Verified: production build (74 pages), TypeScript strict, ESLint, all marketing routes
-returning 200 (unknown routes 404), every form endpoint accepting valid input and
-rejecting invalid input, the full auth lifecycle including the `/dashboard` guard, task
-create/toggle through the API with the audit trail confirmed in SQLite, Ask Reygent
-returning cited answers for matched and unmatched questions, and — for the content
-admin — the whole loop end to end over HTTP:
+Verified: production build (72 routes), TypeScript strict, ESLint, every marketing
+route returning 200 (retired routes 404, unknown routes 404), every form endpoint
+accepting valid input and rejecting invalid input, and — for the admin and the
+content loop — the whole thing end to end over HTTP:
 
-- `/dashboard/content`, `/dashboard/content/<surface>` and `/dashboard/content/history`
-  return 200 for a signed-in operator and redirect when signed out;
-- `POST /api/content` returns 401 unauthenticated, 403 for a role that cannot publish,
-  422 for a field that does not exist, an over-long value or a blank value, and 200 for
-  a valid write;
+- `/admin`, `/admin/edit/<surface>` and `/admin/history` return 200 for a signed-in
+  operator and redirect to `/admin/login` when signed out; `/admin/login` redirects
+  back to `/admin` when a session is already valid;
+- a signed-in account with a non-editing role sees the 403 screen and
+  `POST /api/content` answers **403** for it;
+- `POST /api/content` returns 401 unauthenticated, 422 for a field that does not
+  exist, an over-long value or a blank value, and 200 for a valid write;
 - a saved edit changes the **served HTML** of a prerendered page — plan name, hero
-  headline, product name and blog title were each verified on more than one route at
-  once (a plan edit shows on `/pricing`, the homepage preview and `/get-started`; a
-  product edit shows on `/products`, the detail page and the homepage tabs);
-- the derived `<meta name="description">` on `/pricing` follows edited plan prices;
-- **Reset** restores the shipped copy everywhere it was changed, and every write left a
-  revision row with the before and after values;
-- an edit to shared content lands on every page that uses it — a testimonial quote
-  changed on the homepage and `/customers`, an integration blurb on the homepage and
-  `/integrations`, a module name on `/products`, the detail page and the homepage tabs.
+  headline, nav label, footer heading, product name and blog title were each verified
+  on more than one route at once;
+- **Reset** restores the shipped copy everywhere it was changed, and every write left
+  a revision row with the before and after values;
+- signing out clears the session cookie with matching attributes and `/admin`
+  redirects again;
+- `robots.txt` disallows `/admin` and `/api/`, and the sitemap contains neither;
+- no public page renders a link to `/admin`, `/login` or `/signup` — checked on the
+  homepage, `/pricing`, `/product-tour`, `/about`, `/contact`, `/get-started` and
+  `/careers`;
+- the public forms still capture: a trial request returns 201 and writes its row.
 
-**Not verified here:** the admin's client-side interactions (per-keystroke state, the
-search filter, the sticky toolbar, the save/reset buttons repainting) were exercised
-through their API contract and by rendering the pages, not by clicking them in a
-browser — there is no browser binary in this environment.
+**Retired in this pass, all returning 404:** `/login`, `/signup`, the whole
+`/dashboard` tree, `POST /api/auth/signup`, `/api/ask`, `/api/tasks`, and the sample
+CRM screens behind them. The database is now users, sessions, submissions and the two
+CMS tables — nothing else.
 
-**Not verified:** pixel-level visual review in a real browser. No browser binary is
-available in this environment, so rendering, responsive breakpoints, animation timing
-and reduced-motion behaviour have not been eyeballed. Layout was authored against the
-token system and checked structurally (markup, typecheck, build), not visually.
+**Not verified here:** there is no browser in this environment, so the admin's
+client-side interactions (per-keystroke state, the search filter, the sticky toolbar,
+the save/reset buttons repainting), responsive behaviour, animation timing and
+rendered pixels were **not** exercised. The checks above are build- and HTTP-level.

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
-import { DashboardHeader } from "@/components/dashboard/Shell";
-import { Card, StatCard } from "@/components/dashboard/Bits";
-import { RevertButton } from "@/components/dashboard/RevertButton";
+import { AdminHeader } from "@/components/admin/AdminShell";
+import { Card, StatCard } from "@/components/admin/Bits";
+import { RevertButton } from "@/components/admin/RevertButton";
 import { DOCS, docFields, orphanedOverrides } from "@/lib/cms/documents";
 import { contentVersionCount, overrideStats, recentRevisions } from "@/lib/cms/store";
 import { relativeTime } from "@/lib/utils";
@@ -44,7 +44,7 @@ export default function ContentAdminPage() {
 
   return (
     <>
-      <DashboardHeader
+      <AdminHeader
         eyebrow="Website"
         title="Content"
         summary="Edit the words on the marketing site without a deploy. Saves are validated, logged and published immediately — every change is attributable and reversible from this screen."
@@ -106,7 +106,7 @@ export default function ContentAdminPage() {
                     </p>
                   </div>
                   <Link
-                    href={`/dashboard/content/${doc.id}`}
+                    href={`/admin/edit/${doc.id}`}
                     className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-ink px-3.5 text-[0.8125rem] font-medium text-on-ink transition-colors hover:bg-accent-2"
                   >
                     Edit
@@ -139,7 +139,7 @@ export default function ContentAdminPage() {
             title="Latest changes"
             action={
               <Link
-                href="/dashboard/content/history"
+                href="/admin/history"
                 className="text-[0.75rem] font-medium text-accent underline underline-offset-2"
               >
                 Full history

@@ -25,7 +25,8 @@ export function chromeDoc() {
       /** The mega menu: groups with children, plus flat links. */
       nav: primaryNav,
       actions: {
-        signIn: { label: "Log in", href: "/login" },
+        /* Deliberately one action. There is no customer sign-in on this site —
+           the admin lives at /admin and is never linked from the public pages. */
         primary: { label: "Get started", href: "/get-started" },
       },
     },

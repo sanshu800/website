@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink, TriangleAlert } from "lucide-react";
-import { DashboardHeader } from "@/components/dashboard/Shell";
-import { Card } from "@/components/dashboard/Bits";
-import { ContentEditor } from "@/components/dashboard/ContentEditor";
-import type { EditableField } from "@/components/dashboard/ContentField";
-import { RevertButton } from "@/components/dashboard/RevertButton";
+import { AdminHeader } from "@/components/admin/AdminShell";
+import { Card } from "@/components/admin/Bits";
+import { ContentEditor } from "@/components/admin/ContentEditor";
+import type { EditableField } from "@/components/admin/ContentField";
+import { RevertButton } from "@/components/admin/RevertButton";
 import { getSession } from "@/lib/auth";
 import { DOCS, docById, docFields, editedFields, orphanedOverrides } from "@/lib/cms/documents";
 
@@ -53,7 +53,7 @@ export default async function ContentDocPage({
 
   return (
     <>
-      <DashboardHeader
+      <AdminHeader
         eyebrow="Website"
         title={def.title}
         summary={def.blurb}
@@ -113,12 +113,12 @@ export default async function ContentDocPage({
 
       <p className="mt-8 text-[0.75rem] text-fog-2">
         Looking for a different surface?{" "}
-        <Link href="/dashboard/content" className="text-accent underline underline-offset-2">
+        <Link href="/admin" className="text-accent underline underline-offset-2">
           All content
         </Link>{" "}
         ·{" "}
         <Link
-          href="/dashboard/content/history"
+          href="/admin/history"
           className="text-accent underline underline-offset-2"
         >
           Change history

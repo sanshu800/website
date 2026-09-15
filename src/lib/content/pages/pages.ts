@@ -29,8 +29,8 @@ export function pagesDoc() {
         heading: "What happens after you submit",
         steps: [
           "The request is stored and acknowledged — no silent submission.",
-          "You create an account and land in the dashboard with sample data loaded.",
-          "Import a slice of your real records, or book an onboarding session and we will do it with you.",
+          "A person replies within one working day with your workspace details.",
+          "We import a slice of your real records together, or you book an onboarding session and we do it with you.",
         ],
       },
       billingNote:
@@ -296,12 +296,6 @@ export function pagesDoc() {
       foundation: {
         eyebrow: "Underneath it all",
         cta: "See how the memory layer works",
-      },
-      workspace: {
-        heading: "Want to click around for real?",
-        body: "The workspace on this build is a working application: sign in and the sample firm is loaded, with real filters, real pagination, real server actions and an audit trail that records what you change.",
-        signIn: "Sign in to the demo",
-        signUp: "Create your own workspace",
       },
       cta: {
         title: "Seen enough to talk specifics?",

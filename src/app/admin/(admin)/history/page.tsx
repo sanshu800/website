@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DashboardHeader } from "@/components/dashboard/Shell";
-import { Card } from "@/components/dashboard/Bits";
-import { RevertButton } from "@/components/dashboard/RevertButton";
+import { AdminHeader } from "@/components/admin/AdminShell";
+import { Card } from "@/components/admin/Bits";
+import { RevertButton } from "@/components/admin/RevertButton";
 import { DOCS, docById, orphanedOverrides } from "@/lib/cms/documents";
 import { recentRevisions } from "@/lib/cms/store";
 import { relativeTime } from "@/lib/utils";
@@ -35,7 +35,7 @@ export default function ContentHistoryPage() {
 
   return (
     <>
-      <DashboardHeader
+      <AdminHeader
         eyebrow="Website"
         title="Change history"
         summary="Every content change, by whom and when, with the value it replaced. Restore any of them — restoring is itself logged."
@@ -66,7 +66,7 @@ export default function ContentHistoryPage() {
         {revisions.length === 0 ? (
           <p className="text-[0.8125rem] text-fog">
             Nothing has been edited yet — the site is running on the copy in code.{" "}
-            <Link href="/dashboard/content" className="text-accent underline underline-offset-2">
+            <Link href="/admin" className="text-accent underline underline-offset-2">
               Start with a surface
             </Link>
             .

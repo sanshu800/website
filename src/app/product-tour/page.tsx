@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getProducts } from "@/lib/cms/content";
 import { TourStage } from "@/components/marketing/TourStage";
 
@@ -138,33 +138,6 @@ export default function ProductTourPage() {
               </RevealGroup>
             </div>
           </div>
-        </Container>
-      </section>
-
-      <section className="section-sm bg-paper">
-        <Container width="wide">
-          <Reveal>
-            <div className="rounded-2xl border border-line bg-mist p-7 sm:p-9">
-              <h2 className="font-display text-[1.25rem] text-ink">
-                {copy.workspace.heading}
-              </h2>
-              <p className="mt-3 max-w-[42rem] text-micro text-fog">{copy.workspace.body}</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/login"
-                  className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
-                >
-                  {copy.workspace.signIn}
-                </Link>
-                <Link
-                  href="/signup"
-                  className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
-                >
-                  {copy.workspace.signUp}
-                </Link>
-              </div>
-            </div>
-          </Reveal>
         </Container>
       </section>
 

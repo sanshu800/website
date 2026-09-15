@@ -11,7 +11,7 @@ const DESTINATIONS = [
   { href: "/product-tour", label: "Product tour", detail: "Ten minutes, five stops, no sales call" },
   { href: "/blog", label: "Blog", detail: "Operations writing from live implementations" },
   { href: "/contact", label: "Contact", detail: "A person replies to every message" },
-  { href: "/login", label: "Sign in", detail: "Demo account: demo@reygent.ai / demo1234" },
+  { href: "/security", label: "Security", detail: "How data is stored and who can reach it" },
 ];
 
 export default function NotFound() {

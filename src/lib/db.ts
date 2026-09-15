@@ -7,8 +7,15 @@ import path from "node:path";
  *
  * Node's built-in SQLite (`node:sqlite`) — a real, durable, queryable database
  * with zero dependencies and no native build step. One file on disk, real SQL,
- * real transactions. If this app later needs Postgres, `src/lib/db/queries.ts`
- * is the only file that has to change.
+ * real transactions. Three tables:
+ *
+ *   users        admin accounts (created by `npm run admin:create`, never by a
+ *                public form), scrypt-hashed passwords
+ *   sessions     opaque session tokens, stored as SHA-256 hashes
+ *   submissions  every inbound marketing form, one table with a `kind`
+ *                discriminator
+ *
+ * Site copy lives in two further tables created by `src/lib/cms/store.ts`.
  *
  * The database lives at DATA_DIR (default `<repo>/data`). It is created and
  * migrated on first use, so a fresh clone works after `npm install`.
@@ -42,74 +49,6 @@ CREATE TABLE IF NOT EXISTS sessions (
   user_agent TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token_hash);
-
-CREATE TABLE IF NOT EXISTS companies (
-  id          TEXT PRIMARY KEY,
-  name        TEXT NOT NULL,
-  domain      TEXT NOT NULL,
-  sector      TEXT NOT NULL,
-  size        TEXT NOT NULL,
-  city        TEXT NOT NULL,
-  country     TEXT NOT NULL,
-  stage       TEXT NOT NULL,
-  health      TEXT NOT NULL,
-  arr         INTEGER NOT NULL DEFAULT 0,
-  owner       TEXT NOT NULL,
-  website_intent INTEGER NOT NULL DEFAULT 0,
-  created_at  TEXT NOT NULL,
-  last_touch  TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS contacts (
-  id         TEXT PRIMARY KEY,
-  company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
-  name       TEXT NOT NULL,
-  title      TEXT NOT NULL,
-  email      TEXT NOT NULL,
-  phone      TEXT,
-  linkedin   TEXT,
-  seniority  TEXT NOT NULL,
-  status     TEXT NOT NULL,
-  created_at TEXT NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_contacts_company ON contacts(company_id);
-
-CREATE TABLE IF NOT EXISTS engagements (
-  id          TEXT PRIMARY KEY,
-  company_id  TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
-  title       TEXT NOT NULL,
-  value       INTEGER NOT NULL,
-  stage       TEXT NOT NULL,
-  probability INTEGER NOT NULL,
-  owner       TEXT NOT NULL,
-  close_date  TEXT NOT NULL,
-  source      TEXT NOT NULL,
-  created_at  TEXT NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_engagements_company ON engagements(company_id);
-
-CREATE TABLE IF NOT EXISTS tasks (
-  id          TEXT PRIMARY KEY,
-  company_id  TEXT REFERENCES companies(id) ON DELETE CASCADE,
-  title       TEXT NOT NULL,
-  kind        TEXT NOT NULL,
-  priority    TEXT NOT NULL,
-  status      TEXT NOT NULL,
-  assignee    TEXT NOT NULL,
-  due_at      TEXT NOT NULL,
-  created_at  TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS activities (
-  id         TEXT PRIMARY KEY,
-  company_id TEXT REFERENCES companies(id) ON DELETE CASCADE,
-  kind       TEXT NOT NULL,
-  summary    TEXT NOT NULL,
-  actor      TEXT NOT NULL,
-  source     TEXT NOT NULL,
-  at         TEXT NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_activities_company ON activities(company_id);
 
 CREATE TABLE IF NOT EXISTS submissions (
   id         TEXT PRIMARY KEY,

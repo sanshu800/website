@@ -113,8 +113,8 @@ export function GetStartedForm({ plans }: { plans: Tier[] }) {
       <FormSuccess
         title="Trial request received"
         secondary={
-          <ButtonLink href="/signup" size="md">
-            Create your account
+          <ButtonLink href="/demo" size="md">
+            Book the onboarding call
           </ButtonLink>
         }
       >
@@ -124,8 +124,9 @@ export function GetStartedForm({ plans }: { plans: Tier[] }) {
           {startup ? " with the startup discount noted" : ""}.
         </p>
         <p className="mt-3">
-          On this build the next step is a real account: sign up with the same email and
-          you land in the dashboard immediately, with the sample firm loaded.
+          A person replies to this address within one working day with your workspace
+          details and the two setup questions that matter. Nothing else is needed from you
+          in the meantime.
         </p>
       </FormSuccess>
     );

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { ContentField, type EditableField } from "@/components/dashboard/ContentField";
+import { ContentField, type EditableField } from "@/components/admin/ContentField";
 import { cn } from "@/lib/utils";
 
 /**
@@ -113,7 +113,7 @@ export function ContentEditor({
       <p className="mt-10 rounded-xl border border-line bg-mist px-5 py-4 text-[0.75rem] leading-relaxed text-fog">
         Field keys are stable across edits, so renaming copy in code does not move anyone&apos;s work.
         If a key disappears from the page it came from, the admin reports it as an orphan under{" "}
-        <Link href="/dashboard/content/history" className="text-accent underline underline-offset-2">
+        <Link href="/admin/history" className="text-accent underline underline-offset-2">
           history
         </Link>
         , where it can be dropped or restored.

@@ -72,7 +72,7 @@ type UserRow = {
  * origin counts as **cross-site** relative to the top-level page. A `SameSite=Lax`
  * cookie is withheld on every request made from that frame — including the one
  * that follows a successful sign-in — so the dashboard guard sees no session and
- * bounces straight back to `/login`. `SameSite=None` allows the cookie in that
+ * bounces straight back to `/admin/login`. `SameSite=None` allows the cookie in that
  * context, and `Partitioned` (CHIPS, RFC 9578) keeps it working in browsers that
  * block third-party cookies outright.
  *

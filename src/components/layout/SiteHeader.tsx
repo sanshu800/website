@@ -193,15 +193,6 @@ export function SiteHeader({
 
             <div className="hidden items-center gap-2 lg:flex">
               <Link
-                href={header.actions.signIn.href}
-                className={cn(
-                  "rounded-lg px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-200",
-                  overlay ? "text-on-ink/80 hover:text-on-ink" : "text-fg-2 hover:text-ink",
-                )}
-              >
-                {header.actions.signIn.label}
-              </Link>
-              <Link
                 href={header.actions.primary.href}
                 className={cn(
                   "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 hover:scale-[1.03] active:scale-95",
@@ -397,13 +388,6 @@ export function SiteHeader({
               className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-[1rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
             >
               {header.actions.primary.label} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href={header.actions.signIn.href}
-              onClick={() => setMobileOpen(false)}
-              className="inline-flex h-12 items-center justify-center rounded-lg border border-on-ink/25 text-[1rem] font-medium text-on-ink transition-colors hover:bg-on-ink/10"
-            >
-              {header.actions.signIn.label}
             </Link>
           </div>
           </div>

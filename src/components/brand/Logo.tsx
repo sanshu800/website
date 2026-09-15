@@ -60,10 +60,13 @@ export function ReygentWordmark({
   className,
   tone = "ink",
   withMark = false,
+  label = "Reygent AI",
 }: {
   className?: string;
   tone?: "ink" | "on-ink";
   withMark?: boolean;
+  /** Comes from the `chrome` content document, so the brand reads from the CMS. */
+  label?: string;
 }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
@@ -74,7 +77,7 @@ export function ReygentWordmark({
           tone === "on-ink" ? "text-on-ink" : "text-ink",
         )}
       >
-        Reygent
+        {label}
       </span>
     </span>
   );

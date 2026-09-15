@@ -1,10 +1,10 @@
-# Reygent — AI agency site with a private content admin
+# Reygent AI — agency site with a private content admin
 
 The public pages a business owner reads when they are deciding whether to let an
 agency automate part of their operation, plus a private admin at `/admin` where
 whoever writes the copy edits it without a deploy.
 
-Reygent is an **AI agency**, not a software product. The site sells work, not
+Reygent AI is an **AI agency**, not a software product. The site sells work, not
 licences: a fixed-fee audit, a fixed-price build, and a monthly retainer. So there
 are no pricing tiers, no per-seat plans, no free trial and no product tour — and
 **no customer accounts and no user dashboard**. This build is the marketing site

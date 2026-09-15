@@ -14,8 +14,8 @@ export function chromeDoc() {
       name: site.name,
       tagline: site.tagline,
       /** Used as the default page title and in social cards. */
-      seoTitle: "Reygent — AI agency for business owners",
-      ogTitle: "Reygent — AI agents and automation for your business",
+      seoTitle: "Reygent AI — AI agency for business owners",
+      ogTitle: "Reygent AI — AI agents and automation for your business",
       description: site.description,
       email: site.email,
       copyright: "All rights reserved.",

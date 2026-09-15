@@ -142,7 +142,7 @@ export function SiteHeader({
               aria-label={`${brand.name} — home`}
               className="shrink-0 transition-transform duration-300 hover:opacity-70"
             >
-              <ReygentWordmark tone={overlay ? "on-ink" : "ink"} />
+              <ReygentWordmark tone={overlay ? "on-ink" : "ink"} label={brand.name} />
             </Link>
 
             <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">

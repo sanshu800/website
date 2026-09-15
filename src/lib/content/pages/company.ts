@@ -85,14 +85,14 @@ export function companyDoc() {
         summary:
           "Tell us what you would build and why it matters for a business where every hour is somebody's wages. We read everything.",
         primary: { href: "/contact", label: "Get in touch" },
-        secondary: { href: "/about", label: "About Reygent" },
+        secondary: { href: "/about", label: "About Reygent AI" },
       },
       roleCta: {
         title: "Not the right role?",
         summary:
           "Send us a note describing the role you would create for yourself here. Several of our positions started that way.",
         primary: { href: "/contact", label: "Get in touch" },
-        secondary: { href: "/about", label: "About Reygent" },
+        secondary: { href: "/about", label: "About Reygent AI" },
       },
     },
   };

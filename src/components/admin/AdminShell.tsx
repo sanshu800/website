@@ -53,7 +53,7 @@ export function AdminShell({
             <Link href="/admin" className="flex items-center gap-2.5">
               <ReygentMark className="h-6 w-6 text-accent" />
               <span className="font-display text-[1.0625rem] tracking-[-0.02em] text-ink">
-                Reygent
+                Reygent AI
               </span>
             </Link>
             <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">

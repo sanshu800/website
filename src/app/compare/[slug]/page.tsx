@@ -20,7 +20,9 @@ export async function generateMetadata({
   const comparison = getComparisons().bySlug[slug];
   if (!comparison) return { title: "Not found" };
   return {
-    title: `Reygent ${comparison.short}`,
+    /* The brand is part of the phrase ("Reygent AI vs. doing it yourself"), so
+       opt out of the layout's `%s — Reygent AI` template rather than repeat it. */
+    title: { absolute: `Reygent AI ${comparison.short}` },
     description: comparison.summary,
     alternates: { canonical: `/compare/${comparison.slug}` },
   };
@@ -106,7 +108,7 @@ export default async function ComparePage({
                     {comparison.name}
                   </th>
                   <th scope="col" className="py-3 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
-                    Reygent
+                    Reygent AI
                   </th>
                 </tr>
               </thead>

@@ -246,7 +246,7 @@ export function pagesDoc() {
         summary:
           "Tell us about your clients, the systems they run and where automation keeps coming up. We reply to every application with a real answer, including when the fit is not there.",
         primary: { href: "/contact", label: "Start the conversation" },
-        secondary: { href: "/about", label: "About Reygent" },
+        secondary: { href: "/about", label: "About Reygent AI" },
       },
     },
 

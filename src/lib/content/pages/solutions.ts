@@ -21,7 +21,7 @@ export function solutionsDoc() {
           "None of these are unusual, and none of them are a people problem. They are what happens when a process has no owner and no system behind it.",
       },
       fits: {
-        eyebrow: "How Reygent fits",
+        eyebrow: "How Reygent AI fits",
         title: "Which service fixes which part.",
         lede:
           "You do not have to take all four. Most businesses start with the service that removes the most expensive problem first, then expand once it is paying for itself.",

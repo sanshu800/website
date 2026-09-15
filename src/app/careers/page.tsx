@@ -9,7 +9,7 @@ import { getCompany } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Open roles at Reygent across engineering, product, design, operations research and go-to-market.",
+    "Open roles at Reygent AI across engineering, product, design, operations research and go-to-market.",
   alternates: { canonical: "/careers" },
 };
 

@@ -447,7 +447,7 @@ export const legalPages = {
     title: "Privacy notice",
     updated: "2026-08-01",
     intro:
-      "This notice explains what Reygent collects, why, and what control you have over it. It is written to be read, not to be survived.",
+      "This notice explains what Reygent AI collects, why, and what control you have over it. It is written to be read, not to be survived.",
     sections: [
       {
         h: "What we collect",
@@ -459,7 +459,7 @@ export const legalPages = {
       },
       {
         h: "Your customers' data",
-        p: "Where an automation touches information about your customers, you remain the controller and Reygent is the processor. We act only on your documented instructions, under a data processing agreement, and we delete working copies when the engagement ends.",
+        p: "Where an automation touches information about your customers, you remain the controller and Reygent AI is the processor. We act only on your documented instructions, under a data processing agreement, and we delete working copies when the engagement ends.",
       },
       {
         h: "Where the data lives",
@@ -479,7 +479,7 @@ export const legalPages = {
     title: "Terms of service",
     updated: "2026-08-01",
     intro:
-      "The agreement between your business and Reygent covering audits, build projects and the managed retainer. Plain-language summary first, full terms below.",
+      "The agreement between your business and Reygent AI covering audits, build projects and the managed retainer. Plain-language summary first, full terms below.",
     sections: [
       {
         h: "What we are engaged to do",

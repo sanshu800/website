@@ -10,7 +10,7 @@ import { TourStage } from "@/components/marketing/TourStage";
 export const metadata: Metadata = {
   title: "How we work",
   description:
-    "How a Reygent engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
+    "How a Reygent AI engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
   alternates: { canonical: "/how-we-work" },
 };
 

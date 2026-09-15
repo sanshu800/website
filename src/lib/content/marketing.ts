@@ -2,7 +2,7 @@
  * Brand, navigation and shared marketing content.
  *
  * NOTE ON PLACEHOLDER DATA: the client names, logos and testimonials in this
- * file are invented placeholders shaped for Reygent's market (owner-run
+ * file are invented placeholders shaped for Reygent AI's market (owner-run
  * businesses across professional services, property, e-commerce and health).
  * They are not real customers and no real company's mark is reproduced. Swap
  * them for real names and quotes before this site is published — see
@@ -15,12 +15,12 @@ export const PLACEHOLDERS = {
 } as const;
 
 export const site = {
-  name: "Reygent",
-  wordmark: "Reygent",
+  name: "Reygent AI",
+  wordmark: "Reygent AI",
   productName: "Reygent AI",
   tagline: "An AI agency that builds the agents doing your team's repetitive work.",
   description:
-    "Reygent is an AI agency for business owners. We find the work worth automating, build the AI agents and automations that do it, and stay on to keep them running — connected to the systems you already use.",
+    "Reygent AI is an AI agency for business owners. We find the work worth automating, build the AI agents and automations that do it, and stay on to keep them running — connected to the systems you already use.",
   // PLACEHOLDER: confirm the production domain and monitored inbox.
   url: "https://reygent.ai",
   email: "hello@reygent.ai",

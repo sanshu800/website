@@ -9,7 +9,7 @@ import { getLegal, getPages } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Security",
   description:
-    "How Reygent protects client data: encryption, tenant isolation, access control, audit logging, testing and incident response.",
+    "How Reygent AI protects client data: encryption, tenant isolation, access control, audit logging, testing and incident response.",
   alternates: { canonical: "/security" },
 };
 

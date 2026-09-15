@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * Customer proof.
  *
  * PLACEHOLDER CONTENT: the people and firms quoted here are invented, shaped to
- * Reygent's ICP. The layout is real — swap `testimonials` in
+ * Reygent AI's ICP. The layout is real — swap `testimonials` in
  * `src/lib/content/marketing.ts` for verified quotes and this section needs no
  * other change. The disclosure line below the grid must be removed at the same
  * time.

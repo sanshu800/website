@@ -9,7 +9,7 @@ import { getComparisons } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Compare",
   description:
-    "How Reygent compares to spreadsheets, a traditional CRM, separate point tools, hiring an operations manager, building in-house, and doing nothing.",
+    "How Reygent AI compares to spreadsheets, a traditional CRM, separate point tools, hiring an operations manager, building in-house, and doing nothing.",
   alternates: { canonical: "/compare" },
 };
 

@@ -27,7 +27,7 @@ export async function generateMetadata({
     description: service.summary,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: `Reygent ${service.name}`,
+      title: `Reygent AI ${service.name}`,
       description: service.summary,
       url: `${site.url}/services/${service.slug}`,
     },

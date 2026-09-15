@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS users (
   email         TEXT NOT NULL UNIQUE,
   name          TEXT NOT NULL,
   role          TEXT NOT NULL DEFAULT 'owner',
-  org_name      TEXT NOT NULL DEFAULT 'Reygent',
+  org_name      TEXT NOT NULL DEFAULT 'Reygent AI',
   password_hash TEXT NOT NULL,
   created_at    TEXT NOT NULL
 );

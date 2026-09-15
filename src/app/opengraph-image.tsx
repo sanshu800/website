@@ -13,7 +13,7 @@ import { ImageResponse } from "next/og";
  * sized for a thumbnail rather than for the full 1200×630, because that is how
  * it is almost always seen.
  */
-export const alt = "Reygent — the work nobody wants to do, done by AI";
+export const alt = "Reygent AI — the work nobody wants to do, done by AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -50,7 +50,7 @@ export default function OpengraphImage() {
           >
             R
           </div>
-          <div style={{ fontSize: "30px", letterSpacing: "-0.02em", fontWeight: 600 }}>Reygent</div>
+          <div style={{ fontSize: "30px", letterSpacing: "-0.02em", fontWeight: 600 }}>Reygent AI</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>

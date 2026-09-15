@@ -1,0 +1,129 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Container } from "@/components/ui/Container";
+import { PageHero, PageCTA } from "@/components/marketing/PageHero";
+import { Reveal } from "@/components/motion/Reveal";
+import { releaseNotes } from "@/lib/content/company";
+import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Release notes",
+  description:
+    "What shipped in Reygent, in order, with the reason each change exists.",
+  alternates: { canonical: "/release-notes" },
+};
+
+const KIND_STYLE: Record<string, string> = {
+  New: "border-jade/30 bg-jade-soft text-jade",
+  Improved: "border-azure/30 bg-azure-soft text-azure",
+  Fixed: "border-line bg-mist text-fog",
+};
+
+export default function ReleaseNotesPage() {
+  const [latest, ...rest] = releaseNotes;
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Release notes"
+        title="Every change, and why it exists."
+        summary="We publish the reasoning alongside the changelog. If a release does not improve a measurement we track for customers, it is worth explaining why we shipped it."
+      />
+
+      <section className="section bg-paper">
+        <Container width="wide">
+          {latest && (
+            <Reveal>
+              <article className="rounded-2xl border border-violet/30 bg-violet-soft p-7 sm:p-9">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="rounded-full bg-violet px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
+                    Latest
+                  </span>
+                  <span className="font-mono text-[0.6875rem] text-violet">
+                    v{latest.version}
+                  </span>
+                  <time className="font-mono text-[0.6875rem] text-fog-2">
+                    {latest.date}
+                  </time>
+                </div>
+                <h2 className="mt-5 font-display text-[1.75rem] text-ink">
+                  {latest.title}
+                </h2>
+                <p className="mt-3 max-w-[42rem] text-body-lg text-fog">
+                  {latest.summary}
+                </p>
+                <ul className="mt-7 space-y-3 border-t border-violet/20 pt-6">
+                  {latest.items.map((item) => (
+                    <li key={item.text} className="flex flex-wrap items-baseline gap-3">
+                      <span
+                        className={cn(
+                          "rounded-full border px-2 py-0.5 font-mono text-[0.5625rem] uppercase tracking-wide",
+                          KIND_STYLE[item.kind],
+                        )}
+                      >
+                        {item.kind}
+                      </span>
+                      <span className="text-body text-fg-2">{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          )}
+
+          <div className="mt-16 border-t border-line">
+            {rest.map((note) => (
+              <Reveal
+                key={note.version}
+                className="grid gap-6 border-b border-line py-9 lg:grid-cols-12"
+              >
+                <div className="lg:col-span-3">
+                  <p className="font-mono text-[0.75rem] text-ink">v{note.version}</p>
+                  <time className="mt-1.5 block font-mono text-[0.6875rem] text-fog-2">
+                    {note.date}
+                  </time>
+                </div>
+                <div className="lg:col-span-9">
+                  <h2 className="font-display text-[1.25rem] text-ink">{note.title}</h2>
+                  <p className="mt-2.5 max-w-[40rem] text-micro text-fog">
+                    {note.summary}
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {note.items.map((item) => (
+                      <li key={item.text} className="flex flex-wrap items-baseline gap-3">
+                        <span
+                          className={cn(
+                            "rounded-full border px-2 py-0.5 font-mono text-[0.5625rem] uppercase tracking-wide",
+                            KIND_STYLE[item.kind],
+                          )}
+                        >
+                          {item.kind}
+                        </span>
+                        <span className="text-micro text-fg-2">{item.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <p className="mt-10 text-micro text-fog-2">
+            Prefer it in your inbox?{" "}
+            <Link href="/newsletter" className="text-violet underline underline-offset-2">
+              Subscribe to the release digest
+            </Link>
+            .
+          </p>
+        </Container>
+      </section>
+
+      <PageCTA
+        title="Want to influence the next one?"
+        summary="Pro customers get a monthly roadmap review, and Foundation requests are triaged in public view of the requesting firm."
+        primary={{ href: "/demo", label: "Book a demo" }}
+        secondary={{ href: "/contact", label: "Send feedback" }}
+      />
+    </>
+  );
+}

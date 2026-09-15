@@ -1,0 +1,104 @@
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { site } from "@/lib/content/marketing";
+import "./globals.css";
+
+/**
+ * Type is self-hosted (SIL OFL, licences in src/assets/fonts): no build-time
+ * network dependency, no third-party request from the visitor's browser, and
+ * metric-matched fallbacks so nothing shifts on swap.
+ */
+const geist = localFont({
+  src: "../assets/fonts/geist-latin-variable.woff2",
+  weight: "100 900",
+  display: "swap",
+  variable: "--font-geist",
+  adjustFontFallback: "Arial",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+const spaceGrotesk = localFont({
+  src: "../assets/fonts/space-grotesk-latin-variable.woff2",
+  weight: "300 700",
+  display: "swap",
+  variable: "--font-space-grotesk",
+  adjustFontFallback: "Arial",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+const geistMono = localFont({
+  src: "../assets/fonts/geist-mono-latin-variable.woff2",
+  weight: "100 900",
+  display: "swap",
+  variable: "--font-geist-mono",
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Reygent — The AI-native operations platform for professional-service firms",
+    template: "%s — Reygent",
+  },
+  description: site.description,
+  applicationName: site.name,
+  keywords: [
+    "professional services automation",
+    "legal firm intake software",
+    "accounting practice management",
+    "client onboarding automation",
+    "AI operations platform",
+    "consulting firm CRM",
+  ],
+  authors: [{ name: site.name }],
+  creator: site.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: site.locale,
+    url: site.url,
+    siteName: site.name,
+    title: "Reygent — The AI-native operations platform",
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reygent — The AI-native operations platform",
+    description: site.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="en"
+      className={`${geist.variable} ${spaceGrotesk.variable} ${geistMono.variable}`}
+    >
+      <body className="antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-small focus:text-white"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,191 @@
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { Container, Eyebrow } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
+import { cn } from "@/lib/utils";
+
+export type Crumb = { label: string; href?: string };
+
+/**
+ * Shared page hero. Every inner page opens the same way — breadcrumb, eyebrow,
+ * display heading, single-sentence summary — so the site reads as one product
+ * rather than a set of landing pages.
+ */
+export function PageHero({
+  eyebrow,
+  title,
+  summary,
+  crumbs = [],
+  actions,
+  align = "left",
+  tone = "paper",
+  aside,
+  className,
+}: {
+  eyebrow?: string;
+  title: React.ReactNode;
+  summary?: React.ReactNode;
+  crumbs?: Crumb[];
+  actions?: React.ReactNode;
+  align?: "left" | "center";
+  tone?: "paper" | "ink";
+  aside?: React.ReactNode;
+  className?: string;
+}) {
+  const onInk = tone === "ink";
+
+  return (
+    <section
+      className={cn(
+        "relative overflow-hidden border-b pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36",
+        onInk ? "border-white/10 bg-ink" : "border-line bg-paper",
+        className,
+      )}
+    >
+      {onInk ? (
+        <div
+          aria-hidden="true"
+          className="grid-field-dark pointer-events-none absolute inset-0 opacity-40"
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(50%_60%_at_50%_0%,rgba(91,52,242,0.08),transparent_70%)]"
+        />
+      )}
+
+      <Container width="wide" className="relative">
+        {crumbs.length > 0 && (
+          <nav aria-label="Breadcrumb" className="mb-7">
+            <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[0.6875rem] uppercase tracking-wide">
+              {crumbs.map((crumb, index) => (
+                <li key={crumb.label} className="flex items-center gap-1.5">
+                  {index > 0 && (
+                    <ChevronRight
+                      className={cn("h-3 w-3", onInk ? "text-white/35" : "text-fog-2")}
+                    />
+                  )}
+                  {crumb.href ? (
+                    <Link
+                      href={crumb.href}
+                      className={cn(
+                        "transition-colors",
+                        onInk ? "text-on-ink-2 hover:text-on-ink" : "text-fog hover:text-ink",
+                      )}
+                    >
+                      {crumb.label}
+                    </Link>
+                  ) : (
+                    <span className={onInk ? "text-on-ink" : "text-ink"}>{crumb.label}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        <div
+          className={cn(
+            "grid gap-10",
+            aside ? "lg:grid-cols-12 lg:gap-12" : undefined,
+          )}
+        >
+          <div
+            className={cn(
+              aside ? "lg:col-span-7" : "max-w-[52rem]",
+              align === "center" && !aside && "mx-auto text-center",
+            )}
+          >
+            {eyebrow && (
+              <Reveal variant="fade">
+                <Eyebrow
+                  tone={onInk ? "on-ink" : "violet"}
+                  className={align === "center" && !aside ? "justify-center" : undefined}
+                >
+                  {eyebrow}
+                </Eyebrow>
+              </Reveal>
+            )}
+            <Reveal delay={0.05}>
+              <h1
+                className={cn(
+                  "mt-5 text-display-xl",
+                  onInk ? "text-on-ink" : "text-ink",
+                )}
+              >
+                {title}
+              </h1>
+            </Reveal>
+            {summary && (
+              <Reveal delay={0.1}>
+                <p
+                  className={cn(
+                    "mt-6 text-lead",
+                    onInk ? "text-on-ink-2" : "text-fog",
+                    align === "center" && !aside ? "mx-auto max-w-[40rem]" : "max-w-[42rem]",
+                  )}
+                >
+                  {summary}
+                </p>
+              </Reveal>
+            )}
+            {actions && (
+              <Reveal delay={0.15}>
+                <div
+                  className={cn(
+                    "mt-8 flex flex-wrap gap-3",
+                    align === "center" && !aside && "justify-center",
+                  )}
+                >
+                  {actions}
+                </div>
+              </Reveal>
+            )}
+          </div>
+
+          {aside && <div className="lg:col-span-5">{aside}</div>}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** Small consistent CTA used at the foot of inner pages. */
+export function PageCTA({
+  title = "See it running on your own data",
+  summary = "Start a 14-day trial, or book 30 minutes and we will map your intake process live — either way you leave with something useful.",
+  primary = { href: "/get-started", label: "Start free trial" },
+  secondary = { href: "/demo", label: "Book a demo" },
+}: {
+  title?: string;
+  summary?: string;
+  primary?: { href: string; label: string };
+  secondary?: { href: string; label: string };
+}) {
+  return (
+    <section className="border-t border-line bg-mist py-16 sm:py-20">
+      <Container width="wide">
+        <div className="flex flex-wrap items-center justify-between gap-8">
+          <div className="max-w-[34rem]">
+            <h2 className="text-display-m text-ink">{title}</h2>
+            <p className="mt-3 text-body-lg text-fog">{summary}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href={primary.href}
+              className="inline-flex h-11 items-center rounded-full bg-violet px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-violet-2"
+            >
+              {primary.label}
+            </Link>
+            <Link
+              href={secondary.href}
+              className="inline-flex h-11 items-center rounded-full border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+            >
+              {secondary.label}
+            </Link>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}

@@ -39,3 +39,11 @@ yarn-error.log*
 
 # The rejected v1 design is kept in the working tree for reference only.
 /archive/
+
+# User-supplied media (hero film, uploads). Served from disk, not committed:
+# a single clip can be tens of megabytes. See the hero note in README.md.
+/public/video/*
+!/public/video/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+

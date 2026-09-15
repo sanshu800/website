@@ -164,6 +164,35 @@ Copy `.env.example` if you want to set them.
    uploads are needed.
 7. **Domain and DNS** — `reygent.ai` appears in metadata, robots and sitemap.
 
+## Hero film and other uploaded media
+
+The homepage hero plays a full-bleed looping video. Resolution happens at request
+time, in this order:
+
+1. `public/video/hero.mp4` / `hero.webm` / `hero.mov` — a file present in the
+   project always wins, and the hero picks it up **without a rebuild**.
+2. `heroVideo.src` in `src/lib/content/marketing.ts` — the remote CDN reference.
+
+`public/images/hero-poster.jpg` is the poster frame and the fallback shown when the
+visitor has `prefers-reduced-motion` set.
+
+**Moving a file in.** When this project runs somewhere that cannot reach the source
+of a clip (a locked-down sandbox, an air-gapped CI), start the server with the upload
+channel enabled and post the file from a browser:
+
+```bash
+ALLOW_MEDIA_UPLOAD=1 UPLOAD_TOKEN=<random-string> npm start
+# then open /upload?token=<random-string>
+```
+
+`POST /api/media` (and the page that drives it) returns **404 unless
+`ALLOW_MEDIA_UPLOAD=1`**, so the surface does not exist in a normal deployment. With
+the flag on it also requires the matching `UPLOAD_TOKEN`. Accepted: mp4, webm, mov,
+jpeg, png, webp up to 80MB; `target=hero` writes into `public/video/`, any other
+target into `public/uploads/`. Files written this way are **gitignored** — they are
+deployment assets, not source. Copy the clip into `public/video/` (or commit it with
+`git add -f`) when you want it to travel with the repository.
+
 ## Verified vs not verified
 
 Verified: production build, TypeScript strict, ESLint, all marketing routes returning

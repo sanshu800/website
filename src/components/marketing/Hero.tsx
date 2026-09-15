@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -13,7 +15,28 @@ import { heroVideo } from "@/lib/content/marketing";
  * reduced data — the poster is already a finished composition, so the hero is
  * never a black rectangle.
  */
+/**
+ * Resolution order for the film: a file dropped into the project wins, so the
+ * hero can be self-hosted by copying one file into `public/video/` — see the
+ * note in `lib/content/marketing.ts`. Otherwise the CDN reference is used.
+ */
+function resolveHeroVideo(): { src: string; type: string } {
+  const candidates = [
+    { name: "hero.mp4", type: "video/mp4" },
+    { name: "hero.webm", type: "video/webm" },
+    { name: "hero.mov", type: "video/quicktime" },
+  ];
+  for (const candidate of candidates) {
+    if (existsSync(path.join(process.cwd(), "public", "video", candidate.name))) {
+      return { src: `/video/${candidate.name}`, type: candidate.type };
+    }
+  }
+  return { src: heroVideo.src, type: "video/mp4" };
+}
+
 export function Hero() {
+  const video = resolveHeroVideo();
+
   return (
     <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-ink">
       {/* 1. Film */}
@@ -28,7 +51,7 @@ export function Hero() {
         tabIndex={-1}
         className="absolute inset-0 h-full w-full object-cover object-[70%_center] motion-reduce:hidden"
       >
-        <source src={heroVideo.src} type="video/mp4" />
+        <source src={video.src} type={video.type} />
       </video>
 
       {/* Poster stays put underneath, and carries the hero when motion is off. */}

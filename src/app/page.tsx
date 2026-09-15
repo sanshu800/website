@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Rendered per request so the hero film can resolve against the current contents
+// of `public/video/` — dropping a file in there swaps the hero without a rebuild.
+// The homepage reads no database, so dynamic rendering costs nothing meaningful.
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <>

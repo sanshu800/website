@@ -1,78 +1,77 @@
-import { pricingFaqs, tiers } from "@/lib/content/company";
+import { engagements, pricingFaqs } from "@/lib/content/company";
 
 /**
- * Copy for the pricing surface: `/pricing`, the homepage plan preview and the
- * plan picker on `/get-started`.
+ * Copy for the engagement/pricing surface: `/pricing`, the homepage preview and
+ * the enquiry form on `/get-started`.
  *
- * These strings used to live inline in the page components, which meant only a
- * developer could change them. They live here now, and the admin panel resolves
- * them through `getPricing()` so an editor's value wins over this object.
- *
- * The plan list and FAQ entries are the same objects `/pricing` always used —
- * they are carried into the document so the whole surface is editable in one
- * place instead of half here and half in a page file.
+ * We are an agency, so there are no per-seat plans here — there are three ways
+ * of working with us: a fixed-fee audit, a fixed-price build, and the monthly
+ * retainer that keeps it running. Everything on this surface is editable from
+ * the admin panel, and the list itself is carried into the document so one edit
+ * changes `/pricing`, the homepage and the form together.
  */
 export const pricingCopy = {
   hero: {
-    eyebrow: "Pricing",
-    title: "Priced per user, so growth is not punished.",
+    eyebrow: "Engagements & pricing",
+    title: "Fixed prices, agreed before we start.",
     summary:
-      "You are not charged per client record, per call or per automation run on a metered basis. Add the whole firm to the record, because that is the point of having one.",
+      "You are buying work, not a licence. Every engagement is scoped in writing, priced up front, and paid against milestones — starting with a one-week audit that is credited against your build if you continue.",
   },
 
   plans: {
-    popularBadge: "Most popular",
-    unit: "/ user / mo",
-    footnoteBefore: "Education and non-profit discounts available. Firms under three years old may qualify for the",
-    footnoteLink: "startup programme",
-    quoteCta: "Talk to us before you buy",
+    popularBadge: "Most start here",
+    unit: "",
+    footnoteBefore: "Business under three years old? Our founders programme builds one process for a fixed",
+    footnoteLink: "£4,500",
+    quoteCta: "Not sure which one you need?",
   },
 
-  plansList: tiers,
+  engagementsList: engagements,
 
-  /** The same plans as a compact block on the homepage. */
+  /** The same engagements as a compact block on the homepage. */
   preview: {
-    eyebrow: "Pricing",
-    title: "Per user. Not per client, not per call.",
+    eyebrow: "Engagements",
+    title: "Three ways to work with us.",
     lede:
-      "You are not penalised for growing your client base, and we are not incentivised to make you ration access to the record.",
-    compareLink: "Compare every plan limit",
-    footnote: "14-day trial · no card · full data export if you leave",
+      "Start with the audit. Most businesses go on to a build, and the ones that want us to stay on afterwards keep a retainer. You are never locked in — the code and the accounts are yours from day one.",
+    compareLink: "What is included in each",
+    footnote: "Fixed scope · Milestone payments · You own everything we build",
   },
 
   comparison: {
-    eyebrow: "Full comparison",
-    title: "Every limit, on one page.",
-    featureColumn: "Feature",
-    columnNames: ["Core", "Pro", "Enterprise"],
+    eyebrow: "Side by side",
+    title: "Exactly what is included.",
+    featureColumn: "Included",
+    columnNames: ["AI audit", "Build project", "Managed AI"],
     rows: [
-      { row: "Modules included", core: "Intake, Engage, Deliver, Insight", pro: "All four", ent: "All four" },
-      { row: "Foundation memory layer", core: "Included", pro: "Included", ent: "Included" },
-      { row: "Active client records", core: "2,500", pro: "25,000", ent: "Unlimited" },
-      { row: "Automation runs / month", core: "25,000", pro: "250,000", ent: "Negotiated" },
-      { row: "Ask Reygent", core: "Included", pro: "Unlimited", ent: "Unlimited, private routing" },
-      { row: "Custom record types", core: "—", pro: "Included", ent: "Included" },
-      { row: "Workflow builder", core: "—", pro: "Included", ent: "Included" },
-      { row: "Cross-practice reporting", core: "—", pro: "Included", ent: "Included" },
-      { row: "SSO / SCIM", core: "—", pro: "—", ent: "Included" },
-      { row: "Audit log export", core: "—", pro: "—", ent: "Included" },
-      { row: "Data residency options", core: "—", pro: "—", ent: "Included" },
-      { row: "Support", core: "Email, next business day", pro: "Priority, 4-hour", ent: "Named contact, SLA" },
-      { row: "Implementation", core: "Guided self-serve", pro: "Assisted", ent: "Named lead" },
+      { row: "Who it is for", core: "Before you commit to anything", pro: "You know the process to fix", ent: "You want it looked after" },
+      { row: "Typical price", core: "£2,400 fixed", pro: "£9,000 – £25,000 fixed", ent: "From £950 / month" },
+      { row: "Time involved", core: "One week", pro: "Four to eight weeks", ent: "Ongoing" },
+      { row: "Your team's time", core: "4–5 hours", pro: "About an hour a week", ent: "One monthly review" },
+      { row: "Ranked automation plan", core: "Included", pro: "Included", ent: "Kept current" },
+      { row: "The process built", core: "—", pro: "One, end to end", ent: "As agreed each quarter" },
+      { row: "Connected to your systems", core: "—", pro: "Included", ent: "Maintained" },
+      { row: "Run in parallel before go-live", core: "—", pro: "Two weeks", ent: "Continuous" },
+      { row: "Team training and documentation", core: "—", pro: "Included", ent: "Updated as you change" },
+      { row: "Monitoring and alerting", core: "—", pro: "30 days included", ent: "Included" },
+      { row: "Model upgrades tested on your cases", core: "—", pro: "—", ent: "Included" },
+      { row: "Named person who knows your setup", core: "—", pro: "Your build team", ent: "Included" },
+      { row: "Who owns the build", core: "You — the document is yours", pro: "You", ent: "You" },
+      { row: "Coming out of it", core: "No obligation", pro: "Handover, or a retainer", ent: "30 days' notice" },
     ],
   },
 
   faq: {
-    title: "Questions firms ask us",
+    title: "Questions owners ask us",
     summary:
-      "Including the ones about leaving, which we answer the same way in conversation as we do here.",
+      "Including what happens if it does not work, which we would rather answer now than in a contract negotiation.",
   },
   faqs: pricingFaqs,
 
   cta: {
-    title: "Not sure which plan fits?",
+    title: "Not sure which one you need?",
     summary:
-      "Tell us how many people handle intake, how many client relationships are live, and whether you have an IT function. We will tell you honestly — including if Core is enough.",
+      "That is normal. Tell us the one job that annoys you most and we will tell you whether it is worth automating, what it would cost, and which engagement makes sense — including if the answer is none of them yet.",
   },
 };
 

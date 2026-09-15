@@ -109,7 +109,7 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField
-          label="Firm"
+          label="Business"
           name="organization"
           autoComplete="organization"
           placeholder="Ramsey & Doyle"

@@ -11,7 +11,7 @@ import { getSolutions } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Customers",
   description:
-    "How professional-services firms run intake, onboarding, follow-through and reporting on Reygent.",
+    "Real automations, what they replaced and what changed — written up honestly, including the parts that were harder than expected.",
   alternates: { canonical: "/customers" },
 };
 
@@ -115,7 +115,7 @@ export default function CustomersPage() {
 
       <section className="section-sm bg-paper">
         <Container width="wide">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">By practice</h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog-2">By industry</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {solutions.map((solution) => (
               <Link

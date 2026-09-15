@@ -48,16 +48,16 @@ export default async function ComparePage({
         actions={
           <>
             <Link
-              href="/demo"
+              href="/get-started"
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Book a demo
+              Book a free AI audit
             </Link>
             <Link
               href="/get-started"
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Start free trial
+              Talk to us
             </Link>
           </>
         }

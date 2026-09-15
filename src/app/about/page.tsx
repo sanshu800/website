@@ -10,7 +10,7 @@ import { getCompany, getShared } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Reygent builds operational systems for professional-service firms. We map the process before writing a rule, and we measure whether it worked.",
+    "Reygent is an AI agency for owner-run businesses. We map the process before writing a rule, build the agent that removes it, and measure whether it actually worked.",
   alternates: { canonical: "/about" },
 };
 

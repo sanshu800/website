@@ -9,7 +9,7 @@ import { getPages, getShared } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Integrations",
   description:
-    "Reygent connects to email, calendar, documents, e-signature, accounting, messaging, practice management and your data warehouse.",
+    "The CRM, inbox, calendar, accounting, telephony and industry systems we connect to — so agents work inside the tools your business already runs on.",
   alternates: { canonical: "/integrations" },
 };
 

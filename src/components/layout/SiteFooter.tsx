@@ -49,13 +49,13 @@ export function SiteFooter({
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
-            {footer.columns.map((column) => (
+            {footer.columns.map((column: ChromeDoc["footer"]["columns"][number]) => (
               <nav key={column.title} aria-label={column.title}>
                 <h2 className="font-mono text-eyebrow uppercase text-on-ink-2">
                   {column.title}
                 </h2>
                 <ul className="mt-4 space-y-2.5">
-                  {column.items.map((item) => (
+                  {column.items.map((item: { label: string; href: string }) => (
                     <li key={`${column.title}-${item.label}`}>
                       <Link
                         href={item.href}

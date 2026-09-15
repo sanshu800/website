@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Operations writing for professional-services firm leaders: intake, follow-through, onboarding, reporting and where AI genuinely helps.",
+    "Practical writing for business owners: which processes are worth automating, what it costs, what breaks, and where AI genuinely helps.",
   alternates: { canonical: "/blog" },
 };
 

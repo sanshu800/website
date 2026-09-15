@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/marketing/Hero";
-import { getHome, getProducts } from "@/lib/cms/content";
+import { getHome, getServices } from "@/lib/cms/content";
 import { ProblemSection } from "@/components/marketing/ProblemSection";
-import { ProductTabs } from "@/components/marketing/ProductTabs";
-import { ModulesStrip } from "@/components/marketing/ModulesStrip";
-import { FoundationSection } from "@/components/marketing/FoundationSection";
+import { ServiceTabs } from "@/components/marketing/ServiceTabs";
+import { ServicesStrip } from "@/components/marketing/ServicesStrip";
+import { AgentSection } from "@/components/marketing/AgentSection";
 import { MetricsBand } from "@/components/marketing/MetricsBand";
 import { HowItWorksSection } from "@/components/marketing/HowItWorksSection";
 import { TestimonialWall } from "@/components/marketing/TestimonialWall";
@@ -26,7 +26,7 @@ export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   const home = getHome();
-  const products = getProducts();
+  const services = getServices();
 
   return (
     <>
@@ -42,10 +42,13 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <ModulesStrip />
+      <ServicesStrip />
       <ProblemSection />
-      <ProductTabs products={[...products.modules, products.foundation]} />
-      <FoundationSection copy={home.foundation} tabs={products.foundation.tabs ?? []} />
+      <ServiceTabs
+        services={[...services.core, services.managed]}
+        copy={home.services}
+      />
+      <AgentSection copy={home.agents} />
       <MetricsBand />
       <HowItWorksSection copy={home.howItWorks} />
       <TestimonialWall />

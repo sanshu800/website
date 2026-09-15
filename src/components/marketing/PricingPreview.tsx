@@ -7,12 +7,12 @@ import { getPricing } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 /**
- * The plan block on the homepage. Reads the same `pricing` document as
- * `/pricing`, so a price or a plan name is edited once and changes in both
- * places.
+ * The engagement block on the homepage. Reads the same `pricing` document as
+ * `/pricing`, so a price, a deliverable or an inclusion is edited once and
+ * changes in both places.
  */
 export function PricingPreview() {
-  const { plans, plansList, preview } = getPricing();
+  const { plans, engagementsList, preview } = getPricing();
 
   return (
     <section className="section bg-paper" id="pricing">
@@ -25,7 +25,7 @@ export function PricingPreview() {
         />
 
         <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-3">
-          {plansList.map((tier) => (
+          {engagementsList.map((tier) => (
             <RevealItem key={tier.slug}>
               <div
                 className={cn(

@@ -14,8 +14,8 @@ export function chromeDoc() {
       name: site.name,
       tagline: site.tagline,
       /** Used as the default page title and in social cards. */
-      seoTitle: "Reygent — The AI-native operations platform for professional-service firms",
-      ogTitle: "Reygent — The AI-native operations platform",
+      seoTitle: "Reygent — AI agency for business owners",
+      ogTitle: "Reygent — AI agents and automation for your business",
       description: site.description,
       email: site.email,
       copyright: "All rights reserved.",
@@ -27,30 +27,30 @@ export function chromeDoc() {
       actions: {
         /* Deliberately one action. There is no customer sign-in on this site —
            the admin lives at /admin and is never linked from the public pages. */
-        primary: { label: "Get started", href: "/get-started" },
+        primary: { label: "Book a free AI audit", href: "/get-started" },
       },
     },
 
     footer: {
       columns: [
-        { title: "Product", items: footerNav.product },
+        { title: "Services", items: footerNav.services },
         { title: "Solutions", items: footerNav.solutions },
-        { title: "Compare", items: footerNav.compare },
+        { title: "Why us", items: footerNav.compare },
         { title: "Resources", items: footerNav.resources },
         { title: "Company", items: footerNav.company },
       ],
       actions: {
-        primary: { label: "Start free trial", href: "/get-started" },
-        secondary: { label: "Book a demo", href: "/demo" },
+        primary: { label: "Book a free AI audit", href: "/get-started" },
+        secondary: { label: "See how we work", href: "/how-we-work" },
       },
-      builtFor: "Built for professional-service firms",
+      builtFor: "AI agency for owner-run businesses",
       legalLinks: {
         privacy: { label: "Privacy", href: "/legal/privacy" },
         terms: { label: "Terms", href: "/legal/terms" },
         security: { label: "Security", href: "/security" },
       },
       disclosure:
-        "Client names, marks and testimonials shown on this site are placeholders shaped to our target market and do not represent real customers. Replace before publishing.",
+        "Client names, marks and testimonials on this site are placeholders shaped to our market. They are not real customers. Replace before publishing.",
     },
   };
 }

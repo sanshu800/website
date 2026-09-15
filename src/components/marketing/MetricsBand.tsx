@@ -5,7 +5,7 @@ import { getShared } from "@/lib/cms/content";
 /**
  * Capability band.
  *
- * These are counts of what the platform does — modules, integration surfaces,
+ * These are counts of what we actually do — services, systems connected,
  * migrations required — not performance claims about customers. Nothing here
  * needs a customer reference to be true.
  */

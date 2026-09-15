@@ -4,14 +4,14 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getProducts } from "@/lib/cms/content";
+import { getServices } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Services",
   description:
-    "Intake, Engage, Deliver and Insight, on one Foundation memory layer — the four operational jobs a professional-services firm runs every day.",
-  alternates: { canonical: "/products" },
+    "Five ways an AI agency takes work off your team: agents that answer and book, automation that connects your systems, document processing, business insight and a retainer that keeps it all running.",
+  alternates: { canonical: "/services" },
 };
 
 const FIELD: Record<string, string> = {
@@ -23,7 +23,7 @@ const FIELD: Record<string, string> = {
 };
 
 export default function ProductsIndex() {
-  const { items: products, index: copy } = getProducts();
+  const { items: services, index: copy } = getServices();
 
   return (
     <>
@@ -32,10 +32,10 @@ export default function ProductsIndex() {
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5">
-            {products.map((product, cardIndex) => (
-              <RevealItem key={product.slug}>
+            {services.map((service, cardIndex) => (
+              <RevealItem key={service.slug}>
                 <Link
-                  href={`/products/${product.slug}`}
+                  href={`/services/${service.slug}`}
                   className="group grid gap-6 rounded-2xl border border-line p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md sm:p-8 lg:grid-cols-12 lg:items-center"
                 >
                   <div className="lg:col-span-4">
@@ -43,24 +43,24 @@ export default function ProductsIndex() {
                       <span
                         className={cn(
                           "flex h-8 w-8 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium text-white",
-                          FIELD[product.accent],
+                          FIELD[service.accent],
                         )}
                       >
                         {String(cardIndex + 1).padStart(2, "0")}
                       </span>
                       <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
-                        {product.kicker}
+                        {service.kicker}
                       </span>
                     </div>
                     <h2 className="mt-4 font-display text-[1.5rem] tracking-[-0.02em] text-ink">
-                      {product.name}
+                      {service.name}
                     </h2>
-                    <p className="mt-2 text-micro text-accent">{product.headline}</p>
+                    <p className="mt-2 text-micro text-accent">{service.headline}</p>
                   </div>
                   <div className="lg:col-span-6">
-                    <p className="text-body-lg text-fog">{product.summary}</p>
+                    <p className="text-body-lg text-fog">{service.summary}</p>
                     <ul className="mt-4 flex flex-wrap gap-1.5">
-                      {product.flow.map((step) => (
+                      {service.flow.map((step) => (
                         <li
                           key={step.step}
                           className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wide text-fog"

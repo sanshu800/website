@@ -1,14 +1,14 @@
-import { guides, releaseNotes } from "@/lib/content/company";
+import { buildLog, guides } from "@/lib/content/company";
 
-/** Default copy for `/guides`, `/release-notes` and `/newsletter`. */
+/** Default copy for `/guides`, `/build-log` and `/newsletter`. */
 export function resourcesDoc() {
   return {
     guides: {
       hero: {
-        eyebrow: "Guides",
-        title: "The work, written down.",
+        eyebrow: "Playbooks",
+        title: "What we know, written down.",
         summary:
-          "Everything here comes from implementations we have run. Take them, use them, and if you never buy the platform they were still worth your afternoon.",
+          "Every one of these came out of work we were paid to do. Take them, use them, and if you never speak to us they were still worth your afternoon.",
       },
       library: {
         eyebrow: "Library",
@@ -18,9 +18,9 @@ export function resourcesDoc() {
       items: guides,
       note: "On this build, resources are delivered by email rather than as hosted files — the download flow is wired to the newsletter endpoint so you can see the hand-off. Attach real PDFs to make it live.",
       cta: {
-        title: "Want these as they land?",
+        title: "Want them as they land?",
         summary:
-          "One email a month with the new playbook and two operational notes from live implementations.",
+          "One email a month with the new playbook and two notes from live builds. No news roundups, no thought leadership.",
         primary: { href: "/newsletter", label: "Subscribe" },
         secondary: { href: "/blog", label: "Read the blog" },
       },
@@ -28,36 +28,36 @@ export function resourcesDoc() {
 
     releaseNotes: {
       hero: {
-        eyebrow: "Release notes",
-        title: "Every change, and why it exists.",
+        eyebrow: "Build log",
+        title: "What we built, and what it taught us.",
         summary:
-          "We publish the reasoning alongside the changelog. If a release does not improve a measurement we track for customers, it is worth explaining why we shipped it.",
+          "We do not ship software, so this is not a changelog. Each entry is a real automation that went into production for a client, what it replaced, and the thing that turned out to be harder than expected. Clients are described by type, never by name.",
       },
       latestBadge: "Latest",
       digest: {
         before: "Prefer it in your inbox?",
-        linkLabel: "Subscribe to the release digest",
+        linkLabel: "Subscribe to the monthly briefing",
       },
-      items: releaseNotes,
+      items: buildLog,
       cta: {
-        title: "Want to influence the next one?",
+        title: "Want your process in the next entry?",
         summary:
-          "Pro customers get a monthly roadmap review, and Foundation requests are triaged in public view of the requesting firm.",
-        primary: { href: "/demo", label: "Book a demo" },
-        secondary: { href: "/contact", label: "Send feedback" },
+          "The audit is where every one of these started. Bring the job that annoys you most and we will tell you honestly whether it is worth automating.",
+        primary: { href: "/get-started", label: "Book a free AI audit" },
+        secondary: { href: "/how-we-work", label: "See how we work" },
       },
     },
 
     newsletter: {
       hero: {
         eyebrow: "Newsletter",
-        title: "The Operations Briefing.",
+        title: "The Automation Briefing.",
         summary:
-          "One email a month for the people who run professional-services firms. A real problem, the measurement that exposes it, and a playbook you can run without buying software.",
+          "One email a month for business owners. A real problem we have solved, the numbers behind it, and something you can do this week without hiring anybody.",
       },
       subscribe: {
         heading: "Subscribe",
-        note: "Work email only — we do not accept gmail addresses for the briefing, because the content assumes you run a firm.",
+        note: "Work email only — the content assumes you run a business, and it keeps the list honest.",
         facts: [
           { label: "Frequency", value: "Monthly" },
           { label: "Length", value: "5 minutes" },
@@ -68,22 +68,25 @@ export function resourcesDoc() {
       issues: [
         {
           number: "024",
-          title: "The three-week absence test",
-          summary: "What breaks when a partner goes on leave, and the handover checklist that fixes it.",
+          title: "What a missed call actually costs",
+          summary:
+            "Fourteen trades and property businesses measured for a month. The number surprised most of them.",
         },
         {
           number: "023",
-          title: "Measuring intake without a new dashboard",
-          summary: "Four numbers you can pull from systems you already have, this week.",
+          title: "The three-week absence test",
+          summary:
+            "What breaks when the owner goes on holiday, and the checklist that finds it before your customers do.",
         },
         {
           number: "022",
-          title: "AI on client records, without the risk",
-          summary: "Where model access is defensible in a professional-services firm, and where it is not.",
+          title: "Twelve questions to ask an AI agency",
+          summary:
+            "Including the four most agencies cannot answer, and what a good answer sounds like.",
         },
       ],
       includedHeading: "Included with the briefing",
-      shippedHeading: "Shipped recently",
+      shippedHeading: "Built recently",
     },
   };
 }

@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = getPricing();
-  const prices = content.plansList.map((tier) => `${tier.name} from ${tier.price}`).join(", ");
+  const prices = content.engagementsList
+    .map((item) => `${item.name} ${item.price}`)
+    .join(", ");
   return {
-    title: "Pricing",
-    description: `Per-user pricing for professional-services firms. ${prices}. 14-day trial, no card, full data export.`,
+    title: "Engagements & pricing",
+    description: `How we price AI work: a fixed-fee audit, a fixed-price build, and a monthly retainer. ${prices}.`,
     alternates: { canonical: "/pricing" },
   };
 }
@@ -23,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
  */
 export default function PricingPage() {
   const content = getPricing();
-  const { hero, plans, plansList, comparison, faq, faqs, cta } = content;
+  const { hero, plans, engagementsList, comparison, faq, faqs, cta } = content;
 
   return (
     <>
@@ -32,7 +34,7 @@ export default function PricingPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-6 lg:grid-cols-3">
-            {plansList.map((tier) => (
+            {engagementsList.map((tier) => (
               <RevealItem key={tier.slug ?? tier.name}>
                 <div
                   className={cn(

@@ -1,7 +1,7 @@
 import { applyOverrides, collectLeaves, groupFor, labelFor, type Leaf } from "@/lib/cms/paths";
 import { overrideRowsFor } from "@/lib/cms/store";
 import { pricingCopy } from "@/lib/content/pages/pricing";
-import { productsDoc } from "@/lib/content/pages/products";
+import { servicesDoc } from "@/lib/content/pages/services";
 import { solutionsDoc } from "@/lib/content/pages/solutions";
 import { compareDoc } from "@/lib/content/pages/compare";
 import { blogDoc } from "@/lib/content/pages/blog";
@@ -43,7 +43,7 @@ export const DOCS: DocDef[] = [
       { label: "Footer", href: "/#footer" },
     ],
     blurb:
-      "The header mega menu, the flat links, the log in and get started buttons, the footer columns, the legal links and the brand strings used in page titles and social cards.",
+      "The header mega menu, the flat links, the booking button, the footer columns, the legal links and the brand strings used in page titles and social cards.",
     build: chromeDoc,
   },
   {
@@ -51,7 +51,7 @@ export const DOCS: DocDef[] = [
     title: "Homepage",
     where: [{ label: "/", href: "/" }],
     blurb:
-      "Hero headline and calls to action, the proof band, the problem section, how it works, the Foundation blurb, and the closing block.",
+      "Hero headline and calls to action, the proof band, the problem section, the five services, the agent walkthrough, how we work, and the closing block.",
     build: homeDoc,
   },
   {
@@ -81,14 +81,14 @@ export const DOCS: DocDef[] = [
   },
   {
     id: "resources",
-    title: "Guides and release notes",
+    title: "Playbooks and build log",
     where: [
       { label: "/guides", href: "/guides" },
-      { label: "/release-notes", href: "/release-notes" },
+      { label: "/build-log", href: "/build-log" },
       { label: "/newsletter", href: "/newsletter" },
     ],
     blurb:
-      "The guide library, the changelog with its reasoning, and the newsletter page including recent issues.",
+      "The playbook library, the build log with what each project taught us, and the newsletter page including recent issues.",
     build: resourcesDoc,
   },
   {
@@ -97,50 +97,49 @@ export const DOCS: DocDef[] = [
     where: [
       { label: "/get-started", href: "/get-started" },
       { label: "/contact", href: "/contact" },
-      { label: "/demo", href: "/demo" },
       { label: "/customers", href: "/customers" },
       { label: "/integrations", href: "/integrations" },
       { label: "/security", href: "/security" },
       { label: "/startups", href: "/startups" },
       { label: "/partners", href: "/partners" },
-      { label: "/product-tour", href: "/product-tour" },
+      { label: "/how-we-work", href: "/how-we-work" },
     ],
     blurb:
-      "Get started, contact, demo, customers, integrations, security, startups, partners and the product tour — hero copy, section headings, checklists and closing blocks.",
+      "Get started, contact, case studies, what we connect, security, founders programme, partners and how we work — hero copy, section headings, checklists and closing blocks.",
     build: pagesDoc,
   },
   {
     id: "pricing",
-    title: "Pricing",
+    title: "Engagements & pricing",
     where: [
       { label: "/pricing", href: "/pricing" },
-      { label: "Homepage plan preview", href: "/#pricing" },
+      { label: "Homepage engagement preview", href: "/#pricing" },
       { label: "/get-started", href: "/get-started" },
     ],
     blurb:
-      "Hero, all three plans, the full comparison matrix, the FAQ and the closing call to action.",
+      "Hero copy, all three engagements (audit, build, retainer) with their prices and inclusions, the side-by-side matrix, the FAQ and the closing block.",
     build: () => pricingCopy,
   },
   {
-    id: "products",
-    title: "Products",
+    id: "services",
+    title: "Services",
     where: [
-      { label: "/products", href: "/products" },
-      { label: "Product detail pages", href: "/products/intake" },
+      { label: "/services", href: "/services" },
+      { label: "Service detail pages", href: "/services/ai-agents" },
     ],
     blurb:
-      "Index hero, every module's name, headline, intro, feature list, outcomes and call-to-action labels, plus the headings shared by all detail pages.",
-    build: productsDoc,
+      "Index hero, every service's name, headline, intro, feature list, outcomes and call-to-action labels, plus the headings shared by all detail pages.",
+    build: servicesDoc,
   },
   {
     id: "solutions",
     title: "Solutions",
     where: [
       { label: "/solutions", href: "/solutions" },
-      { label: "Practice detail pages", href: "/solutions/legal" },
+      { label: "Industry detail pages", href: "/solutions/professional-services" },
     ],
     blurb:
-      "The practice index, plus each practice's headline, pressure points, module fit and the copy shared across detail pages.",
+      "The industry index, plus each industry's headline, pressure points, which services fit and the copy shared across detail pages.",
     build: solutionsDoc,
   },
   {
@@ -170,7 +169,7 @@ export const DOCS: DocDef[] = [
     title: "Legal pages",
     where: [{ label: "Privacy, terms, DPA, sub-processors", href: "/legal/privacy" }],
     blurb:
-      "Privacy notice, terms, data-processing addendum and sub-processor list. This is reviewed copy — treat edits here as legal changes.",
+      "Privacy notice, service terms and the data handling notes. This is reviewed copy — treat edits here as legal changes.",
     build: legalDoc,
   },
 ];
@@ -178,7 +177,7 @@ export const DOCS: DocDef[] = [
 export type {
   PricingCopy as PricingDoc,
 } from "@/lib/content/pages/pricing";
-export type { ProductsDoc } from "@/lib/content/pages/products";
+export type { ServicesDoc } from "@/lib/content/pages/services";
 export type { SolutionsDoc } from "@/lib/content/pages/solutions";
 export type { CompareDoc } from "@/lib/content/pages/compare";
 export type { BlogDoc } from "@/lib/content/pages/blog";

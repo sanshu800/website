@@ -4,18 +4,18 @@ import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getProducts, getSolutions } from "@/lib/cms/content";
+import { getServices, getSolutions } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Reygent for legal, accounting, consulting and advisory firms — configured around how each practice actually wins and delivers work.",
+    "How we help professional services firms, property and trades businesses, online retailers and clinics automate the repetitive work behind their day.",
   alternates: { canonical: "/solutions" },
 };
 
 export default function SolutionsPage() {
   const { items: solutions, index: copy } = getSolutions();
-  const { modules } = getProducts();
+  const { core } = getServices();
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function SolutionsPage() {
                   </ul>
 
                   <span className="mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent">
-                    Read the solution
+                    See how it works
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
                 </Link>
@@ -65,10 +65,10 @@ export default function SolutionsPage() {
         <Container width="wide">
           <h2 className="font-mono text-eyebrow uppercase text-fog-2">{copy.modulesTitle}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {modules.map((module) => (
+            {core.map((module) => (
               <Link
                 key={module.slug}
-                href={`/products/${module.slug}`}
+                href={`/services/${module.slug}`}
                 className="group rounded-xl border border-line bg-paper px-5 py-4 transition-colors hover:border-accent/40"
               >
                 <span className="block text-[0.9375rem] font-medium text-ink">

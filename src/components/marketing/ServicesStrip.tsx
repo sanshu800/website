@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getHome, getProducts } from "@/lib/cms/content";
+import { getHome, getServices } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 const ACCENT_FIELD: Record<string, string> = {
@@ -13,12 +13,12 @@ const ACCENT_FIELD: Record<string, string> = {
 };
 
 /**
- * The four modules as connected operations rather than four separated cards:
- * each tile names where the work arrives and where it leaves, so the handover
- * between modules is the point of the layout.
+ * Four services as connected work rather than four separated cards: each tile
+ * names what the agent takes on and what it hands back, so the handover is the
+ * point of the layout.
  */
-export function ModulesStrip() {
-  const { modules } = getProducts();
+export function ServicesStrip() {
+  const { core, managed } = getServices();
   const { modules: copy } = getHome();
 
   return (
@@ -40,10 +40,10 @@ export function ModulesStrip() {
         />
 
         <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {modules.map((module, index) => (
+          {core.map((module, index) => (
             <RevealItem key={module.slug}>
               <Link
-                href={`/products/${module.slug}`}
+                href={`/services/${module.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
@@ -85,15 +85,15 @@ export function ModulesStrip() {
               05
             </span>
             <p className="flex-1 text-[0.9375rem] text-fg-2">
-              <span className="font-medium text-ink">Foundation</span> sits underneath
-              all four — one memory layer so context accumulates on the client instead
-              of scattering across modules.
+              <span className="font-medium text-ink">{managed.name}</span> is the one you
+              keep: monitoring, tuning and support for everything we built, so it still
+              works when your business changes.
             </p>
             <Link
-              href="/products/foundation"
+              href={`/services/${managed.slug}`}
               className="group inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent"
             >
-              How it works
+              {managed.kicker}
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
           </div>

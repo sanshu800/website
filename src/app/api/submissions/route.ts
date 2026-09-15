@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import {
+  auditSchema,
   contactSchema,
-  demoSchema,
-  getStartedSchema,
   newsletterSchema,
   recordSubmission,
   listSubmissions,
@@ -24,7 +23,7 @@ export async function GET() {
 }
 
 const body = z.object({
-  kind: z.enum(["newsletter", "contact", "demo", "get-started"]),
+  kind: z.enum(["newsletter", "contact", "audit"]),
   payload: z.record(z.string(), z.unknown()),
 });
 
@@ -46,13 +45,7 @@ export async function POST(request: Request) {
 
   const { kind, payload } = parsed.data;
   const schema =
-    kind === "newsletter"
-      ? newsletterSchema
-      : kind === "contact"
-        ? contactSchema
-        : kind === "demo"
-          ? demoSchema
-          : getStartedSchema;
+    kind === "newsletter" ? newsletterSchema : kind === "contact" ? contactSchema : auditSchema;
 
   const validated = schema.safeParse(payload);
   if (!validated.success) {

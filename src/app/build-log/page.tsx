@@ -7,28 +7,28 @@ import { getResources } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Release notes",
+  title: "Build log",
   description:
-    "What shipped in Reygent, in order, with the reason each change exists.",
-  alternates: { canonical: "/release-notes" },
+    "Real automations that went into production for clients, with what each one replaced and what it taught us.",
+  alternates: { canonical: "/build-log" },
 };
 
 const KIND_STYLE: Record<string, string> = {
-  New: "border-jade/30 bg-jade-soft text-jade",
-  Improved: "border-azure/30 bg-azure-soft text-azure",
+  Shipped: "border-jade/30 bg-jade-soft text-jade",
+  Learned: "border-azure/30 bg-azure-soft text-azure",
   Fixed: "border-line bg-mist text-fog",
 };
 
-export default function ReleaseNotesPage() {
-  const { releaseNotes } = getResources();
-  const [latest, ...rest] = releaseNotes.items;
+export default function BuildLogPage() {
+  const { releaseNotes: log } = getResources();
+  const [latest, ...rest] = log.items;
 
   return (
     <>
       <PageHero
-        eyebrow={releaseNotes.hero.eyebrow}
-        title={releaseNotes.hero.title}
-        summary={releaseNotes.hero.summary}
+        eyebrow={log.hero.eyebrow}
+        title={log.hero.title}
+        summary={log.hero.summary}
       />
 
       <section className="section bg-paper">
@@ -38,10 +38,10 @@ export default function ReleaseNotesPage() {
               <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-white">
-                    {releaseNotes.latestBadge}
+                    {log.latestBadge}
                   </span>
                   <span className="font-mono text-[0.6875rem] text-accent">
-                    v{latest.version}
+                    {latest.issue}
                   </span>
                   <time className="font-mono text-[0.6875rem] text-fog-2">
                     {latest.date}
@@ -75,11 +75,11 @@ export default function ReleaseNotesPage() {
           <div className="mt-16 border-t border-line">
             {rest.map((note) => (
               <Reveal
-                key={note.version}
+                key={note.issue}
                 className="grid gap-6 border-b border-line py-9 lg:grid-cols-12"
               >
                 <div className="lg:col-span-3">
-                  <p className="font-mono text-[0.75rem] text-ink">v{note.version}</p>
+                  <p className="font-mono text-[0.75rem] text-ink">{note.issue}</p>
                   <time className="mt-1.5 block font-mono text-[0.6875rem] text-fog-2">
                     {note.date}
                   </time>
@@ -110,9 +110,9 @@ export default function ReleaseNotesPage() {
           </div>
 
           <p className="mt-10 text-micro text-fog-2">
-            {releaseNotes.digest.before}{" "}
+            {log.digest.before}{" "}
             <Link href="/newsletter" className="text-accent underline underline-offset-2">
-              {releaseNotes.digest.linkLabel}
+              {log.digest.linkLabel}
             </Link>
             .
           </p>
@@ -120,10 +120,10 @@ export default function ReleaseNotesPage() {
       </section>
 
       <PageCTA
-        title={releaseNotes.cta.title}
-        summary={releaseNotes.cta.summary}
-        primary={releaseNotes.cta.primary}
-        secondary={releaseNotes.cta.secondary}
+        title={log.cta.title}
+        summary={log.cta.summary}
+        primary={log.cta.primary}
+        secondary={log.cta.secondary}
       />
     </>
   );

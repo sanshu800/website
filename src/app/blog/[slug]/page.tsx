@@ -154,25 +154,25 @@ export default async function PostPage({
 
             <div className="mt-14 rounded-2xl border border-line bg-mist p-6 sm:p-7">
               <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
-                Run this on your own firm
+                Run this on your own business
               </p>
               <p className="mt-3 text-body-lg text-fg-2">
-                The intake scorecard in this article is free, and takes an afternoon.
-                If you would rather we ran it with you, that is what the first call is
-                for.
+                Everything in this article is a method you can run yourself, and the
+                worksheets are free. If you would rather we ran the audit with you,
+                that is exactly what the first thirty minutes are for.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
                   href="/guides"
                   className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.875rem] font-medium text-white transition-colors hover:bg-accent-2"
                 >
-                  Get the scorecard
+                  Get the playbooks
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/get-started"
                   className="inline-flex h-10 items-center rounded-full border border-line-strong bg-paper px-4 text-[0.875rem] font-medium text-ink transition-colors hover:bg-mist"
                 >
-                  Book a demo
+                  Book a free AI audit
                 </Link>
               </div>
             </div>

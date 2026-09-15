@@ -7,44 +7,44 @@ import { ChipGroup, FormError, FormSuccess, SelectField, TextArea, TextField } f
 import { cn } from "@/lib/utils";
 
 const SECTORS = [
-  { value: "legal", label: "Legal" },
-  { value: "accounting", label: "Accounting & audit" },
-  { value: "consulting", label: "Consulting" },
-  { value: "advisory", label: "Wealth & advisory" },
-  { value: "other", label: "Other professional services" },
+  { value: "professional-services", label: "Professional services" },
+  { value: "property", label: "Property & trades" },
+  { value: "ecommerce", label: "E-commerce & retail" },
+  { value: "clinics", label: "Clinics & health" },
+  { value: "other", label: "Something else" },
 ];
 
 const SIZES = [
-  { value: "2-10", label: "2–10 people" },
-  { value: "11-25", label: "11–25 people" },
-  { value: "26-75", label: "26–75 people" },
-  { value: "76-200", label: "76–200 people" },
-  { value: "200+", label: "200+ people" },
+  { value: "1-5", label: "1–5 people" },
+  { value: "6-15", label: "6–15 people" },
+  { value: "16-40", label: "16–40 people" },
+  { value: "41-120", label: "41–120 people" },
+  { value: "120+", label: "120+ people" },
 ];
 
 const SYSTEMS = [
   "Shared inboxes",
   "Spreadsheets",
-  "Practice management",
   "CRM",
-  "Document storage",
-  "E-signature",
-  "Accounting ledger",
-  "Scheduling",
-  "Project tracking",
-  "Data warehouse",
+  "Accounting software",
+  "Quoting & invoicing",
+  "Job or order management",
+  "Scheduling & diaries",
+  "Documents & storage",
+  "Phone system",
+  "Supplier portals",
 ];
 
 const SLOTS = ["08:30", "10:00", "11:30", "13:00", "14:30", "16:00"];
 
-export function DemoForm() {
+export function AuditForm() {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({
     name: "",
     email: "",
     company: "",
-    sector: "legal",
-    teamSize: "11-25",
+    sector: "professional-services",
+    teamSize: "6-15",
     notes: "",
   });
   const [systems, setSystems] = useState<string[]>(["Shared inboxes", "Spreadsheets"]);
@@ -53,7 +53,7 @@ export function DemoForm() {
   const [fields, setFields] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
 
-  const steps = ["Your firm", "What you run today", "Pick a time"];
+  const steps = ["Your business", "What you run today", "Pick a time"];
 
   function set(key: keyof typeof values) {
     return (
@@ -69,7 +69,7 @@ export function DemoForm() {
       if (values.name.trim().length < 2) errors.name = "Tell us who we are meeting.";
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email))
         errors.email = "A working email address, please.";
-      if (values.company.trim().length < 2) errors.company = "Which firm are you with?";
+      if (values.company.trim().length < 2) errors.company = "Which business are you with?";
       if (Object.keys(errors).length > 0) {
         setFields(errors);
         return;
@@ -83,10 +83,13 @@ export function DemoForm() {
     setStatus("sending");
     setFormError(null);
     try {
-      const response = await fetch("/api/demo", {
+      const response = await fetch("/api/submissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, systems, preferredTime: slot }),
+        body: JSON.stringify({
+          kind: "audit",
+          payload: { ...values, systems, preferredTime: slot },
+        }),
       });
       const data = (await response.json()) as { fields?: Record<string, string> };
       if (!response.ok) {
@@ -104,18 +107,18 @@ export function DemoForm() {
 
   if (status === "done") {
     return (
-      <FormSuccess title="Demo request received">
+      <FormSuccess title="Audit request received">
         <p>
-          {values.name.split(" ")[0]}, we have your request for a 30-minute session on{" "}
+          {values.name.split(" ")[0]}, we have your request for a 30-minute session about{" "}
           <strong className="text-ink">{values.company}</strong> at{" "}
           <strong className="text-ink">{slot}</strong> (your local time, subject to
           confirmation).
         </p>
         <p className="mt-3">
           On this build no calendar provider is connected, so nothing has been booked
-          automatically — the request is stored and would be confirmed by a human.
-          Connecting Google Calendar or Cal.com is the one change needed to make
-          booking real.
+          automatically — the request is stored and a person confirms the time. Wiring
+          Google Calendar or Cal.com is the one change needed to make the slot
+          self-service.
         </p>
       </FormSuccess>
     );
@@ -180,9 +183,9 @@ export function DemoForm() {
           </div>
           <div className="grid gap-5 sm:grid-cols-3">
             <TextField
-              label="Firm"
+              label="Business"
               autoComplete="organization"
-              placeholder="Ramsey & Doyle"
+              placeholder="Carrow Property"
               value={values.company}
               onChange={set("company")}
               error={fields.company}
@@ -190,13 +193,13 @@ export function DemoForm() {
               className="sm:col-span-1"
             />
             <SelectField
-              label="Practice"
+              label="Industry"
               options={SECTORS}
               value={values.sector}
               onChange={set("sector")}
             />
             <SelectField
-              label="Firm size"
+              label="Business size"
               options={SIZES}
               value={values.teamSize}
               onChange={set("teamSize")}
@@ -208,14 +211,14 @@ export function DemoForm() {
       {step === 1 && (
         <div className="space-y-6">
           <ChipGroup
-            label="Which systems hold client work today?"
+            label="What holds your work together today?"
             options={SYSTEMS}
             value={systems}
             onChange={setSystems}
           />
           <TextArea
             label="What should we look at first?"
-            placeholder="e.g. enquiries sit in a shared inbox for days; onboarding documents get chased by hand; month-end reporting is rebuilt in spreadsheets."
+            placeholder="e.g. every enquiry goes to a shared inbox and sits there; invoices are keyed in by hand; quotes never get followed up; the month-end numbers take three days to assemble."
             value={values.notes}
             onChange={set("notes")}
             rows={5}
@@ -252,8 +255,9 @@ export function DemoForm() {
           <div className="flex gap-4 rounded-xl border border-line bg-mist p-5">
             <CalendarClock className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <p className="text-micro text-fog">
-              Thirty minutes, screenshare, no slides. Bring one live process and we will
-              map it with you — you keep the map whether or not you become a customer.
+              Thirty minutes, screenshare, no slides. Bring the process that annoys you
+              most and we will map it with you. You keep the notes whether or not we ever
+              work together.
             </p>
           </div>
         </div>
@@ -286,7 +290,7 @@ export function DemoForm() {
               )
             }
           >
-            {status === "sending" ? "Sending" : "Request demo"}
+            {status === "sending" ? "Sending" : "Request the audit"}
           </Button>
         )}
       </div>

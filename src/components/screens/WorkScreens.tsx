@@ -14,11 +14,12 @@ import { cn } from "@/lib/utils";
 import { StatusPill } from "@/components/ui/Badge";
 
 /**
- * Product interface replicas.
+ * Console replicas.
  *
- * Rather than shipping screenshots that go stale, the marketing pages render
- * the real interface language of the platform — same density, same components,
- * same vocabulary a firm sees after they log in. Data below is illustrative.
+ * These are the screens our agents and automations run inside — the enquiry
+ * queue, the follow-up sequences, the document checklist, the weekly review.
+ * They are rendered as real components rather than screenshots, so the marketing
+ * pages show the same density your team gets. Data below is illustrative.
  */
 
 function Chrome({
@@ -98,20 +99,20 @@ function Avatar({ name, className }: { name: string; className?: string }) {
 /* ------------------------------------------------------------------ */
 
 const INTAKE_ROWS = [
-  { ref: "IN-4218", client: "Ashford Legal", matter: "Commercial dispute", source: "Web form", owner: "N. Okafor", age: "12m", status: "new" },
-  { ref: "IN-4217", client: "Brightwell", matter: "Year-end review", source: "Referral", owner: "P. Raghavan", age: "1h", status: "qualified" },
-  { ref: "IN-4214", client: "Marlowe Advisory", matter: "Restructure advice", source: "Shared inbox", owner: "—", age: "4h", status: "stalled" },
-  { ref: "IN-4211", client: "Pell & Rowe", matter: "VAT enquiry", source: "Phone note", owner: "M. Pell", age: "6h", status: "engaged" },
-  { ref: "IN-4208", client: "Kessler Partners", matter: "Employment matter", source: "Web form", owner: "D. Kessler", age: "9h", status: "qualified" },
+  { ref: "EN-4218", client: "Carrow Property", matter: "Boiler replacement, 3 flats", source: "Web form", owner: "Agent", age: "12s", status: "new" },
+  { ref: "EN-4217", client: "Verdant Clinic", matter: "New patient, evening slots", source: "Phone call", owner: "Agent", age: "1m", status: "qualified" },
+  { ref: "EN-4214", client: "Lumen Home", matter: "Bulk order, 240 units", source: "Shared inbox", owner: "—", age: "4h", status: "stalled" },
+  { ref: "EN-4211", client: "Oakhill Group", matter: "Roof survey, two sites", source: "WhatsApp", owner: "D. Kessler", age: "1h", status: "engaged" },
+  { ref: "EN-4208", client: "Northgate Supply", matter: "Account application", source: "Web form", owner: "Agent", age: "2m", status: "qualified" },
 ];
 
 export function IntakeScreen({ className }: { className?: string }) {
   return (
-    <Chrome title="app.reygent.ai/intake" className={cn("h-full", className)}>
+    <Chrome title="agent console · enquiries" className={cn("h-full", className)}>
       <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
         <div className="flex items-center gap-2">
           <Inbox className="h-4 w-4 text-accent" />
-          <span className="text-[0.8125rem] font-medium text-ink">Intake queue</span>
+          <span className="text-[0.8125rem] font-medium text-ink">New enquiries</span>
           <span className="rounded-full bg-mist-2 px-2 py-[1px] font-mono text-[0.625rem] text-fg-2">
             18 open
           </span>
@@ -154,7 +155,7 @@ export function IntakeScreen({ className }: { className?: string }) {
             <div className="hidden min-w-0 items-center gap-2 sm:flex">
               {row.source === "Shared inbox" ? (
                 <Mail className="h-3.5 w-3.5 shrink-0 text-fog-2" />
-              ) : row.source === "Phone note" ? (
+              ) : row.source === "Phone call" || row.source === "WhatsApp" ? (
                 <Phone className="h-3.5 w-3.5 shrink-0 text-fog-2" />
               ) : (
                 <FileText className="h-3.5 w-3.5 shrink-0 text-fog-2" />
@@ -186,9 +187,9 @@ export function IntakeScreen({ className }: { className?: string }) {
       <div className="flex items-center justify-between border-t border-line bg-mist px-4 py-2.5">
         <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
           <Sparkles className="h-3.5 w-3.5 text-accent" />
-          Reygent routed 3 new enquiries to owners automatically
+          The agent answered 4 enquiries and booked 2 visits
         </span>
-        <span className="font-mono text-[0.6875rem] text-fog-2">median first reply 38m</span>
+        <span className="font-mono text-[0.6875rem] text-fog-2">median first reply 9s</span>
       </div>
     </Chrome>
   );
@@ -199,15 +200,15 @@ export function IntakeScreen({ className }: { className?: string }) {
 /* ------------------------------------------------------------------ */
 
 const SEQUENCES = [
-  { name: "New enquiry follow-up", stage: "Day 3 of 16", sent: 248, replied: 71, live: true },
-  { name: "Proposal nurture", stage: "Day 8 of 21", sent: 96, replied: 34, live: true },
-  { name: "Dormant client re-engage", stage: "Day 1 of 30", sent: 412, replied: 88, live: true },
-  { name: "Referral thank-you", stage: "Complete", sent: 61, replied: 22, live: false },
+  { name: "Quote follow-up", stage: "Day 3 of 16", sent: 248, replied: 71, live: true },
+  { name: "Survey booking reminder", stage: "Day 8 of 21", sent: 96, replied: 34, live: true },
+  { name: "Invoice chase", stage: "Day 1 of 30", sent: 412, replied: 88, live: true },
+  { name: "Review request after the job", stage: "Complete", sent: 61, replied: 22, live: false },
 ];
 
 export function EngageScreen({ className }: { className?: string }) {
   return (
-    <Chrome title="app.reygent.ai/engage" className={cn("h-full", className)}>
+    <Chrome title="agent console · follow-up" className={cn("h-full", className)}>
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
         <span className="text-[0.8125rem] font-medium text-ink">Active sequences</span>
         <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
@@ -253,8 +254,8 @@ export function EngageScreen({ className }: { className?: string }) {
         <div className="flex items-start gap-2">
           <Sparkles className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
           <p className="text-[0.75rem] leading-relaxed text-accent-2">
-            <strong className="font-semibold">Escalation:</strong> Marlow Advisory has
-            not replied to 3 touches. Assigned to P. Raghavan with the thread attached.
+            <strong className="font-semibold">Escalation:</strong> Oakhill Group has not
+            replied to 3 touches. Assigned to D. Kessler with the whole thread attached.
           </p>
         </div>
       </div>
@@ -267,23 +268,23 @@ export function EngageScreen({ className }: { className?: string }) {
 /* ------------------------------------------------------------------ */
 
 const ONBOARDING = [
-  { label: "Engagement letter signed", state: "done" },
-  { label: "Company details validated", state: "done" },
-  { label: "Prior-year accounts received", state: "done" },
-  { label: "Director ID documents", state: "waiting" },
-  { label: "Access to accounting ledger", state: "waiting" },
-  { label: "Kickoff call scheduled", state: "done" },
-  { label: "Delivery team introduced", state: "todo" },
+  { label: "Order confirmed and deposit invoice raised", state: "done" },
+  { label: "Site survey booked into the diary", state: "done" },
+  { label: "Access and parking requirements recorded", state: "done" },
+  { label: "Public liability certificate received", state: "waiting" },
+  { label: "Materials ordered from supplier", state: "waiting" },
+  { label: "Customer given the install window", state: "done" },
+  { label: "Aftercare instructions scheduled", state: "todo" },
 ];
 
 export function DeliverScreen({ className }: { className?: string }) {
   return (
-    <Chrome title="app.reygent.ai/deliver" className={cn("h-full", className)}>
+    <Chrome title="agent console · documents" className={cn("h-full", className)}>
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <div>
-          <p className="text-[0.8125rem] font-medium text-ink">Brightwell — FY26 audit</p>
+          <p className="text-[0.8125rem] font-medium text-ink">Oakhill Group — roof replacement</p>
           <p className="font-mono text-[0.6875rem] text-fog">
-            onboarding · day 4 of 10 · owner P. Raghavan
+            job 88-412 · day 4 · owner D. Kessler
           </p>
         </div>
         <span className="shrink-0 rounded-full bg-caution-soft px-2.5 py-1 text-[0.6875rem] font-medium text-caution">
@@ -318,10 +319,10 @@ export function DeliverScreen({ className }: { className?: string }) {
 
       <div className="flex items-center justify-between border-t border-line bg-mist px-4 py-2.5">
         <span className="font-mono text-[0.6875rem] text-fog">
-          5 of 7 complete · client portal up to date
+          5 of 7 complete · everything filed against the job
         </span>
         <span className="flex items-center gap-1 font-mono text-[0.6875rem] text-accent">
-          open portal <ArrowUpRight className="h-3 w-3" />
+          open job record <ArrowUpRight className="h-3 w-3" />
         </span>
       </div>
     </Chrome>
@@ -336,19 +337,19 @@ const BARS = [42, 58, 51, 67, 74, 69, 88, 96];
 
 export function InsightScreen({ className }: { className?: string }) {
   return (
-    <Chrome title="app.reygent.ai/insight" className={cn("h-full", className)}>
+    <Chrome title="agent console · weekly review" className={cn("h-full", className)}>
       <div className="border-b border-line px-4 py-3">
-        <p className="text-[0.8125rem] font-medium text-ink">Quarterly review pack</p>
+        <p className="text-[0.8125rem] font-medium text-ink">Weekly review pack</p>
         <p className="font-mono text-[0.6875rem] text-fog">
-          generated 06:00 · delivered to 4 partners
+          assembled 06:00 · sent to you and your bookkeeper
         </p>
       </div>
 
       <div className="grid grid-cols-3 divide-x divide-line border-b border-line">
         {[
-          { label: "Pipeline", value: "$1.24m", delta: "+8.2%" },
-          { label: "Utilisation", value: "78%", delta: "+3.1%" },
-          { label: "Matter margin", value: "41%", delta: "-1.4%" },
+          { label: "Confirmed work", value: "£186k", delta: "+8.2%" },
+          { label: "Quotes outstanding", value: "£74k", delta: "+3.1%" },
+          { label: "Gross margin", value: "41%", delta: "-1.4%" },
         ].map((metric) => (
           <div key={metric.label} className="px-4 py-3">
             <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog-2">
@@ -394,7 +395,7 @@ export function InsightScreen({ className }: { className?: string }) {
         </p>
         <ul className="mt-2 space-y-1.5">
           {[
-            "Marlowe Advisory — 2 engagements below budget",
+            "Oakhill Group — 2 jobs below quoted margin",
             "Sterling Hoyt — no contact in 41 days",
           ].map((line) => (
             <li key={line} className="text-[0.75rem] text-fog">

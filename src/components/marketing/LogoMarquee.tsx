@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  */
 export function LogoMarquee({
   className,
-  label = "Operations teams at firms like these",
+  label = "Businesses we have built for",
   tone = "ink",
 }: {
   className?: string;

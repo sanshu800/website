@@ -1,8 +1,8 @@
 /**
- * Comparison pages and industry solution pages.
+ * Industry pages and approach comparisons.
  *
- * Comparisons are written against *approaches* (spreadsheets, a traditional
- * CRM, point tools, hiring, building in-house, the status quo) rather than
+ * Comparisons are written against *approaches* (doing it yourself, hiring,
+ * a dev shop, another platform, a big consultancy, the status quo) rather than
  * named competitors. Naming a real company and attributing behaviour to it on
  * a marketing page is a legal risk and reads as insecurity; the category
  * argument is the honest version and the more persuasive one.
@@ -28,247 +28,261 @@ export type Comparison = {
 
 export const comparisons: Comparison[] = [
   {
-    slug: "spreadsheets",
-    short: "vs. spreadsheets",
-    name: "Spreadsheets",
-    headline: "Spreadsheets are a fine ledger and a poor operating system.",
+    slug: "diy-tools",
+    short: "vs. doing it yourself",
+    name: "Doing it yourself",
+    headline: "You could build it yourself. The question is what it costs you to maintain.",
     summary:
-      "A spreadsheet holds a list. It does not assign work, chase documents, send follow-ups or tell anyone that something has gone quiet. The moment two people need it at once, you are maintaining software by hand.",
+      "No-code platforms and an AI subscription will get you a long way, and for one simple job they are genuinely the right answer. The trouble starts at the second job, when nobody remembers how the first one works.",
     theirStrength:
-      "Instant to start, infinitely flexible, and everyone already knows how to use one. For genuinely one-off analysis, nothing beats it.",
+      "Cheap to start, no procurement, and you learn what your process actually is. For a single, stable, low-risk task, building it yourself is often correct.",
     theirWeakness:
-      "No triggers, no ownership, no audit trail, and every change is manual. It is a snapshot that starts decaying the moment it is saved.",
+      "The work is not the building, it is the keeping. Every change to a price, a supplier or a form is now your job. When it breaks quietly, nobody notices until a customer does.",
     rows: [
-      { dimension: "Assignment", them: "A name typed in a cell", us: "Ownership enforced by the record" },
-      { dimension: "Follow-up", them: "Conditional formatting and hope", us: "Sequences triggered by events" },
-      { dimension: "Documents", them: "Links to a shared drive", us: "Collection, validation and status" },
-      { dimension: "History", them: "Overwritten every week", us: "Every interaction retained" },
-      { dimension: "Reporting", them: "Rebuilt by hand each period", us: "Scheduled from live data" },
-      { dimension: "Handover", them: "Lives with the author", us: "Lives in the record" },
+      { dimension: "Time to first result", them: "Weeks of evenings", us: "Four to six weeks, done with you" },
+      { dimension: "Who maintains it", them: "Whoever built it, forever", us: "We do, on a retainer" },
+      { dimension: "When something breaks", them: "Discovered by a customer", us: "Alerted, usually before you notice" },
+      { dimension: "Knowledge", them: "In one person's head", us: "Documented and handed over" },
+      { dimension: "Cost over a year", them: "Subscription fees plus your time", us: "Fixed scope, known monthly" },
+      { dimension: "Scales to the next process", them: "Starts again from scratch", us: "Reuses the same connections" },
     ],
     points: [
       {
-        title: "The spreadsheet is not the problem",
-        body: "It is the honest answer to a bad tool market: it does what a practice system will not, for free. The problem is that it becomes the operating system by accident, and then nobody can change the process without breaking the numbers.",
+        title: "The 80% that goes well",
+        body:
+          "A form that notifies a channel, an invoice that gets filed, a summary that lands in your inbox. You will get these working, and they will genuinely save time for a while.",
       },
       {
-        title: "What you gain in the first month",
-        body: "One record per client that every person works from, follow-ups that happen because a rule fired rather than because someone remembered, and a report that is ready before the meeting starts.",
+        title: "The 20% nobody warns you about",
+        body:
+          "Errors are silent, permissions drift, a supplier changes their invoice format, and the person who built it changes job. Most home-built automation is quietly wrong within six months, and the business never finds out.",
       },
       {
-        title: "You do not have to abandon it",
-        body: "Import the sheet you already have. Keep read-only exports going wherever an accountant or a regulator expects them. Reygent replaces the workflow, not the audit trail.",
+        title: "Where we draw the line",
+        body:
+          "If your idea is one simple job with low downside, we will tell you to do it yourself and send you the playbook for free. We would rather be the right answer than every answer.",
       },
     ],
     bestFor: [
-      "Firms where the operational truth lives in three shared workbooks",
-      "Anyone who has rebuilt the same report twice this quarter",
-      "Practice managers who are the only person who knows how the sheet works",
+      "Anyone who has already built a first automation and felt it start to fray",
+      "Owner-run businesses where nobody has spare evenings",
+      "Processes touching money, customers or compliance",
     ],
   },
   {
-    slug: "traditional-crm",
-    short: "vs. a traditional CRM",
-    name: "A traditional CRM",
-    headline: "A CRM asks your team to do data entry. Yours will not.",
+    slug: "hiring-in-house",
+    short: "vs. hiring in-house",
+    name: "Hiring in-house",
+    headline: "One hire is not a team, and AI is not a one-person job.",
     summary:
-      "Traditional CRMs are systems of record that depend on people recording. If the record is a chore, the record decays — and every report built on it becomes a negotiation about who actually updated what.",
+      "A good AI engineer costs a senior salary, takes months to hire, and still needs a designer of processes, someone to own the integrations, and a plan for when they take a holiday.",
     theirStrength:
-      "Mature, deeply configurable and comfortable for a sales team whose job is measured in pipeline stages. For high-volume transactional sales, they fit.",
+      "Full-time focus, deep context over time, and total control. If AI is central to your product rather than your operations, building a team is the right long-term move.",
     theirWeakness:
-      "Professional-services firms do not run transactional sales. Relationships span years, the work is the engagement, and the people who own the relationship are the same people delivering it — they will not stop to type.",
+      "You are hiring for a market that has been in shortage for years, and the first project is the hardest one they will ever do. Most of what you pay for is learning that has already been done elsewhere.",
     rows: [
-      { dimension: "Data entry", them: "Reps update the record", us: "The record updates itself from email, calls and documents" },
-      { dimension: "Shape of the deal", them: "Fixed pipeline stages", us: "Engagements, matters and retainers as your firm defines them" },
-      { dimension: "After the sale", them: "Ends at won", us: "Continues through delivery, billing and renewal" },
-      { dimension: "Reporting", them: "Pipeline activity", us: "Margin, utilisation and delivery risk" },
-      { dimension: "Adoption", them: "A mandate from the top", us: "Useful on day one without a rollout programme" },
-      { dimension: "Time to value", them: "A configuration project", us: "Import and work" },
+      { dimension: "Time to first result", them: "Three to six months of hiring", us: "First build live in weeks" },
+      { dimension: "Annual cost", them: "One senior salary, plus tools", us: "A fraction of that, per project" },
+      { dimension: "Coverage", them: "One person's skills and holidays", us: "Engineer, process and support" },
+      { dimension: "Risk", them: "They leave with the knowledge", us: "Documented, and we hand over" },
+      { dimension: "Breadth", them: "One stack, learned on your budget", us: "Patterns from many businesses" },
+      { dimension: "Best for", them: "AI inside your product", us: "AI inside your operations" },
     ],
     points: [
       {
-        title: "The adoption problem is the whole problem",
-        body: "Every CRM failure in a professional-services firm is the same failure: the system asks for effort that the fee-earner does not have to spare. Machine-captured records remove the incentive to leave it empty.",
+        title: "Hire when AI is your product",
+        body:
+          "If you sell software, you need engineers who own it forever. We are not that and we will not pretend to be — we build the operations layer and hand it over documented.",
       },
       {
-        title: "Your pipeline is not a funnel",
-        body: "Referral relationships, panel approvals, seasonal compliance work and multi-year retainers do not map onto five tidy stages. Model the thing you actually run.",
+        title: "The hidden second and third hire",
+        body:
+          "Production AI needs someone watching accuracy, someone maintaining integrations and somebody accountable to the business. That is a team, not a role, and probably not your first operational hire.",
       },
       {
-        title: "One record from enquiry to invoice",
-        body: "The information gathered at intake is the information the delivery team needs, is the basis of the invoice, and is what the review pack reports on. Retyping it three times is the cost you are removing.",
+        title: "We can work alongside them",
+        body:
+          "Several clients have an internal developer who takes over what we build. We document everything, record the handover sessions, and stay available on retainer for as long as it is useful.",
       },
     ],
     bestFor: [
-      "Firms with a CRM that the partners describe as 'out of date'",
-      "Anyone paying for software that fewer than half the team opens",
-      "Operations leads who spend the first week of every month reconciling",
+      "Businesses that need results this quarter, not next year",
+      "Owners who do not want to manage an engineering team",
+      "Firms where an internal hire would be a team of one",
     ],
   },
   {
-    slug: "point-solutions",
-    short: "vs. point solutions",
-    name: "Separate point solutions",
-    headline: "A stack of specialists, none of whom can see the client.",
+    slug: "offshore-dev-shop",
+    short: "vs. a dev shop",
+    name: "A general dev shop",
+    headline: "A ticket queue will build what you specify. It will not tell you what is worth building.",
     summary:
-      "An intake tool, a scheduler, an e-signature product, a document portal and a reporting add-on. Each is competent. Together they cannot answer the simplest question a partner asks: what is happening with this client?",
+      "A development agency will happily implement a spec. The hard part of AI is not the code — it is knowing which process is worth automating, what the agent must never do, and how to prove it works.",
     theirStrength:
-      "Best-in-class depth in one narrow job, and easy to buy one at a time without a procurement conversation.",
+      "Competitive rates, flexible capacity, and a clear commercial relationship. For well-specified software with a known design, a good shop is efficient and professional.",
     theirWeakness:
-      "Every boundary between two tools is a place where context is lost and a person is doing integration work by hand. The seams are where the work goes missing.",
+      "They build what the brief says. If the brief is wrong — and on a first AI project it usually is — you pay twice: once for the build and once for the rewrite.",
     rows: [
-      { dimension: "Context", them: "One fragment per tool", us: "The whole relationship in one layer" },
-      { dimension: "Integration cost", them: "Connectors, webhooks, upkeep", us: "Shared memory layer" },
-      { dimension: "Question answering", them: "Search across five systems", us: "Ask once, with citations" },
-      { dimension: "Process change", them: "Rebuilt in every tool", us: "Defined once, applied everywhere" },
-      { dimension: "Vendors", them: "Five renewals, five roadmaps", us: "One" },
-      { dimension: "Ownership", them: "Nobody owns the seams", us: "The platform owns them" },
+      { dimension: "Starting point", them: "A specification you write", us: "An audit we do with you" },
+      { dimension: "Process knowledge", them: "Learned during the build", us: "Assumed before it starts" },
+      { dimension: "Scope", them: "Change requests and re-quotes", us: "Fixed scope, agreed in writing" },
+      { dimension: "After launch", them: "Support contract, billed hourly", us: "Monitored and tuned on retainer" },
+      { dimension: "When AI is the wrong tool", them: "They build it anyway", us: "We say so and refund the difference" },
+      { dimension: "Handover", them: "Code in a repository", us: "Code, prompts, docs and training" },
     ],
     points: [
       {
-        title: "Depth is real, coordination is the bottleneck",
-        body: "The value of five good tools is capped by the coordination between them — which is a tax paid in partner time, every week, forever.",
+        title: "The spec is the product",
+        body:
+          "Most failed AI projects were built correctly against a brief that described the wrong process. Two weeks of process mapping before a line of code is written is not overhead, it is the work.",
       },
       {
-        title: "You can keep the tools",
-        body: "Reygent runs alongside the systems you already trust, reading and writing to them. Replace the coordination layer first and decide about the rest later.",
+        title: "Judgement, not capacity",
+        body:
+          "You are not buying developers by the hour. You are buying somebody who has watched twenty businesses automate the same six processes and can tell you which one pays back first.",
       },
       {
-        title: "One place the answer lives",
-        body: "When someone leaves, or takes parental leave, or covers a matter, the answer should not be 'ask Priya'.",
+        title: "Proof before scale",
+        body:
+          "Every build runs in parallel with your existing process and is measured against it. If the numbers are not there in the first month, we stop and tell you.",
       },
     ],
     bestFor: [
-      "Firms with six subscriptions and no single source of truth",
-      "Teams who have tried to automate a handoff and given up",
-      "Anyone who has explained the same client history twice in a week",
+      "Businesses that have been quoted for a build and want a second opinion",
+      "Anyone whose last project was technically delivered and commercially useless",
+      "Owners who want a fixed price and a fixed scope",
     ],
   },
   {
-    slug: "ops-hire",
-    short: "vs. hiring an ops manager",
-    name: "Hiring an operations manager",
-    headline: "You need the system, not only the person who remembers it.",
+    slug: "another-saas",
+    short: "vs. another platform",
+    name: "Buying another platform",
+    headline: "You do not need another dashboard. You need the work to happen without one.",
     summary:
-      "Hiring an operations manager is a good idea. Hiring one to be your process — to remember the follow-ups, chase the documents and assemble the reports — is a single point of failure with a notice period.",
+      "There is a subscription for every problem now, and each one arrives with onboarding, a migration and a monthly fee per user. Most end up as another place your team forgets to update.",
     theirStrength:
-      "Judgement, relationships and the ability to handle things no rule anticipated. A good ops manager is transformative.",
+      "Mature software, real support, a predictable monthly cost, and someone else maintaining it. Where a category is genuinely solved, buying is nearly always right.",
     theirWeakness:
-      "The repetitive layer consumes their week, so the improvement work never starts. And the knowledge walks out of the building when they do.",
+      "The tool does not do the work — it gives your team somewhere to do the work. That is the part that costs you money, and no subscription removes it.",
     rows: [
-      { dimension: "Repetitive work", them: "Absorbed by one person", us: "Automated and monitored" },
-      { dimension: "Judgement work", them: "Squeezed into what is left", us: "Where the role spends its time" },
-      { dimension: "Documentation", them: "In their head or a stale wiki", us: "In the process itself" },
-      { dimension: "Cover for absence", them: "A difficult week", us: "Nothing changes" },
-      { dimension: "Cost", them: "A salary, from day one", us: "A subscription" },
-      { dimension: "Departure risk", them: "The process leaves with them", us: "The process stays" },
+      { dimension: "What you buy", them: "Software your team operates", us: "Work that happens without them" },
+      { dimension: "Migration", them: "Weeks of setup and import", us: "None — we connect what you have" },
+      { dimension: "Pricing", them: "Per user, per month, forever", us: "Per project, then a small retainer" },
+      { dimension: "Fit", them: "Their idea of your process", us: "Your process, as it actually runs" },
+      { dimension: "Adoption", them: "Depends on training and discipline", us: "Runs whether or not anyone logs in" },
+      { dimension: "Exit", them: "Export your data, somehow", us: "You own the code and leave any time" },
     ],
     points: [
       {
-        title: "Automate the layer, then hire into the role you wanted",
-        body: "Firms that automate first hire operations people to improve systems and manage exceptions. Firms that hire first ask that person to be the system.",
+        title: "Tools do not do work",
+        body:
+          "If your team is still the one copying, chasing, checking and filing, a new subscription has changed the interface rather than the outcome. That is the honest test of any purchase.",
       },
       {
-        title: "The handover test",
-        body: "Ask what happens if your best operations person is unavailable for three weeks. If the honest answer is 'we would cope badly', the process is in the wrong place.",
+        title: "We are not anti-software",
+        body:
+          "Most of what we build sits on top of systems you already pay for, and we frequently recommend keeping them. Automation is what makes the tools you own worth what you are paying.",
       },
       {
-        title: "This is not an argument against people",
-        body: "It is an argument against spending a salary on work software should be doing, and then calling the result a process.",
+        title: "No lock-in, by design",
+        body:
+          "The agents we build run on your infrastructure with your accounts. If you leave us, everything keeps working — it just gets less attention.",
       },
     ],
     bestFor: [
-      "Firms where one person is quietly holding operations together",
-      "Anyone who has lost an operations manager and felt the drop",
-      "Leaders who want to grow headcount in fee-earning roles instead",
+      "Businesses with more subscriptions than they have adopted",
+      "Teams already paying for a CRM nobody updates",
+      "Owners who want fewer logins, not more",
     ],
   },
   {
-    slug: "in-house-build",
-    short: "vs. building in-house",
-    name: "Building it in-house",
-    headline: "Your team should not be maintaining your operations platform.",
+    slug: "big-consultancy",
+    short: "vs. a big consultancy",
+    name: "A big consultancy",
+    headline: "You will get a strategy deck. You may not get anything that runs.",
     summary:
-      "You can build this. Some firms should. But the build is the cheap part — the years of upkeep, integration drift, security patches and onboarding documentation are what you are actually buying.",
+      "Large firms do governance, roadmaps and change programmes well, and they are built for organisations of thousands. A business your size usually needs one thing working, not a ninety-page report.",
     theirStrength:
-      "Exactly your process, complete control, and no per-seat fee. Genuinely right for firms with unusual regulatory constraints or real engineering capability.",
+      "Depth of expertise, formal governance, and the credibility to move a large organisation. For complex, regulated, multi-department transformation, that is genuinely worth paying for.",
     theirWeakness:
-      "The people who understood it leave. The integrations break when a vendor changes an API. The roadmap becomes maintenance, and improvement stops.",
+      "The business model rewards discovery and strategy. Implementation is handed down to junior teams, margins get thin, and the deck rarely turns into something running in your business.",
     rows: [
-      { dimension: "Time to first value", them: "Quarters", us: "Days" },
-      { dimension: "Ongoing cost", them: "Engineering salaries, permanently", us: "Subscription" },
-      { dimension: "Integrations", them: "Built and maintained by you", us: "Maintained by us" },
-      { dimension: "Security", them: "Your problem", us: "Our problem, evidenced" },
-      { dimension: "Improvement", them: "Competes with maintenance", us: "Continuous" },
-      { dimension: "Continuity", them: "Depends on two engineers", us: "Depends on nobody in particular" },
+      { dimension: "Deliverable", them: "A strategy and a roadmap", us: "A working agent in production" },
+      { dimension: "Who does the work", them: "Analysts, then a delivery team", us: "The people who scoped it" },
+      { dimension: "Time to value", them: "A quarter, minimum", us: "Weeks" },
+      { dimension: "Cost", them: "Day rates and programme fees", us: "Fixed project price" },
+      { dimension: "Definition of done", them: "Workshop sign-off", us: "The process runs without you" },
+      { dimension: "If it fails", them: "Another phase begins", us: "You stop paying" },
     ],
     points: [
       {
-        title: "The honest case for building",
-        body: "If your process is a genuine competitive advantage that cannot be expressed in configuration, and you have the team to sustain it, building is rational. Most firms are describing a standard intake and delivery flow with a distinctive vocabulary.",
+        title: "Strategy without build is a library",
+        body:
+          "We have been shown beautiful AI roadmaps that nobody ever executed. A roadmap is only useful if the next step is obvious and funded, which is why ours comes with a priced first project.",
       },
       {
-        title: "Cost is a running number, not a project number",
-        body: "A competent internal build costs a fraction of a full-time engineer to maintain, every year, forever — plus the revenue you did not earn while your best people were building software.",
+        title: "Right-sized for a business, not an enterprise",
+        body:
+          "You do not need a governance committee to automate invoice processing. You need somebody who has done it before to do it properly, and to be honest about what it is not worth doing.",
       },
       {
-        title: "Start from the process, not the platform",
-        body: "If you do build, document the operational model first. That document survives whichever way you decide.",
+        title: "When a big firm is the right answer",
+        body:
+          "If you are regulated to the point of needing formal assurance, or rolling this out across thousands of staff, buy the programme. We will tell you that in the first meeting.",
       },
     ],
     bestFor: [
-      "Firms who want to reach for a keyboard before a process map",
-      "Boards weighing an internal build against a subscription",
-      "Anyone who has maintained a homegrown tool through two staff changes",
+      "Businesses between five and two hundred people",
+      "Owners who want to see something working before committing to more",
+      "Anyone who has already paid for a strategy and got nothing live",
     ],
   },
   {
     slug: "status-quo",
     short: "vs. doing nothing",
     name: "Doing nothing",
-    headline: "The status quo is not free. It is just invoiced in a different currency.",
+    headline: "The manual work is not free. You are just paying for it in a different currency.",
     summary:
-      "Nothing breaks loudly. Enquiries are slower than they were, senior people spend evenings on admin, and the operating knowledge concentrates in fewer heads each year. Nobody sends you a bill for it.",
+      "Doing nothing is a legitimate choice, and for some businesses it is correct. It becomes expensive when the same hours are spent on the same tasks every week, and the cost lands on the people you least want to lose.",
     theirStrength:
-      "Zero switching cost, zero risk of a bad rollout, and no learning curve. If your firm is genuinely at capacity with ideal clients, waiting is defensible.",
+      "No project risk, no change to manage, no money spent. If your margins are healthy and your team is happy, there is no problem to solve.",
     theirWeakness:
-      "The cost arrives as lost work, slower response, rising admin overhead and key-person risk — and it compounds quietly until a departure or a growth push exposes it.",
+      "The cost is paid daily in wages, mistakes, slow response and people leaving to do less tedious work somewhere else. It never appears on a line item, which is exactly why it is easy to ignore.",
     rows: [
-      { dimension: "Response time", them: "Whatever the week allows", us: "Measured, and improving" },
-      { dimension: "Admin load", them: "Grows with headcount", us: "Flat per client" },
-      { dimension: "Key-person risk", them: "Increases yearly", us: "Reduced by design" },
-      { dimension: "Lost work", them: "Invisible", us: "Attributed to a source" },
-      { dimension: "Reporting", them: "Reconstruction", us: "Automated" },
-      { dimension: "Growth cost", them: "More people, same process", us: "Same people, better process" },
+      { dimension: "Cost", them: "Invisible, spread across wages", us: "A fixed price you approve first" },
+      { dimension: "Response speed", them: "As fast as someone is free", us: "Seconds, every time" },
+      { dimension: "Growth", them: "Hire more people for the same work", us: "Take on more without adding admin" },
+      { dimension: "Staff turnover", them: "Good people leave the boring parts", us: "They do the work they trained for" },
+      { dimension: "Risk", them: "Key-person dependency", us: "Documented and transferable" },
+      { dimension: "Reversibility", them: "Not applicable", us: "Stop whenever; you keep the build" },
     ],
     points: [
       {
-        title: "Measure it before you change it",
-        body: "Time the gap between an enquiry arriving and the first reply. Count how many documents were chased twice last month. The number is usually worse than the partners expect, which is why the conversation is useful even if you never buy anything.",
+        title: "Count it before you dismiss it",
+        body:
+          "Take the task you dislike most, multiply the minutes by how often it happens by the hourly cost of the person doing it. Most owners are surprised once it is a number rather than a feeling.",
       },
       {
-        title: "Wait for the right reason",
-        body: "There are good reasons to wait: a forthcoming merger, a system review in progress, a firm genuinely at capacity. Waiting because the problem is invisible is not one of them.",
+        title: "The hidden cost is people",
+        body:
+          "The strongest people do not stay where the work is repetitive. Every business we work with has lost somebody to a role that removed the tedious part of their day.",
       },
       {
-        title: "You are already the system",
-        body: "Nothing here is a criticism of how the firm copes. It is a case for making the system explicit, so it stops living in the heads of the most conscientious people you employ.",
+        title: "Waiting is a strategy",
+        body:
+          "Models get cheaper and better every quarter, and doing nothing for six months is not reckless. What is reckless is doing nothing for three years and calling it patience.",
       },
     ],
     bestFor: [
-      "Firms who suspect the friction but have not quantified it",
-      "Leaders deciding where the next hire should go",
-      "Anyone being asked 'why are we doing it this way?' and not knowing",
+      "Businesses where the owner is still doing the admin at 9pm",
+      "Anyone whose growth plan involves hiring for repetitive roles",
+      "Teams that have quietly stopped suggesting improvements",
     ],
   },
 ];
 
-export const comparisonBySlug = Object.fromEntries(
-  comparisons.map((item) => [item.slug, item]),
-) as Record<string, Comparison>;
-
 /* ------------------------------------------------------------------ */
-/* Industry solution pages                                            */
+/* Industries                                                          */
 /* ------------------------------------------------------------------ */
 
 export type Solution = {
@@ -284,111 +298,111 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
-    slug: "legal",
-    name: "Legal",
-    headline: "Intake and matter management for firms where response time wins the work.",
+    slug: "professional-services",
+    name: "Professional services",
+    headline: "For firms that bill by the hour and win work on response time.",
     summary:
-      "A firm that replies first usually wins the matter. That makes intake a revenue function, not an admin one — and it means conflict checks, fee arrangements and matter opening cannot be a separate hand-carried process.",
+      "Solicitors, accountants, consultants, recruiters and agencies all sell expertise by the hour. Which means every hour spent on admin is an hour not billed — and the firm that replies first usually gets the work.",
     pressurePoints: [
-      { title: "Enquiries arrive faster than they can be triaged", body: "Partner inboxes, a web form nobody owns, and phone notes on paper. The enquiry that is slowest to answer is the one that went elsewhere." },
-      { title: "Conflict and intake checks are manual", body: "A search through the client list, a recollection of a former matter, and a decision nobody documents." },
-      { title: "Matters open before the admin finishes", body: "Work starts, the file is incomplete, and the engagement letter arrives after the third meeting." },
-      { title: "Fee-earners do the chasing", body: "Document requests, reminders and status replies consume hours that should be billable." },
+      { title: "Enquiries arrive faster than anyone can answer", body: "Partner inboxes, a web form nobody owns, calls taken during meetings. The enquiry that waits until tomorrow is somebody else's client." },
+      { title: "Onboarding is a hand-carried process", body: "Engagement letters, identity checks, document requests and system setup, each one chased by a different person from memory." },
+      { title: "Qualified people do unqualified work", body: "Reformatting documents, retyping details between the CRM and the billing system, writing the same follow-up email for the fourth time." },
+      { title: "Nobody knows the numbers until month end", body: "Utilisation, realisation and profitability assembled by hand, weeks after the decisions they should have informed." },
     ],
     moduleFit: [
-      { module: "Intake", href: "/products/intake", line: "Every enquiry with owner and ageing, conflict flags before the first call." },
-      { module: "Engage", href: "/products/engage", line: "Prospect cadence that does not depend on a partner remembering to follow up." },
-      { module: "Deliver", href: "/products/deliver", line: "Matter opening checklists, document collection and a client-facing portal." },
-      { module: "Insight", href: "/products/insight", line: "Matter profitability, source conversion and realisation in one pack." },
+      { module: "AI agents", href: "/services/ai-agents", line: "Answers every enquiry in minutes, qualifies it, and books the consultation." },
+      { module: "Workflow automation", href: "/services/workflow-automation", line: "Onboarding runs itself: letter, ID, documents and setup, chased automatically." },
+      { module: "Document AI", href: "/services/document-ai", line: "Client documents read, classified and filed, with a searchable archive." },
+      { module: "AI insights", href: "/services/ai-insights", line: "Utilisation and margin per client, current, not reconstructed at month end." },
     ],
     metrics: [
-      { label: "Time to first reply", value: "Measured per source" },
-      { label: "Conflicts", value: "Flagged at intake" },
-      { label: "Matter opening", value: "Checklist-enforced" },
-      { label: "Realisation", value: "Reported per matter" },
+      { label: "First response", value: "Minutes, not hours" },
+      { label: "Onboarding admin", value: "Handled automatically" },
+      { label: "Hours freed", value: "The repetitive third of the week" },
+      { label: "Utilisation", value: "Visible and current" },
     ],
-    proof: "See how Halloran & Vance replaced three shared inboxes and a spreadsheet with one intake record.",
+    proof:
+      "Every firm we have worked with started with the same request: make sure we never miss another enquiry. It is the cheapest win in the business.",
   },
   {
-    slug: "accounting",
-    name: "Accounting",
-    headline: "Seasonal volume without seasonal chaos.",
+    slug: "property",
+    name: "Property, trades & field service",
+    headline: "For businesses whose day is bookings, quotes and people on the road.",
     summary:
-      "Every firm has a peak where the same requests are made of hundreds of clients at once. The difference between a hard quarter and a bad one is whether that work is a campaign or a manual effort.",
+      "Letting agents, estate agents, property managers, trades and maintenance firms run on diaries and job sheets. The money is lost in missed calls, unquoted enquiries and jobs nobody followed up.",
     pressurePoints: [
-      { title: "Peak load is a campaign, run warily", body: "The same document request, sent individually, tracked in a spreadsheet, chased by phone." },
-      { title: "Chasing consumes the team", body: "Half the client correspondence in any busy period is 'please can you send us…'." },
-      { title: "Onboarding restarts every time", body: "A new client relationship begins with the same unanswered questions as the last one." },
-      { title: "Margin is invisible until too late", body: "Time overruns on the fixed-fee work nobody flagged in week two." },
+      { title: "The phone rings while you are on a job", body: "Missed calls are missed work, and by the evening the caller has rung somebody else. Callback lists never get called back." },
+      { title: "Quotes go out and vanish", body: "A price sent on Tuesday, no reply, nobody follows up because nobody is sure whose job it was to chase." },
+      { title: "Scheduling is a human spreadsheet", body: "Jobs, travel, access windows and emergencies reconciled by one person, usually on a phone, usually under pressure." },
+      { title: "Tenant and client comms never stop", body: "Maintenance reports, updates and paperwork handled by whoever picks up the phone, with no record of what was promised." },
     ],
     moduleFit: [
-      { module: "Deliver", href: "/products/deliver", line: "Document collection with per-item status and automatic chasing." },
-      { module: "Engage", href: "/products/engage", line: "Seasonal campaigns triggered by rules, not by a reminder list." },
-      { module: "Intake", href: "/products/intake", line: "New client onboarding that starts consistent and stays consistent." },
-      { module: "Insight", href: "/products/insight", line: "Fee recovery and budget burn per engagement, weekly." },
+      { module: "AI agents", href: "/services/ai-agents", line: "A voice agent that answers when you cannot, qualifies the job and books the visit." },
+      { module: "Workflow automation", href: "/services/workflow-automation", line: "Quote, acceptance, scheduling, job sheet and invoice as one continuous flow." },
+      { module: "Document AI", href: "/services/document-ai", line: "Certificates, invoices and compliance documents filed against the right property." },
+      { module: "AI insights", href: "/services/ai-insights", line: "Which jobs make money, which clients cost you, and where the pipeline went quiet." },
     ],
     metrics: [
-      { label: "Documents outstanding", value: "Visible per client" },
-      { label: "Chasing", value: "Automated" },
-      { label: "Peak load", value: "Scheduled, not survived" },
-      { label: "Fixed-fee margin", value: "Flagged mid-engagement" },
+      { label: "Calls answered", value: "Every one, day or night" },
+      { label: "Quote follow-up", value: "Automatic until a decision" },
+      { label: "Scheduling admin", value: "Hours a day back" },
+      { label: "Pipeline visibility", value: "Live, not remembered" },
     ],
-    proof: "See how Brightwell turned month-end from a three-day reconstruction into a scheduled report.",
+    proof:
+      "For a business that lives on the phone, an agent that never misses a call is usually the single highest-value thing we build.",
   },
   {
-    slug: "consulting",
-    name: "Consulting",
-    headline: "Pipeline to engagement, on one record.",
+    slug: "ecommerce",
+    name: "E-commerce & retail",
+    headline: "For shops where volume is high, margins are thin and support never sleeps.",
     summary:
-      "Consulting firms sell the same capability twice: once to win the work, then again to deliver it. When the two halves live in different tools, the proposal promises something delivery has to rediscover.",
+      "Online retail runs on repetition at scale: the same six questions, the same order admin, the same supplier data, thousands of times a month. It is the best possible case for automation.",
     pressurePoints: [
-      { title: "Proposals forget what was promised", body: "The scope agreed on the call, the assumptions made, the results the client expects — reconstructed from memory at the kickoff." },
-      { title: "Bench and utilisation are guesses", body: "Who is available in six weeks is answered from three calendars and a conversation." },
-      { title: "Delivery knowledge is not reused", body: "Every engagement reinvents a framework the firm has used eleven times before." },
-      { title: "Revenue is lumpy and unpredicted", body: "Pipeline is tracked in a document that is edited the morning of the partner meeting." },
+      { title: "Support is mostly the same six questions", body: "\"Where is my order?\", \"can I change it?\", \"do you ship here?\" — answered by hand, at cost, for hours every day." },
+      { title: "Order admin eats the team", body: "Address fixes, payment queries, returns, courier escalations and manual reconciliation between the shop and the accounts." },
+      { title: "Product data is always slightly wrong", body: "Titles, sizes, descriptions and stock spread across a supplier's spreadsheet, the shop and the marketplace listing." },
+      { title: "Peak season breaks everything", body: "The system that copes in June falls over in November, and the team absorbs it by working longer hours." },
     ],
     moduleFit: [
-      { module: "Intake", href: "/products/intake", line: "Opportunities qualified against capability and capacity, not enthusiasm." },
-      { module: "Engage", href: "/products/engage", line: "Proposal follow-up that runs until there is a decision." },
-      { module: "Deliver", href: "/products/deliver", line: "Kickoff from the proposal, with commitments already captured." },
-      { module: "Insight", href: "/products/insight", line: "Utilisation, pipeline coverage and margin on one page." },
+      { module: "AI agents", href: "/services/ai-agents", line: "Support that answers instantly on chat and email, and escalates the ones that matter." },
+      { module: "Workflow automation", href: "/services/workflow-automation", line: "Orders, returns, refunds and reconciliation moving without anyone touching them." },
+      { module: "Document AI", href: "/services/document-ai", line: "Supplier invoices and packing slips read into your systems automatically." },
+      { module: "AI insights", href: "/services/ai-insights", line: "Margin per product, per channel, per cohort — updated daily." },
     ],
     metrics: [
-      { label: "Proposal follow-up", value: "Until decision" },
-      { label: "Kickoff prep", value: "From the record" },
-      { label: "Utilisation", value: "Forward-looking" },
-      { label: "Pipeline", value: "Live, not retyped" },
+      { label: "Support volume", value: "Routine tickets answered instantly" },
+      { label: "Order admin", value: "Exceptions only" },
+      { label: "Product data", value: "Normalised automatically" },
+      { label: "Peak readiness", value: "Scales without hiring" },
     ],
-    proof: "See how Northgate cut kickoff preparation from three days to an hour.",
+    proof:
+      "The businesses that benefit most are the ones where one person is holding the operational side together by working late every night.",
   },
   {
-    slug: "advisory",
-    name: "Advisory",
-    headline: "Recurring reviews, delivered without the scramble.",
+    slug: "clinics",
+    name: "Clinics & health practices",
+    headline: "For practices where the diary is the business and no-shows are the leak.",
     summary:
-      "Advisory work is a promise of rhythm: the quarterly review arrives, with the numbers ready and the client's situation understood. When that promise depends on the week going well, it eventually slips.",
+      "Dental, veterinary, physio, aesthetics and private practices lose money in empty slots and spend their receptionist's day on the phone. Both are solvable without replacing your practice system.",
     pressurePoints: [
-      { title: "Review prep restarts each cycle", body: "The same numbers pulled from the same places, re-explained from scratch by whoever has time." },
-      { title: "Client context lives in one adviser's head", body: "The reason for last quarter's decision is a recollection, not a record." },
-      { title: "Value is hard to demonstrate", body: "Time spent is visible; the advice that changed an outcome is not." },
-      { title: "Retention depends on the relationship", body: "Which is a problem when the relationship is a single person with a full calendar." },
+      { title: "The phone never stops", body: "Bookings, changes, results and questions, all through one receptionist who cannot leave the desk." },
+      { title: "No-shows and late cancellations", body: "Empty slots cost a clinician's time, and the reminder process is somebody remembering to send a text." },
+      { title: "Intake forms by clipboard", body: "Patients fill in the same details repeatedly, and someone types them into the system afterwards." },
+      { title: "Recall and follow-up drifts", body: "Six-month check-ups, treatment plans and aftercare that depend on the patient remembering, not the practice following up." },
     ],
     moduleFit: [
-      { module: "Engage", href: "/products/engage", line: "Review cycles triggered on schedule, with prep work assigned ahead." },
-      { module: "Insight", href: "/products/insight", line: "Client packs assembled from the record before the meeting." },
-      { module: "Deliver", href: "/products/deliver", line: "Recommendations tracked to completion, not just delivered." },
-      { module: "Foundation", href: "/products/foundation", line: "Every prior conversation available to whoever covers the review." },
+      { module: "AI agents", href: "/services/ai-agents", line: "Booking, rescheduling and answering routine questions by voice, chat and message." },
+      { module: "Workflow automation", href: "/services/workflow-automation", line: "Reminders, confirmations and recalls running by rule, not by memory." },
+      { module: "Document AI", href: "/services/document-ai", line: "Intake forms and consents read into your records before the appointment." },
+      { module: "AI insights", href: "/services/ai-insights", line: "Chair utilisation, no-show patterns and treatment revenue in one view." },
     ],
     metrics: [
-      { label: "Review prep", value: "Assembled automatically" },
-      { label: "Client history", value: "Available to any adviser" },
-      { label: "Recommendations", value: "Tracked to completion" },
-      { label: "Retention risk", value: "Surfaced early" },
+      { label: "Reception load", value: "Routine calls handled" },
+      { label: "No-shows", value: "Chased automatically" },
+      { label: "Intake admin", value: "Done before arrival" },
+      { label: "Recall", value: "Runs itself" },
     ],
-    proof: "See how Verity Advisors keeps quarterly reviews on schedule across a doubled client base.",
+    proof:
+      "We do not touch clinical decisions. Everything we build handles the admin around the appointment so the clinician's time is spent on patients.",
   },
 ];
-
-export const solutionBySlug = Object.fromEntries(
-  solutions.map((solution) => [solution.slug, solution]),
-) as Record<string, Solution>;

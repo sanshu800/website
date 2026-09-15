@@ -2,9 +2,11 @@
  * Brand, navigation and shared marketing content.
  *
  * NOTE ON PLACEHOLDER DATA: the client names, logos and testimonials in this
- * file are invented placeholders shaped for Reygent's ICP (professional-service
- * firms). They are not real customers. Swap them for real names and quotes
- * before this site is published — see `PLACEHOLDERS` below.
+ * file are invented placeholders shaped for Reygent's market (owner-run
+ * businesses across professional services, property, e-commerce and health).
+ * They are not real customers and no real company's mark is reproduced. Swap
+ * them for real names and quotes before this site is published — see
+ * `PLACEHOLDERS` below.
  */
 
 export const PLACEHOLDERS = {
@@ -15,10 +17,10 @@ export const PLACEHOLDERS = {
 export const site = {
   name: "Reygent",
   wordmark: "Reygent",
-  productName: "Reygent Platform",
-  tagline: "The AI-native operations platform for professional-service firms.",
+  productName: "Reygent AI",
+  tagline: "An AI agency that builds the agents doing your team's repetitive work.",
   description:
-    "Reygent runs intake, client onboarding, follow-through and reporting on one shared memory layer, so a professional-services firm stops losing work between the tools.",
+    "Reygent is an AI agency for business owners. We find the work worth automating, build the AI agents and automations that do it, and stay on to keep them running — connected to the systems you already use.",
   // PLACEHOLDER: confirm the production domain and monitored inbox.
   url: "https://reygent.ai",
   email: "hello@reygent.ai",
@@ -49,43 +51,32 @@ export type NavGroup = {
 
 export const primaryNav: NavGroup[] = [
   {
-    label: "Product",
+    label: "Services",
     children: [
       {
-        label: "Intake",
-        href: "/products/intake",
-        blurb: "Capture, qualify and route every enquiry",
+        label: "AI agents",
+        href: "/services/ai-agents",
+        blurb: "Assistants that answer, qualify, book and follow up for you",
       },
       {
-        label: "Engage",
-        href: "/products/engage",
-        blurb: "Follow-up that runs until there is a decision",
+        label: "Workflow automation",
+        href: "/services/workflow-automation",
+        blurb: "The manual steps between your systems, removed",
       },
       {
-        label: "Deliver",
-        href: "/products/deliver",
-        blurb: "Onboard clients and run the engagement",
+        label: "Document AI",
+        href: "/services/document-ai",
+        blurb: "Invoices, contracts and forms read and filed automatically",
       },
       {
-        label: "Insight",
-        href: "/products/insight",
-        blurb: "Reporting, forecasting and review",
+        label: "AI insights",
+        href: "/services/ai-insights",
+        blurb: "Ask your own business data a question, get an answer",
       },
       {
-        label: "Foundation",
-        href: "/products/foundation",
-        blurb: "One memory layer where context compounds",
-      },
-    ],
-    columns: [
-      {
-        title: "More",
-        items: [
-          { label: "Product tour", href: "/product-tour", blurb: "" },
-          { label: "Pricing", href: "/pricing", blurb: "" },
-          { label: "Integrations", href: "/integrations", blurb: "" },
-          { label: "Release notes", href: "/release-notes", blurb: "" },
-        ],
+        label: "Managed AI",
+        href: "/services/managed-ai",
+        blurb: "We monitor, tune and support what we build",
       },
     ],
   },
@@ -93,111 +84,155 @@ export const primaryNav: NavGroup[] = [
     label: "Solutions",
     children: [
       {
-        label: "For legal firms",
-        href: "/solutions/legal",
-        blurb: "Intake and matter management",
+        label: "Professional services",
+        href: "/solutions/professional-services",
+        blurb: "Firms that bill by the hour and live on response time",
       },
       {
-        label: "For accounting",
-        href: "/solutions/accounting",
-        blurb: "Seasonal volume, clean handoffs",
+        label: "Property & real estate",
+        href: "/solutions/property",
+        blurb: "Listings, viewings, applications and tenant comms",
       },
       {
-        label: "For consulting",
-        href: "/solutions/consulting",
-        blurb: "Pipeline to engagement, in one place",
+        label: "E-commerce & retail",
+        href: "/solutions/ecommerce",
+        blurb: "Support, order admin and product data at volume",
       },
       {
-        label: "For advisory",
-        href: "/solutions/advisory",
-        blurb: "Recurring reviews, delivered on time",
-      },
-    ],
-    columns: [
-      {
-        title: "Compare",
-        items: [
-          { label: "vs. spreadsheets", href: "/compare/spreadsheets", blurb: "" },
-          { label: "vs. a traditional CRM", href: "/compare/traditional-crm", blurb: "" },
-          { label: "vs. point solutions", href: "/compare/point-solutions", blurb: "" },
-          { label: "vs. hiring an ops manager", href: "/compare/ops-hire", blurb: "" },
-          { label: "vs. building in-house", href: "/compare/in-house-build", blurb: "" },
-          { label: "vs. doing nothing", href: "/compare/status-quo", blurb: "" },
-        ],
+        label: "Clinics & health",
+        href: "/solutions/clinics",
+        blurb: "Bookings, reminders, intake forms and follow-up care",
       },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Customers", href: "/customers" },
   {
-    label: "Resources",
+    label: "Why us",
     children: [
+      {
+        label: "vs. doing it yourself",
+        href: "/compare/diy-tools",
+        blurb: "Why most home-built automations quietly rot",
+      },
+      {
+        label: "vs. hiring in-house",
+        href: "/compare/hiring-in-house",
+        blurb: "One hire versus a team that has done it before",
+      },
+      {
+        label: "vs. a dev shop",
+        href: "/compare/offshore-dev-shop",
+        blurb: "Why AI projects need process knowledge, not tickets",
+      },
+      {
+        label: "vs. another SaaS tool",
+        href: "/compare/another-saas",
+        blurb: "You do not need another dashboard to log into",
+      },
+      {
+        label: "vs. a big consultancy",
+        href: "/compare/big-consultancy",
+        blurb: "Slides and strategy versus something that runs",
+      },
+      {
+        label: "vs. doing nothing",
+        href: "/compare/status-quo",
+        blurb: "What the manual work actually costs you",
+      },
+    ],
+  },
+  {
+    label: "Work",
+    children: [
+      {
+        label: "Case studies",
+        href: "/customers",
+        blurb: "What we built and what changed afterwards",
+      },
+      {
+        label: "How we work",
+        href: "/how-we-work",
+        blurb: "Audit to live agent, in fixed stages",
+      },
+      {
+        label: "Build log",
+        href: "/build-log",
+        blurb: "What we shipped and what we learned",
+      },
+      {
+        label: "Playbooks",
+        href: "/guides",
+        blurb: "Step-by-step guides you can use without us",
+      },
       {
         label: "Blog",
         href: "/blog",
-        blurb: "Operations writing for firm leaders",
+        blurb: "Practical writing on AI in real businesses",
       },
       {
-        label: "Operating guides",
-        href: "/guides",
-        blurb: "Playbooks you can run this quarter",
-      },
-      {
-        label: "Startup programme",
-        href: "/startups",
-        blurb: "For firms under three years old",
-      },
-      {
-        label: "Partners",
-        href: "/partners",
-        blurb: "Deliver Reygent to your clients",
+        label: "Newsletter",
+        href: "/newsletter",
+        blurb: "One useful idea a fortnight",
       },
     ],
-    columns: [
+  },
+  {
+    label: "Company",
+    children: [
       {
-        title: "Company",
-        items: [
-          { label: "About", href: "/about", blurb: "" },
-          { label: "Careers", href: "/careers", blurb: "" },
-          { label: "Newsletter", href: "/newsletter", blurb: "" },
-          { label: "Contact", href: "/contact", blurb: "" },
-        ],
+        label: "About",
+        href: "/about",
+        blurb: "Who we are and how we think about this work",
+      },
+      {
+        label: "Careers",
+        href: "/careers",
+        blurb: "Open roles, and what working here is like",
+      },
+      {
+        label: "Security",
+        href: "/security",
+        blurb: "How we handle your data and your access",
+      },
+      {
+        label: "Contact",
+        href: "/contact",
+        blurb: "Ask us something specific",
       },
     ],
   },
 ];
 
 export const footerNav = {
-  product: [
-    { label: "Intake", href: "/products/intake" },
-    { label: "Engage", href: "/products/engage" },
-    { label: "Deliver", href: "/products/deliver" },
-    { label: "Insight", href: "/products/insight" },
-    { label: "Foundation", href: "/products/foundation" },
-    { label: "Integrations", href: "/integrations" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Release notes", href: "/release-notes" },
+  services: [
+    { label: "AI agents", href: "/services/ai-agents" },
+    { label: "Workflow automation", href: "/services/workflow-automation" },
+    { label: "Document AI", href: "/services/document-ai" },
+    { label: "AI insights", href: "/services/ai-insights" },
+    { label: "Managed AI", href: "/services/managed-ai" },
+    { label: "What we connect", href: "/integrations" },
+    { label: "Engagement & pricing", href: "/pricing" },
+    { label: "Build log", href: "/build-log" },
   ],
   solutions: [
-    { label: "Legal", href: "/solutions/legal" },
-    { label: "Accounting", href: "/solutions/accounting" },
-    { label: "Consulting", href: "/solutions/consulting" },
-    { label: "Advisory", href: "/solutions/advisory" },
+    { label: "Professional services", href: "/solutions/professional-services" },
+    { label: "Property & real estate", href: "/solutions/property" },
+    { label: "E-commerce & retail", href: "/solutions/ecommerce" },
+    { label: "Clinics & health", href: "/solutions/clinics" },
   ],
   compare: [
-    { label: "vs. spreadsheets", href: "/compare/spreadsheets" },
-    { label: "vs. a traditional CRM", href: "/compare/traditional-crm" },
-    { label: "vs. point solutions", href: "/compare/point-solutions" },
-    { label: "vs. hiring an ops manager", href: "/compare/ops-hire" },
-    { label: "vs. building in-house", href: "/compare/in-house-build" },
+    { label: "vs. doing it yourself", href: "/compare/diy-tools" },
+    { label: "vs. hiring in-house", href: "/compare/hiring-in-house" },
+    { label: "vs. a dev shop", href: "/compare/offshore-dev-shop" },
+    { label: "vs. another SaaS tool", href: "/compare/another-saas" },
+    { label: "vs. a big consultancy", href: "/compare/big-consultancy" },
     { label: "vs. doing nothing", href: "/compare/status-quo" },
   ],
   resources: [
     { label: "Blog", href: "/blog" },
-    { label: "Operating guides", href: "/guides" },
-    { label: "Product tour", href: "/product-tour" },
-    { label: "Customers", href: "/customers" },
-    { label: "Startup programme", href: "/startups" },
+    { label: "Playbooks", href: "/guides" },
+    { label: "How we work", href: "/how-we-work" },
+    { label: "Case studies", href: "/customers" },
+    { label: "Startups", href: "/startups" },
     { label: "Partners", href: "/partners" },
     { label: "Newsletter", href: "/newsletter" },
   ],
@@ -212,7 +247,7 @@ export const footerNav = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* Client logos — invented placeholder firms shaped to the ICP        */
+/* Client logos — invented placeholder businesses shaped to the market */
 /* ------------------------------------------------------------------ */
 
 export type ClientLogo = {
@@ -224,17 +259,17 @@ export type ClientLogo = {
 
 export const clients: ClientLogo[] = [
   { name: "Halloran & Vance", sector: "Legal", mark: "arc" },
-  { name: "Marlowe Advisory", sector: "Advisory", mark: "orbit" },
   { name: "Brightwell", sector: "Accounting", mark: "block" },
-  { name: "Kessler Partners", sector: "Legal", mark: "chevron" },
-  { name: "Northgate", sector: "Consulting", mark: "prism" },
+  { name: "Carrow Property", sector: "Property", mark: "chevron" },
+  { name: "Northgate Supply", sector: "Distribution", mark: "prism" },
   { name: "Pell & Rowe", sector: "Accounting", mark: "grid" },
+  { name: "Marlowe Advisory", sector: "Consulting", mark: "orbit" },
+  { name: "Verdant Clinic", sector: "Health", mark: "wave" },
   { name: "Ashford Legal", sector: "Legal", mark: "spark" },
-  { name: "Verity Advisors", sector: "Advisory", mark: "wave" },
-  { name: "Lumen Tax Group", sector: "Accounting", mark: "orbit" },
-  { name: "Sterling Hoyt", sector: "Legal", mark: "block" },
-  { name: "Oakhill Consulting", sector: "Consulting", mark: "arc" },
-  { name: "Ferrand & Co", sector: "Advisory", mark: "chevron" },
+  { name: "Lumen Home", sector: "E-commerce", mark: "orbit" },
+  { name: "Sterling Hoyt", sector: "Recruitment", mark: "block" },
+  { name: "Oakhill Group", sector: "Construction", mark: "arc" },
+  { name: "Ferrand & Co", sector: "Financial services", mark: "chevron" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -254,59 +289,58 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "The last piece of software our practice actually needed. Everything about a client lives in one record now, instead of across four inboxes and a spreadsheet nobody trusted.",
+      "We were drowning in quote requests and answering them the next day. The agent replies in about a minute and books the survey while the customer is still on the page. Our win rate on quoted work has never been higher.",
     name: "Marguerite Halloran",
-    role: "Managing Partner",
+    role: "Managing Director",
     company: "Halloran & Vance",
     sector: "Legal",
     featured: true,
   },
   {
     quote:
-      "We stopped losing enquiries in the gap between the web form and somebody remembering to reply. That alone paid for the year.",
+      "Invoicing used to be two days a month of copying numbers between systems. It now runs overnight and somebody checks the exceptions in twenty minutes.",
+    name: "Priya Raman",
+    role: "Finance Director",
+    company: "Northgate Supply",
+    sector: "Distribution",
+    featured: true,
+  },
+  {
+    quote:
+      "I expected a big IT project. What we got was two weeks of somebody sensible asking how we actually work, then an agent that does the parts nobody wanted to do.",
     name: "Daniel Kessler",
-    role: "Partner",
-    company: "Kessler Partners",
+    role: "Owner",
+    company: "Ashford Legal",
     sector: "Legal",
   },
   {
     quote:
-      "Month-end used to take three days of rebuilding the same numbers. It is now a report that arrives before the meeting.",
-    name: "Priya Raghavan",
-    role: "Operations Director",
-    company: "Brightwell",
-    sector: "Accounting",
-    featured: true,
-  },
-  {
-    quote:
-      "Every associate works the same intake process, whether they have been here nine years or nine weeks. That consistency is worth more than the time saved.",
-    name: "Tomas Verity",
-    role: "Founder",
-    company: "Verity Advisors",
-    sector: "Advisory",
-  },
-  {
-    quote:
-      "Coming from a CRM nobody updated, the difference is that the record writes itself. My partners actually look at it now.",
-    name: "Eleanor Sterling",
-    role: "Chief Operating Officer",
-    company: "Sterling Hoyt",
-    sector: "Legal",
-    featured: true,
-  },
-  {
-    quote:
-      "Onboarding a new client went from a fortnight of chasing documents to something that runs itself. Clients notice the difference.",
-    name: "Marcus Pell",
+      "The follow-up gap was costing us viewings. Every enquiry now gets an answer within minutes, at ten at night, on a Sunday, and it sounds like us.",
+    name: "Sophie Carrow",
     role: "Director",
-    company: "Pell & Rowe",
-    sector: "Accounting",
+    company: "Carrow Property",
+    sector: "Property",
+  },
+  {
+    quote:
+      "Support tickets dropped by roughly a third in the first month, mostly the same six questions answered properly and instantly. My team now handles the ones that need a human.",
+    name: "Owen Lumen",
+    role: "Founder",
+    company: "Lumen Home",
+    sector: "E-commerce",
+  },
+  {
+    quote:
+      "They were honest that two of the four things I wanted were not worth automating. That is why I trusted the rest of it.",
+    name: "Dr Amelia Ward",
+    role: "Practice Principal",
+    company: "Verdant Clinic",
+    sector: "Health",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Integrations — described by category, not by partner brand.         */
+/* What we connect                                                     */
 /* ------------------------------------------------------------------ */
 
 export type Integration = {
@@ -317,44 +351,49 @@ export type Integration = {
 
 export const integrations: Integration[] = [
   {
+    category: "CRM & sales pipeline",
+    blurb: "Agents read and write your pipeline, so leads are qualified, updated and followed up without anyone retyping a thing.",
+    surfaces: ["Record sync", "Lead scoring", "Sequence triggers", "Pipeline updates"],
+  },
+  {
     category: "Email & calendar",
-    blurb: "Two-way sync on mailboxes and calendars, so threads and meetings attach themselves to the right record.",
-    surfaces: ["Inbox sync", "Calendar sync", "Meeting notes", "Shared mailboxes"],
+    blurb: "Shared inboxes and calendars become things your agents can act on — drafting, booking, chasing and confirming.",
+    surfaces: ["Inbox triage", "Draft replies", "Calendar booking", "Reminders"],
   },
   {
-    category: "Documents & e-signature",
-    blurb: "Engagement letters, contracts and onboarding packs move through a defined path with status tracked per client.",
-    surfaces: ["Templates", "Signature status", "Document collection", "Version history"],
+    category: "Accounting & invoicing",
+    blurb: "Bills, invoices and reconciliation matched against the record, with anything unusual pulled out for a person to check.",
+    surfaces: ["Invoice capture", "Ledger sync", "Reconciliation", "Approval routing"],
   },
   {
-    category: "Accounting & billing",
-    blurb: "Time, budgets and invoicing reconciled against the engagement record instead of retyped at month end.",
-    surfaces: ["Ledger sync", "Time capture", "Budget tracking", "Invoice status"],
+    category: "Documents & storage",
+    blurb: "Contracts, forms and onboarding packs read, classified, filed and made searchable — wherever they currently live.",
+    surfaces: ["Extraction", "Classification", "Filing rules", "Search"],
   },
   {
-    category: "Messaging & alerts",
-    blurb: "Risk, slippage and stalled work surfaced where the team already talks, not in a dashboard nobody opens.",
-    surfaces: ["Channel alerts", "Deal risk", "Stalled work", "Digest"],
+    category: "Messaging & telephony",
+    blurb: "Voice and message agents that answer, qualify and escalate to a human with the context already gathered.",
+    surfaces: ["Voice agents", "WhatsApp & SMS", "Live chat", "Call summaries"],
   },
   {
-    category: "Practice management",
-    blurb: "Matters, engagements and projects stay in step with the operational record, whichever system holds the file.",
-    surfaces: ["Matter sync", "Task handoff", "Status mapping", "Bulk import"],
+    category: "Operations & industry systems",
+    blurb: "The systems that actually run your business — job boards, practice management, property portals, e-commerce, logistics.",
+    surfaces: ["Two-way sync", "Webhooks", "Custom API", "Legacy bridging"],
   },
   {
     category: "Data & reporting",
-    blurb: "Warehouse and BI pipelines read from the same memory layer, so the reported number is the operating number.",
-    surfaces: ["Warehouse sync", "Custom metrics", "Scheduled exports", "API"],
+    blurb: "One place to ask questions across all of it, and scheduled reporting that writes itself.",
+    surfaces: ["Warehouse sync", "Custom metrics", "Scheduled reports", "Ask your data"],
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Headline metrics — count of what the product does, not a claim.     */
+/* Headline facts — what the offer is, not a claim about results.      */
 /* ------------------------------------------------------------------ */
 
 export const platformFacts = [
-  { value: "5", label: "Connected modules", detail: "Intake, Engage, Deliver, Insight, Foundation" },
-  { value: "1", label: "Memory layer", detail: "Every record, thread and document in one place" },
-  { value: "40+", label: "Integration surfaces", detail: "Email, calendar, documents, ledger, messaging" },
-  { value: "0", label: "Data migrations", detail: "Runs alongside the tools you already have" },
+  { value: "5", label: "Ways we help", detail: "Agents, automation, documents, insight, managed AI" },
+  { value: "0", label: "Systems replaced", detail: "We connect what you already run" },
+  { value: "100%", label: "Of the build is yours", detail: "Code, prompts and documentation handed over" },
+  { value: "40+", label: "Tools we connect", detail: "CRM, inbox, calendar, ledger, storage, telephony, API" },
 ];

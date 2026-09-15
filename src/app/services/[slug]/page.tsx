@@ -6,12 +6,12 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { Screen } from "@/components/screens/ProductScreens";
-import { getProducts } from "@/lib/cms/content";
+import { Screen } from "@/components/screens/WorkScreens";
+import { getServices } from "@/lib/cms/content";
 import { site } from "@/lib/content/marketing";
 
 export function generateStaticParams() {
-  return getProducts().items.map((product) => ({ slug: product.slug }));
+  return getServices().items.map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({
@@ -20,16 +20,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProducts().bySlug[slug];
-  if (!product) return { title: "Not found" };
+  const service = getServices().bySlug[slug];
+  if (!service) return { title: "Not found" };
   return {
-    title: `${product.name} — ${product.kicker}`,
-    description: product.summary,
-    alternates: { canonical: `/products/${product.slug}` },
+    title: `${service.name} — ${service.kicker}`,
+    description: service.summary,
+    alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: `Reygent ${product.name}`,
-      description: product.summary,
-      url: `${site.url}/products/${product.slug}`,
+      title: `Reygent ${service.name}`,
+      description: service.summary,
+      url: `${site.url}/services/${service.slug}`,
     },
   };
 }
@@ -40,34 +40,34 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { bySlug, modules, detail } = getProducts();
-  const product = bySlug[slug];
-  if (!product) notFound();
+  const { bySlug, core, detail } = getServices();
+  const service = bySlug[slug];
+  if (!service) notFound();
 
-  const related = modules.filter((module) => module.slug !== product.slug);
-  const screenName =
-    product.slug === "foundation" ? "intake" : (product.slug as "intake" | "engage" | "deliver" | "insight");
+  const related = core.filter((item) => item.slug !== service.slug);
+  /* The console each service demos, declared on the service itself. */
+  const screenName = service.home.screen;
 
   return (
     <>
       <PageHero
-        eyebrow={product.kicker}
-        crumbs={[{ label: "Products", href: "/products" }, { label: product.name }]}
-        title={product.headline}
-        summary={product.intro}
+        eyebrow={service.kicker}
+        crumbs={[{ label: "Services", href: "/services" }, { label: service.name }]}
+        title={service.headline}
+        summary={service.intro}
         actions={
           <>
             <Link
               href="/get-started"
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Start free trial
+              Book a free AI audit
             </Link>
             <Link
-              href="/demo"
+              href="/contact"
               className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Book a demo
+              Talk to us
               <ArrowRight className="h-4 w-4" />
             </Link>
           </>
@@ -80,7 +80,7 @@ export default async function ProductPage({
               </div>
             </div>
             <p className="mt-3 font-mono text-[0.6875rem] text-fog-2">
-              {product.panelCaption} · {detail.captionSuffix}
+              {service.panelCaption} · {detail.captionSuffix}
             </p>
           </Reveal>
         }
@@ -90,7 +90,7 @@ export default async function ProductPage({
       <section className="border-b border-line bg-mist py-12 sm:py-14">
         <Container width="wide">
           <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {product.flow.map((step, index) => (
+            {service.flow.map((step, index) => (
               <RevealItem key={step.step} className="relative">
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
@@ -111,11 +111,11 @@ export default async function ProductPage({
         <Container width="wide">
           <SectionHeading
             eyebrow={detail.capabilities.eyebrow}
-            title={detail.capabilities.titleTemplate.replace("{name}", product.name)}
+            title={detail.capabilities.titleTemplate.replace("{name}", service.name)}
             lede={detail.capabilities.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-            {product.features.map((feature) => (
+            {service.features.map((feature) => (
               <RevealItem key={feature.title}>
                 <div className="flex h-full flex-col border-t border-line pt-5">
                   <h3 className="text-[1.0625rem] font-medium text-ink">{feature.title}</h3>
@@ -136,7 +136,7 @@ export default async function ProductPage({
               <p className="mt-4 text-body-lg text-fog">{detail.outcomes.note}</p>
             </div>
             <ul className="lg:col-span-6 lg:col-start-7">
-              {product.outcomes.map((outcome) => (
+              {service.outcomes.map((outcome) => (
                 <Reveal as="li" key={outcome} className="flex items-start gap-3 border-b border-line py-4">
                   <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
                   <span className="text-body-lg text-fg-2">{outcome}</span>
@@ -162,7 +162,7 @@ export default async function ProductPage({
             {related.map((module) => (
               <RevealItem key={module.slug}>
                 <Link
-                  href={`/products/${module.slug}`}
+                  href={`/services/${module.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
                   <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog-2">

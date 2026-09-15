@@ -95,9 +95,9 @@ export default function NewsletterPage() {
               </h2>
               <ul className="mt-5 space-y-4">
                 {releaseNotes.items.slice(0, 3).map((note) => (
-                  <li key={note.version} className="flex gap-4">
+                  <li key={note.issue} className="flex gap-4">
                     <span className="font-mono text-[0.6875rem] text-fog-2">
-                      v{note.version}
+                      {note.issue}
                     </span>
                     <span className="text-micro text-fg-2">{note.title}</span>
                   </li>

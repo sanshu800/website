@@ -1,5 +1,5 @@
-import { getDoc, type BlogDoc, type CompareDoc, type LegalDoc, type PricingDoc, type ProductsDoc, type SolutionsDoc } from "@/lib/cms/documents";
-import type { Product } from "@/lib/content/products";
+import { getDoc, type BlogDoc, type CompareDoc, type LegalDoc, type PricingDoc, type ServicesDoc, type SolutionsDoc } from "@/lib/cms/documents";
+import type { Service } from "@/lib/content/services";
 import type { Comparison, Solution } from "@/lib/content/compare";
 import type { Post } from "@/lib/content/blog";
 import type {
@@ -19,7 +19,7 @@ import type {
  * keeping it sync means server components do not have to become async and
  * props do not have to change shape.
  *
- * Derived values (lookups by slug, the module list, the foundation layer) are
+ * Derived values (lookups by slug, the service lists) are
  * computed *after* the merge, so an edited slug-driven list stays consistent.
  */
 
@@ -29,18 +29,20 @@ export function getPricing(): PricingContent {
   return getDoc<PricingContent>("pricing");
 }
 
-export function getProducts(): ProductsDoc & {
-  bySlug: Record<string, Product>;
-  modules: Product[];
-  foundation: Product;
+export function getServices(): ServicesDoc & {
+  bySlug: Record<string, Service>;
+  /** The four build-and-run services. */
+  core: Service[];
+  /** The retainer that keeps the other four working. */
+  managed: Service;
 } {
-  const { items, ...rest } = getDoc<ProductsDoc>("products");
+  const { items, ...rest } = getDoc<ServicesDoc>("services");
   return {
     ...rest,
     items,
     bySlug: Object.fromEntries(items.map((item) => [item.slug, item])),
-    modules: items.filter((item) => item.slug !== "foundation"),
-    foundation: items.find((item) => item.slug === "foundation") ?? items[0]!,
+    core: items.filter((item) => item.slug !== "managed-ai"),
+    managed: items.find((item) => item.slug === "managed-ai") ?? items[0]!,
   };
 }
 

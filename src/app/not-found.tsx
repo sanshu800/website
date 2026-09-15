@@ -6,9 +6,9 @@ import { ReygentMark } from "@/components/brand/Logo";
 export const metadata = { title: "Page not found" };
 
 const DESTINATIONS = [
-  { href: "/products", label: "Products", detail: "The four modules and the Foundation layer" },
+  { href: "/services", label: "Services", detail: "Agents, automation, documents, insight and managed AI" },
   { href: "/pricing", label: "Pricing", detail: "Core, Pro and Enterprise, with every limit" },
-  { href: "/product-tour", label: "Product tour", detail: "Ten minutes, five stops, no sales call" },
+  { href: "/how-we-work", label: "Product tour", detail: "Ten minutes, five stops, no sales call" },
   { href: "/blog", label: "Blog", detail: "Operations writing from live implementations" },
   { href: "/contact", label: "Contact", detail: "A person replies to every message" },
   { href: "/security", label: "Security", detail: "How data is stored and who can reach it" },

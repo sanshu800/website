@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
-import { GetStartedForm } from "@/components/forms/GetStartedForm";
+import { AuditForm } from "@/components/forms/AuditForm";
 import { getPages, getPricing } from "@/lib/cms/content";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
-  title: "Get started",
+  title: "Book a free AI audit",
   description:
-    "Start a 14-day Reygent trial — full product, no card, your data exportable at any time.",
+    "Thirty minutes with an AI agency: we map the process costing you the most time and tell you honestly whether it is worth automating.",
   alternates: { canonical: "/get-started" },
 };
 
 export default function GetStartedPage() {
   const { getStarted: copy } = getPages();
+  const { engagementsList } = getPricing();
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function GetStartedPage() {
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <GetStartedForm plans={getPricing().plansList} />
+              <AuditForm />
             </div>
 
             <div className="lg:col-span-5">
@@ -70,6 +71,30 @@ export default function GetStartedPage() {
                 <p className="mt-6 rounded-xl border border-line bg-mist px-5 py-4 text-[0.75rem] leading-relaxed text-fog">
                   {copy.billingNote}
                 </p>
+              </Reveal>
+
+              {/* What the work looks like after the call, so nobody has to ask
+                  what happens next or what it costs. */}
+              <Reveal delay={0.15}>
+                <div className="mt-6 rounded-2xl border border-line p-7">
+                  <h2 className="font-display text-[1.0625rem] text-ink">
+                    If it is worth doing, here is how we would start
+                  </h2>
+                  <ul className="mt-5 divide-y divide-line">
+                    {engagementsList.map((engagement) => (
+                      <li key={engagement.slug} className="flex items-baseline justify-between gap-4 py-3 first:pt-0">
+                        <span className="text-micro text-fog">{engagement.name}</span>
+                        <span className="shrink-0 font-mono text-[0.6875rem] text-ink">
+                          {engagement.price}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-[0.75rem] leading-relaxed text-fog-2">
+                    The audit fee is credited against your build if you continue, and you own
+                    everything we produce either way.
+                  </p>
+                </div>
               </Reveal>
             </div>
           </div>

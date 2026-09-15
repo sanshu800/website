@@ -6,23 +6,21 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
-import type { Product } from "@/lib/content/products";
 import type { HomeDoc } from "@/lib/content/pages/home";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Conversation = HomeDoc["foundation"]["conversation"];
+type Conversation = HomeDoc["agents"]["conversation"];
 
 /**
- * Foundation and Ask Reygent.
+ * "See it working" — three examples of an agent doing a real job, rendered as
+ * conversation UI with the sources attached.
  *
- * The three answers are rendered as real conversation UI with citations, and
- * the tabs use the same semantics as the product tabs above: keyboard
- * navigable, correct ARIA, present without animation. Every string arrives from
- * the content documents — the tab list from the products doc, the sample
- * conversation from the home doc — so the panel text is editable without a
- * deploy.
+ * The tabs use the same semantics as the service tabs above: keyboard
+ * navigable, correct ARIA, present without animation. Every string — the tab
+ * list and the three conversations — lives in the home document, so the whole
+ * section is editable from the admin without a deploy.
  */
 
 function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
@@ -136,22 +134,17 @@ function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
   );
 }
 
-export function FoundationSection({
-  copy,
-  tabs,
-}: {
-  copy: HomeDoc["foundation"];
-  tabs: NonNullable<Product["tabs"]>;
-}) {
+export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
-  /* tabs arrive from the server component, already merged with any edits */
+  /* both the tab list and the panel copy live in the home document */
+  const tabs = copy.tabs;
   const current = tabs[Math.min(active, tabs.length - 1)]!;
   /* the panel key is not editable, but never trust it blindly: fall back to alerts */
   const panel = current.panel in copy.conversation ? current.panel : "alerts";
 
   return (
-    <section className="section bg-ink text-on-ink" id="foundation">
+    <section className="section bg-ink text-on-ink" id="agents">
       <Container width="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
@@ -224,7 +217,7 @@ export function FoundationSection({
             </div>
 
             <Link
-              href="/products/foundation"
+              href="/services/ai-agents"
               className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
             >
               {copy.cta}

@@ -10,7 +10,7 @@ import { siteStats } from "@/lib/content/company";
  * Default copy shared across pages: the client marks, the testimonial wall, the
  * integration surfaces and the capability counts. These used to be reachable
  * only by editing `marketing.ts`, and they appear on the homepage, `/customers`,
- * `/about`, `/integrations`, `/demo` and the practice pages — so they live in
+ * `/about`, `/integrations` and the industry pages — so they live in
  * one document that every one of those surfaces reads.
  */
 export function sharedDoc() {

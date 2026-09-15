@@ -7,9 +7,9 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
 
 export const metadata: Metadata = {
-  title: "Startup programme",
+  title: "Founders programme",
   description:
-    "Firms under three years old get 50% off Reygent Core or Pro for twelve months, implementation included.",
+    "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for £4,500.",
   alternates: { canonical: "/startups" },
 };
 

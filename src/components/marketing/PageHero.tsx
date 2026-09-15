@@ -152,10 +152,10 @@ export function PageHero({
 
 /** Small consistent CTA used at the foot of inner pages. */
 export function PageCTA({
-  title = "See it running on your own data",
-  summary = "Start a 14-day trial, or book 30 minutes and we will map your intake process live — either way you leave with something useful.",
-  primary = { href: "/get-started", label: "Start free trial" },
-  secondary = { href: "/demo", label: "Book a demo" },
+  title = "Find out what is worth automating first",
+  summary = "Book a free thirty-minute audit. We map the process costing you the most time and tell you honestly whether AI should touch it — the notes are yours either way.",
+  primary = { href: "/get-started", label: "Book a free AI audit" },
+  secondary = { href: "/how-we-work", label: "See how we work" },
 }: {
   title?: string;
   summary?: string;

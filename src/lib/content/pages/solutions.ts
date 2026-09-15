@@ -1,30 +1,30 @@
 import { solutions } from "@/lib/content/compare";
 
-/** Default copy for `/solutions` and every practice detail page. */
+/** Default copy for `/solutions` and every industry detail page. */
 export function solutionsDoc() {
   return {
     items: solutions,
     index: {
       eyebrow: "Solutions",
-      title: "The same foundation, shaped to your practice.",
+      title: "Different businesses. The same six processes.",
       summary:
-        "A legal firm's intake is a conflict check. An accountancy practice's is a scope conversation. The coordination problem is identical; the record is not. Pick your practice and we will show you the configured version.",
-      sectorEyebrow: "By practice",
-      sectorTitle: "Four sectors, in production.",
-      modulesTitle: "The modules behind every solution",
+        "A letting agent loses money on a missed call. A clinic loses it on an empty chair. An online shop loses it on a support queue. The work behind all three is repetitive and rules-based, so the fix looks remarkably similar. Find yours and see what it looks like.",
+      sectorEyebrow: "Who we work with",
+      sectorTitle: "Four kinds of business we know well.",
+      modulesTitle: "The services behind every solution",
     },
     detail: {
       pressure: {
         eyebrow: "Where the pressure shows up",
-        title: "Four problems we see in almost every firm.",
+        title: "Where the money actually leaks.",
         lede:
-          "None of these are unusual, and none of them are a people problem. They are what happens when a process has no owner and no system.",
+          "None of these are unusual, and none of them are a people problem. They are what happens when a process has no owner and no system behind it.",
       },
       fits: {
         eyebrow: "How Reygent fits",
-        title: "Which module solves which part.",
+        title: "Which service fixes which part.",
         lede:
-          "You do not have to adopt all of it. Most firms start with the module that removes the most expensive seam first.",
+          "You do not have to take all four. Most businesses start with the service that removes the most expensive problem first, then expand once it is paying for itself.",
       },
     },
   };

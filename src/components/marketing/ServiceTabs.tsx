@@ -5,26 +5,32 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
-import { Screen } from "@/components/screens/ProductScreens";
-import type { Product } from "@/lib/content/products";
+import { Screen } from "@/components/screens/WorkScreens";
+import type { Service } from "@/lib/content/services";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * The four modules plus the foundation layer.
+ * The five services, as a real tablist.
  *
  * Implemented as a real WAI-ARIA tablist: arrow-key navigation, correct
  * `aria-selected` / `aria-controls` wiring, and a panel that is present in the
  * DOM for screen readers and with motion disabled.
  */
-export function ProductTabs({ products }: { products: Product[] }) {
+export function ServiceTabs({
+  services,
+  copy,
+}: {
+  services: Service[];
+  copy: { eyebrow: string; title: string; lede: string };
+}) {
   const [active, setActive] = useState(0);
   const [interacted, setInteracted] = useState(false);
   const reduce = useReducedMotion();
   const baseId = useId();
 
-  const tabs = products;
+  const tabs = services;
   const current = tabs[Math.min(active, tabs.length - 1)]!;
 
   function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -42,22 +48,13 @@ export function ProductTabs({ products }: { products: Product[] }) {
   }
 
   return (
-    <section className="section bg-paper" id="platform">
+    <section className="section bg-paper" id="services">
       <Container width="wide">
-        <SectionHeading
-          eyebrow="The platform"
-          title={
-            <>
-              Four modules. One memory layer.
-              <br className="hidden sm:block" /> No seams for work to fall through.
-            </>
-          }
-          lede="Each module solves one operational job. They share the same record, so the context gathered at intake is the context delivery uses, is the basis of the invoice, and is what the review pack reports on."
-        />
+        <SectionHeading eyebrow={copy.eyebrow} title={copy.title} lede={copy.lede} />
 
         <div
           role="tablist"
-          aria-label="Platform modules"
+          aria-label="Services"
           aria-orientation="horizontal"
           onKeyDown={onKeyDown}
           className="mt-12 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] sm:mt-14 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0"
@@ -153,7 +150,7 @@ export function ProductTabs({ products }: { products: Product[] }) {
                 </ul>
 
                 <Link
-                  href={`/products/${current.slug}`}
+                  href={`/services/${current.slug}`}
                   className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
                 >
                   Explore {current.name}

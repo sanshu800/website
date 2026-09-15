@@ -1,11 +1,15 @@
-# Reygent — marketing site with a private content admin
+# Reygent — AI agency site with a private content admin
 
-The public pages a prospective firm reads, plus a private admin at `/admin` where
+The public pages a business owner reads when they are deciding whether to let an
+agency automate part of their operation, plus a private admin at `/admin` where
 whoever writes the copy edits it without a deploy.
 
-There are **no customer accounts and no user dashboard**: this build is the marketing
-site and its CMS. The only authentication is the admin, and it is never linked from
-the public pages.
+Reygent is an **AI agency**, not a software product. The site sells work, not
+licences: a fixed-fee audit, a fixed-price build, and a monthly retainer. So there
+are no pricing tiers, no per-seat plans, no free trial and no product tour — and
+**no customer accounts and no user dashboard**. This build is the marketing site
+and its CMS. The only authentication is the admin, and it is never linked from the
+public pages.
 
 ---
 
@@ -13,8 +17,8 @@ the public pages.
 
 | Area | Status |
 | --- | --- |
-| 30+ marketing routes (products, solutions, comparisons, blog, legal, pricing, tour) | Static-rendered, all live |
-| Inbound forms (contact, demo, trial request, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook |
+| 33 marketing routes (services, industries, comparisons, blog, legal, engagements, how we work, build log) | Static-rendered, all live |
+| Inbound forms (contact, audit request, newsletter, job application) | POST → validated with Zod → written to SQLite, with an optional CRM webhook |
 | Content admin at `/admin` | Edit every string on the marketing site. Validated writes, audit log, one-click restore, no deploy |
 | Authentication | Sign-in and sign-out for admin accounts only. **No public sign-up** — accounts come from `npm run admin:create` |
 | Access control | Session guard on every `/admin/**` page; `owner`/`admin` role required to publish, others see a 403 |
@@ -134,7 +138,7 @@ Session-authenticated unless noted. All JSON.
 | Method | Route | Purpose |
 | --- | --- | --- |
 | `POST` | `/api/submissions` | Generic inbound capture (`kind` + payload) — public |
-| `POST` | `/api/contact` · `/api/demo` · `/api/newsletter` · `/api/careers` | Form-specific endpoints — public |
+| `POST` | `/api/contact` · `/api/newsletter` · `/api/careers` | Form-specific endpoints — public |
 | `GET` | `/api/submissions` | List inbound submissions (admin session required) |
 | `POST` | `/api/auth/login` · `/api/auth/logout` | Admin session lifecycle |
 | `GET` | `/api/auth/session` | Who the server can see, so the form can report a dropped cookie |
@@ -163,25 +167,26 @@ the public site and is disallowed in `robots.txt`. Three screens:
 
 **How it works.** Each surface is a *content document*: one JSON tree holding the
 complete default copy for that part of the site, assembled from the content modules
-(plans, products, posts, legal pages) plus the page copy that used to sit inline in the
-components. Every string leaf in it has a stable dotted path — `hero.title`,
-`items.engage.kicker`, `plans.core.includes.2`. Saving a field writes one row to
+(engagements, services, industries, posts, legal pages) plus the page copy that used to
+sit inline in the components. Every string leaf in it has a stable dotted path —
+`hero.title`, `engagementsList.build.includes.2`, `items.ai-agents.kicker`. Saving a
+field writes one row to
 `content_overrides` keyed `<doc>#<path>` and appends a row to `content_revisions`.
 
-At render time the page asks for the merged document (`getPricing()`, `getProducts()`,
+At render time the page asks for the merged document (`getPricing()`, `getServices()`,
 …): the tree is deep-cloned and overridden values are layered on top. Typing the
 shipped value back in clears the override rather than freezing a copy of it, which is
 what the **Reset** button does too — so code stays the source of truth for anything
 nobody has deliberately changed.
 
-Array items that carry a `slug` are addressed by it (`items.engage`, `posts.<slug>`)
+Array items that carry a `slug` are addressed by it (`items.ai-agents`, `posts.<slug>`)
 rather than by index, so reordering the source array does not move anyone's edits.
 
 **Publishing.** Saves call `revalidatePath("/", "layout")`. The marketing pages are
 prerendered, so without that a change would sit invisible until the next build; with
-it, the next request regenerates the page. Verified: editing a price, a plan name or a
-product name changes the served HTML of `/pricing`, `/products`, `/products/engage`
-and the homepage preview, and **Reset** restores the shipped copy.
+it, the next request regenerates the page. Verified: editing an engagement price, a
+service headline or an industry name changes the served HTML of `/pricing`,
+`/services/ai-agents` and the industry pages, and **Reset** restores the shipped copy.
 
 **Guarantees the admin gives you**
 
@@ -207,18 +212,18 @@ marketing site is editable, including the header navigation and the footer.
 
 | Surface | Includes |
 | --- | --- |
-| Homepage | Hero headline lines, badge, summary, both CTAs, the footnote and the three hero stats; the proof band; the problem section (all three problems, their stats and image alt text); how it works (all four stages); the Foundation blurb *and the three sample Ask Reygent conversations with their citations*; the testimonial and integrations headings; the closing block |
-| Pricing | Hero, all three plans, the comparison matrix, the FAQ, the CTA — and the homepage preview and `/get-started` plan picker read the same document |
-| Products | Index hero and the five module pages: name, kicker, headline, intro, flow, features, outcomes and the shared detail headings |
-| Solutions | Index and the four practice pages |
+| Homepage | Hero headline lines, badge, summary, both CTAs, the footnote and the three hero stats; the proof band; the problem section (all three problems, their stats and image alt text); the five-service heading; the agent walkthrough (tab list *and* the three sample conversations with their sources); the "how we work" stages; the testimonial and integrations headings; the closing block |
+| Engagements & pricing | Hero, all three engagements (audit, build, retainer) with prices and inclusions, the side-by-side matrix, the FAQ, the CTA — and the homepage preview and the summary on `/get-started` read the same document |
+| Services | Index hero and the five service pages: name, kicker, headline, summary, intro, flow, six capabilities, outcomes and the shared detail headings |
+| Solutions | Index and the four industry pages |
 | Comparisons | Index and all six approach-by-approach pages |
 | Blog | Index, categories, and every article's title, dek, category, byline, reading time and body blocks |
-| Legal | Privacy, terms, DPA, sub-processors |
-| Shared content | Client marks, testimonials, integration surfaces, capability counts, the company statistics and the placeholder disclosures — edited once, applied on the homepage, `/customers`, `/about`, `/integrations`, `/startups` and `/demo` |
-| Header, footer and brand | Site name, tagline, SEO title, social title, description, contact address, copyright; the three primary nav menus with their dropdown blurbs; the footer columns, the built-for line, the legal links and the placeholder disclosure |
+| Legal | Privacy, terms, data handling |
+| Shared content | Client marks, testimonials, integration surfaces, capability counts, the company statistics and the placeholder disclosures — edited once, applied on the homepage, `/customers`, `/about`, `/integrations`, `/startups` and the industry pages |
+| Navigation and footer | Site name, tagline, SEO title, social title, description, contact address, copyright; the five primary nav menus with their dropdown blurbs; the footer columns, the built-for line, the legal links and the placeholder disclosure |
 | About and careers | The about hero, story, six principles, company timeline and proof band; the careers hero, every open role's summary, responsibilities and requirements, the "working here" list, the perks and both closing blocks |
-| Guides and release notes | The guide library, every guide's description, the changelog with the reasoning behind each release, and the newsletter page including recent issues |
-| Standalone pages | Get started, contact, demo, customers, integrations, security, startups, partners and the product tour: hero copy, section headings, checklists, direct channels, security posture rows, eligibility criteria, partner types and every closing block |
+| Playbooks and build log | The playbook library, every playbook's description, the build log with what each project taught us, and the newsletter page including recent issues |
+| Standalone pages | Get started (the audit funnel), contact, case studies, what we connect, security, founders programme, partners and how we work: hero copy, section headings, checklists, direct channels, security posture rows, eligibility criteria, partner types and every closing block |
 
 **Deliberately not editable:** the per-page SEO metadata (titles and descriptions are
 derived from the copy above rather than typed twice) and the artwork itself. Both are
@@ -245,28 +250,30 @@ Copy `.env.example` if you want to set them.
   footer discloses this, and `TestimonialWall` prints its own disclosure line.
   `PLACEHOLDERS = { clients: true, testimonials: true }` is exported so a build-time
   guard can fail the deploy if the flags are still set on a live domain.
-- **Product interface panels** are rendered from real components with illustrative
-  data, and are captioned as such.
+- **Console panels** (the enquiry queue, follow-up sequences, job checklist and
+  weekly review) are rendered from real components with illustrative data, and are
+  captioned as such.
 - **Integrations** are listed as capability surfaces rather than third-party logos, to
   avoid implying endorsements that do not exist.
 - **Contact addresses** (`hello@`, `support@`, `security@`) are placeholders.
-- **Interface panels** on the product pages are rendered from real components with
+- **Interface panels** on the service pages are rendered from real components with
   illustrative data, and captioned as such. The sample CRM dataset that used to back a
   demo dashboard has been removed along with the screens.
 
 ## Needs real credentials before go-live
 
-1. **Payments** — pick a provider (Stripe is the obvious fit), create three prices
-   matching Core/Pro/Enterprise, and wire checkout to `/get-started`. The plan intent
-   is already captured; only the checkout session is missing.
+1. **Payments** — an agency bills against milestones, not cards. When invoices need
+   to be raised automatically, connect Stripe Invoicing or your accounting package;
+   the audit request is already captured with the industry, size and preferred time.
 2. **Transactional email** — a provider (Postmark/Resend/SES) plus verified domain, so
    submissions send confirmations and the newsletter actually sends.
 3. **CRM / routing** — set `CRM_WEBHOOK_URL` to push inbound to the sales tool.
-4. **Calendar** — Google Calendar or Cal.com to turn demo requests into booked slots.
+4. **Calendar** — Google Calendar or Cal.com to turn fetched audit requests into
+   self-service booked slots.
 5. **Admin authentication hardening** — the admin is a single password-protected
    account. Real deployment wants SSO or 2FA, plus rate limiting on `/api/auth/login`.
-   (There are no customer accounts, so the SAML/SCIM line the pricing page mentions is
-   a product claim, not something this site implements.)
+   (There are no customer accounts and no SSO story, because there is no product to
+   log into — the admin is the only authenticated surface.)
 6. **Postgres + object storage** — once there is more than one node, or document
    uploads are needed.
 7. **Domain and DNS** — `reygent.ai` appears in metadata, robots and sitemap.
@@ -323,14 +330,15 @@ content loop — the whole thing end to end over HTTP:
   redirects again;
 - `robots.txt` disallows `/admin` and `/api/`, and the sitemap contains neither;
 - no public page renders a link to `/admin`, `/login` or `/signup` — checked on the
-  homepage, `/pricing`, `/product-tour`, `/about`, `/contact`, `/get-started` and
+  homepage, `/pricing`, `/how-we-work`, `/about`, `/contact`, `/get-started` and
   `/careers`;
-- the public forms still capture: a trial request returns 201 and writes its row.
+- the public forms still capture: an audit request returns 201 and writes its row.
 
-**Retired in this pass, all returning 404:** `/login`, `/signup`, the whole
-`/dashboard` tree, `POST /api/auth/signup`, `/api/ask`, `/api/tasks`, and the sample
-CRM screens behind them. The database is now users, sessions, submissions and the two
-CMS tables — nothing else.
+**Retired, all returning 404:** `/login`, `/signup`, the whole `/dashboard` tree,
+`POST /api/auth/signup`, `/api/ask`, `/api/tasks` and the sample CRM screens behind
+them; then, in the agency repositioning, `/products/*`, `/product-tour`,
+`/release-notes` and `/demo` (with `/api/demo` and the plan-picker form). The database
+is users, sessions, submissions and the two CMS tables — nothing else.
 
 **Not verified here:** there is no browser in this environment, so the admin's
 client-side interactions (per-keystroke state, the search filter, the sticky toolbar,

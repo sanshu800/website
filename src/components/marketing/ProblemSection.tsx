@@ -90,8 +90,7 @@ export function ProblemSection() {
         </div>
 
         <p className="mt-12 max-w-[46rem] border-t border-white/10 pt-8 text-body-lg text-on-ink-2">
-          None of this is a people problem. It is a design problem — and it is the
-          specific design problem this platform exists to solve.
+          {copy.closing}
         </p>
       </Container>
     </section>

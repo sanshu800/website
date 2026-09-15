@@ -9,7 +9,7 @@ import { getPages } from "@/lib/cms/content";
 export const metadata: Metadata = {
   title: "Partner programme",
   description:
-    "Implement Reygent for the firms you advise. 20% recurring revenue share, certification, deal support and co-marketing.",
+    "Introduce the businesses you already advise, share in the work that follows, and keep the relationship. Contractual, not a promise.",
   alternates: { canonical: "/partners" },
 };
 

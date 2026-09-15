@@ -4,21 +4,21 @@ import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { getPages, getProducts } from "@/lib/cms/content";
+import { getPages, getServices } from "@/lib/cms/content";
 import { TourStage } from "@/components/marketing/TourStage";
 
 export const metadata: Metadata = {
-  title: "Product tour",
+  title: "How we work",
   description:
-    "Walk through Reygent stage by stage — intake, engagement, delivery, reporting and the Foundation layer underneath all four.",
-  alternates: { canonical: "/product-tour" },
+    "How a Reygent engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
+  alternates: { canonical: "/how-we-work" },
 };
 
-export default function ProductTourPage() {
-  const { modules, foundation } = getProducts();
+export default function HowWeWorkPage() {
+  const { core, managed } = getServices();
   const { productTour: copy } = getPages();
 
-  const stages = modules.map((module) => ({
+  const stages = core.map((module) => ({
     slug: module.slug,
     name: module.name,
     title: module.headline,
@@ -26,7 +26,7 @@ export default function ProductTourPage() {
     screen: module.home.screen,
     caption: module.panelCaption,
     bullets: module.features.slice(0, 4).map((feature) => feature.title),
-    href: `/products/${module.slug}`,
+    href: `/services/${module.slug}`,
   }));
 
   return (
@@ -57,9 +57,9 @@ export default function ProductTourPage() {
         <Container width="wide">
           <dl className="grid gap-8 py-10 sm:grid-cols-3">
             {[
-              { icon: Clock, label: "Time", value: "About ten minutes" },
-              { icon: MousePointerClick, label: "Format", value: "Interactive, five stops" },
-              { icon: ArrowRight, label: "Shortcut", value: "Sign in with the demo account" },
+              { icon: Clock, label: "First stage", value: "One week, fixed fee" },
+              { icon: MousePointerClick, label: "First build", value: "Four to eight weeks" },
+              { icon: ArrowRight, label: "Your commitment", value: "Nothing until a scope is signed" },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -109,23 +109,23 @@ export default function ProductTourPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
               <p className="font-mono text-eyebrow uppercase text-on-ink-2">
-                {copy.foundation.eyebrow}
+                {copy.managed.eyebrow}
               </p>
-              <h2 className="mt-5 text-display-l text-on-ink">{foundation.name}</h2>
+              <h2 className="mt-5 text-display-l text-on-ink">{managed.name}</h2>
               <p className="mt-5 max-w-[36rem] text-body-lg text-on-ink-2">
-                {foundation.summary}
+                {managed.summary}
               </p>
               <Link
-                href="/products/foundation"
+                href={`/services/${managed.slug}`}
                 className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
               >
-                {copy.foundation.cta}
+                {copy.managed.cta}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             </div>
             <div className="lg:col-span-7">
               <RevealGroup className="grid gap-5 sm:grid-cols-2">
-                {foundation.features.slice(0, 4).map((capability) => (
+                {managed.features.slice(0, 4).map((capability) => (
                   <RevealItem key={capability.title}>
                     <div className="rounded-2xl border border-white/12 bg-ink-2 p-5">
                       <h3 className="text-[0.9375rem] font-medium text-on-ink">

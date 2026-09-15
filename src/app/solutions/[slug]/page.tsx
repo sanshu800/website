@@ -5,7 +5,7 @@ import { ArrowRight, Factory, TrendingUp } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { Screen } from "@/components/screens/ProductScreens";
+import { Screen } from "@/components/screens/WorkScreens";
 import { getSolutions } from "@/lib/cms/content";
 import { getShared } from "@/lib/cms/content";
 
@@ -56,16 +56,16 @@ export default async function SolutionPage({
         actions={
           <>
             <Link
-              href="/demo"
+              href="/get-started"
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-accent-2"
             >
-              Book a demo
+              Book a free AI audit
             </Link>
             <Link
-              href="/get-started"
+              href="/how-we-work"
               className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
             >
-              Start free trial
+              See how we work
             </Link>
           </>
         }
@@ -163,7 +163,7 @@ export default async function SolutionPage({
 
       <section className="section bg-paper pt-0">
         <Container width="wide">
-          <h2 className="font-mono text-eyebrow uppercase text-fog-2">Other practices</h2>
+          <h2 className="font-mono text-eyebrow uppercase text-fog-2">Other industries</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {others.map((item) => (
               <Link

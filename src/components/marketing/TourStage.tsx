@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { Screen, type ScreenName } from "@/components/screens/ProductScreens";
+import { Screen, type ScreenName } from "@/components/screens/WorkScreens";
 import { cn } from "@/lib/utils";
 
 export type TourStageData = {

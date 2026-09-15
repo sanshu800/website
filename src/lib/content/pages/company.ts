@@ -6,48 +6,48 @@ export function companyDoc() {
     about: {
       hero: {
         eyebrow: "About",
-        title: "We build the layer between the tools.",
+        title: "We are an AI agency, not a software company.",
         summary:
-          "Reygent started as an operations consultancy. After mapping the same four bottlenecks in firm after firm, we stopped writing reports and started building the system that removes them.",
+          "We started by mapping how owner-run businesses actually work. The same six bottlenecks turned up everywhere, so we stopped writing reports about them and started building the agents that remove them — one business at a time.",
       },
       story: {
         eyebrow: "Why we exist",
-        title: "Most firms do not need better software. They need one system.",
+        title: "Most businesses do not need another tool. They need the work done.",
         body1:
-          "Every engagement we ran started the same way: a partner describing a problem they assumed was inevitable. Enquiries answered late. Documents chased for weeks. Reports rebuilt by hand at month end.",
+          "Every audit we run starts the same way: an owner describing a problem they have quietly accepted as the cost of doing business. Enquiries answered late. Quotes never followed up. Invoices keyed in by hand. The same questions answered forty times a week.",
         body2:
-          "None of it was inevitable. It was the predictable result of work crossing between systems that could not see each other. So we built the layer that sits underneath, and then we built the four applications that run on it.",
+          "None of that is inevitable and none of it needs a new platform to fix. It needs someone to understand the process, build the agent or automation that removes the repetitive part, and stay around long enough to prove it works. That is what we do, and it is all we do.",
         imageAlt:
           "Three colleagues reviewing printed process diagrams on a wall during a working session",
       },
       values: {
         eyebrow: "How we work",
         title: "Six principles that decide what we build.",
-        lede: "These are not values on a wall. Each one has killed a feature or a deal, and we can tell you which.",
+        lede: "Each one has killed a project or lost us a deal at some point. That is usually what makes a principle worth having.",
       },
       valuesList: companyValues,
-      history: { eyebrow: "History", title: "From audits to a platform." },
+      history: { eyebrow: "History", title: "From audits to agents." },
       timeline,
       proof: {
-        heading: "What firms say",
+        heading: "What owners say",
         note: "Placeholder testimonials on this build — the layout is real, the people are not.",
-        cta: "All customer stories",
+        cta: "All case studies",
       },
       cta: {
         title: "Want to see how we think?",
         summary:
-          "The first call is a working session on your operation, not a product tour. Bring a real process and we will map it.",
+          "The first call is a working session on your business, not a pitch. Bring one real process and we will map it on the call.",
         primary: { href: "/careers", label: "We are hiring" },
-        secondary: { href: "/demo", label: "Book a demo" },
+        secondary: { href: "/get-started", label: "Book a free AI audit" },
       },
     },
 
     careers: {
       hero: {
         eyebrow: "Careers",
-        title: "Build systems that outlive the person who built them.",
+        title: "Build things that keep working after you have moved on.",
         summary:
-          "We are a small team building operational infrastructure for firms that cannot afford to guess. If you like problems with a measurable answer, this is the right place.",
+          "We are a small agency building automation for businesses that cannot afford to guess. You will meet the client, see the work running, and know whether it actually helped.",
       },
       openRoles: {
         eyebrow: "Open roles",
@@ -68,8 +68,8 @@ export function companyDoc() {
           body: "Written-first by default. Meetings are for decisions, not for status.",
         },
         {
-          title: "Every engineer talks to customers",
-          body: "Implementation calls are open to the whole team. You should see the problem, not a ticket about it.",
+          title: "You meet the business you are building for",
+          body: "No handing requirements over a fence. If you build it, you sit in the meeting where it is explained and the one where it is signed off.",
         },
         {
           title: "Time to think",
@@ -83,7 +83,7 @@ export function companyDoc() {
       cta: {
         title: "Nothing fits, but you think you should be here?",
         summary:
-          "Tell us what you would build and why it matters for a firm that runs on client relationships. We read everything.",
+          "Tell us what you would build and why it matters for a business where every hour is somebody's wages. We read everything.",
         primary: { href: "/contact", label: "Get in touch" },
         secondary: { href: "/about", label: "About Reygent" },
       },

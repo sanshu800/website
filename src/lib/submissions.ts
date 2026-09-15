@@ -27,25 +27,16 @@ export const contactSchema = z.object({
   message: z.string().trim().min(10).max(4000),
 });
 
-export const demoSchema = z.object({
+/** The audit request on `/get-started` — the only funnel a service business needs. */
+export const auditSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email,
   company: z.string().trim().min(2).max(160),
   teamSize: z.string().max(40).optional(),
   sector: z.string().max(60).optional(),
   systems: z.array(z.string().max(60)).max(12).optional(),
+  preferredTime: z.string().max(20).optional(),
   notes: z.string().trim().max(2000).optional(),
-});
-
-export const getStartedSchema = z.object({
-  name: z.string().trim().min(2).max(120),
-  email,
-  company: z.string().trim().min(2).max(160),
-  sector: z.string().max(60).optional(),
-  teamSize: z.string().max(40).optional(),
-  plan: z.enum(["core", "pro", "enterprise", "undecided"]).default("undecided"),
-  intent: z.string().max(80).optional(),
-  startup: z.boolean().default(false),
 });
 
 export const careersSchema = z.object({
@@ -60,8 +51,7 @@ export const careersSchema = z.object({
 export type SubmissionKind =
   | "newsletter"
   | "contact"
-  | "demo"
-  | "get-started"
+  | "audit"
   | "careers";
 
 export function recordSubmission(input: {

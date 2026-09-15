@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { FormError, FormSuccess, SelectField, TextArea, TextField } from "./Fields";
+import {
+  FormError,
+  FormSuccess,
+  HoneypotField,
+  SelectField,
+  TextArea,
+  TextField,
+} from "./Fields";
 
 /**
  * The one qualification form on the site.
@@ -102,6 +109,8 @@ export function EnquiryForm({
   });
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [fields, setFields] = useState<Record<string, string>>({});
+  /** Never seen by a person; only a bot fills it in. */
+  const [hp, setHp] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   function set(key: keyof typeof values) {
@@ -150,7 +159,7 @@ export function EnquiryForm({
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, kind }),
+        body: JSON.stringify({ ...values, kind, company_website: hp }),
       });
       const data = (await response.json()) as { fields?: Record<string, string> };
       if (!response.ok) {
@@ -184,6 +193,7 @@ export function EnquiryForm({
 
   return (
     <form onSubmit={submit} noValidate className="space-y-6">
+      <HoneypotField value={hp} onChange={setHp} />
       {formError && <FormError>{formError}</FormError>}
 
       <div className="grid gap-6 sm:grid-cols-2">

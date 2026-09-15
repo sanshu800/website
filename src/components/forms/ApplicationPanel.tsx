@@ -74,7 +74,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setName(event.target.value)}
             autoComplete="name"
             required
-            className="mt-2 w-full rounded-lg border border-line-strong bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
           />
         </label>
         <label className="block">
@@ -87,7 +87,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             required
-            className="mt-2 w-full rounded-lg border border-line-strong bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
           />
         </label>
         <label className="block">
@@ -98,7 +98,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             value={portfolio}
             onChange={(event) => setPortfolio(event.target.value)}
             placeholder="github.com, site, or a doc"
-            className="mt-2 w-full rounded-lg border border-line-strong bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
           />
         </label>
         <label className="block">
@@ -110,12 +110,12 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setNote(event.target.value)}
             rows={4}
             placeholder="A few sentences. Specific beats polished."
-            className="mt-2 w-full resize-y rounded-lg border border-line-strong bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
+            className="mt-2 w-full resize-y rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] outline-none transition-colors focus:border-accent"
           />
         </label>
       </div>
 
-      {message && <p className="mt-4 text-[0.8125rem] text-danger">{message}</p>}
+      {message && <p className="mt-4 text-[0.8125rem] text-danger-ink">{message}</p>}
 
       <Button type="submit" className="mt-6" full disabled={status === "sending"}>
         {status === "sending" ? (

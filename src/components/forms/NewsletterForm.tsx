@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { FormError, FormSuccess } from "./Fields";
+import { FormError, FormSuccess, HoneypotField } from "./Fields";
 import { cn } from "@/lib/utils";
 
 /** Inline subscribe form used on /newsletter, /guides and the footer band. */
@@ -17,6 +17,8 @@ export function NewsletterForm({
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  /** Never seen by a person; only a bot fills it in. */
+  const [hp, setHp] = useState("");
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -31,7 +33,7 @@ export function NewsletterForm({
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, company_website: hp }),
       });
       if (!response.ok) throw new Error("failed");
       setStatus("done");
@@ -52,6 +54,7 @@ export function NewsletterForm({
 
   return (
     <form onSubmit={submit} noValidate>
+      <HoneypotField value={hp} onChange={setHp} />
       <div
         className={cn(
           "flex gap-2",
@@ -72,7 +75,7 @@ export function NewsletterForm({
           placeholder="you@yourfirm.com"
           className={cn(
             "h-11 w-full rounded-lg border bg-paper px-5 text-[0.9375rem] outline-none transition-[border-color,box-shadow] focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)]",
-            status === "error" ? "border-danger" : "border-line-strong",
+            status === "error" ? "border-danger" : "border-field",
           )}
         />
         <Button

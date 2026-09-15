@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactDisplayName, enquirySchema, recordSubmission } from "@/lib/submissions";
 import { fieldErrors } from "@/lib/validation";
+import { callerKey, isHoneypotFilled, rateLimit, tooManyRequests } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,6 +12,19 @@ export async function POST(request: Request) {
     json = await request.json();
   } catch {
     return NextResponse.json({ error: "invalid json" }, { status: 400 });
+  }
+
+  const limit = rateLimit({
+    key: callerKey(request, "contact"),
+    limit: 8,
+    windowMs: 60 * 60 * 1000,
+  });
+  if (!limit.ok) return tooManyRequests(limit);
+
+  /* Honeypot first: a filled field means a bot, and a bot should be told it
+     succeeded. Nothing is stored. */
+  if (isHoneypotFilled(json)) {
+    return NextResponse.json({ ok: true });
   }
 
   const parsed = enquirySchema.safeParse(json);

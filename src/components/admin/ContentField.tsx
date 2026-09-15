@@ -85,7 +85,7 @@ export function ContentField({
   const inputClass = cn(
     "w-full rounded-lg border bg-paper px-3.5 py-2.5 text-[0.9375rem] text-ink outline-none transition-colors",
     "focus:border-accent focus:ring-2 focus:ring-accent/10 disabled:opacity-60",
-    dirty ? "border-accent" : "border-line-strong",
+    dirty ? "border-accent" : "border-field",
   );
 
   return (
@@ -109,12 +109,12 @@ export function ContentField({
             </span>
           )}
           {status.tone === "saved" && (
-            <span className="inline-flex items-center gap-1 text-jade">
+            <span className="inline-flex items-center gap-1 text-jade-ink">
               <Check className="h-3 w-3" /> {status.message}
             </span>
           )}
           {status.tone === "error" && (
-            <span className="inline-flex items-center gap-1 text-magenta">
+            <span className="inline-flex items-center gap-1 text-magenta-ink">
               <TriangleAlert className="h-3 w-3" /> {status.message}
             </span>
           )}
@@ -174,7 +174,7 @@ export function ContentField({
               title={`Restore the shipped copy: “${field.fallback.slice(0, 60)}${
                 field.fallback.length > 60 ? "…" : ""
               }”`}
-              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-line-strong px-3 text-[0.8125rem] font-medium text-fog transition-colors hover:bg-mist hover:text-ink disabled:opacity-40"
+              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-field stg px-3 text-[0.8125rem] font-medium text-fog transition-colors hover:bg-mist hover:text-ink disabled:opacity-40"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               Reset

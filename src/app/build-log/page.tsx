@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 const KIND_STYLE: Record<string, string> = {
-  Shipped: "border-jade/30 bg-jade-soft text-jade",
-  Learned: "border-azure/30 bg-azure-soft text-azure",
+  Shipped: "border-jade-line bg-jade-soft text-jade-ink",
+  Learned: "border-azure-line bg-azure-soft text-azure-ink",
   Fixed: "border-line bg-mist text-fog",
 };
 

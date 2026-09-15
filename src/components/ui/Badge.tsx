@@ -4,10 +4,10 @@ export type Accent = "ink" | "tangerine" | "jade" | "azure" | "magenta" | "neutr
 
 const accentChip: Record<Accent, string> = {
   ink: "bg-accent-soft text-accent-2 border-accent-line",
-  tangerine: "bg-tangerine-soft text-[#a83c05] border-[#ffc9a8]",
-  jade: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
-  azure: "bg-azure-soft text-[#0f4bb0] border-[#b9d0fb]",
-  magenta: "bg-magenta-soft text-[#9c1770] border-[#f5bde0]",
+  tangerine: "bg-tangerine-soft text-tangerine-ink border-tangerine-line",
+  jade: "bg-jade-soft text-jade-ink border-jade-line",
+  azure: "bg-azure-soft text-azure-ink border-azure-line",
+  magenta: "bg-magenta-soft text-magenta-ink border-magenta-line",
   neutral: "bg-mist text-fg-2 border-line",
 };
 
@@ -66,18 +66,18 @@ export function Badge({
 /** Status pill for records — semantically meaningful, not decorative. */
 export function StatusPill({ status }: { status: string }) {
   const map: Record<string, string> = {
-    new: "bg-azure-soft text-[#0f4bb0] border-[#b9d0fb]",
+    new: "bg-azure-soft text-azure-ink border-azure-line",
     qualified: "bg-accent-soft text-accent-2 border-accent-line",
-    engaged: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
-    proposal: "bg-caution-soft text-caution border-[#f0d3a0]",
+    engaged: "bg-jade-soft text-jade-ink border-jade-line",
+    proposal: "bg-caution-soft text-caution-ink border-caution-line",
     won: "bg-jade text-white border-transparent",
     lost: "bg-mist-2 text-fog border-line",
-    stalled: "bg-danger-soft text-danger border-[#f3c4c4]",
+    stalled: "bg-danger-soft text-danger-ink border-danger-line",
     dormant: "bg-mist-2 text-fog border-line",
-    active: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
-    risk: "bg-danger-soft text-danger border-[#f3c4c4]",
-    healthy: "bg-jade-soft text-[#0a6b45] border-[#a9e2c8]",
-    watch: "bg-caution-soft text-caution border-[#f0d3a0]",
+    active: "bg-jade-soft text-jade-ink border-jade-line",
+    risk: "bg-danger-soft text-danger-ink border-danger-line",
+    healthy: "bg-jade-soft text-jade-ink border-jade-line",
+    watch: "bg-caution-soft text-caution-ink border-caution-line",
     onboarding: "bg-accent-soft text-accent-2 border-accent-line",
   };
   return (

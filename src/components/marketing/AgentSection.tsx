@@ -100,7 +100,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
           </ul>
         </div>
         <div className="rounded-lg bg-caution-soft p-3">
-          <p className="text-[0.8125rem] text-caution">{copy.risk}</p>
+          <p className="text-[0.8125rem] text-caution-ink">{copy.risk}</p>
         </div>
       </div>
     </div>

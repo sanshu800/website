@@ -92,7 +92,7 @@ export function UploadPanel({ token }: { token: string }) {
           if (dropped) setFile(dropped);
         }}
         className={`flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-14 text-center transition-colors ${
-          dragging ? "border-accent bg-accent-soft" : "border-line-strong hover:bg-mist"
+          dragging ? "border-accent bg-accent-soft" : "border-field hover:bg-mist"
         }`}
       >
         <Upload className="h-6 w-6 text-fog" />
@@ -114,7 +114,7 @@ export function UploadPanel({ token }: { token: string }) {
         onChange={(event) => setFile(event.target.files?.[0] ?? null)}
       />
 
-      {message && <p className="mt-4 text-[0.8125rem] text-danger">{message}</p>}
+      {message && <p className="mt-4 text-[0.8125rem] text-danger-ink">{message}</p>}
 
       <button
         type="submit"

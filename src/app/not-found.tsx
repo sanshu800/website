@@ -7,8 +7,8 @@ export const metadata = { title: "Page not found" };
 
 const DESTINATIONS = [
   { href: "/services", label: "Services", detail: "Agents, automation, documents, insight and managed AI" },
-  { href: "/pricing", label: "Pricing", detail: "Core, Pro and Enterprise, with every limit" },
-  { href: "/how-we-work", label: "Product tour", detail: "Ten minutes, five stops, no sales call" },
+  { href: "/pricing", label: "Pricing", detail: "Audit, build project and managed AI, with fixed prices" },
+  { href: "/how-we-work", label: "How we work", detail: "Audit, blueprint, build, run — in that order" },
   { href: "/blog", label: "Blog", detail: "Operations writing from live implementations" },
   { href: "/contact", label: "Contact", detail: "A person replies to every message" },
   { href: "/security", label: "Security", detail: "How data is stored and who can reach it" },

@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
  */
 
 const control =
-  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog-2/80 outline-none transition-[border-color,box-shadow] duration-200 focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)] disabled:opacity-60";
+  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog outline-none transition-[border-color,box-shadow] duration-200 focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)] disabled:opacity-60";
 
 export function Label({
   children,
@@ -89,11 +89,11 @@ export function TextField({
         required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        className={cn(control, "mt-2 h-11", error ? "border-danger" : "border-line-strong")}
+        className={cn(control, "mt-2 h-11", error ? "border-danger" : "border-field")}
         {...rest}
       />
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger">
+        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
           {error}
         </p>
       )}
@@ -127,12 +127,12 @@ export function TextArea({
         className={cn(
           control,
           "mt-2 resize-y py-3 leading-relaxed",
-          error ? "border-danger" : "border-line-strong",
+          error ? "border-danger" : "border-field",
         )}
         {...rest}
       />
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger">
+        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
           {error}
         </p>
       )}
@@ -169,7 +169,7 @@ export function SelectField({
         className={cn(
           control,
           "mt-2 h-11 appearance-none bg-[length:1rem] pr-9",
-          error ? "border-danger" : "border-line-strong",
+          error ? "border-danger" : "border-field",
         )}
         style={{
           backgroundImage:
@@ -187,7 +187,7 @@ export function SelectField({
         ))}
       </select>
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger">
+        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
           {error}
         </p>
       )}
@@ -208,14 +208,14 @@ export function CheckboxField({
         <input
           id={id}
           type="checkbox"
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-line-strong accent-ink"
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-field accent-ink"
           {...rest}
         />
         <label htmlFor={id} className="text-[0.8125rem] leading-relaxed text-fog">
           {label}
         </label>
       </div>
-      {error && <p className="mt-1.5 text-[0.75rem] text-danger">{error}</p>}
+      {error && <p className="mt-1.5 text-[0.75rem] text-danger-ink">{error}</p>}
     </div>
   );
 }
@@ -260,7 +260,7 @@ export function ChipGroup({
                 "rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
                 active
                   ? "border-accent bg-accent-soft text-accent"
-                  : "border-line-strong text-fog hover:border-ink/25 hover:text-ink",
+                  : "border-field text-fog hover:border-ink/25 hover:text-ink",
               )}
             >
               {option}
@@ -304,9 +304,45 @@ export function FormError({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="alert"
-      className="rounded-lg border border-danger/30 bg-danger-soft px-4 py-3 text-[0.8125rem] text-danger"
+      className="rounded-lg border border-danger-line bg-danger-soft px-4 py-3 text-[0.8125rem] text-danger-ink"
     >
       {children}
+    </div>
+  );
+}
+
+/**
+ * Spam trap.
+ *
+ * Hidden from people three ways — off-screen, out of the tab order, and
+ * `aria-hidden` — so no keyboard or screen-reader user ever meets it, and no
+ * autofill heuristic can mistake it for a real field. Address harvesters and
+ * naive form bots fill it anyway, and the server answers them with a success.
+ */
+export function HoneypotField({
+  value,
+  onChange,
+  id = "company_website",
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  id?: string;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden"
+    >
+      <label htmlFor={id}>Company website</label>
+      <input
+        id={id}
+        name="company_website"
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
     </div>
   );
 }

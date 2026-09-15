@@ -90,7 +90,7 @@ export default function ContentAdminPage() {
                         </span>
                       )}
                       {orphans > 0 && (
-                        <span className="rounded-full bg-magenta-soft px-2 py-0.5 font-mono text-magenta">
+                        <span className="rounded-full bg-magenta-soft px-2 py-0.5 font-mono text-magenta-ink">
                           {orphans} orphaned
                         </span>
                       )}

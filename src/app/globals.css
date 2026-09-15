@@ -26,7 +26,7 @@
   --color-fg: #101010;
   --color-fg-2: #3a3a3a;
   --color-fog: #6b6b6b; /* 5.1:1 on paper */
-  --color-fog-2: #8c8c8c; /* 3.1:1 — supporting / decorative only */
+  --color-fog-2: #8c8c8c; /* 3.1:1 — decorative only: never load-bearing, never text below 12px */
   --color-on-ink: #f7f7f7;
   --color-on-ink-2: #a9a9a9;
 
@@ -59,6 +59,36 @@
   --color-danger-soft: #fdeaea;
   --color-info: #1667e8;
   --color-info-soft: #e5edfd;
+
+  /* ---- Text-safe colour pairs -------------------------------------------- */
+  /* The tokens above are *graphic* colours: on paper, on mist or on their own
+     soft tint they land between 2.9:1 and 5.1:1, so they may carry an icon, a
+     rule or a fill, but never a sentence. Measured worst case per token is
+     5.3:1 on paper and 5.4:1 on its soft tint for the `-ink` set below, so this
+     is the set to reach for whenever the colour has to be read. `-line` is the
+     matching hairline for a soft chip's border. Nothing outside this file
+     should contain a colour literal. */
+  --color-jade-ink: #0a6b45; /* 6.56:1 on paper, 5.71:1 on jade-soft */
+  --color-jade-line: #a9e2c8;
+  --color-azure-ink: #0f4bb0; /* 7.91:1 on paper, 6.66:1 on azure-soft */
+  --color-azure-line: #b9d0fb;
+  --color-magenta-ink: #9c1770; /* 7.58:1 on paper, 6.31:1 on magenta-soft */
+  --color-magenta-line: #f5bde0;
+  --color-tangerine-ink: #a83c05; /* 6.34:1 on paper, 5.42:1 on tangerine-soft */
+  --color-tangerine-line: #ffc9a8;
+  --color-caution-ink: #8a5200; /* 6.39:1 on paper, 5.72:1 on caution-soft */
+  --color-caution-line: #f0d3a0;
+  --color-danger-ink: #a82f2f; /* 6.75:1 on paper, 5.83:1 on danger-soft */
+  --color-danger-line: #f3c4c4;
+  --color-positive-ink: #0a6b45;
+  --color-info-ink: #0f4bb0;
+
+  /* ---- Control boundaries ------------------------------------------------ */
+  /* A form field's border is the only thing identifying it, so it has to clear
+     3:1 against the surface behind it (WCAG 2.1 SC 1.4.11). `line-strong` is the
+     decorative hairline — dividers, table rules, the edge of a secondary
+     button that is already identified by its label. Fields use this instead. */
+  --color-field: #8c8c8c; /* 3.36:1 on paper, 3.08:1 on mist, 3.09:1 on a field */
 
   /* ---- Type scale ------------------------------------------------------- */
   --text-display-2xl: clamp(2.85rem, 1.4rem + 5.4vw, 5.25rem);
@@ -143,61 +173,6 @@
   }
 }
 
-@keyframes shimmer {
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes float-soft {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -8px, 0);
-  }
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.85);
-    opacity: 0.6;
-  }
-  70%,
-  100% {
-    transform: scale(1.9);
-    opacity: 0;
-  }
-}
-
-@keyframes sweep {
-  from {
-    transform: translateX(-110%);
-  }
-  to {
-    transform: translateX(110%);
-  }
-}
-
-@keyframes bar-grow {
-  from {
-    transform: scaleY(0.05);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes draw-line {
-  from {
-    stroke-dashoffset: var(--dash, 600);
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 /* Hero entrance: each line of the hero arrives on its own delay. */
 @keyframes fadeSlideUp {
   from {
@@ -207,16 +182,6 @@
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Slow drift for the hero background when the video cannot play. */
-@keyframes hero-drift {
-  from {
-    transform: scale(1.06) translate3d(0, 0, 0);
-  }
-  to {
-    transform: scale(1.16) translate3d(-2%, -1.5%, 0);
   }
 }
 
@@ -369,32 +334,7 @@
     overflow: hidden;
   }
 
-  .app-frame-dark {
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    background: var(--color-ink-2);
-    box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.6);
-    overflow: hidden;
-  }
 
-  .skeleton {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-mist-2);
-  }
-  .skeleton::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.65),
-      transparent
-    );
-    animation: shimmer 1.6s infinite;
-  }
 
   /* Long-form article typography (blog posts, legal pages). */
   .prose-reygent {

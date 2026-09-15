@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { createWriteStream } from "node:fs";
 import { mkdir, readdir, unlink } from "node:fs/promises";
@@ -88,6 +89,13 @@ export async function POST(request: Request) {
     Readable.fromWeb(file.stream() as Parameters<typeof Readable.fromWeb>[0]),
     createWriteStream(path.join(dir, filename)),
   );
+
+  // The homepage resolves its film by looking for a file in `public/video/`, so
+  // a new upload has to purge the prerendered page — otherwise the swap would
+  // not appear until the next deploy. Same mechanism as /api/content, which is
+  // what lets every other marketing page stay statically rendered and still be
+  // editable from the admin panel.
+  revalidatePath("/", "layout");
 
   return NextResponse.json({
     ok: true,

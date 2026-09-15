@@ -19,10 +19,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Rendered per request so the hero film can resolve against the current contents
-// of `public/video/` — dropping a file in there swaps the hero without a rebuild.
-// The homepage reads no database, so dynamic rendering costs nothing meaningful.
-export const dynamic = "force-dynamic";
+// Statically rendered, like every other marketing page. Two things keep it fresh
+// without per-request rendering: `/api/content` purges this route whenever the
+// admin panel writes, and `/api/media` purges it when a hero film is uploaded.
+// The hero's `existsSync` probe therefore runs at build (and on each purge)
+// rather than on every visitor's request, which is what lets a CDN hold the page.
 
 export default function HomePage() {
   const home = getHome();

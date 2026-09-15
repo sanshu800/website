@@ -76,9 +76,9 @@ function Avatar({ name, className }: { name: string; className?: string }) {
   // Deterministic tint so avatars are stable between server and client render.
   const palette = [
     "bg-accent-soft text-accent-2",
-    "bg-tangerine-soft text-[#a83c05]",
-    "bg-jade-soft text-[#0a6b45]",
-    "bg-azure-soft text-[#0f4bb0]",
+    "bg-tangerine-soft text-tangerine-ink",
+    "bg-jade-soft text-jade-ink",
+    "bg-azure-soft text-azure-ink",
   ];
   const idx = name.charCodeAt(0) % palette.length;
   return (
@@ -164,7 +164,7 @@ export function IntakeScreen({ className }: { className?: string }) {
             </div>
             <div className="hidden items-center gap-2 sm:flex">
               {row.owner === "—" ? (
-                <span className="flex items-center gap-1 text-[0.75rem] text-danger">
+                <span className="flex items-center gap-1 text-[0.75rem] text-danger-ink">
                   <TriangleAlert className="h-3.5 w-3.5" /> Unassigned
                 </span>
               ) : (
@@ -287,7 +287,7 @@ export function DeliverScreen({ className }: { className?: string }) {
             job 88-412 · day 4 · owner D. Kessler
           </p>
         </div>
-        <span className="shrink-0 rounded-full bg-caution-soft px-2.5 py-1 text-[0.6875rem] font-medium text-caution">
+        <span className="shrink-0 rounded-full bg-caution-soft px-2.5 py-1 text-[0.6875rem] font-medium text-caution-ink">
           2 outstanding
         </span>
       </div>
@@ -311,7 +311,7 @@ export function DeliverScreen({ className }: { className?: string }) {
               {item.label}
             </span>
             {item.state === "waiting" && (
-              <span className="font-mono text-[0.6875rem] text-caution">chased 2×</span>
+              <span className="font-mono text-[0.6875rem] text-caution-ink">chased 2×</span>
             )}
           </li>
         ))}
@@ -359,7 +359,7 @@ export function InsightScreen({ className }: { className?: string }) {
             <p
               className={cn(
                 "font-mono text-[0.625rem]",
-                metric.delta.startsWith("-") ? "text-danger" : "text-jade",
+                metric.delta.startsWith("-") ? "text-danger-ink" : "text-jade-ink",
               )}
             >
               {metric.delta} vs last quarter

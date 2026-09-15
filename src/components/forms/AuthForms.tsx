@@ -71,6 +71,20 @@ export function LoginForm({ next = "/dashboard" }: { next?: string }) {
         setStatus("error");
         return;
       }
+
+      /**
+       * The cookie is set, but did the browser keep it? In an embedded frame a
+       * refused cookie would otherwise bounce straight back to this form with no
+       * explanation. Ask the server what it can see before navigating away.
+       */
+      const session = await fetch("/api/auth/session", { cache: "no-store" });
+      if (!session.ok) {
+        setFormError(
+          "The credentials were accepted, but this browser did not keep the session cookie. Open the preview in its own browser tab and sign in there.",
+        );
+        setStatus("error");
+        return;
+      }
       router.replace(next);
       router.refresh();
     } catch {
@@ -194,6 +208,18 @@ export function SignupForm() {
         setFields(data.fields ?? {});
         setFormError(
           data.fields ? "Check the highlighted fields." : (data.error ?? "Sign-up failed."),
+        );
+        setStatus("error");
+        return;
+      }
+      /**
+       * Same check as sign-in: the account exists either way, so if the cookie
+       * did not survive, say so instead of bouncing back to this form.
+       */
+      const session = await fetch("/api/auth/session", { cache: "no-store" });
+      if (!session.ok) {
+        setFormError(
+          "Your workspace was created, but this browser did not keep the session cookie. Open the preview in its own browser tab and sign in there.",
         );
         setStatus("error");
         return;

@@ -48,6 +48,14 @@ Development: `npm run dev`. Checks: `npm run typecheck && npm run lint`.
 
 Sign-up also works and creates a real account with a scrypt-hashed password.
 
+**If sign-in appears to do nothing**, the browser dropped the session cookie. The
+session cookie is set `SameSite=None; Secure; Partitioned` precisely so that it
+survives being viewed inside an embedded preview frame, where the app's own
+origin counts as cross-site — a `Lax` cookie is withheld there and the dashboard
+guard sends you straight back to the login form. The form now checks the session
+immediately after signing in and tells you if the browser refused it; opening the
+preview in its own tab always works.
+
 ---
 
 ## Design system

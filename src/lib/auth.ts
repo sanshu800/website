@@ -65,6 +65,34 @@ type UserRow = {
   password_hash: string;
 };
 
+/**
+ * Cookie attributes for the session.
+ *
+ * This app is routinely opened inside an embedded preview frame, where its own
+ * origin counts as **cross-site** relative to the top-level page. A `SameSite=Lax`
+ * cookie is withheld on every request made from that frame — including the one
+ * that follows a successful sign-in — so the dashboard guard sees no session and
+ * bounces straight back to `/login`. `SameSite=None` allows the cookie in that
+ * context, and `Partitioned` (CHIPS, RFC 9578) keeps it working in browsers that
+ * block third-party cookies outright.
+ *
+ * Those attributes are illegal over plain http, so local development falls back
+ * to the ordinary Lax cookie. Both shapes are first-party-safe: on a normal
+ * https deployment the partitioned cookie is stored in its own partition and
+ * sent as usual.
+ */
+function sessionCookieOptions(expires?: Date) {
+  const secure = process.env.NODE_ENV === "production";
+  return {
+    httpOnly: true,
+    sameSite: secure ? ("none" as const) : ("lax" as const),
+    secure,
+    partitioned: secure,
+    path: "/",
+    ...(expires ? { expires } : { maxAge: 0 }),
+  };
+}
+
 export async function createSession(
   userId: string,
   userAgent?: string,
@@ -87,13 +115,7 @@ export async function createSession(
   );
 
   const store = await cookies();
-  store.set(SESSION_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    expires,
-  });
+  store.set(SESSION_COOKIE, token, sessionCookieOptions(expires));
 
   return token;
 }
@@ -132,7 +154,8 @@ export async function destroySession(): Promise<void> {
   if (token) {
     run(`DELETE FROM sessions WHERE token_hash = ?`, [hashToken(token)]);
   }
-  store.delete(SESSION_COOKIE);
+  /* Clearing with the same attributes, so the partitioned cookie goes too. */
+  store.set(SESSION_COOKIE, "", sessionCookieOptions());
 }
 
 export async function findUserByEmail(email: string): Promise<UserRow | null> {

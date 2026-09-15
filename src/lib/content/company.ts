@@ -454,6 +454,10 @@ export const legalPages = {
         p: "Contact details you give us (name, business, email), the project information you share during an audit, and technical logs from the systems we are given access to in order to build and monitor your automations.",
       },
       {
+        h: "Measurement on this website",
+        p: "This site counts its own visitors, using software that runs on our own server. If you allow it, we record the pages you open, the host you arrived from, and any errors your browser hit — tied to a random identifier that your browser forgets when the tab closes. We do not set cookies, we do not load anything from a third party, and we do not store your IP address. If you choose “essential only”, nothing is recorded at all. Whatever is recorded is deleted automatically after 90 days.",
+      },
+      {
         h: "Why we process it",
         p: "To deliver the work you engaged us for, to secure it, to answer you when you contact us, and to meet our legal obligations. We do not sell personal data and we do not use your business data to train models.",
       },

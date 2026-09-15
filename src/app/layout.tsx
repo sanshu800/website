@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { site } from "@/lib/content/marketing";
 import { getChrome } from "@/lib/cms/content";
+import { Measurement } from "@/components/analytics/Measurement";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import "./globals.css";
@@ -111,6 +112,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader brand={chrome.brand} header={chrome.header} />
         <main id="main">{children}</main>
         <SiteFooter brand={chrome.brand} footer={chrome.footer} />
+        {/* Asks once, then measures only if the visitor allowed it. */}
+        <Measurement />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FormError, FormSuccess, HoneypotField } from "./Fields";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/track";
 
 /** Inline subscribe form used on /newsletter, /guides and the footer band. */
 export function NewsletterForm({
@@ -37,6 +38,7 @@ export function NewsletterForm({
       });
       if (!response.ok) throw new Error("failed");
       setStatus("done");
+      track("newsletter_subscribed");
     } catch {
       setStatus("error");
       setError("Subscription failed. Try again, or email hello@reygent.ai.");

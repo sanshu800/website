@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/Button";
+import { track } from "@/lib/track";
 
 /**
  * Application entry point.
@@ -36,6 +37,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
       });
       if (!response.ok) throw new Error("failed");
       setStatus("sent");
+      track("application_submitted");
     } catch {
       setStatus("error");
       setMessage("That did not go through. Email us instead and we will pick it up.");

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { track } from "@/lib/track";
 
 /**
  * Route-level boundary.
@@ -22,6 +23,10 @@ export default function Error({
   useEffect(() => {
     // Keep the failure visible in the server/edge log rather than swallowing it.
     console.error("Unhandled route error", { message: error.message, digest: error.digest });
+    /* And record it where the operator actually looks — the server log of a
+       failed render is easy to miss when nobody is watching it. A digest is a
+       hash, not the message, so nothing a visitor was working on travels. */
+    track("exception", `route error ${error.digest ?? "without digest"}`);
   }, [error]);
 
   return (

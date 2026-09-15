@@ -14,6 +14,10 @@ import path from "node:path";
  *   sessions     opaque session tokens, stored as SHA-256 hashes
  *   submissions  every inbound marketing form, one table with a `kind`
  *                discriminator
+ *   events       first-party measurement: page views, form starts, completed
+ *                enquiries and caught exceptions. No cookies, no third party, no
+ *                IP addresses — see `src/lib/events.ts` for what is and is not
+ *                stored, and why.
  *
  * Site copy lives in two further tables created by `src/lib/cms/store.ts`.
  *
@@ -49,6 +53,17 @@ CREATE TABLE IF NOT EXISTS sessions (
   user_agent TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token_hash);
+
+CREATE TABLE IF NOT EXISTS events (
+  id         TEXT PRIMARY KEY,
+  name       TEXT NOT NULL,
+  path       TEXT,
+  detail     TEXT,
+  session_id TEXT,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_events_created ON events(created_at);
+CREATE INDEX IF NOT EXISTS idx_events_name ON events(name, created_at);
 
 CREATE TABLE IF NOT EXISTS submissions (
   id         TEXT PRIMARY KEY,

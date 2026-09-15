@@ -11,6 +11,7 @@ import {
   TextArea,
   TextField,
 } from "./Fields";
+import { track } from "@/lib/track";
 
 /**
  * The one qualification form on the site.
@@ -107,6 +108,7 @@ export function EnquiryForm({
     referral: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [started, setStarted] = useState(false);
   const [fields, setFields] = useState<Record<string, string>>({});
   /** Never seen by a person; only a bot fills it in. */
   const [hp, setHp] = useState("");
@@ -115,7 +117,16 @@ export function EnquiryForm({
   function set(key: keyof typeof values) {
     return (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-    ) => setValues((prev) => ({ ...prev, [key]: event.target.value }));
+    ) => {
+      /* One `form_start` per visit to the form, on the first real edit: the gap
+         between "opened the page" and "began typing" is what explains an
+         abandoned funnel, and it is the only reason to record it at all. */
+      if (!started) {
+        setStarted(true);
+        track("form_start", kind);
+      }
+      setValues((prev) => ({ ...prev, [key]: event.target.value }));
+    };
   }
 
   /** Required selects, checked here so the answer is instant and local. */
@@ -171,6 +182,7 @@ export function EnquiryForm({
         return;
       }
       setStatus("done");
+      track("enquiry_submitted", kind);
     } catch {
       setStatus("error");
       setFormError("We could not reach the server. Check your connection and retry.");

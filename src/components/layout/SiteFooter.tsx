@@ -29,13 +29,13 @@ export function SiteFooter({
             <div className="mt-6 flex flex-wrap gap-2">
               <Link
                 href={footer.actions.primary.href}
-                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist-2"
+                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-[0.8125rem] font-medium text-ink transition-colors pointer-coarse:min-h-11 hover:bg-mist-2"
               >
                 {footer.actions.primary.label}
               </Link>
               <Link
                 href={footer.actions.secondary.href}
-                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-night transition-colors hover:border-white/40"
+                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-night transition-colors pointer-coarse:min-h-11 hover:border-white/40"
               >
                 {footer.actions.secondary.label}
               </Link>

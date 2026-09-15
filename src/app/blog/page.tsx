@@ -50,7 +50,7 @@ export default async function BlogIndex({
                 href={item === "All" ? "/blog" : `/blog?category=${encodeURIComponent(item)}`}
                 aria-current={item === active ? "page" : undefined}
                 className={cn(
-                  "shrink-0 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
+                  "shrink-0 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors pointer-coarse:min-h-11",
                   item === active
                     ? "border-accent bg-accent text-on-accent"
                     : "border-line text-fg-2 hover:bg-mist",

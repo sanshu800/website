@@ -195,7 +195,7 @@ export function SiteHeader({
               <Link
                 href={header.actions.primary.href}
                 className={cn(
-                  "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 hover:scale-[1.03] active:scale-95",
+                  "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 pointer-coarse:min-h-11 hover:scale-[1.03] active:scale-95",
                   overlay ? "bg-on-ink text-ink" : "bg-accent text-on-accent",
                 )}
               >

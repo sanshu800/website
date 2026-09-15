@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 export type EditableField = {
   key: string;
   label: string;
+  /** Optional guidance written by the document itself. */
+  hint?: string;
   group: string;
   kind: "text" | "prose" | "link";
   current: string;
@@ -102,6 +104,9 @@ export function ContentField({
             </span>
           )}
         </label>
+        {field.hint && (
+          <p className="mt-1 text-[0.75rem] text-fog">{field.hint}</p>
+        )}
         <div className="flex items-center gap-3 text-[0.6875rem] text-fog-2">
           {status.tone === "saving" && (
             <span className="inline-flex items-center gap-1 text-fog">

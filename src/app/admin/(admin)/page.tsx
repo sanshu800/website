@@ -16,8 +16,8 @@ export const metadata: Metadata = { title: "Content" };
  * derived from the copy rather than typed twice.
  */
 const NOT_WIRED = [
-  "Per-page meta descriptions and titles (page-level SEO metadata still lives in code)",
-  "The hero film source and the generated imagery (assets, not copy)",
+  "Site structure, layout and components (engineering, not copy)",
+  "The colour tokens, and the share card Next generates from the brand strings",
 ];
 
 /**
@@ -119,9 +119,9 @@ export default function ContentAdminPage() {
 
           <Card title="Deliberately not editable" className="mt-4">
             <p className="text-[0.8125rem] leading-relaxed text-fog">
-              Two things stay in code by design: the search metadata, which is derived from the
-              copy above rather than typed twice, and the artwork itself. Everything a visitor
-              reads on the marketing site is in the list above.
+              Every word a visitor reads is editable, along with the search metadata and the hero
+              assets. What stays in code is structure: layout, components and the design tokens
+              behind them.
             </p>
             <ul className="mt-4 grid gap-2 text-[0.8125rem] text-fog-2 sm:grid-cols-2">
               {NOT_WIRED.map((item) => (

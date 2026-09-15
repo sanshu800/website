@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { History, LogOut, PenLine } from "lucide-react";
+import { History, ImageIcon, LogOut, PenLine } from "lucide-react";
 import { ReygentMark } from "@/components/brand/Logo";
 import { cn, initials } from "@/lib/utils";
 
@@ -32,6 +32,7 @@ export function AdminShell({
 
   const nav: NavItem[] = [
     { href: "/admin", label: "Website content", icon: PenLine },
+    { href: "/admin/media", label: "Media", icon: ImageIcon },
     { href: "/admin/history", label: "History", icon: History },
   ];
 

@@ -3,6 +3,7 @@ import type { Service } from "@/lib/content/services";
 import type { Comparison, Solution } from "@/lib/content/compare";
 import type { Post } from "@/lib/content/blog";
 import type {
+  AssetsDoc,
   ChromeDoc,
   CompanyDoc,
   HomeDoc,
@@ -72,6 +73,10 @@ export function getHome(): HomeDoc {
 
 export function getShared(): SharedDoc {
   return getDoc<SharedDoc>("shared");
+}
+
+export function getAssets(): AssetsDoc {
+  return getDoc<AssetsDoc>("assets");
 }
 
 export function getSeo(): SeoDoc {

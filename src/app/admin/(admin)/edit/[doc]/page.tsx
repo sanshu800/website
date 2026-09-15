@@ -39,6 +39,7 @@ export default async function ContentDocPage({
   const fields: EditableField[] = docFields(def.id).map((field) => ({
     key: field.key,
     label: field.label,
+    ...(field.hint ? { hint: field.hint } : {}),
     group: field.group,
     kind: field.kind,
     current: field.current,

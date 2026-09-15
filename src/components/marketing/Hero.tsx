@@ -5,7 +5,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { HeroFilm } from "./HeroFilm";
 import { heroVideo } from "@/lib/content/marketing";
-import { getHome } from "@/lib/cms/content";
+import { getAssets, getHome } from "@/lib/cms/content";
 
 /**
  * Home hero — full-bleed motion, one message, two ways forward.
@@ -19,11 +19,19 @@ import { getHome } from "@/lib/cms/content";
  * `HeroFilm` handles that, and `prefers-reduced-data` handles it in CSS.
  */
 /**
- * Resolution order for the film: a file dropped into the project wins, so the
- * hero can be self-hosted by copying one file into `public/video/` — see the
- * note in `lib/content/marketing.ts`. Otherwise the CDN reference is used.
+ * Resolution order for the film. The CMS wins outright when it has been given a
+ * path; otherwise a file dropped into `public/video/` wins, so the hero can be
+ * self-hosted by copying one file in — see the note in `lib/content/marketing.ts`.
+ * The CDN reference is the last resort, which is what ships today.
  */
-function resolveHeroVideo(): { src: string; type: string } {
+function resolveHeroVideo(override?: string): { src: string; type: string } {
+  const chosen = override?.trim();
+  if (chosen) {
+    const extension = chosen.split(".").pop()?.toLowerCase();
+    const type =
+      extension === "webm" ? "video/webm" : extension === "mov" ? "video/quicktime" : "video/mp4";
+    return { src: chosen, type };
+  }
   const candidates = [
     { name: "hero.mp4", type: "video/mp4" },
     { name: "hero.webm", type: "video/webm" },
@@ -38,7 +46,8 @@ function resolveHeroVideo(): { src: string; type: string } {
 }
 
 export function Hero() {
-  const video = resolveHeroVideo();
+  const media = getAssets();
+  const video = resolveHeroVideo(media.heroFilm);
   const { hero } = getHome();
 
   return (
@@ -47,14 +56,15 @@ export function Hero() {
       <HeroFilm
         src={video.src}
         type={video.type}
-        poster="/images/hero-poster.jpg"
+        poster={media.heroPoster.trim() || "/images/hero-poster.jpg"}
         className="hero-film absolute inset-0 h-full w-full object-cover object-[70%_center] motion-reduce:hidden"
       />
 
       {/* Poster stays put underneath, and carries the hero when motion is off. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 hidden bg-[url('/images/hero-poster.jpg')] bg-cover bg-[70%_center] motion-reduce:block"
+        style={{ backgroundImage: `url('${media.heroPoster.trim() || "/images/hero-poster.jpg"}')` }}
+        className="absolute inset-0 hidden bg-cover bg-[70%_center] motion-reduce:block"
       />
 
       {/* 2. Scrims — legibility, not decoration */}

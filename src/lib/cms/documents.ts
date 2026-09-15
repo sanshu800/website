@@ -1,4 +1,4 @@
-import { applyOverrides, collectLeaves, groupFor, labelFor, type Leaf } from "@/lib/cms/paths";
+import { applyOverrides, collectLeaves, groupFor, labelFor, readPath, type Leaf } from "@/lib/cms/paths";
 import { overrideRowsFor } from "@/lib/cms/store";
 import { pricingCopy } from "@/lib/content/pages/pricing";
 import { servicesDoc } from "@/lib/content/pages/services";
@@ -13,6 +13,7 @@ import { companyDoc } from "@/lib/content/pages/company";
 import { resourcesDoc } from "@/lib/content/pages/resources";
 import { pagesDoc } from "@/lib/content/pages/pages";
 import { seoDefaults } from "@/lib/content/seo";
+import { assets } from "@/lib/content/assets";
 
 /**
  * The content documents an editor can change, and the bridge between them and
@@ -44,6 +45,12 @@ export type SeoDoc = { pages: typeof seoDefaults };
 
 function seoDoc(): SeoDoc {
   return { pages: seoDefaults };
+}
+
+export type AssetsDoc = typeof assets;
+
+function assetsDoc(): AssetsDoc {
+  return assets;
 }
 
 export const DOCS: DocDef[] = [
@@ -195,6 +202,14 @@ export const DOCS: DocDef[] = [
       "The title and description each page shows in Google and in a shared link, plus an optional share image. Leave a field blank to fall back to the copy that ships with the page.",
     build: seoDoc,
   },
+  {
+    id: "assets",
+    title: "Hero film and poster",
+    where: [{ label: "/", href: "/" }],
+    blurb:
+      "The film behind the homepage headline and the still frame shown while it loads. Upload first, then paste the path from the media list.",
+    build: assetsDoc,
+  },
 ];
 
 export type {
@@ -236,6 +251,8 @@ export function getDoc<T>(id: string): T {
 }
 
 export type DocField = Leaf & {
+  /** Editor-facing note pulled from the document's own `_<field>Hint` key. */
+  hint?: string;
   /** Display name for the input, e.g. `Title`. */
   label: string;
   /** Where it sits on the page, e.g. `Engage · Hero`. */
@@ -256,10 +273,19 @@ export function docFields(id: string): DocField[] {
   const byPath = new Map(rows.map((row) => [row.path, row]));
   const leaves = collectLeaves(getDocDefaults<unknown>(id));
 
+  const defaults = getDocDefaults<unknown>(id);
+
   return leaves.map((leaf) => {
     const override = byPath.get(leaf.key);
+    /* A document can document itself: any `_<field>Hint` string sitting beside a
+       field is shown to the editor as guidance. The underscore prefix already
+       means "machine key" everywhere else in this CMS, so this costs no schema. */
+    const segments = leaf.key.split(".");
+    const hintKey = [...segments.slice(0, -1), `_${segments[segments.length - 1]}Hint`].join(".");
+    const hint = readPath(defaults, hintKey);
     return {
       ...leaf,
+      ...(typeof hint === "string" ? { hint } : {}),
       label: labelFor(leaf.key),
       group: groupFor(leaf.key),
       edited: override !== undefined,

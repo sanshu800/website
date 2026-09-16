@@ -8,10 +8,20 @@ export function homeDoc() {
      * No category label, no product name a visitor would have to look up — the
      * test is whether an owner who has never heard of us can repeat back what we
      * do after ten seconds.
+     *
+     * The last line names the mechanism on purpose, and it is last on purpose.
+     * "Handled for you" described the benefit and never said who or what does the
+     * handling, which left the one question a visitor actually arrives with
+     * unanswered — a visitor who cannot tell whether this is software, an agency
+     * or an outsourced team has to read the paragraph below to find out. Putting
+     * "by AI" at the end keeps the work as the subject of the sentence and the
+     * benefit as the frame, and answers the question in the same three words. Do
+     * not reorder this into "AI for the work nobody wants to do": leading with the
+     * technology is the framing this site was rewritten to get away from.
      */
     hero: {
       badge: "Automation and AI for owner-run businesses",
-      titleLines: ["The work nobody", "wants to do,", "handled for you."],
+      titleLines: ["The work nobody", "wants to do,", "handled by AI."],
       /*
        * Deliberately the shortest paragraph on the site. Measured: 30 words,
        * Flesch 78.8, grade 6 — a visitor reads it in about nine seconds, which

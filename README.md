@@ -97,6 +97,24 @@ own tab always works.
 - **Motion:** a staggered `fadeSlideUp` on the hero, a marquee strip, reveal-on-
   scroll sections and a scroll-progress rail. All of it collapses under
   `prefers-reduced-motion`, where the hero falls back to a still frame.
+- **One theme, and it is light.** There is deliberately no `prefers-color-scheme`
+  palette. A dark theme was built and removed: it was verified by measured
+  contrast but could not be *looked at* in this environment, and a dark-mode
+  visitor getting a worse experience than a light-mode visitor is worse than
+  everyone getting the same one. Two things that look as if they belong to that
+  work are unrelated and stay: `--color-fog-2` was merged into `fog` because it
+  failed AA on the `mist` surface at 4.17:1 across 113 small labels, and the
+  solid colour chips sit on the `-ink` tone of their colour because white on
+  `--color-tangerine` measures 2.86:1. Both were light-mode defects.
+  `colorScheme: "light"` in `layout.tsx` is load-bearing: without it a visitor
+  whose OS is set to dark gets browser-drawn dark `<select>` menus, scrollbars
+  and autofill on a light page.
+- **`night` is not a dark-mode token.** The `--color-night` ramp and
+  `--color-on-night` are the site's high-contrast blocks — hero, screenshot
+  frames, dark CTA panels, footer. They are named separately from `ink` because
+  they are dark *by purpose* rather than by position; `ink` is the text colour.
+  The values are identical today, and that is fine: the names carry the
+  distinction, not the values.
 
 ### The hero film
 

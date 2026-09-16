@@ -114,6 +114,21 @@ sends you straight back to the sign-in form. The form checks the session immedia
 after signing in and tells you if the browser refused it; opening the admin in its
 own tab always works.
 
+**If sign-in says "too many attempts"**, that is a rate limit, not a wrong
+password. The address limit is 10 attempts and the per-account limit is 5, both
+over 15 minutes, and **only failures count**: a sign-in that works resets the
+counter for both that address and that account, so signing in repeatedly can
+never lock you out of your own admin. Wait for the countdown the form shows, or
+restart the server — the counters live in memory, so a restart clears them.
+Failing five times against one account and then entering the right password
+still gets you in; failing ten times from one address closes that address to
+every account for fifteen minutes, which is deliberate, because the alternative
+is doing expensive password work for a caller who is already blocked.
+
+Wrong credentials and unknown addresses answer with the same message and the
+same timing (both verify a hash, about 45ms) so the endpoint cannot be used to
+find out which email addresses have accounts.
+
 ---
 
 ## Type

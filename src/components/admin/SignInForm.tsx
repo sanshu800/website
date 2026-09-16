@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -18,6 +18,19 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
   const [values, setValues] = useState({ email: "", password: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [formError, setFormError] = useState<string | null>(null);
+  const [lockSeconds, setLockSeconds] = useState(0);
+
+  /**
+   * Counts down the wait the server asked for. Without this the form happily
+   * accepts the next submission and answers with the same refusal, which reads
+   * as "it is broken" rather than "wait" — and the fastest way to be told you
+   * are submitting too often is to submit again and find out.
+   */
+  useEffect(() => {
+    if (lockSeconds <= 0) return;
+    const timer = setTimeout(() => setLockSeconds((seconds) => seconds - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [lockSeconds]);
 
   function set(key: keyof typeof values) {
     return (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -26,6 +39,7 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (lockSeconds > 0) return;
     setFormError(null);
     setStatus("sending");
     try {
@@ -36,6 +50,11 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
       });
       const data = (await response.json()) as { error?: string };
       if (!response.ok) {
+        /* A refusal that names a wait is a refusal to retry immediately. */
+        const retryAfter = Number(response.headers.get("Retry-After") ?? "");
+        if (response.status === 429 && Number.isFinite(retryAfter) && retryAfter > 0) {
+          setLockSeconds(retryAfter);
+        }
         setFormError(data.error ?? "Those credentials did not work.");
         setStatus("error");
         return;
@@ -61,6 +80,10 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
       setFormError("Could not reach the server. Try again.");
     }
   }
+
+  const locked = lockSeconds > 0;
+  const minutes = Math.floor(lockSeconds / 60);
+  const seconds = String(lockSeconds % 60).padStart(2, "0");
 
   return (
     <form onSubmit={submit} noValidate className="space-y-5">
@@ -91,7 +114,7 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
         type="submit"
         size="lg"
         full
-        disabled={status === "sending"}
+        disabled={status === "sending" || locked}
         iconRight={
           status === "sending" ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -100,8 +123,15 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
           )
         }
       >
-        {status === "sending" ? "Signing in" : "Sign in"}
+        {status === "sending" ? "Signing in" : locked ? "Locked" : "Sign in"}
       </Button>
+
+      {locked && (
+        <p aria-live="polite" className="text-center text-[0.75rem] text-fog">
+          Too many failed attempts from this connection. Sign-in unlocks in{" "}
+          {minutes}:{seconds}.
+        </p>
+      )}
     </form>
   );
 }

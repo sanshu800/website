@@ -10,20 +10,28 @@ export const dynamic = "force-dynamic";
  * Two locks on the same door.
  *
  * The password is the only thing standing between the open internet and the
- * ability to rewrite every word on the site, and until now the endpoint would
- * answer an unlimited number of guesses — a single-instance, unauthenticated
- * account with no lockout is the cheapest possible way in.
+ * ability to rewrite every word on the site, and the endpoint used to answer an
+ * unlimited number of guesses — a single-instance, unauthenticated account with
+ * no lockout is the cheapest possible way in.
  *
  * The address limit stops one machine working through a list. The account limit
  * stops a distributed attempt from concentrating on one inbox.
  *
- * Both are checked in the direction that protects the person who owns the
- * account. The account counter is only ever incremented by a *failure*, and it is
- * consulted *after* the password has been checked — never before — so a correct
- * password always gets in. Checking it first would have been simpler and worse:
- * anybody who knew the operator's email address could then lock them out of their
- * own admin for fifteen minutes at a time by failing on purpose. A lockout is
- * meant to stop guessing, and a correct guess is not guessing.
+ * **Only failures count towards either of them, and a sign-in that works clears
+ * both.** That distinction is the whole design. An earlier version counted every
+ * attempt, including successful ones, so signing in repeatedly — an operator
+ * checking which password is right, or a person signing in on several devices —
+ * locked that address out of its own admin with an error about attacks. The
+ * limit was aimed at the wrong caller. Counting failures still stops guessing,
+ * because a guess that is wrong is the only kind that matters; a guess that is
+ * right needs no stopping.
+ *
+ * The address check runs *before* the password is verified, and a correct
+ * password does not bypass it — deliberately, because the alternative is doing
+ * scrypt work for a caller who is already blocked, which is the denial of
+ * service this gate exists to prevent. The counter rises with every attempt and
+ * a success resets it, so an address reaches that gate by making ten attempts
+ * with no successful one among them.
  *
  * Scope, stated honestly: like the rest of the limiter this state is in the Node
  * process, so a multi-instance deployment wants a shared counter. It raises the
@@ -33,9 +41,27 @@ export const dynamic = "force-dynamic";
 const ADDRESS_LIMIT = { limit: 10, windowMs: 15 * 60 * 1000 };
 const ACCOUNT_LIMIT = { limit: 5, windowMs: 15 * 60 * 1000 };
 
+/**
+ * A scrypt hash of nothing in particular, verified against when the address does
+ * not belong to an account. Without it, an unknown email skips the expensive
+ * part and answers in a millisecond while a known one takes a hundred — which
+ * tells an attacker which of the two they found, for free. The hash is a real
+ * one so the same work happens either way.
+ */
+const ABSENT_ACCOUNT_HASH =
+  "scrypt$9b0e42079cd0b9f0dba57f66b7a851bf$72f884dfb4f80541c8ad96d40a603523b4758fcec3aa3d3f50a0ad5a4180e64c307f4af03587d29752b95fea568dd7b6f49ed61d2b34e51569dc89a09dfad432";
+
 export async function POST(request: Request) {
-  const address = rateLimit({ key: callerKey(request, "auth"), ...ADDRESS_LIMIT });
+  const addressKey = callerKey(request, "auth");
+
+  /**
+   * The pre-check, before any password work. It only reflects *failures* — a
+   * sign-in that succeeds clears the counter — so no amount of signing in
+   * correctly can lock anyone out of their own admin.
+   */
+  const address = rateLimit({ key: addressKey, ...ADDRESS_LIMIT });
   if (!address.ok) return tooManySignIns(address.retryAfterSeconds);
+
 
   let json: unknown;
   try {
@@ -59,9 +85,15 @@ export async function POST(request: Request) {
   /**
    * One message for both failure modes, and the same work done either way:
    * telling an attacker which half of the credential pair was wrong is free
-   * reconnaissance.
+   * reconnaissance. An unknown address is verified against a throwaway hash
+   * rather than skipped, so `known` and `unknown` take the same time.
    */
-  if (!user || !(await verifyPassword(parsed.data.password, user.password_hash))) {
+  const matches = await verifyPassword(
+    parsed.data.password,
+    user?.password_hash ?? ABSENT_ACCOUNT_HASH,
+  );
+
+  if (!user || !matches) {
     const failures = rateLimit({ key: accountKey, ...ACCOUNT_LIMIT });
     if (!failures.ok) return tooManySignIns(failures.retryAfterSeconds);
     return NextResponse.json(
@@ -70,6 +102,9 @@ export async function POST(request: Request) {
     );
   }
 
+  /* A sign-in that worked forgives the attempts that did not — for this address
+   * and for this account. */
+  clearLimit(addressKey);
   clearLimit(accountKey);
   await pruneSessions();
   await createSession(user.id, request.headers.get("user-agent") ?? undefined);

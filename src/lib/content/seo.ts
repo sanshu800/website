@@ -41,7 +41,7 @@ export const seoDefaults: SeoEntry[] = [
   { slug: "partners", title: "Partner programme", description: "Introduce the businesses you already advise, share in the work that follows, and keep the relationship. Contractual, not a promise.", ogImage: "" },
   { slug: "pricing", title: "Engagements & pricing", description: "How we price AI work: a fixed-fee audit, a fixed-price build, and a monthly retainer. ${prices}.", ogImage: "" },
   { slug: "security", title: "Security", description: "How Reygent AI protects client data: encryption, tenant isolation, access control, audit logging, testing and incident response.", ogImage: "" },
-  { slug: "services", title: "Services", description: "Five ways we take work off your team: answering every enquiry, removing the manual admin, processing paperwork, reporting on the business, and keeping it running.", ogImage: "" },
+  { slug: "services", title: "Services", description: "Five ways we take work off your team: answering enquiries, removing the manual admin, processing paperwork, reporting on the business, and keeping it running.", ogImage: "" },
   { slug: "solutions", title: "Solutions", description: "How we help professional services firms, property and trades businesses, online retailers and clinics automate the repetitive work behind their day.", ogImage: "" },
   { slug: "startups", title: "Founders programme", description: "A fixed-price first automation for businesses under three years old: one process, scoped small, live in three weeks for $6,000.", ogImage: "" },
 ];

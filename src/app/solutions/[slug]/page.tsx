@@ -22,7 +22,7 @@ export async function generateMetadata({
   const solution = getSolutions().bySlug[slug];
   if (!solution) return { title: "Not found" };
   return withSeo(`/solutions/${solution.slug}`, {
-      title: `${solution.name} — ${solution.headline}`,
+      title: solution.name,
       description: solution.summary,
       alternates: { canonical: `/solutions/${solution.slug}` },
   });
@@ -50,7 +50,7 @@ export default async function SolutionPage({
     <>
       <PageHero
         eyebrow={`Solutions · ${solution.name}`}
-        crumbs={[{ label: "Solutions" }, { label: solution.name }]}
+        crumbs={[{ label: "Solutions", href: "/solutions" }, { label: solution.name }]}
         title={solution.headline}
         summary={solution.summary}
         actions={

@@ -25,7 +25,7 @@ export async function generateMetadata({
   const service = getServices().bySlug[slug];
   if (!service) return { title: "Not found" };
   return withSeo(`/services/${service.slug}`, {
-      title: `${service.name} — ${service.kicker}`,
+      title: service.name,
       description: service.summary,
       alternates: { canonical: `/services/${service.slug}` },
   });

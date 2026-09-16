@@ -369,9 +369,21 @@ marketing site is editable, including the header navigation and the footer.
 | Playbooks and build log | The playbook library, every playbook's description, the build log with what each project taught us, and the newsletter page including recent issues |
 | Standalone pages | Get started (the audit funnel), contact, case studies, what we connect, security, founders programme, partners and how we work: hero copy, section headings, checklists, direct channels, security posture rows, eligibility criteria, partner types and every closing block |
 
-**Deliberately not editable:** the per-page SEO metadata (titles and descriptions are
-derived from the copy above rather than typed twice) and the artwork itself. Both are
-listed on the admin screen so the coverage claim stays honest.
+**Deliberately not editable:** the artwork itself, listed on the admin screen so the
+coverage claim stays honest. The per-page SEO titles and descriptions are edited on
+their own screen (`/admin/edit/seo`), and they are emitted exactly as typed.
+
+Metadata that is *derived* rather than typed — a page's title from its headline, a
+description from its summary — goes through a fitter in `src/lib/cms/seo.ts` before it
+is emitted, because a search result cuts a title at about 60 characters and a
+description at about 160. It prefers to cut on a sentence, then on a clause (so
+"Property, trades & field service — For businesses whose day is bookings…" becomes
+just the service name), and only then mid-word with an ellipsis. The brand suffix is
+dropped rather than added when the title is already long. An override typed into the
+admin is never touched: somebody chose those words on purpose, and silently shortening
+them is the behaviour that makes an owner stop trusting the panel.
+
+Re-run the audit against a running server with `python3 scripts/seo-audit.py`.
 
 ## Currency and geography
 
@@ -503,7 +515,7 @@ deployment assets, not source. Copy the clip into `public/video/` (or commit it 
 
 ## Verified vs not verified
 
-Verified: production build (79 routes), TypeScript strict, ESLint, every marketing
+Verified: production build (80 routes), TypeScript strict, ESLint, every marketing
 route returning 200 (retired routes 404, unknown routes 404), every form endpoint
 accepting valid input and rejecting invalid input, and — for the admin and the
 content loop — the whole thing end to end over HTTP:
@@ -549,6 +561,22 @@ Then, for the international/production pass:
 - `og:image` (1200×630), `twitter:image`, `apple-touch-icon` (180×180) and
   `/manifest.webmanifest` all return 200 with the right content types, and the
   share card itself was rendered and reviewed;
+- **search and sharing, audited page by page** (`scripts/seo-audit.py`, all 51
+  sitemap URLs): every page returns 200 with one `<h1>`, a unique title and
+  description, a canonical on `https://reygent.ai`, `index, follow`, `lang="en"`,
+  no image without alt text and no malformed structured data. Fixes this audit
+  produced: `og:image` and `twitter:image` were present on **one page of 51** — a
+  custom `openGraph` block on every other page silently replaced the inherited card,
+  so the fix serves the same 1200×630 card from `/og` and every page points at it;
+  **18 titles exceeded 60 characters** (the worst at 120, built by gluing a hero
+  headline onto a service name) and **18 descriptions exceeded 160**, now 0 and 0,
+  through the fitter above plus removing the concatenation at its source; and
+  `/solutions` and `/compare` were **orphans** — in the sitemap, linked from nowhere,
+  because their child pages' breadcrumbs passed a label without an `href` while the
+  services breadcrumb passed one. Both are now linked from every child page;
+- the split between the two defects above is worth noting: the missing `og:image` was
+  invisible on the site and only visible in a link preview, which is exactly the kind
+  of thing an audit has to check for rather than assume;
 - the enquiry form posts `fullName` and returns 201; the retired `firstName`/
   `lastName` payload returns 422;
 - 51 sitemap routes and every internal link in the rendered site return 200.

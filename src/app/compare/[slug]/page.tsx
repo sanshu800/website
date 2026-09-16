@@ -45,7 +45,7 @@ export default async function ComparePage({
     <>
       <PageHero
         eyebrow={`Compare · ${comparison.name}`}
-        crumbs={[{ label: "Compare" }, { label: comparison.short }]}
+        crumbs={[{ label: "Compare", href: "/compare" }, { label: comparison.short }]}
         title={comparison.headline}
         summary={comparison.summary}
         actions={

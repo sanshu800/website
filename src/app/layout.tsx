@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { site } from "@/lib/content/marketing";
 import { getChrome } from "@/lib/cms/content";
+import { fitForSearch } from "@/lib/cms/seo";
 import { Measurement } from "@/components/analytics/Measurement";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
@@ -49,13 +50,20 @@ const geistMono = localFont({
  */
 export async function generateMetadata(): Promise<Metadata> {
   const { brand } = getChrome();
+  /*
+   * The site-wide description is also the homepage's, and it is written for a
+   * person rather than for a result listing — two sentences where a result shows
+   * about 160 characters. It goes through the same fitter the per-page copy does,
+   * so the homepage gets a whole sentence instead of a cut-off one. The full text
+   * still reaches `Organization` structured data, where there is no limit.
+   */
   return {
   metadataBase: new URL(site.url),
   title: {
     default: brand.seoTitle,
     template: `%s — ${brand.name}`,
   },
-  description: brand.description,
+  description: fitForSearch(brand.description, 160),
   applicationName: brand.name,
   /* No `keywords` tag: Google has ignored it for years, and the list still
      advertised the retired "AI operations platform" positioning. */

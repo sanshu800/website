@@ -114,6 +114,19 @@ sends you straight back to the sign-in form. The form checks the session immedia
 after signing in and tells you if the browser refused it; opening the admin in its
 own tab always works.
 
+**If sign-in says "no admin accounts yet"**, the database this server is using
+is empty — which is the normal state of a fresh deployment, because the seed that
+creates the demo logins is a development tool. Create your account on the server:
+
+```bash
+npm run admin:create -- --email you@yourfirm.com --name "Your Name"
+```
+
+Then confirm the app and the script are pointed at the same database. They are by
+default (`REYGENT_DATA_DIR`, default `./data`), but a build step and a running
+server with different environments will each have their own file — one with your
+account, one without.
+
 **If sign-in says "too many attempts"**, that is a rate limit, not a wrong
 password. The address limit is 10 attempts and the per-account limit is 5, both
 over 15 minutes, and **only failures count**: a sign-in that works resets the

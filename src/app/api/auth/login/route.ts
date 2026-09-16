@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
-import { createSession, findUserByEmail, pruneSessions, verifyPassword } from "@/lib/auth";
+import {
+  createSession,
+  findUserByEmail,
+  pruneSessions,
+  userCount,
+  verifyPassword,
+} from "@/lib/auth";
 import { fieldErrors, loginSchema } from "@/lib/validation";
 import { callerKey, clearLimit, rateLimit, tooManySignIns } from "@/lib/ratelimit";
 
@@ -122,11 +128,26 @@ export async function POST(request: Request) {
 
     const failures = rateLimit({ key: accountKey, ...ACCOUNT_LIMIT });
     if (!failures.ok) return tooManySignIns(failures.retryAfterSeconds);
+
+    /**
+     * A database with no accounts at all is a different problem with a different
+     * fix, and it is the normal state of a fresh deployment: the seed that
+     * creates the demo logins is a development tool. Checked only here, on the
+     * failure path, so a successful sign-in pays nothing for it.
+     *
+     * Safe to say out loud: it reports that the install has no accounts, which
+     * is not something an attacker can use — there is nothing to guess — and it
+     * is exactly what the person running a brand new deployment needs to know.
+     */
+    const noneExist = !user && userCount() === 0;
+
     return NextResponse.json(
       {
-        error: padded
-          ? "That password has a space at the start or end. Remove it and try again."
-          : "Those credentials do not match an account.",
+        error: noneExist
+          ? "This site has no admin accounts yet. Create one on the server with `npm run admin:create` and sign in with that."
+          : padded
+            ? "That password has a space at the start or end. Remove it and try again."
+            : "Those credentials do not match an account.",
       },
       { status: 401 },
     );

@@ -196,3 +196,18 @@ export function sessionCount(): number {
   const rows = all<{ n: number }>(`SELECT COUNT(*) AS n FROM sessions`);
   return rows[0]?.n ?? 0;
 }
+
+/**
+ * Whether any admin account exists at all.
+ *
+ * A deployment does not run the development seed — `npm run seed` creates the
+ * demo logins and the README tells you not to use it in production — so a fresh
+ * deployment has an empty `users` table, and every sign-in against it fails with
+ * "those credentials do not match an account". That sentence is true and
+ * completely unhelpful: it reads as a wrong password. This lets the sign-in
+ * screen say which of the two it is.
+ */
+export function userCount(): number {
+  const rows = all<{ n: number }>(`SELECT COUNT(*) AS n FROM users`);
+  return rows[0]?.n ?? 0;
+}

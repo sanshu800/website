@@ -49,7 +49,7 @@ export default function HomePage() {
         services={[...services.core, services.managed]}
         copy={home.services}
       />
-      <AgentSection copy={home.agents} />
+      <AgentSection copy={home.walkthrough} />
       <MetricsBand />
       <HowItWorksSection copy={home.howItWorks} />
       <TestimonialWall />

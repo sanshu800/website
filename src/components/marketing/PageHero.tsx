@@ -154,7 +154,7 @@ export function PageHero({
 export function PageCTA({
   title = "Find out what is worth automating first",
   summary = "Book a free thirty-minute audit. We map the process costing you the most time and tell you honestly whether AI should touch it — the notes are yours either way.",
-  primary = { href: "/get-started", label: "Book a free AI audit" },
+  primary = { href: "/get-started", label: "Book a free audit" },
   secondary = { href: "/how-we-work", label: "See how we work" },
 }: {
   title?: string;

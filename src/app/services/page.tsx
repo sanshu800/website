@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/services", {
     title: "Services",
     description:
-      "Five ways an AI agency takes work off your team: agents that answer and book, automation that connects your systems, document processing, business insight and a retainer that keeps it all running.",
+      "Five ways we take work off your team: answering every enquiry, removing the manual admin, processing paperwork, reporting on the business, and keeping it running.",
     alternates: { canonical: "/services" },
   });
 }

@@ -4,8 +4,14 @@ The public pages a business owner reads when they are deciding whether to let an
 agency automate part of their operation, plus a private admin at `/admin` where
 whoever writes the copy edits it without a deploy.
 
-Reygent AI is an **AI agency**, not a software product. The site sells work, not
-licences: a fixed-fee audit, a fixed-price build, and a monthly retainer. So there
+Reygent AI sells **work, not licences**: a fixed-fee audit, a fixed-price build,
+and a monthly support retainer. The copy therefore leads with the routine jobs a
+business owner recognises — enquiries, paperwork, admin between systems,
+reporting — rather than with the category. "AI agency" was the old
+self-description and it earned its way out: it narrowed the company to a label
+and told a visitor nothing they could check. Service routes keep their slugs
+(`/services/ai-agents` and friends) because those URLs are live; only the names
+they display changed. So there
 are no pricing tiers, no per-seat plans, no free trial and no product tour — and
 **no customer accounts and no user dashboard**. This build is the marketing site
 and its CMS. The only authentication is the admin, and it is never linked from the
@@ -326,7 +332,7 @@ Copy `.env.example` if you want to set them.
 
 ## Needs real credentials before go-live
 
-1. **Payments** — an agency bills against milestones, not cards. When invoices need
+1. **Payments** — work like this bills against milestones, not cards. When invoices need
    to be raised automatically, connect Stripe Invoicing or your accounting package;
    the audit request is already captured with the industry, size and preferred time.
 2. **Transactional email** — a provider (Postmark/Resend/SES) plus verified domain, so

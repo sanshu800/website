@@ -54,7 +54,7 @@ export default async function ComparePage({
               href="/get-started"
               className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
-              Book a free AI audit
+              Book a free audit
             </Link>
             <Link
               href="/get-started"

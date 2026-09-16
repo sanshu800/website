@@ -11,7 +11,7 @@ export function pagesDoc() {
   return {
     getStarted: {
       hero: {
-        eyebrow: "Book a free AI audit",
+        eyebrow: "Book a free audit",
         title: "Thirty minutes to find out what is worth automating.",
         summary:
           "Tell us the one job that eats your week. We will map it live, say whether AI should touch it, and give you a straight answer on cost and timeframe. No slides, no obligation, and you keep the notes.",
@@ -93,7 +93,7 @@ export function pagesDoc() {
       },
       narrative: [
         { label: "Before", value: "Two people, most of the day, on enquiries and quotes" },
-        { label: "After", value: "An agent answers in seconds; they handle the exceptions" },
+        { label: "After", value: "Every enquiry answered in seconds; the team handles the exceptions" },
         { label: "First change", value: "Every enquiry answered, including weekends" },
         { label: "Time to value", value: "Six weeks from first call to live" },
       ],
@@ -110,7 +110,7 @@ export function pagesDoc() {
           "Agents sit on top of your existing CRM, inbox, calendar, accounting package, telephony, storage and industry software. Nothing gets ripped out, nothing gets migrated, and your team keeps the tools they already know.",
       },
       heroActions: {
-        primary: { href: "/get-started", label: "Book a free AI audit" },
+        primary: { href: "/get-started", label: "Book a free audit" },
         secondary: { href: "/security", label: "How we handle access" },
       },
       categories: {
@@ -122,7 +122,7 @@ export function pagesDoc() {
       capabilities: [
         {
           title: "Read and write, both ways",
-          body: "The agent reads the record it needs and writes back the outcome, so your system of record stays the system of record. Nobody re-types anything.",
+          body: "It reads the record it needs and writes back the outcome, so your system of record stays the system of record. Nobody re-types anything.",
         },
         {
           title: "The access you grant, no more",
@@ -183,7 +183,7 @@ export function pagesDoc() {
       hero: {
         eyebrow: "Founders programme",
         actions: {
-          primary: { href: "/get-started", label: "Book a free AI audit" },
+          primary: { href: "/get-started", label: "Book a free audit" },
           secondary: { href: "/contact", label: "Ask about eligibility" },
         },
       },
@@ -203,7 +203,7 @@ export function pagesDoc() {
         title: "Want to start there?",
         summary:
           "Tell us the one process you would automate first. We will confirm it qualifies within a working day and send a written scope for the fixed price.",
-        primary: { href: "/get-started", label: "Book a free AI audit" },
+        primary: { href: "/get-started", label: "Book a free audit" },
         secondary: { href: "/pricing", label: "See engagements" },
       },
     },
@@ -257,7 +257,7 @@ export function pagesDoc() {
         summary:
           "Most AI projects fail before anybody writes code, because the process was never understood. This is the method we run on every engagement, what you get at each stage, and when you can walk away.",
         actions: {
-          primary: { href: "/get-started", label: "Book a free AI audit" },
+          primary: { href: "/get-started", label: "Book a free audit" },
           secondary: { href: "/pricing", label: "See what it costs" },
         },
       },
@@ -265,7 +265,7 @@ export function pagesDoc() {
         eyebrow: "The method",
         title: "Four stages. No stage you cannot stop at.",
         lede:
-          "Each panel below is the interface our agents run in — inboxes, queues, review screens and reports. What you see is the density your team actually gets, not a marketing illustration.",
+          "Each panel below is the interface our systems run in — inboxes, queues, review screens and reports. What you see is the density your team actually gets, not a marketing illustration.",
       },
       managed: {
         eyebrow: "Still with you afterwards",

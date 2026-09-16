@@ -83,7 +83,8 @@ export default function OpengraphImage() {
             letterSpacing: "-0.01em",
           }}
         >
-          An AI agency that builds the agents doing your team&apos;s repetitive work.
+          We take the routine work off owner-run businesses: enquiries,
+          paperwork, admin between systems and reporting.
         </div>
       </div>
     ),

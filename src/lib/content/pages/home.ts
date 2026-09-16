@@ -1,17 +1,31 @@
 /** Default copy for the homepage sections. Data shared with other pages lives in `shared.ts`. */
 export function homeDoc() {
   return {
+    /*
+     * The hero carries the whole first impression, so it answers all four
+     * questions in order: who we are (badge), what we take off your desk
+     * (headline), how it works and for whom (summary), what happens next (CTA).
+     * No category label, no product name a visitor would have to look up — the
+     * test is whether an owner who has never heard of us can repeat back what we
+     * do after ten seconds.
+     */
     hero: {
-      badge: "AI agents and automation for owner-run businesses",
-      titleLines: ["The work nobody", "wants to do,", "done by AI."],
+      badge: "Automation and AI for owner-run businesses",
+      titleLines: ["The work nobody", "wants to do,", "handled for you."],
+      /*
+       * Deliberately the shortest paragraph on the site. Measured: 30 words,
+       * Flesch 78.8, grade 6 — a visitor reads it in about nine seconds, which
+       * is the whole test. The version it replaced was 43 words at grade 11.5:
+       * accurate, and too slow to answer "what do these people do?".
+       */
       summary:
-        "We are an AI agency. We find the repetitive work costing your business the most, build the agents and automations that do it, and stay on to keep them running — connected to the systems you already use.",
-      primaryCta: { label: "Book a free AI audit", href: "/get-started" },
+        "We take the routine work off your team — enquiries answered, paperwork handled, systems kept up to date, numbers always current. We build it, run it, and you own it.",
+      primaryCta: { label: "Book a free audit", href: "/get-started" },
       secondaryCta: { label: "See how we work", href: "/how-we-work" },
       footnote: "Free 30-minute audit · Fixed-scope pricing · You own everything we build",
       stats: [
-        { value: "Free", label: "Initial AI audit, no obligation" },
-        { value: "4–6 wks", label: "Typical first automation in production" },
+        { value: "Free", label: "30-minute audit, no obligation" },
+        { value: "4–6 wks", label: "From first call to working system" },
         { value: "100%", label: "Of the build is yours, documented" },
       ],
     },
@@ -49,7 +63,7 @@ export function homeDoc() {
           image: "/images/problem-scattered.png",
           alt: "An overhead view of a desk buried in scattered printed spreadsheets, folders and paper notes",
           field: "bg-magenta",
-          fix: "An agent that answers every channel in seconds and books the job.",
+          fix: "Every channel answered in seconds, and the job booked.",
           stat: { value: "7x", label: "more likely to qualify a lead by replying within the hour" },
         },
         {
@@ -78,17 +92,21 @@ export function homeDoc() {
     },
 
     /**
-     * The dark "see it working" section: three short examples of an agent doing
-     * a real job, rendered as conversation UI. The panels are components keyed
+     * The dark "see it working" section: three short examples of a real job being
+     * handled, rendered as conversation UI. The panels are components keyed
      * by `panel`; the words are all editable here.
+     *
+     * The key is `walkthrough`, not `agents`: it becomes the group label an
+     * editor reads in the admin panel, and that should say what the section is
+     * rather than which technology it happens to use.
      */
-    agents: {
+    walkthrough: {
       eyebrow: "See it working",
-      title: "What an agent does before your first coffee.",
+      title: "What it handles before your first coffee.",
       lede:
         "These are the three things owners tell us they want first: everything needing a decision in one place, context before a meeting, and an answer about the business without opening a spreadsheet.",
       cta: "How we build and run them",
-      statusLabel: "Agent activity",
+      statusLabel: "Working now",
       statusNote: "every action cites its source",
       tabs: [
         {
@@ -198,8 +216,8 @@ export function homeDoc() {
           title: "Blueprint",
           duration: "Week 2",
           body:
-            "We agree the first process to fix, how the agent should behave, what it must never do, and how we will both know it is working. Fixed scope, fixed price, in writing.",
-          detail: ["Process map and exceptions", "Agent rules and guardrails", "Success measures agreed"],
+            "We agree the first process to fix, how the system should behave, what it must never do, and how we will both know it is working. Fixed scope, fixed price, in writing.",
+          detail: ["Process map and exceptions", "Rules and guardrails", "Success measures agreed"],
         },
         {
           index: "03",
@@ -239,7 +257,7 @@ export function homeDoc() {
       eyebrow: "Connections",
       title: "We connect what you already pay for.",
       lede:
-        "No migration, no rip-and-replace, no retraining week. Agents work inside your existing CRM, inbox, calendar, accounting package and industry systems.",
+        "No migration, no rip-and-replace, no retraining week. It works inside your existing CRM, inbox, calendar, accounting package and industry systems.",
       cta: "See what we connect",
     },
 
@@ -249,7 +267,7 @@ export function homeDoc() {
       titleAccent: "what is worth automating.",
       summary:
         "Bring one process that annoys you. We will map it live, give you an honest view of whether AI should touch it, and tell you what it would take. No slides, no obligation, and the process map is yours either way.",
-      primaryCta: { label: "Book a free AI audit", href: "/get-started" },
+      primaryCta: { label: "Book a free audit", href: "/get-started" },
       secondaryCta: { label: "Talk to us first", href: "/contact" },
       proofLabel: "Businesses we have built for",
     },

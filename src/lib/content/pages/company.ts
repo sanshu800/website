@@ -6,9 +6,9 @@ export function companyDoc() {
     about: {
       hero: {
         eyebrow: "About",
-        title: "We are an AI agency, not a software company.",
+        title: "We take the routine work off your team, and we are the ones who build it.",
         summary:
-          "We started by mapping how owner-run businesses actually work. The same six bottlenecks turned up everywhere, so we stopped writing reports about them and started building the agents that remove them — one business at a time.",
+          "We started by mapping how owner-run businesses actually work. The same six bottlenecks turned up everywhere, so we stopped writing reports about them and started building the systems that remove them — one business at a time.",
       },
       story: {
         eyebrow: "Why we exist",
@@ -16,7 +16,7 @@ export function companyDoc() {
         body1:
           "Every audit we run starts the same way: an owner describing a problem they have quietly accepted as the cost of doing business. Enquiries answered late. Quotes never followed up. Invoices keyed in by hand. The same questions answered forty times a week.",
         body2:
-          "None of that is inevitable and none of it needs a new platform to fix. It needs someone to understand the process, build the agent or automation that removes the repetitive part, and stay around long enough to prove it works. That is what we do, and it is all we do.",
+          "None of that is inevitable and none of it needs a new platform to fix. It needs someone to understand the process, build the system that removes the repetitive part, and stay around long enough to prove it works. That is what we do, and it is all we do.",
         imageAlt:
           "Three colleagues reviewing printed process diagrams on a wall during a working session",
       },
@@ -26,7 +26,7 @@ export function companyDoc() {
         lede: "Each one has killed a project or lost us a deal at some point. That is usually what makes a principle worth having.",
       },
       valuesList: companyValues,
-      history: { eyebrow: "History", title: "From audits to agents." },
+      history: { eyebrow: "History", title: "From audits to systems." },
       timeline,
       proof: {
         heading: "What owners say",
@@ -38,7 +38,7 @@ export function companyDoc() {
         summary:
           "The first call is a working session on your business, not a pitch. Bring one real process and we will map it on the call.",
         primary: { href: "/careers", label: "We are hiring" },
-        secondary: { href: "/get-started", label: "Book a free AI audit" },
+        secondary: { href: "/get-started", label: "Book a free audit" },
       },
     },
 

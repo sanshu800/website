@@ -9,9 +9,9 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/get-started", {
-    title: "Book a free AI audit",
+    title: "Book a free audit",
     description:
-      "Thirty minutes with an AI agency: we map the process costing you the most time and tell you honestly whether it is worth automating.",
+      "Thirty minutes with us. Bring one process that wastes your team's time; we map it, say honestly whether it is worth automating, and tell you what it would take.",
     alternates: { canonical: "/get-started" },
   });
 }

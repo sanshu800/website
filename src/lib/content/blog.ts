@@ -150,7 +150,7 @@ export const posts: Post[] = [
         items: [
           "One front door. Every channel creates the same record, so nothing hides in a personal inbox or a voicemail nobody checks.",
           "A dated next step on every enquiry. A record cannot rest without an owner and a date — that one rule removes most silent loss.",
-          "An agent on the phones and the inbox. It answers in seconds, asks your questions, books the visit, and hands the awkward ones to a person with the thread attached.",
+          "Calls and messages handled for you. It answers in seconds, asks your questions, books the visit, and hands the awkward ones to a person with the thread attached.",
         ],
       },
       {
@@ -223,7 +223,7 @@ export const posts: Post[] = [
   },
   {
     slug: "questions-to-ask-an-ai-agency",
-    title: "Twelve questions to ask an AI agency, and what a good answer sounds like",
+    title: "Twelve questions to ask before you hire an automation company",
     excerpt:
       "Most agencies can talk confidently for an hour. These twelve questions separate the ones who have shipped for businesses like yours from the ones who have not.",
     category: "Buying",
@@ -272,15 +272,15 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "One more, worth asking last: what have you built that a business decided not to keep? The answer tells you far more about an agency than any case study, because it shows what happens when the work is not working.",
+        text: "One more, worth asking last: what have you built that a business decided not to keep? The answer tells you far more about a supplier than any case study, because it shows what happens when the work is not working.",
       },
     ],
   },
   {
     slug: "voice-agents-what-they-get-wrong",
-    title: "Voice agents: the three things they get wrong, and how we test for them",
+    title: "AI phone answering: the three things that go wrong, and how we test for them",
     excerpt:
-      "A voice agent that sounds convincing and books the wrong job is worse than voicemail. Here is where the failures actually come from.",
+      "A phone assistant that sounds convincing and books the wrong job is worse than voicemail. Here is where the failures actually come from.",
     category: "AI",
     author: AUTHORS.ash,
     publishedAt: "2026-07-02",
@@ -288,27 +288,27 @@ export const posts: Post[] = [
     body: [
       {
         type: "p",
-        text: "The demo is the easy part. A voice agent on a clean line, with an articulate caller and a scripted question, sounds better than most receptionists. The trouble starts on a Tuesday with a bad connection and somebody whose boiler has just flooded the kitchen.",
+        text: "The demo is the easy part. A phone assistant on a clean line, with an articulate caller and a scripted question, sounds better than most receptionists. The trouble starts on a Tuesday with a bad connection and somebody whose boiler has just flooded the kitchen.",
       },
       { type: "h2", text: "One: it agrees to things you did not agree to" },
       {
         type: "p",
-        text: "The most common failure is not misunderstanding, it is helpfulness. The agent says a job will be done tomorrow, or quotes a price from memory, because the caller is upset and it wants to reassure them. Every number, arrival window and commitment must come from your data, and if it is not there the agent books a callback rather than improvising.",
+        text: "The most common failure is not misunderstanding, it is helpfulness. It says a job will be done tomorrow, or quotes a price from memory, because the caller is upset and it wants to reassure them. Every number, arrival window and commitment must come from your data, and if it is not there it books a callback rather than improvising.",
       },
       {
         type: "callout",
         title: "How we test it",
-        text: "We take fifty real calls from the client's history — including the rude ones and the ones where the caller changes their mind halfway — and run them against the agent. Anything the agent commits to that is not in the record is a failure, even if the caller was delighted.",
+        text: "We take fifty real calls from the client's history — including the rude ones and the ones where the caller changes their mind halfway — and run them against it. Anything it commits to that is not in the record is a failure, even if the caller was delighted.",
       },
       { type: "h2", text: "Two: it does not know when to stop" },
       {
         type: "p",
-        text: "Agents that handle the first four minutes well can flounder for the next ten. The fix is not a better model, it is a shorter leash: a defined point at which the agent hands over to a person, based on keywords, sentiment, or the number of failed attempts to understand. We would rather the agent escalate early than be impressive for too long.",
+        text: "Systems that handle the first four minutes well can flounder for the next ten. The fix is not a better model, it is a shorter leash: a defined point at which it hands over to a person, based on keywords, sentiment, or the number of failed attempts to understand. We would rather it escalate early than be impressive for too long.",
       },
       { type: "h2", text: "Three: nobody listens to the calls" },
       {
         type: "p",
-        text: "Every call is transcribed, and the first week of real traffic is the most useful training material you will ever have. The businesses that get the most from a voice agent are the ones who review the recordings in week one and tell us what it got wrong. That loop is the difference between an agent that is 85% right forever and one that is 97% right by month two.",
+        text: "Every call is transcribed, and the first week of real traffic is the most useful training material you will ever have. The businesses that get the most from phone answering are the ones who review the recordings in week one and tell us what it got wrong. That loop is the difference between a system that is 85% right forever and one that is 97% right by month two.",
       },
       { type: "h2", text: "What we would not put on the phone" },
       {
@@ -321,7 +321,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "Used properly, a voice agent answers the calls you currently miss, in a business where a missed call is a missed job. Used carelessly, it is an answering machine with better manners. The difference is almost entirely in the rules and the testing, not the voice.",
+        text: "Used properly, it answers the calls you currently miss, in a business where a missed call is a missed job. Used carelessly, it is an answering machine with better manners. The difference is almost entirely in the rules and the testing, not the voice.",
       },
     ],
   },

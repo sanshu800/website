@@ -117,7 +117,7 @@ export const comparisons: Comparison[] = [
     name: "A general dev shop",
     headline: "A ticket queue will build what you specify. It will not tell you what is worth building.",
     summary:
-      "A development agency will happily implement a spec. The hard part of AI is not the code — it is knowing which process is worth automating, what the agent must never do, and how to prove it works.",
+      "A development agency will happily implement a spec. The hard part of AI is not the code — it is knowing which process is worth automating, what the system must never do, and how to prove it works.",
     theirStrength:
       "Competitive rates, flexible capacity, and a clear commercial relationship. For well-specified software with a known design, a good shop is efficient and professional.",
     theirWeakness:
@@ -186,7 +186,7 @@ export const comparisons: Comparison[] = [
       {
         title: "No lock-in, by design",
         body:
-          "The agents we build run on your infrastructure with your accounts. If you leave us, everything keeps working — it just gets less attention.",
+          "Everything we build runs on your infrastructure with your accounts. If you leave us, everything keeps working — it just gets less attention.",
       },
     ],
     bestFor: [
@@ -207,7 +207,7 @@ export const comparisons: Comparison[] = [
     theirWeakness:
       "The business model rewards discovery and strategy. Implementation is handed down to junior teams, margins get thin, and the deck rarely turns into something running in your business.",
     rows: [
-      { dimension: "Deliverable", them: "A strategy and a roadmap", us: "A working agent in production" },
+      { dimension: "Deliverable", them: "A strategy and a roadmap", us: "A working system in production" },
       { dimension: "Who does the work", them: "Analysts, then a delivery team", us: "The people who scoped it" },
       { dimension: "Time to value", them: "A quarter, minimum", us: "Weeks" },
       { dimension: "Cost", them: "Day rates and programme fees", us: "Fixed project price" },
@@ -310,10 +310,10 @@ export const solutions: Solution[] = [
       { title: "Nobody knows the numbers until month end", body: "Utilisation, realisation and profitability assembled by hand, weeks after the decisions they should have informed." },
     ],
     moduleFit: [
-      { module: "AI agents", href: "/services/ai-agents", line: "Answers every enquiry in minutes, qualifies it, and books the consultation." },
-      { module: "Workflow automation", href: "/services/workflow-automation", line: "Onboarding runs itself: letter, ID, documents and setup, chased automatically." },
-      { module: "Document AI", href: "/services/document-ai", line: "Client documents read, classified and filed, with a searchable archive." },
-      { module: "AI insights", href: "/services/ai-insights", line: "Utilisation and margin per client, current, not reconstructed at month end." },
+      { module: "Answer every enquiry", href: "/services/ai-agents", line: "Answers every enquiry in minutes, qualifies it, and books the consultation." },
+      { module: "Remove the manual admin", href: "/services/workflow-automation", line: "Onboarding runs itself: letter, ID, documents and setup, chased automatically." },
+      { module: "Process the paperwork", href: "/services/document-ai", line: "Client documents read, classified and filed, with a searchable archive." },
+      { module: "Report on the business", href: "/services/ai-insights", line: "Utilisation and margin per client, current, not reconstructed at month end." },
     ],
     metrics: [
       { label: "First response", value: "Minutes, not hours" },
@@ -337,10 +337,10 @@ export const solutions: Solution[] = [
       { title: "Tenant and client comms never stop", body: "Maintenance reports, updates and paperwork handled by whoever picks up the phone, with no record of what was promised." },
     ],
     moduleFit: [
-      { module: "AI agents", href: "/services/ai-agents", line: "A voice agent that answers when you cannot, qualifies the job and books the visit." },
-      { module: "Workflow automation", href: "/services/workflow-automation", line: "Quote, acceptance, scheduling, job sheet and invoice as one continuous flow." },
-      { module: "Document AI", href: "/services/document-ai", line: "Certificates, invoices and compliance documents filed against the right property." },
-      { module: "AI insights", href: "/services/ai-insights", line: "Which jobs make money, which clients cost you, and where the pipeline went quiet." },
+      { module: "Answer every enquiry", href: "/services/ai-agents", line: "Voice calls answered when you cannot pick up, qualified, with the visit booked." },
+      { module: "Remove the manual admin", href: "/services/workflow-automation", line: "Quote, acceptance, scheduling, job sheet and invoice as one continuous flow." },
+      { module: "Process the paperwork", href: "/services/document-ai", line: "Certificates, invoices and compliance documents filed against the right property." },
+      { module: "Report on the business", href: "/services/ai-insights", line: "Which jobs make money, which clients cost you, and where the pipeline went quiet." },
     ],
     metrics: [
       { label: "Calls answered", value: "Every one, day or night" },
@@ -349,7 +349,7 @@ export const solutions: Solution[] = [
       { label: "Pipeline visibility", value: "Live, not remembered" },
     ],
     proof:
-      "For a business that lives on the phone, an agent that never misses a call is usually the single highest-value thing we build.",
+      "For a business that lives on the phone, never missing a call is usually the single highest-value thing we build.",
   },
   {
     slug: "ecommerce",
@@ -364,10 +364,10 @@ export const solutions: Solution[] = [
       { title: "Peak season breaks everything", body: "The system that copes in June falls over in November, and the team absorbs it by working longer hours." },
     ],
     moduleFit: [
-      { module: "AI agents", href: "/services/ai-agents", line: "Support that answers instantly on chat and email, and escalates the ones that matter." },
-      { module: "Workflow automation", href: "/services/workflow-automation", line: "Orders, returns, refunds and reconciliation moving without anyone touching them." },
-      { module: "Document AI", href: "/services/document-ai", line: "Supplier invoices and packing slips read into your systems automatically." },
-      { module: "AI insights", href: "/services/ai-insights", line: "Margin per product, per channel, per cohort — updated daily." },
+      { module: "Answer every enquiry", href: "/services/ai-agents", line: "Support that answers instantly on chat and email, and escalates the ones that matter." },
+      { module: "Remove the manual admin", href: "/services/workflow-automation", line: "Orders, returns, refunds and reconciliation moving without anyone touching them." },
+      { module: "Process the paperwork", href: "/services/document-ai", line: "Supplier invoices and packing slips read into your systems automatically." },
+      { module: "Report on the business", href: "/services/ai-insights", line: "Margin per product, per channel, per cohort — updated daily." },
     ],
     metrics: [
       { label: "Support volume", value: "Routine tickets answered instantly" },
@@ -391,10 +391,10 @@ export const solutions: Solution[] = [
       { title: "Recall and follow-up drifts", body: "Six-month check-ups, treatment plans and aftercare that depend on the patient remembering, not the practice following up." },
     ],
     moduleFit: [
-      { module: "AI agents", href: "/services/ai-agents", line: "Booking, rescheduling and answering routine questions by voice, chat and message." },
-      { module: "Workflow automation", href: "/services/workflow-automation", line: "Reminders, confirmations and recalls running by rule, not by memory." },
-      { module: "Document AI", href: "/services/document-ai", line: "Intake forms and consents read into your records before the appointment." },
-      { module: "AI insights", href: "/services/ai-insights", line: "Chair utilisation, no-show patterns and treatment revenue in one view." },
+      { module: "Answer every enquiry", href: "/services/ai-agents", line: "Booking, rescheduling and answering routine questions by voice, chat and message." },
+      { module: "Remove the manual admin", href: "/services/workflow-automation", line: "Reminders, confirmations and recalls running by rule, not by memory." },
+      { module: "Process the paperwork", href: "/services/document-ai", line: "Intake forms and consents read into your records before the appointment." },
+      { module: "Report on the business", href: "/services/ai-insights", line: "Chair utilisation, no-show patterns and treatment revenue in one view." },
     ],
     metrics: [
       { label: "Reception load", value: "Routine calls handled" },

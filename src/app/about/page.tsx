@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/about", {
     title: "About",
     description:
-      "Reygent AI is an AI agency for owner-run businesses. We map the process before writing a rule, build the agent that removes it, and measure whether it actually worked.",
+      "Reygent AI takes the routine work off owner-run businesses: enquiries, paperwork, admin between systems and reporting. We build it, we run it, and you own it.",
     alternates: { canonical: "/about" },
   });
 }

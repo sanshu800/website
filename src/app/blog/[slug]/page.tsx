@@ -176,7 +176,7 @@ export default async function PostPage({
                   href="/get-started"
                   className="inline-flex h-10 items-center rounded-full border border-line-strong bg-paper px-4 text-[0.875rem] font-medium text-ink transition-colors hover:bg-mist"
                 >
-                  Book a free AI audit
+                  Book a free audit
                 </Link>
               </div>
             </div>

@@ -9,10 +9,10 @@ import { site } from "@/lib/content/marketing";
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Reygent AI — AI agency",
+    name: "Reygent AI — the routine work, handled",
     short_name: "Reygent AI",
     description:
-      "An AI agency for business owners. We find the work worth automating, build the agents that do it, and keep them running.",
+      "We take the routine work off owner-run businesses: enquiries, paperwork, admin between systems and reporting. We build it, connect it to the tools you already use, and keep it running.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

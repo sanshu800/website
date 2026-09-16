@@ -44,13 +44,13 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "ai-agents",
-    name: "AI agents",
+    name: "Answer every enquiry",
     kicker: "Answer · Qualify · Book · Follow up",
     headline: "An assistant that answers every enquiry like your best member of staff.",
     summary:
-      "Voice, email, chat and message agents that respond in seconds, ask the right questions, book the appointment and hand over to a person when it matters.",
+      "Answers on voice, email, chat and message in seconds, asks the right questions, books the appointment and passes it to a person when it matters.",
     intro:
-      "Most businesses do not lose work because nobody cared. They lose it in the gap between an enquiry arriving and somebody replying. An agent closes that gap permanently: it answers instantly, in your voice, follows your rules, and puts a real appointment in the diary instead of a promise to call back.",
+      "Most businesses do not lose work because nobody cared. They lose it in the gap between an enquiry arriving and somebody replying. We close that gap permanently: every enquiry answered instantly, in your voice, following your rules, with a real appointment in the diary instead of a promise to call back.",
     accent: "ink",
     icon: "Bot",
     features: [
@@ -61,7 +61,7 @@ export const services: Service[] = [
       },
       {
         title: "Qualifies against your criteria",
-        body: "Budget, timing, location, job type, urgency: your questions, asked in the same order every time. The agent scores the lead and says why.",
+        body: "Budget, timing, location, job type, urgency: your questions, asked in the same order every time, with the lead scored and the reason given.",
         icon: "ListChecks",
       },
       {
@@ -96,18 +96,18 @@ export const services: Service[] = [
       "Appointments confirmed while the interest is warm",
       "Your team only speaks to people worth speaking to",
     ],
-    panelCaption: "Agent inbox — every conversation with status, owner and next step",
+    panelCaption: "Enquiry inbox — every conversation with status, owner and next step",
     home: {
       title: "Never lose another enquiry to a slow reply.",
-      body: "An agent that answers instantly on every channel, asks your qualifying questions, books the appointment and hands the good ones to a person with the transcript attached.",
+      body: "Every channel answered instantly, your qualifying questions asked, the appointment booked, and the good ones handed to a person with the transcript attached.",
       bullets: ["Voice, email and chat", "Qualification rules", "Calendar booking"],
       screen: "intake",
     },
   },
   {
     slug: "workflow-automation",
-    name: "Workflow automation",
-    kicker: "Connect · Move · Approve · Report",
+    name: "Remove the manual admin",
+    kicker: "Connect · Move · Approve · Notify",
     headline: "The copying and pasting between your systems, gone.",
     summary:
       "We map how work actually moves through your business, then automate the handovers — so information flows between the tools you already pay for without anyone retyping it.",
@@ -168,7 +168,7 @@ export const services: Service[] = [
   },
   {
     slug: "document-ai",
-    name: "Document AI",
+    name: "Process the paperwork",
     kicker: "Read · Extract · File · Find",
     headline: "Every invoice, contract and form read and filed before you get to it.",
     summary:
@@ -230,7 +230,7 @@ export const services: Service[] = [
   },
   {
     slug: "ai-insights",
-    name: "AI insights",
+    name: "Report on the business",
     kicker: "Ask · Understand · Predict · Report",
     headline: "Ask your business a question in plain English and get a straight answer.",
     summary:
@@ -292,11 +292,11 @@ export const services: Service[] = [
   },
   {
     slug: "managed-ai",
-    name: "Managed AI",
+    name: "Keep it running",
     kicker: "Run · Monitor · Improve · Support",
     headline: "We stay on after launch, so it keeps working when your business changes.",
     summary:
-      "Price lists change, suppliers change, staff change, models improve. Managed AI is the retainer that keeps everything we built accurate, monitored and supported.",
+      "Price lists change, suppliers change, staff change, and the tools underneath us change too. Our support retainer is what keeps everything we built accurate, monitored and supported.",
     intro:
       "Most automation does not fail dramatically. It drifts: a price goes stale, a supplier changes format, a new starter is not in the routing rules, and one day the thing that used to save a day a week is quietly wrong. We monitor what we build, fix it before you notice, and keep improving it as the business moves.",
     accent: "magenta",
@@ -304,7 +304,7 @@ export const services: Service[] = [
     features: [
       {
         title: "Monitored, not assumed",
-        body: "Every agent and automation reports its own health. Failures, slowdowns and odd outputs reach us before they reach your customers.",
+        body: "Everything we build reports its own health. Failures, slowdowns and odd outputs reach us before they reach your customers.",
         icon: "Activity",
       },
       {
@@ -314,7 +314,7 @@ export const services: Service[] = [
       },
       {
         title: "Continuously improved",
-        body: "A monthly review of what the agents got wrong and what your team is still doing by hand, with a short list of what to fix next.",
+        body: "A monthly review of what went wrong and what your team is still doing by hand, with a short list of what to fix next.",
         icon: "TrendingUp",
       },
       {
@@ -344,7 +344,7 @@ export const services: Service[] = [
       "One person who knows your setup",
       "A clear view of what to automate next",
     ],
-    panelCaption: "Managed AI — what is running, what needs attention, what is next",
+    panelCaption: "Support — what is running, what needs attention, and what is next",
     home: {
       title: "A partner, not a handover.",
       body: "We monitor what we build, keep it accurate as your business changes, and meet your team every month with what went wrong and what to do next.",

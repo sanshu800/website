@@ -43,7 +43,7 @@ export function resourcesDoc() {
         title: "Want your process in the next entry?",
         summary:
           "The audit is where every one of these started. Bring the job that annoys you most and we will tell you honestly whether it is worth automating.",
-        primary: { href: "/get-started", label: "Book a free AI audit" },
+        primary: { href: "/get-started", label: "Book a free audit" },
         secondary: { href: "/how-we-work", label: "See how we work" },
       },
     },
@@ -80,7 +80,7 @@ export function resourcesDoc() {
         },
         {
           number: "022",
-          title: "Twelve questions to ask an AI agency",
+          title: "Twelve questions to ask before you hire an automation company",
           summary:
             "Including the four most agencies cannot answer, and what a good answer sounds like.",
         },

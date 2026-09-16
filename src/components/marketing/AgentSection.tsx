@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Conversation = HomeDoc["agents"]["conversation"];
+type Conversation = HomeDoc["walkthrough"]["conversation"];
 
 /**
- * "See it working" — three examples of an agent doing a real job, rendered as
+ * "See it working" — three examples of a real job being handled, rendered as
  * conversation UI with the sources attached.
  *
  * The tabs use the same semantics as the service tabs above: keyboard
@@ -134,7 +134,7 @@ function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
   );
 }
 
-export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
+export function AgentSection({ copy }: { copy: HomeDoc["walkthrough"] }) {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
   /* both the tab list and the panel copy live in the home document */
@@ -144,7 +144,7 @@ export function AgentSection({ copy }: { copy: HomeDoc["agents"] }) {
   const panel = current.panel in copy.conversation ? current.panel : "alerts";
 
   return (
-    <section className="section bg-night text-on-night" id="agents">
+    <section className="section bg-night text-on-night" id="walkthrough">
       <Container width="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">

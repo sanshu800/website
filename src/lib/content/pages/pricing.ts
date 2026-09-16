@@ -4,7 +4,7 @@ import { engagements, pricingFaqs } from "@/lib/content/company";
  * Copy for the engagement/pricing surface: `/pricing`, the homepage preview and
  * the enquiry form on `/get-started`.
  *
- * We are an agency, so there are no per-seat plans here — there are three ways
+ * We sell work, not seats, so there are no per-seat plans here — there are three ways
  * of working with us: a fixed-fee audit, a fixed-price build, and the monthly
  * retainer that keeps it running. Everything on this surface is editable from
  * the admin panel, and the list itself is carried into the document so one edit
@@ -48,7 +48,7 @@ export const pricingCopy = {
     eyebrow: "Side by side",
     title: "Exactly what is included.",
     featureColumn: "Included",
-    columnNames: ["AI audit", "Build project", "Managed AI"],
+    columnNames: ["Audit", "Build project", "Ongoing support"],
     rows: [
       { row: "Who it is for", core: "Before you commit to anything", pro: "You know the process to fix", ent: "You want it looked after" },
       { row: "Typical price", core: "$3,000 fixed", pro: "$12,000 – $32,000 fixed", ent: "From $1,200 / month" },

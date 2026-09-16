@@ -16,7 +16,7 @@ import { track } from "@/lib/track";
 /**
  * The one qualification form on the site.
  *
- * Both lead paths use it: the "Book a free AI audit" CTA on `/get-started` and
+ * Both lead paths use it: the "Book a free audit" CTA on `/get-started` and
  * the contact page. It is deliberately longer than a "name, email, message"
  * box — company size, revenue, role and budget are the fields that make a first
  * reply useful instead of a request for more information, and asking them once
@@ -58,7 +58,7 @@ const TITLES = [
 ];
 
 const TOPICS = [
-  { value: "audit", label: "Book an AI audit" },
+  { value: "audit", label: "Book a free audit" },
   { value: "project", label: "Automation or agent project" },
   { value: "client", label: "Support for existing work" },
   { value: "partnership", label: "Partnership or referral" },

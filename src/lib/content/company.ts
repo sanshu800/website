@@ -18,7 +18,7 @@ export type Engagement = {
 export const engagements: Engagement[] = [
   {
     slug: "audit",
-    name: "AI audit",
+    name: "Audit",
     price: "$3,000",
     priceNote: "one week, fixed fee, credited against your build",
     summary:
@@ -68,7 +68,7 @@ export const engagements: Engagement[] = [
   },
   {
     slug: "managed",
-    name: "Managed AI",
+    name: "Keep it running",
     price: "from $1,200 / month",
     priceNote: "per month, cancellable with 30 days' notice",
     summary:
@@ -107,7 +107,7 @@ export const pricingFaqs = [
   },
   {
     q: "Do we have to replace our current systems?",
-    a: "No, and we would rather you did not. The agents connect to the CRM, inbox, calendar, accounting package and industry systems you already pay for. Replacing software is a migration project; automating the work between it is what you are buying here.",
+    a: "No, and we would rather you did not. What we build connects to the CRM, inbox, calendar, accounting package and industry systems you already pay for. Replacing software is a migration project; automating the work between it is what you are buying here.",
   },
   {
     q: "What happens to our data?",
@@ -140,10 +140,10 @@ export const roles: Role[] = [
     type: "Full-time",
     salary: "£75k – £105k",
     summary:
-      "Build agents that answer real customers, on real data, for businesses where a wrong answer costs money. You will see them running in production within weeks, not quarters.",
+      "Build systems that answer real customers, on real data, for businesses where a wrong answer costs money. You will see them running in production within weeks, not quarters.",
     responsibilities: [
-      "Design and build voice, email and chat agents end to end",
-      "Write the evaluation suites that decide whether an agent is good enough to ship",
+      "Design and build voice, email and chat handling end to end",
+      "Write the test suites that decide whether a system is good enough to ship",
       "Connect systems you have never heard of, and document them so the next person can",
       "Work directly with the business owner whose process you are automating",
     ],
@@ -228,9 +228,9 @@ export const roles: Role[] = [
     type: "Full-time",
     salary: "£60k – £85k",
     summary:
-      "Design the interfaces our agents live inside: inboxes, queues, review screens and the monthly reports a business owner actually reads.",
+      "Design the interfaces our systems live inside: inboxes, queues, review screens and the monthly reports a business owner actually reads.",
     responsibilities: [
-      "Design agent-facing and human-facing interfaces end to end",
+      "Design system-facing and human-facing interfaces end to end",
       "Prototype in code when that answers a question faster than a mockup",
       "Set the patterns for queues, approvals, exceptions and review screens",
       "Watch real users work, including the ones who are not technical",
@@ -312,13 +312,13 @@ export const timeline = [
   },
   {
     year: "2024",
-    title: "The agent era",
-    body: "Language models got good enough to answer real customers. We built our first voice agent for a property firm, and it has not missed a call since.",
+    title: "The turning point",
+    body: "Language models got good enough to answer real customers. We built our first voice assistant for a property firm, and it has not missed a call since.",
   },
   {
     year: "2026",
-    title: "An agency, deliberately",
-    body: "Around forty businesses later, we are still an agency rather than a software company. We build for the business in front of us and hand it over; we do not sell licences.",
+    title: "A services business, deliberately",
+    body: "Around forty businesses later, we still work this way rather than selling software. We build for the business in front of us and hand it over; we do not sell licences.",
   },
 ];
 
@@ -340,7 +340,7 @@ export const buildLog: BuildLogEntry[] = [
   {
     issue: "No. 18",
     date: "2026-09-02",
-    title: "A voice agent that books jobs for a 14-van plumbing firm",
+    title: "Voice handling that books jobs for a 14-van plumbing firm",
     summary:
       "Calls answered in under two seconds, jobs qualified against the owner's own rules, and the office no longer rings anyone back at 9pm.",
     items: [
@@ -410,7 +410,7 @@ export const guides = [
   },
   {
     slug: "choosing-an-ai-agency",
-    title: "Ten questions to ask an AI agency",
+    title: "Ten questions to ask before you hire an automation company",
     summary:
       "Including the four that most agencies cannot answer, and what a good answer sounds like.",
     format: "Checklist · 6 pages",
@@ -495,7 +495,7 @@ export const legalPages = {
       },
       {
         h: "Fees and billing",
-        p: "Audits are billed on delivery. Build projects are billed against milestones, with the final stage invoiced after acceptance testing. Managed AI retainers are billed monthly in advance and cancellable with 30 days' notice.",
+        p: "Audits are billed on delivery. Build projects are billed against milestones, with the final stage invoiced after acceptance testing. Ongoing support retainers are billed monthly in advance and cancellable with 30 days' notice.",
       },
       {
         h: "Who owns what",
@@ -610,6 +610,6 @@ export const partnersProgram = {
 export const siteStats = [
   { value: "40+", label: "Businesses built for", detail: "Owner-run, between 5 and 200 people" },
   { value: "6", label: "Processes we automate most", detail: "Enquiries, quotes, invoices, onboarding, scheduling, reporting" },
-  { value: "4–6 wks", label: "Audit to live agent", detail: "Typical time from first call to production" },
+  { value: "4–6 wks", label: "Audit to live system", detail: "Typical time from first call to production" },
   { value: "100%", label: "Of the build is yours", detail: "Code, prompts, documentation and accounts" },
 ];

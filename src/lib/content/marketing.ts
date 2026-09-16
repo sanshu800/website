@@ -18,9 +18,15 @@ export const site = {
   name: "Reygent AI",
   wordmark: "Reygent AI",
   productName: "Reygent AI",
-  tagline: "An AI agency that builds the agents doing your team's repetitive work.",
+  tagline: "We take the manual work out of running a business.",
+  /*
+   * The one-sentence answer to "who are you and what do you do". It leads with
+   * the work a visitor recognises rather than the category we belong to: an
+   * owner knows whether "answering enquiries, processing paperwork and chasing
+   * numbers" is their week. "AI agency" told them nothing they could check.
+   */
   description:
-    "Reygent AI is an AI agency for business owners. We find the work worth automating, build the AI agents and automations that do it, and stay on to keep them running — connected to the systems you already use.",
+    "Reygent AI takes the routine work off owner-run businesses: enquiries answered, paperwork handled, systems kept up to date, numbers always current. We build it around the tools you already use, run it, and you own it.",
   // PLACEHOLDER: confirm the production domain and monitored inbox.
   url: "https://reygent.ai",
   email: "hello@reygent.ai",
@@ -54,29 +60,29 @@ export const primaryNav: NavGroup[] = [
     label: "Services",
     children: [
       {
-        label: "AI agents",
+        label: "Answer every enquiry",
         href: "/services/ai-agents",
         blurb: "Assistants that answer, qualify, book and follow up for you",
       },
       {
-        label: "Workflow automation",
+        label: "Remove the manual admin",
         href: "/services/workflow-automation",
-        blurb: "The manual steps between your systems, removed",
+        blurb: "The copying, chasing and re-typing between your systems, gone",
       },
       {
-        label: "Document AI",
+        label: "Process the paperwork",
         href: "/services/document-ai",
-        blurb: "Invoices, contracts and forms read and filed automatically",
+        blurb: "Invoices, contracts and forms read, checked and filed for you",
       },
       {
-        label: "AI insights",
+        label: "Report on the business",
         href: "/services/ai-insights",
-        blurb: "Ask your own business data a question, get an answer",
+        blurb: "Ask about your own numbers in plain English, get a straight answer",
       },
       {
-        label: "Managed AI",
+        label: "Keep it running",
         href: "/services/managed-ai",
-        blurb: "We monitor, tune and support what we build",
+        blurb: "We watch it, fix it and improve it after launch",
       },
     ],
   },
@@ -151,7 +157,7 @@ export const primaryNav: NavGroup[] = [
       {
         label: "How we work",
         href: "/how-we-work",
-        blurb: "Audit to live agent, in fixed stages",
+        blurb: "Audit to live system, in fixed stages",
       },
       {
         label: "Build log",
@@ -204,11 +210,11 @@ export const primaryNav: NavGroup[] = [
 
 export const footerNav = {
   services: [
-    { label: "AI agents", href: "/services/ai-agents" },
-    { label: "Workflow automation", href: "/services/workflow-automation" },
-    { label: "Document AI", href: "/services/document-ai" },
-    { label: "AI insights", href: "/services/ai-insights" },
-    { label: "Managed AI", href: "/services/managed-ai" },
+    { label: "Answer every enquiry", href: "/services/ai-agents" },
+    { label: "Remove the manual admin", href: "/services/workflow-automation" },
+    { label: "Process the paperwork", href: "/services/document-ai" },
+    { label: "Report on the business", href: "/services/ai-insights" },
+    { label: "Keep it running", href: "/services/managed-ai" },
     { label: "What we connect", href: "/integrations" },
     { label: "Engagement & pricing", href: "/pricing" },
     { label: "Build log", href: "/build-log" },
@@ -289,7 +295,7 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "We were drowning in quote requests and answering them the next day. The agent replies in about a minute and books the survey while the customer is still on the page. Our win rate on quoted work has never been higher.",
+      "We were drowning in quote requests and answering them the next day. It replies in about a minute and books the survey while the customer is still on the page. Our win rate on quoted work has never been higher.",
     name: "Marguerite Halloran",
     role: "Managing Director",
     company: "Halloran & Vance",
@@ -307,7 +313,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "I expected a big IT project. What we got was two weeks of somebody sensible asking how we actually work, then an agent that does the parts nobody wanted to do.",
+      "I expected a big IT project. What we got was two weeks of somebody sensible asking how we actually work, then a system that does the parts nobody wanted to do.",
     name: "Daniel Kessler",
     role: "Owner",
     company: "Ashford Legal",
@@ -357,7 +363,7 @@ export const integrations: Integration[] = [
   },
   {
     category: "Email & calendar",
-    blurb: "Shared inboxes and calendars become things your agents can act on — drafting, booking, chasing and confirming.",
+    blurb: "Shared inboxes and calendars become things we can act on — drafting, booking, chasing and confirming.",
     surfaces: ["Inbox triage", "Draft replies", "Calendar booking", "Reminders"],
   },
   {
@@ -372,8 +378,8 @@ export const integrations: Integration[] = [
   },
   {
     category: "Messaging & telephony",
-    blurb: "Voice and message agents that answer, qualify and escalate to a human with the context already gathered.",
-    surfaces: ["Voice agents", "WhatsApp & SMS", "Live chat", "Call summaries"],
+    blurb: "Voice and messages answered, qualified, and escalated to a person with the context already gathered.",
+    surfaces: ["Voice calls", "WhatsApp & SMS", "Live chat", "Call summaries"],
   },
   {
     category: "Operations & industry systems",

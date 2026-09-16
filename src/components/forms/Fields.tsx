@@ -78,8 +78,13 @@ export function TextField({
   className,
   labelVariant,
   required,
+  trailing,
   ...rest
-}: BaseProps & React.InputHTMLAttributes<HTMLInputElement>) {
+}: BaseProps &
+  React.InputHTMLAttributes<HTMLInputElement> & {
+    /** Rendered inside the field's right edge, e.g. a Show/Hide control. */
+    trailing?: React.ReactNode;
+  }) {
   const id = useId();
   const errorId = `${id}-error`;
   return (
@@ -87,14 +92,26 @@ export function TextField({
       <Label htmlFor={id} hint={hint} variant={labelVariant} required={required}>
         {label}
       </Label>
-      <input
-        id={id}
-        required={required}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? errorId : undefined}
-        className={cn(control, "mt-2 h-11", error ? "border-danger" : "border-field")}
-        {...rest}
-      />
+      <div className="relative mt-2">
+        <input
+          id={id}
+          required={required}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? errorId : undefined}
+          /* The right padding reserves the space the adornment sits in, so typed
+             text never runs underneath it. */
+          className={cn(
+            control,
+            "h-11",
+            trailing ? "pr-16" : undefined,
+            error ? "border-danger" : "border-field",
+          )}
+          {...rest}
+        />
+        {trailing && (
+          <div className="absolute inset-y-0 right-1.5 flex items-center">{trailing}</div>
+        )}
+      </div>
       {error && (
         <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
           {error}

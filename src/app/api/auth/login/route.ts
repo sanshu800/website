@@ -94,10 +94,40 @@ export async function POST(request: Request) {
   );
 
   if (!user || !matches) {
+    /**
+     * A password that arrives with a space on either end is a paste or an
+     * autofilled newline, and it is invisible in the field: the person sees the
+     * password they meant and is told the credentials are wrong. It is worth
+     * naming, because it is the one failure the person cannot see — and the
+     * answer is derived from what was *submitted*, never from what is stored, so
+     * it says nothing about whether an account exists.
+     */
+    const padded = parsed.data.password !== parsed.data.password.trim();
+
+    /**
+     * Logged for the operator, never returned: the address that was tried and
+     * whether it has an account. The length is not the secret and it is the
+     * detail that answers "but I typed it right" — the password itself is never
+     * recorded. `console.warn` because this is a security event, not chatter.
+     */
+    console.warn(
+      `[auth] refused sign-in for ${parsed.data.email} — account ${
+        user ? "exists" : "not found"
+      }, password ${
+        padded
+          ? "has surrounding whitespace"
+          : `${parsed.data.password.length} character${parsed.data.password.length === 1 ? "" : "s"}`
+      }`,
+    );
+
     const failures = rateLimit({ key: accountKey, ...ACCOUNT_LIMIT });
     if (!failures.ok) return tooManySignIns(failures.retryAfterSeconds);
     return NextResponse.json(
-      { error: "Those credentials do not match an account." },
+      {
+        error: padded
+          ? "That password has a space at the start or end. Remove it and try again."
+          : "Those credentials do not match an account.",
+      },
       { status: 401 },
     );
   }

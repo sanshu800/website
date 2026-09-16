@@ -19,6 +19,7 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [formError, setFormError] = useState<string | null>(null);
   const [lockSeconds, setLockSeconds] = useState(0);
+  const [reveal, setReveal] = useState(false);
 
   /**
    * Counts down the wait the server asked for. Without this the form happily
@@ -102,12 +103,22 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
 
       <TextField
         label="Password"
-        type="password"
+        type={reveal ? "text" : "password"}
         name="password"
         autoComplete="current-password"
         value={values.password}
         onChange={set("password")}
         required
+        trailing={
+          <button
+            type="button"
+            onClick={() => setReveal((shown) => !shown)}
+            aria-pressed={reveal}
+            className="rounded-md px-2 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            {reveal ? "Hide" : "Show"}
+          </button>
+        }
       />
 
       <Button

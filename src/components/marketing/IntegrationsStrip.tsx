@@ -43,7 +43,7 @@ export function IntegrationsStrip() {
                   {group.surfaces.map((surface) => (
                     <li
                       key={surface}
-                      className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+                      className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
                     >
                       {surface}
                     </li>

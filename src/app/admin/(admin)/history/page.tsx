@@ -90,14 +90,14 @@ export default function ContentHistoryPage() {
 
                   <div className="mt-2 grid gap-2 text-[0.8125rem] sm:grid-cols-2">
                     <p className="rounded-lg bg-mist px-3 py-2 text-fog">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                         before
                       </span>
                       <br />
                       {revision.old_value ? revision.old_value : "— shipped copy —"}
                     </p>
                     <p className="rounded-lg bg-paper px-3 py-2 text-ink ring-1 ring-inset ring-line">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                         after
                       </span>
                       <br />

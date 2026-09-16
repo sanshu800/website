@@ -68,7 +68,7 @@ export default function HowWeWorkPage() {
                 <div key={item.label} className="flex gap-4">
                   <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                    <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                       {item.label}
                     </dt>
                     <dd className="mt-1.5 text-[0.9375rem] font-medium text-ink">

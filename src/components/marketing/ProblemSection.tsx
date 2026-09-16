@@ -73,7 +73,7 @@ export function ProblemSection() {
                   <p className="mt-3 text-small text-on-night-2">{problem.body}</p>
 
                   <div className="mt-6 flex items-baseline gap-3 border-t border-white/10 pt-5">
-                    <span className="font-display text-[1.75rem] leading-none text-on-night">
+                    <span className="tabular font-display text-[1.75rem] leading-none text-on-night">
                       {problem.stat.value}
                     </span>
                     <span className="text-[0.75rem] leading-snug text-on-night-2">

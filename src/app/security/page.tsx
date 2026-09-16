@@ -48,7 +48,7 @@ export default function SecurityPage() {
           <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
             {copy.posture.map((item) => (
               <div key={item.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
-                <dt className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+                <dt className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                   {item.label}
                 </dt>
                 <dd className="text-[0.9375rem] font-medium text-ink">{item.value}</dd>

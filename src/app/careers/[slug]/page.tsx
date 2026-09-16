@@ -43,12 +43,12 @@ export default async function RolePage({
         <Container width="wide">
           <Link
             href="/careers"
-            className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-wide text-fog transition-colors hover:text-ink"
+            className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog transition-colors hover:text-ink"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             All roles
           </Link>
-          <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+          <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
             {role.team}
           </p>
           <h1 className="mt-4 text-display-xl text-ink">{role.title}</h1>

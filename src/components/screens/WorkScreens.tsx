@@ -352,7 +352,7 @@ export function InsightScreen({ className }: { className?: string }) {
           { label: "Gross margin", value: "41%", delta: "-1.4%" },
         ].map((metric) => (
           <div key={metric.label} className="px-4 py-3">
-            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+            <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
               {metric.label}
             </p>
             <p className="mt-1 font-display text-[1.125rem] text-ink">{metric.value}</p>

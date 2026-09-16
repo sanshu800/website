@@ -253,7 +253,7 @@ export default async function EnquiriesPage({
                         <div className="min-w-0">
                           <p className="flex flex-wrap items-center gap-2 text-[0.9375rem] font-medium text-ink">
                             {row.name ?? "No name given"}
-                            <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                            <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-fog">
                               {KIND_LABELS[row.kind] ?? row.kind}
                             </span>
                           </p>
@@ -289,7 +289,7 @@ export default async function EnquiriesPage({
                           <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                             {entries.map(([key, value]) => (
                               <div key={key} className={key === "message" ? "sm:col-span-2" : undefined}>
-                                <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                                <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                                   {FIELD_LABELS[key]}
                                 </dt>
                                 <dd className="mt-1 whitespace-pre-wrap break-words text-[0.8125rem] text-fg-2">

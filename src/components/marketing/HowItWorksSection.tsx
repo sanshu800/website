@@ -81,7 +81,7 @@ function StageRow({
 
       <motion.div style={reduce ? undefined : { opacity }} className="lg:col-span-5">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+          <span className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
             {stage.index}
           </span>
           <Badge accent="neutral">{stage.duration}</Badge>

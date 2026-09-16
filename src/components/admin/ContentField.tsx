@@ -99,7 +99,7 @@ export function ContentField({
         >
           {field.label}
           {edited && (
-            <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-accent">
+            <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-accent">
               edited
             </span>
           )}

@@ -60,7 +60,7 @@ export function PageHero({
       <Container width="wide" className="relative">
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-7">
-            <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[0.6875rem] uppercase tracking-wide">
+            <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[0.6875rem] uppercase tracking-label">
               {crumbs.map((crumb, index) => (
                 <li key={crumb.label} className="flex items-center gap-1.5">
                   {index > 0 && (

@@ -32,7 +32,7 @@ export function StatCard({
     >
       <p
         className={cn(
-          "font-mono text-[0.625rem] uppercase tracking-wide",
+          "font-mono text-[0.625rem] uppercase tracking-label",
           tone === "ink" ? "text-on-night-2" : tone === "accent" ? "text-accent" : "text-fog",
         )}
       >
@@ -40,7 +40,7 @@ export function StatCard({
       </p>
       <p
         className={cn(
-          "mt-3 font-display text-[1.75rem] leading-none tracking-[-0.03em]",
+          "tabular mt-3 font-display text-[1.75rem] leading-none tracking-[-0.03em]",
           tone === "ink" ? "text-on-night" : "text-ink",
         )}
       >
@@ -83,7 +83,7 @@ export function Card({
     >
       {(title || action) && (
         <header className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
-          <h2 className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <h2 className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             {title}
           </h2>
           {action}

@@ -142,7 +142,7 @@ export function Hero() {
                   key={fact.label}
                   className="animate-[fadeSlideUp_0.8s_ease_1.05s_both]"
                 >
-                  <dd className="font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-night">
+                  <dd className="tabular font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-night">
                     {fact.value}
                   </dd>
                   <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-on-night/45">

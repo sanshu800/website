@@ -75,7 +75,7 @@ function BlockView({ block }: { block: Block }) {
         <aside className="flex gap-3.5 rounded-xl border border-line bg-mist p-5">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
           <div>
-            <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
               {block.title}
             </p>
             <p className="mt-2 text-[1rem] text-fg-2">{block.text}</p>
@@ -120,12 +120,12 @@ export default async function PostPage({
           <Container width="narrow">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-wide text-fog transition-colors hover:text-ink"
+              className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog transition-colors hover:text-ink"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               All articles
             </Link>
-            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
               {post.category}
             </p>
             <h1 className="mt-4 text-display-l text-ink">{post.title}</h1>
@@ -166,7 +166,7 @@ export default async function PostPage({
             </div>
 
             <div className="mt-14 rounded-2xl border border-line bg-mist p-6 sm:p-7">
-              <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                 Run this on your own business
               </p>
               <p className="mt-3 text-body-lg text-fg-2">
@@ -203,7 +203,7 @@ export default async function PostPage({
                   href={`/blog/${item.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-line p-5 transition-all duration-300 hover:border-line-strong hover:shadow-sm"
                 >
-                  <span className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-label text-accent">
                     {item.category}
                   </span>
                   <span className="mt-2 flex-1 font-display text-[1.0625rem] leading-snug text-ink">

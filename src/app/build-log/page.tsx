@@ -39,7 +39,7 @@ export default function BuildLogPage() {
             <Reveal>
               <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-on-accent">
+                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
                     {log.latestBadge}
                   </span>
                   <span className="font-mono text-[0.6875rem] text-accent">
@@ -60,7 +60,7 @@ export default function BuildLogPage() {
                     <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                       <span
                         className={cn(
-                          "rounded-full border px-2 py-0.5 font-mono text-[0.5625rem] uppercase tracking-wide",
+                          "rounded-full border px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label",
                           KIND_STYLE[item.kind],
                         )}
                       >
@@ -96,7 +96,7 @@ export default function BuildLogPage() {
                       <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                         <span
                           className={cn(
-                            "rounded-full border px-2 py-0.5 font-mono text-[0.5625rem] uppercase tracking-wide",
+                            "rounded-full border px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label",
                             KIND_STYLE[item.kind],
                           )}
                         >

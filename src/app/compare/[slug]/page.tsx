@@ -71,7 +71,7 @@ export default async function ComparePage({
         <Container width="wide">
           <div className="grid gap-6 lg:grid-cols-2">
             <Reveal className="rounded-2xl border border-line p-6 sm:p-7">
-              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                 <Check className="h-4 w-4 text-jade" /> What {comparison.name.toLowerCase()} does well
               </p>
               <p className="mt-4 text-body-lg text-fg-2">{comparison.theirStrength}</p>
@@ -80,7 +80,7 @@ export default async function ComparePage({
               delay={0.06}
               className="rounded-2xl border border-line bg-mist p-6 sm:p-7"
             >
-              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                 <X className="h-4 w-4 text-danger" /> Where it stops working
               </p>
               <p className="mt-4 text-body-lg text-fg-2">{comparison.theirWeakness}</p>
@@ -101,13 +101,13 @@ export default async function ComparePage({
             <table className="w-full min-w-[640px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-line-strong">
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                     Dimension
                   </th>
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                     {comparison.name}
                   </th>
-                  <th scope="col" className="py-3 font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+                  <th scope="col" className="py-3 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
                     Reygent AI
                   </th>
                 </tr>

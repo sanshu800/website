@@ -46,7 +46,7 @@ export default function NewsletterPage() {
                 {newsletter.subscribe.facts.map((item) => (
                   <RevealItem key={item.label}>
                     <div className="rounded-xl border border-line px-4 py-3">
-                      <p className="font-mono text-[0.5625rem] uppercase tracking-wide text-fog">
+                      <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                         {item.label}
                       </p>
                       <p className="mt-1.5 text-[0.875rem] font-medium text-ink">
@@ -59,7 +59,7 @@ export default function NewsletterPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <h2 className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+              <h2 className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                 {newsletter.issuesHeading}
               </h2>
               <ul className="mt-6 divide-y divide-line border-y border-line">
@@ -78,21 +78,21 @@ export default function NewsletterPage() {
                 ))}
               </ul>
 
-              <h2 className="mt-12 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+              <h2 className="mt-12 font-mono text-[0.625rem] uppercase tracking-label text-fog">
                 {newsletter.includedHeading}
               </h2>
               <ul className="mt-5 space-y-3">
                 {guides.items.slice(0, 4).map((guide) => (
                   <li key={guide.slug} className="flex items-baseline justify-between gap-4">
                     <span className="text-micro text-fg-2">{guide.title}</span>
-                    <span className="shrink-0 font-mono text-[0.5625rem] uppercase tracking-wide text-fog">
+                    <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-label text-fog">
                       {guide.format}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              <h2 className="mt-12 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+              <h2 className="mt-12 font-mono text-[0.625rem] uppercase tracking-label text-fog">
                 {newsletter.shippedHeading}
               </h2>
               <ul className="mt-5 space-y-4">

@@ -130,7 +130,7 @@ export default async function SolutionPage({
             <div className="mt-12 grid gap-6 rounded-2xl border border-line bg-paper p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4">
               {solution.metrics.map((metric) => (
                 <div key={metric.label}>
-                  <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                  <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                     {metric.label}
                   </p>
                   <p className="mt-2 text-[0.9375rem] font-medium text-ink">{metric.value}</p>

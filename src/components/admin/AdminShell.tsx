@@ -68,7 +68,7 @@ export function AdminShell({
                 Reygent AI
               </span>
             </Link>
-            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-fog">
               Admin
             </span>
           </div>

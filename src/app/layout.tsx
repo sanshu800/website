@@ -12,8 +12,17 @@ import "./globals.css";
 
 /**
  * Type is self-hosted (SIL OFL, licences in src/assets/fonts): no build-time
- * network dependency, no third-party request from the visitor's browser, and
- * metric-matched fallbacks so nothing shifts on swap.
+ * network dependency and no third-party request from the visitor's browser.
+ *
+ * The two text faces also get metric-matched fallbacks — `adjustFontFallback`
+ * generates a synthetic face from a system font with `size-adjust` and the
+ * ascent/descent overrides set to match, so a swap shifts nothing.
+ *
+ * The mono face deliberately does not. Next's adjustment can only be built on
+ * Arial or Times New Roman, and neither is monospace: matching Geist Mono's
+ * vertical metrics onto a proportional face would fix the line height and break
+ * the character width, which is most of what mono is for. It falls back to the
+ * platform's own monospace instead and takes the small vertical shift.
  */
 const geist = localFont({
   src: "../assets/fonts/geist-latin-variable.woff2",
@@ -38,6 +47,7 @@ const geistMono = localFont({
   weight: "100 900",
   display: "swap",
   variable: "--font-geist-mono",
+  /* See the note above: a monospace fallback beats a metric-matched Arial. */
   adjustFontFallback: false,
   fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
 });

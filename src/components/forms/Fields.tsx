@@ -43,7 +43,7 @@ export function Label({
         className={
           variant === "text"
             ? "text-[0.9375rem] font-medium text-ink"
-            : "font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+            : "font-mono text-[0.625rem] uppercase tracking-label text-fog"
         }
       >
         {children}
@@ -240,7 +240,7 @@ export function ChipGroup({
     <fieldset>
       <legend
         id={fieldsetId}
-        className="font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+        className="font-mono text-[0.625rem] uppercase tracking-label text-fog"
       >
         {label}
       </legend>

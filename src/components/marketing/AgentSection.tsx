@@ -88,14 +88,14 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
       <div className="mt-5 space-y-4">
         {copy.blocks.map((block) => (
           <div key={block.label}>
-            <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+            <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
               {block.label}
             </p>
             <p className="mt-1.5 text-[0.8125rem] text-fg-2">{block.body}</p>
           </div>
         ))}
         <div>
-          <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             {copy.promisesLabel}
           </p>
           <ul className="mt-1.5 space-y-1.5">
@@ -120,7 +120,7 @@ function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
     <div className="rounded-2xl border border-line bg-paper p-5">
       <p className="text-[0.8125rem] text-fog">{copy.question}</p>
       <div className="mt-4 rounded-xl bg-mist p-4">
-        <p className="font-mono text-[0.625rem] uppercase tracking-wide text-accent">
+        <p className="font-mono text-[0.625rem] uppercase tracking-label text-accent">
           {copy.finding}
         </p>
         <ol className="mt-3 space-y-3">

@@ -67,7 +67,7 @@ export function ServicesStrip() {
                 <dl className="mt-5 space-y-2 border-t border-line pt-4">
                   {module.flow.slice(0, 2).map((step) => (
                     <div key={step.step} className="flex items-baseline gap-3">
-                      <dt className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                      <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                         {step.step}
                       </dt>
                       <dd className="text-[0.75rem] text-fg-2">{step.detail}</dd>

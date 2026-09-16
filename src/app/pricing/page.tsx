@@ -49,13 +49,13 @@ export default function PricingPage() {
                   <div className="flex items-center justify-between">
                     <h2 className="font-display text-[1.25rem] text-ink">{tier.name}</h2>
                     {tier.highlight && (
-                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-on-accent">
+                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
                         {plans.popularBadge}
                       </span>
                     )}
                   </div>
                   <p className="mt-5 flex items-baseline gap-2">
-                    <span className="font-display text-[2.75rem] leading-none tracking-[-0.03em] text-ink">
+                    <span className="tabular font-display text-[2.75rem] leading-none tracking-[-0.03em] text-ink">
                       {tier.price}
                     </span>
                     {tier.price !== "Custom" && (
@@ -113,7 +113,7 @@ export default function PricingPage() {
                 <tr className="border-b border-line-strong">
                   <th
                     scope="col"
-                    className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide text-fog"
+                    className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog"
                   >
                     {comparison.featureColumn}
                   </th>
@@ -122,7 +122,7 @@ export default function PricingPage() {
                       key={`${name}-${index}`}
                       scope="col"
                       className={cn(
-                        "py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-wide",
+                        "py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label",
                         index === 1 ? "text-accent" : "text-fog",
                       )}
                     >

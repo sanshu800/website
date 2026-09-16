@@ -82,6 +82,60 @@ own tab always works.
 
 ---
 
+## Type
+
+Three faces, all self-hosted as variable WOFF2 (SIL OFL, licences alongside the
+files in `src/assets/fonts/`), 74 KB total, all three preloaded, no third-party
+request and no build-time network dependency:
+
+| Face | Where | Weights shipped |
+| --- | --- | --- |
+| **Space Grotesk** | display — headlines, hero, section titles | 500 |
+| **Geist** | body — everything you read | 400, 500 for UI labels |
+| **Geist Mono** | micro-labels, eyebrows, code, figures in tables | 500 |
+
+**Why these.** Space Grotesk is a grotesque with ink traps and a genuine
+technical character; Geist is a neutral, tightly-drawn UI face with a large
+x-height and open apertures; Geist Mono belongs to the same family as the body
+face, so a mono label reads as the same voice rather than a third one. The
+combination is the standard pairing of a characterful display face over a neutral
+text face, which is what a craft-conscious product site does rather than using
+one face at five sizes.
+
+Two rules the system enforces, both because the alternative reads as unfinished:
+
+- **All-caps micro-labels share one tracking value.** `--text-eyebrow`
+  (0.14em) and the `.tracking-label` utility (0.1em) exist so that the ~70
+  uppercase mono labels on the site cannot drift into three different
+  letter-spacings for the same kind of element. Upper-case text has no ascenders
+  or descenders to separate its letters, so it needs tracking at small sizes;
+  the value was 0.025em in places, which set the letters nearly touching.
+- **Figures that get compared use tabular digits.** Both faces ship proportional
+  figures with a `tnum` feature, so `table` and `.tabular` swap in real tabular
+  digits — every digit on one advance — rather than faking alignment. Applied to
+  prices, stats and counts, and deliberately **not** to figures inside prose,
+  where tabular makes `1` as wide as `8` (Geist: 384 → 600 units) and spaces a
+  number out for no reason.
+
+**The constraint worth knowing:** this environment has no outbound network, so
+the type could not be changed to a different face even if a different face were
+better — the three files in the repository are the whole available palette.
+The audit was therefore about how the shipped faces are *used*: usage, tracking,
+figures, measure, weights and loading. If you want a different display face, it
+has to be dropped into `src/assets/fonts/` first.
+
+**Measure.** Body copy is set so a line lands in the readable band: `prose-reygent`
+is 17px with a 1.75 line-height, and the narrow container is 40rem — about 70
+characters a line. At 44rem it was about 79, which is past the point where the eye
+starts losing its place on the return sweep.
+
+**Italics are not synthesised.** No italic file is loaded and no rule makes text
+italic, so nothing is being slanted by the browser — which would be a fake
+italic, worse than none. Blockquotes are marked by a rule and the display face
+instead. Blog prose is Markdown paragraphs; if emphasis is added to the body copy
+later, it needs a real italic file or a deliberate alternative (weight, colour,
+or the display face) rather than `font-style: italic`.
+
 ## Design system
 
 - **Black is the brand.** The wordmark is plain type, the mark is a black square

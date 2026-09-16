@@ -68,7 +68,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
 
       <div className="mt-6 space-y-4">
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             Name
           </span>
           <input
@@ -80,7 +80,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             Email
           </span>
           <input
@@ -93,7 +93,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             Portfolio or profile
           </span>
           <input
@@ -104,7 +104,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
             Why this role
           </span>
           <textarea

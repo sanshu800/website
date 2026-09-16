@@ -71,7 +71,7 @@ export default function CustomersPage() {
               {copy.narrative.map((item) => (
                 <Reveal key={item.label}>
                   <div className="rounded-2xl border border-line p-6">
-                    <p className="font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                    <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
                       {item.label}
                     </p>
                     <p className="mt-2 text-body-lg font-medium text-ink">{item.value}</p>

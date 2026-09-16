@@ -59,7 +59,7 @@ export default function ProductsIndex() {
                       >
                         {String(cardIndex + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+                      <span className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                         {service.kicker}
                       </span>
                     </div>
@@ -74,7 +74,7 @@ export default function ProductsIndex() {
                       {service.flow.map((step) => (
                         <li
                           key={step.step}
-                          className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+                          className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
                         >
                           {step.step}
                         </li>

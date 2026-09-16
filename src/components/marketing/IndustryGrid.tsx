@@ -45,7 +45,7 @@ export function IndustryGrid() {
                     {solution.metrics.slice(0, 3).map((metric) => (
                       <li
                         key={metric.label}
-                        className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-wide text-fog"
+                        className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
                       >
                         {metric.label}
                       </li>

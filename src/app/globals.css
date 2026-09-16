@@ -150,7 +150,7 @@
   --text-micro--line-height: 1.5;
   --text-label: 0.75rem;
   --text-label--line-height: 1.2;
-  --text-label--letter-spacing: 0.02em;
+  --text-label--letter-spacing: 0.1em;
   --text-eyebrow: 0.6875rem;
   --text-eyebrow--line-height: 1.2;
   --text-eyebrow--letter-spacing: 0.14em;
@@ -174,7 +174,7 @@
   --shadow-ring: 0 0 0 1px rgba(11, 11, 16, 0.06);
 
   /* ---- Layout ----------------------------------------------------------- */
-  --container-narrow: 44rem;
+  --container-narrow: 40rem;
   --container-page: 76rem;
   --container-wide: 86rem;
 
@@ -341,10 +341,28 @@
   }
 
   /* Figures that sit in columns or get compared line up on the digit. Prose
-     numbers keep their natural spacing. */
+     numbers keep their natural spacing.
+
+     `table` carries this automatically; `.tabular` is for the places where
+     figures are compared without a table around them — a price, a stat, a
+     count. Both faces ship proportional figures by default with a `tnum`
+     feature, so this swaps in real tabular digits rather than faking them. */
   table,
   .tabular {
     font-variant-numeric: tabular-nums;
+  }
+
+  /*
+     All-caps micro-labels: the tracking every small uppercase mono label shares.
+
+     Upper-case text has no ascenders and descenders to separate its letters, so
+     it needs tracking to be readable at small sizes — set to the same value as
+     the `eyebrow` token above, so the two cannot drift into two different
+     answers for the same kind of element. Was 0.025em, which at 9–11px set the
+     letters nearly touching and read as a dense block rather than a label.
+  */
+  .tracking-label {
+    letter-spacing: 0.1em;
   }
 
   /* Underlines that clear the descenders instead of striking through them. */

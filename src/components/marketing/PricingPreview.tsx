@@ -37,7 +37,7 @@ export function PricingPreview() {
                 <div className="flex items-center justify-between">
                   <h3 className="font-display text-[1.125rem] text-ink">{tier.name}</h3>
                   {tier.highlight && (
-                    <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-wide text-on-accent">
+                    <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
                       {plans.popularBadge}
                     </span>
                   )}

@@ -93,7 +93,7 @@ export default async function ProductPage({
             {service.flow.map((step, index) => (
               <RevealItem key={step.step} className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span aria-hidden="true" className="h-px flex-1 bg-line-strong" />
@@ -163,7 +163,7 @@ export default async function ProductPage({
                   href={`/services/${module.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
                     {module.kicker}
                   </span>
                   <span className="mt-2 flex items-center justify-between font-display text-[1.125rem] text-ink">

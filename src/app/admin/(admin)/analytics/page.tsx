@@ -127,7 +127,7 @@ export default function AnalyticsPage() {
           title="Caught errors"
           action={
             exceptions.length > 0 ? (
-              <span className="inline-flex items-center gap-1 font-mono text-[0.625rem] uppercase tracking-wide text-magenta-ink">
+              <span className="inline-flex items-center gap-1 font-mono text-[0.625rem] uppercase tracking-label text-magenta-ink">
                 <TriangleAlert className="h-3 w-3" /> {stats.errors} in 30 days
               </span>
             ) : undefined

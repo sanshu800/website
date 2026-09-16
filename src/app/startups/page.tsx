@@ -87,7 +87,7 @@ export default function StartupsPage() {
                 <dd className="font-display text-[2rem] leading-none text-ink">
                   {stat.value}
                 </dd>
-                <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-wide text-fog">
+                <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-label text-fog">
                   {stat.label}
                 </dt>
                 <dd className="mt-1.5 text-[0.75rem] text-fog">{stat.detail}</dd>

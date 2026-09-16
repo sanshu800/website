@@ -114,9 +114,15 @@ async function main(): Promise<void> {
   if (ROLE === "worker") return worker(String(process.argv[3] ?? "?"));
   if (ROLE === "holder") return holder();
 
-  const dir = DB ? "" : mkdtempSync(path.join(tmpdir(), "reygent-dbcheck-"));
-  const dbPath = DB || path.join(dir, "check.db");
-  const goPath = DB ? path.join(path.dirname(dbPath), "dbcheck.go") : path.join(dir, "go");
+  /*
+   * The barrier file always goes in its own temp directory, never beside the
+   * database: `REYGENT_DB_PATH` points at the real one, and a check has no
+   * business leaving files there.
+   */
+  const scratch = mkdtempSync(path.join(tmpdir(), "reygent-dbcheck-"));
+  const dir = DB ? "" : scratch;
+  const dbPath = DB || path.join(scratch, "check.db");
+  const goPath = path.join(scratch, "go");
   const self = process.argv[1];
   if (!self) {
     console.error("Could not determine this script's path from argv.");

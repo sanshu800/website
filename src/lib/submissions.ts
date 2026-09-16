@@ -127,7 +127,8 @@ export function recordSubmission(input: {
       new Date().toISOString(),
     ],
   );
-  forwardToCrm(id);
+  const row = all<SubmissionRow>(`SELECT * FROM submissions WHERE id = ?`, [id])[0];
+  if (row) forwardToCrm(row);
   return id;
 }
 
@@ -139,7 +140,26 @@ export type SubmissionRow = {
   company: string | null;
   payload: string;
   created_at: string;
+  /** null = no webhook configured; otherwise pending | sent | failed. */
+  crm_status: string | null;
+  crm_attempted_at: string | null;
+  crm_error: string | null;
 };
+
+/**
+ * Leads in the last `days`, for the nav badge.
+ *
+ * Counts assessment and contact enquiries only — a newsletter subscription is
+ * not somebody waiting on a reply, and a badge that includes them stops meaning
+ * "there is a person to answer".
+ */
+export function recentLeadCount(days = 7): number {
+  const since = new Date(Date.now() - days * 864e5).toISOString();
+  return count(
+    `SELECT COUNT(*) AS n FROM submissions WHERE kind IN ('audit', 'contact') AND created_at >= ?`,
+    [since],
+  );
+}
 
 export function listSubmissions(kind?: string): SubmissionRow[] {
   return kind
@@ -156,30 +176,123 @@ export function submissionCount(kind?: string): number {
     : count(`SELECT COUNT(*) AS n FROM submissions`);
 }
 
+/* ------------------------------------------------------------------ */
+/* CRM hand-off                                                       */
+/* ------------------------------------------------------------------ */
+
+/** Attempts before giving up. One retry covers a cold or briefly-upset endpoint. */
+const CRM_ATTEMPTS = 2;
+/** A slow CRM must not hold a socket open indefinitely. */
+const CRM_TIMEOUT_MS = 8000;
+
 /**
- * CRM hand-off seam.
+ * Which submission kinds are worth waking the sales team for.
  *
- * With `CRM_WEBHOOK_URL` set, every submission is mirrored to that endpoint.
- * Without it, the record still exists locally — nothing is lost, and the demo
- * does not pretend to have sent an email it could not send.
+ * A newsletter signup is not a lead and a job application is not a lead, so
+ * neither goes to the CRM by default — the inbox on `/admin/enquiries` still
+ * keeps them. Set `CRM_WEBHOOK_KINDS=all` to forward everything, or name the
+ * kinds you want (`audit,contact,careers`).
  */
-function forwardToCrm(id: string): void {
+function crmKinds(): string[] {
+  const raw = process.env.CRM_WEBHOOK_KINDS?.trim();
+  if (!raw) return ["audit", "contact"];
+  if (raw.toLowerCase() === "all") return [];
+  return raw
+    .split(",")
+    .map((part) => part.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+/**
+ * The body a CRM or automation tool receives.
+ *
+ * `fields` is the validated payload as an object — the qualification answers
+ * (industry, size, budget, message) arrive as keys, not as a JSON string that
+ * the receiving side has to parse twice. The local row stays the source of
+ * truth: if this call fails, the lead is still on `/admin/enquiries` and the
+ * failure is recorded on the row rather than swallowed.
+ */
+export type CrmPayload = {
+  id: string;
+  kind: string;
+  receivedAt: string;
+  name: string | null;
+  email: string | null;
+  company: string | null;
+  fields: Record<string, unknown>;
+};
+
+function setCrmStatus(id: string, status: string, error?: string): void {
+  run(`UPDATE submissions SET crm_status = ?, crm_attempted_at = ?, crm_error = ? WHERE id = ?`, [
+    status,
+    new Date().toISOString(),
+    error ?? null,
+    id,
+  ]);
+}
+
+async function deliver(payload: CrmPayload, url: string, token?: string): Promise<void> {
+  let lastError = "endpoint did not accept the delivery";
+
+  for (let attempt = 1; attempt <= CRM_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(CRM_TIMEOUT_MS),
+      });
+      if (response.ok) {
+        setCrmStatus(payload.id, "sent");
+        return;
+      }
+      lastError = `endpoint replied ${response.status}`;
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : "request failed";
+    }
+    if (attempt < CRM_ATTEMPTS) {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+    }
+  }
+
+  setCrmStatus(payload.id, "failed", lastError);
+}
+
+/**
+ * Mirrors a submission to the CRM, off the request path.
+ *
+ * Never awaited and never throws: a form post must succeed even when the
+ * downstream tool is down. What changes is that the outcome is now *recorded*
+ * — `crm_status` is `sent` or `failed` on the row, and both are shown on
+ * `/admin/enquiries`, so a broken webhook is a thing you can see rather than a
+ * thing you find out about from a customer who never got a reply.
+ */
+function forwardToCrm(row: SubmissionRow): void {
   const url = process.env.CRM_WEBHOOK_URL;
   if (!url) return;
 
-  const row = all<SubmissionRow>(`SELECT * FROM submissions WHERE id = ?`, [id])[0];
-  if (!row) return;
+  const kinds = crmKinds();
+  if (kinds.length > 0 && !kinds.includes(row.kind.toLowerCase())) return;
 
-  void fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(process.env.CRM_WEBHOOK_TOKEN
-        ? { Authorization: `Bearer ${process.env.CRM_WEBHOOK_TOKEN}` }
-        : {}),
-    },
-    body: JSON.stringify(row),
-  }).catch(() => {
-    /* Never fail a form post because a downstream CRM is unreachable. */
-  });
+  let fields: Record<string, unknown> = {};
+  try {
+    fields = JSON.parse(row.payload) as Record<string, unknown>;
+  } catch {
+    fields = { raw: row.payload };
+  }
+
+  setCrmStatus(row.id, "pending");
+  const payload: CrmPayload = {
+    id: row.id,
+    kind: row.kind,
+    receivedAt: row.created_at,
+    name: row.name,
+    email: row.email,
+    company: row.company,
+    fields,
+  };
+  void deliver(payload, url, process.env.CRM_WEBHOOK_TOKEN);
 }

@@ -237,6 +237,64 @@ anyone who found it.
 
 ---
 
+## Where enquiries go
+
+Two places, and they are deliberately independent:
+
+1. **The inbox — `/admin/enquiries`.** Every submission the site has taken, newest
+   first, with the full qualification detail for each one. This is the source of
+   truth. It is behind the admin session like everything else in `/admin`, and the
+   nav carries a count of leads from the last seven days so an unanswered one is
+   visible from any admin screen. The site promises a reply within one working day,
+   which is only a promise if somebody is looking at this page.
+2. **Your CRM, over a webhook — optional.** Set `CRM_WEBHOOK_URL` and each lead is
+   posted to it as it arrives. `CRM_WEBHOOK_TOKEN` adds an `Authorization: Bearer`
+   header. `CRM_WEBHOOK_KINDS` chooses what is forwarded and defaults to
+   `audit,contact` — a newsletter signup and a job application are not sales leads,
+   and they stay in the inbox either way. Use `all` to forward everything.
+
+The webhook is a **copy, never the only record**. The POST is fire-and-forget with
+an 8-second timeout and one retry, so a slow or broken CRM can never cost a visitor
+their form submission; the outcome is written back to the row as
+`crm_status` (`pending` / `sent` / `failed`) and shown against the enquiry in the
+inbox, so a webhook that has silently been failing for a week is something you can
+see rather than something you learn from a customer.
+
+The body is designed to be consumed directly by a CRM or an automation tool —
+`fields` is an object, not a JSON string that the receiving side has to parse twice:
+
+```json
+{
+  "id": "sub_mu3phemme2el4deo",
+  "kind": "audit",
+  "receivedAt": "2026-09-16T06:14:41.230Z",
+  "name": "Priya Raman",
+  "email": "priya@carrowproperty.co.uk",
+  "company": "Carrow Property",
+  "fields": {
+    "fullName": "Priya Raman",
+    "email": "priya@carrowproperty.co.uk",
+    "company": "Carrow Property",
+    "companySize": "16-40",
+    "revenue": "1m-5m",
+    "title": "operations",
+    "topic": "audit",
+    "budget": "15k-50k",
+    "message": "We miss enquiries at weekends and quotes go out late.",
+    "kind": "audit"
+  }
+}
+```
+
+What the visitor sees when they press send is the acknowledgement box
+(`FormSuccess` in `src/components/forms/Fields.tsx`) — a green check on a jade
+surface, `role="status"` so a screen reader announces it, and a sentence that names
+the person and states when a reply is coming. It is deliberately a status message
+and not a silent form reset: the promise in it is the thing the inbox above exists
+to keep.
+
+---
+
 ## Editing the site (content admin)
 
 `/admin` is a real CMS, not a mock screen. Whoever writes the copy can change it
@@ -349,8 +407,12 @@ Copy `.env.example` if you want to set them.
 - **Client names, logos and testimonials** in `src/lib/content/marketing.ts` are
   invented and shaped to the ICP (legal, accounting, consulting, advisory). The site
   footer discloses this, and `TestimonialWall` prints its own disclosure line.
-  `PLACEHOLDERS = { clients: true, testimonials: true }` is exported so a build-time
-  guard can fail the deploy if the flags are still set on a live domain.
+  `PLACEHOLDERS = { clients: true, testimonials: true }` feeds a real build-time
+  guard: `npm run placeholders:check` runs before `next build` and **fails the
+  build** when `REYGENT_LIVE_HOST` (or Vercel's `VERCEL_URL`) names a public host
+  and either flag is still set. On a developer machine there is no host to protect
+  and it passes with a note saying so. Ship placeholders on purpose with
+  `ALLOW_PLACEHOLDERS=1`.
 - **Console panels** (the enquiry queue, follow-up sequences, job checklist and
   weekly review) are rendered from real components with illustrative data, and are
   captioned as such.
@@ -371,8 +433,14 @@ Copy `.env.example` if you want to set them.
 3. **CRM / routing** — set `CRM_WEBHOOK_URL` to push inbound to the sales tool.
 4. **Calendar** — Google Calendar or Cal.com to turn fetched audit requests into
    self-service booked slots.
-5. **Admin authentication hardening** — the admin is a single password-protected
-   account. Real deployment wants SSO or 2FA, plus rate limiting on `/api/auth/login`.
+5. **Admin authentication hardening** — rate limiting is now in place on
+   `/api/auth/login` (10 attempts per address per 15 minutes, plus 5 failures per
+   account). The remaining gap is that the admin is still a single password: a real
+   deployment wants SSO or 2FA on top. The limiter's state is in-process, so a
+   multi-instance deployment should move it to a shared counter.
+6. **CRM routing is wired, and optional** — see "Where enquiries go" below. Without
+   `CRM_WEBHOOK_URL` set, enquiries live only in the admin inbox, which is a
+   supported way to run it as long as somebody opens that page.
    (There are no customer accounts and no SSO story, because there is no product to
    log into — the admin is the only authenticated surface.)
 6. **Postgres + object storage** — once there is more than one node, or document

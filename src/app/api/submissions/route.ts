@@ -70,9 +70,21 @@ export async function POST(request: Request) {
   }
 
   const data = validated.data as Record<string, unknown>;
+  /*
+   * The enquiry schema names the field `fullName`, not `name`, so reading
+   * `data.name` left every lead stored anonymously — the inbox showed an email
+   * address and no person. Newsletter payloads carry no name at all, which is
+   * why this falls through rather than assuming one.
+   */
+  const displayName =
+    typeof data.fullName === "string" && data.fullName.trim()
+      ? data.fullName.trim()
+      : typeof data.name === "string" && data.name.trim()
+        ? data.name.trim()
+        : undefined;
   const id = recordSubmission({
     kind,
-    name: typeof data.name === "string" ? data.name : undefined,
+    name: displayName,
     email: typeof data.email === "string" ? data.email : undefined,
     company: typeof data.company === "string" ? data.company : undefined,
     payload: data,

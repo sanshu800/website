@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ChartLine, History, ImageIcon, LogOut, PenLine } from "lucide-react";
+import { ChartLine, History, ImageIcon, Inbox, LogOut, PenLine } from "lucide-react";
 import { ReygentMark } from "@/components/brand/Logo";
 import { cn, initials } from "@/lib/utils";
 
@@ -21,16 +21,21 @@ export function AdminShell({
   children,
   user,
   editedCount,
+  newEnquiries,
 }: {
   children: React.ReactNode;
   user: { name: string; email: string; role: string };
   editedCount: number;
+  newEnquiries: number;
 }) {
   const pathname = usePathname();
   const router = useRouter();
   const [signingOut, setSigningOut] = useState(false);
 
   const nav: NavItem[] = [
+    /* First, because it is the one item that is time-sensitive: everything else
+       on this list can wait until tomorrow, an unanswered lead cannot. */
+    { href: "/admin/enquiries", label: "Enquiries", icon: Inbox },
     { href: "/admin", label: "Website content", icon: PenLine },
     { href: "/admin/media", label: "Media", icon: ImageIcon },
     { href: "/admin/analytics", label: "Traffic", icon: ChartLine },
@@ -43,6 +48,11 @@ export function AdminShell({
     router.replace("/");
     router.refresh();
   }
+
+  /* The badge means "a person is waiting for a reply", so it counts leads only
+     and it disappears at zero rather than showing an idle 0. */
+  const badgeFor = (href: string) =>
+    href === "/admin/enquiries" && newEnquiries > 0 ? newEnquiries : null;
 
   const isActive = (href: string) =>
     href === "/admin" ? pathname === "/admin" || pathname.startsWith("/admin/edit") : pathname === href;
@@ -76,6 +86,11 @@ export function AdminShell({
               >
                 <item.icon className="h-3.5 w-3.5" />
                 {item.label}
+                {badgeFor(item.href) !== null && (
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-[0.625rem] text-on-accent">
+                    {badgeFor(item.href)}
+                  </span>
+                )}
               </Link>
             ))}
           </nav>
@@ -123,6 +138,11 @@ export function AdminShell({
               >
                 <item.icon className="h-3.5 w-3.5" />
                 {item.label}
+                {badgeFor(item.href) !== null && (
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-[0.625rem] text-on-accent">
+                    {badgeFor(item.href)}
+                  </span>
+                )}
               </Link>
             ))}
           </div>

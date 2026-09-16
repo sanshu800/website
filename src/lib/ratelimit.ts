@@ -77,6 +77,26 @@ export function rateLimit({
   return { ok: true, retryAfterSeconds: 0, remaining: limit - bucket.count };
 }
 
+/** Forgets a bucket. A correct sign-in clears the failures against that account. */
+export function clearLimit(key: string): void {
+  buckets.delete(key);
+}
+
+/**
+ * The refusal for a sign-in, which is a different sentence from the one the
+ * public forms get: "you have sent us a few messages" would be nonsense on a
+ * login screen, and the recovery advice differs.
+ */
+export function tooManySignIns(retryAfterSeconds: number) {
+  const minutes = Math.max(1, Math.ceil(retryAfterSeconds / 60));
+  return Response.json(
+    {
+      error: `Too many sign-in attempts. Try again in ${minutes} minute${minutes === 1 ? "" : "s"}.`,
+    },
+    { status: 429, headers: { "Retry-After": String(retryAfterSeconds) } },
+  );
+}
+
 /**
  * Honeypot: a field that is present in the markup but hidden from people. A
  * filled honeypot is treated as spam — the caller gets the same success

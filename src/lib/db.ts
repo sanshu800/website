@@ -72,15 +72,43 @@ CREATE INDEX IF NOT EXISTS idx_events_created ON events(created_at);
 CREATE INDEX IF NOT EXISTS idx_events_name ON events(name, created_at);
 
 CREATE TABLE IF NOT EXISTS submissions (
-  id         TEXT PRIMARY KEY,
-  kind       TEXT NOT NULL,
-  name       TEXT,
-  email      TEXT,
-  company    TEXT,
-  payload    TEXT NOT NULL,
-  created_at TEXT NOT NULL
+  id               TEXT PRIMARY KEY,
+  kind             TEXT NOT NULL,
+  name             TEXT,
+  email            TEXT,
+  company          TEXT,
+  payload          TEXT NOT NULL,
+  created_at       TEXT NOT NULL,
+  crm_status       TEXT,
+  crm_attempted_at TEXT,
+  crm_error        TEXT
 );
 `;
+
+/*
+ * `CREATE TABLE IF NOT EXISTS` gets a fresh install to the current shape and
+ * does nothing at all for a database that already exists, so every column added
+ * after the first release is listed here and applied once. Without this, a
+ * deployment whose database predates the column keeps working until the first
+ * query that names it, and then fails in production.
+ */
+const ADDED_COLUMNS: Array<[table: string, column: string, definition: string]> = [
+  ["submissions", "crm_status", "TEXT"],
+  ["submissions", "crm_attempted_at", "TEXT"],
+  ["submissions", "crm_error", "TEXT"],
+];
+
+/** Adds any missing column. Idempotent, so it is safe on every boot. */
+function migrate(database: DatabaseSync): void {
+  for (const [table, column, definition] of ADDED_COLUMNS) {
+    const existing = database.prepare(`PRAGMA table_info(${table})`).all() as Array<{
+      name: string;
+    }>;
+    if (!existing.some((row) => row.name === column)) {
+      database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+    }
+  }
+}
 
 /** Opens (and migrates) the database. Safe to call from any server context. */
 export function getDb(): DatabaseSync {
@@ -88,6 +116,7 @@ export function getDb(): DatabaseSync {
   mkdirSync(path.dirname(DB_PATH), { recursive: true });
   db = new DatabaseSync(DB_PATH);
   db.exec(SCHEMA);
+  migrate(db);
   return db;
 }
 

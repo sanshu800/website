@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { overrideStats } from "@/lib/cms/store";
+import { recentLeadCount } from "@/lib/submissions";
 
 export const metadata: Metadata = {
   title: { default: "Admin", template: "%s · Admin" },
@@ -41,6 +42,7 @@ export default async function AdminLayout({
     <AdminShell
       user={{ name: session.name, email: session.email, role: session.role }}
       editedCount={stats.total}
+      newEnquiries={recentLeadCount()}
     >
       {children}
     </AdminShell>

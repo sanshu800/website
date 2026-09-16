@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run placeholders:check && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "seed": "node --experimental-strip-types scripts/seed.ts",
     "db:reset": "node --experimental-strip-types scripts/seed.ts --reset",
-    "admin:create": "node --experimental-strip-types scripts/admin.ts"
+    "admin:create": "node --experimental-strip-types scripts/admin.ts",
+    "placeholders:check": "node --experimental-strip-types scripts/check-placeholders.ts"
   },
   "dependencies": {
     "lucide-react": "1.46.0",

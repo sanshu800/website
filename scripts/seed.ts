@@ -12,6 +12,7 @@ import { DatabaseSync } from "node:sqlite";
 import { randomBytes, scryptSync } from "node:crypto";
 import { mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
+import { SCHEMA } from "../src/lib/db.ts";
 
 const DATA_DIR = process.env.REYGENT_DATA_DIR ?? path.join(process.cwd(), "data");
 const DB_PATH = process.env.REYGENT_DB_PATH ?? path.join(DATA_DIR, "reygent.db");
@@ -30,64 +31,10 @@ if (reset) {
 mkdirSync(path.dirname(DB_PATH), { recursive: true });
 const db = new DatabaseSync(DB_PATH);
 
-db.exec(`
-  PRAGMA journal_mode = WAL;
-
-  CREATE TABLE IF NOT EXISTS users (
-    id            TEXT PRIMARY KEY,
-    email         TEXT NOT NULL UNIQUE,
-    name          TEXT NOT NULL,
-    role          TEXT NOT NULL DEFAULT 'owner',
-    org_name      TEXT NOT NULL DEFAULT 'Reygent',
-    password_hash TEXT NOT NULL,
-    created_at    TEXT NOT NULL
-  );
-
-  CREATE TABLE IF NOT EXISTS sessions (
-    id         TEXT PRIMARY KEY,
-    user_id    TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    token_hash TEXT NOT NULL UNIQUE,
-    created_at TEXT NOT NULL,
-    expires_at TEXT NOT NULL,
-    user_agent TEXT
-  );
-  CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token_hash);
-
-  CREATE TABLE IF NOT EXISTS submissions (
-    id         TEXT PRIMARY KEY,
-    kind       TEXT NOT NULL,
-    name       TEXT,
-    email      TEXT,
-    company    TEXT,
-    payload    TEXT NOT NULL,
-    created_at TEXT NOT NULL
-  );
-
-  CREATE TABLE IF NOT EXISTS content_overrides (
-    key        TEXT PRIMARY KEY,
-    doc        TEXT NOT NULL,
-    path       TEXT NOT NULL,
-    value      TEXT NOT NULL,
-    updated_at TEXT NOT NULL,
-    updated_by TEXT
-  );
-  CREATE INDEX IF NOT EXISTS idx_content_overrides_doc ON content_overrides(doc);
-
-  CREATE TABLE IF NOT EXISTS content_revisions (
-    id          TEXT PRIMARY KEY,
-    key         TEXT NOT NULL,
-    doc         TEXT NOT NULL,
-    path        TEXT NOT NULL,
-    action      TEXT NOT NULL,
-    old_value   TEXT,
-    new_value   TEXT,
-    actor       TEXT,
-    actor_email TEXT,
-    at          TEXT NOT NULL
-  );
-  CREATE INDEX IF NOT EXISTS idx_content_revisions_key ON content_revisions(key);
-  CREATE INDEX IF NOT EXISTS idx_content_revisions_at ON content_revisions(at);
-`);
+/* The schema lives in `src/lib/db.ts` and is applied here rather than copied.
+   It used to be duplicated, and drifted: a fresh install was missing the
+   `events` table until the app happened to open the database first. */
+db.exec(SCHEMA);
 
 function hashPassword(password: string): string {
   const salt = randomBytes(16);
@@ -108,9 +55,11 @@ const accounts = [
   { id: "usr_admin", email: "ops@reygent.ai", name: "Priya Raman", role: "admin" },
 ];
 
+/* `org_name` is left out on purpose: the column default is the brand name, and
+   spelling it here as well is how the two got out of step. */
 const insert = db.prepare(
-  `INSERT INTO users (id, email, name, role, org_name, password_hash, created_at)
-   VALUES (?, ?, ?, ?, 'Reygent', ?, ?)`,
+  `INSERT INTO users (id, email, name, role, password_hash, created_at)
+   VALUES (?, ?, ?, ?, ?, ?)`,
 );
 
 for (const account of accounts) {

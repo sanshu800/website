@@ -30,7 +30,13 @@ const DB_PATH = process.env.REYGENT_DB_PATH ?? path.join(DATA_DIR, "reygent.db")
 
 let db: DatabaseSync | null = null;
 
-const SCHEMA = `
+/*
+ * Exported because the CLI scripts (`scripts/seed.ts`, `scripts/admin.ts`)
+ * apply it directly. They used to keep private copies, which drifted — a fresh
+ * install was missing the `events` table until the app opened the database, and
+ * the brand name in `users.org_name` was wrong in one copy and not the other.
+ */
+export const SCHEMA = `
 PRAGMA journal_mode = WAL;
 PRAGMA foreign_keys = ON;
 

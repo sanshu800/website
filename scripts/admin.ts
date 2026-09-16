@@ -15,6 +15,7 @@ import { mkdirSync } from "node:fs";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import path from "node:path";
+import { SCHEMA } from "../src/lib/db.ts";
 
 const DATA_DIR = process.env.REYGENT_DATA_DIR ?? path.join(process.cwd(), "data");
 const DB_PATH = process.env.REYGENT_DB_PATH ?? path.join(DATA_DIR, "reygent.db");
@@ -45,17 +46,8 @@ if (!["owner", "admin"].includes(role)) {
 
 mkdirSync(path.dirname(DB_PATH), { recursive: true });
 const db = new DatabaseSync(DB_PATH);
-db.exec(`
-  CREATE TABLE IF NOT EXISTS users (
-    id            TEXT PRIMARY KEY,
-    email         TEXT NOT NULL UNIQUE,
-    name          TEXT NOT NULL,
-    role          TEXT NOT NULL DEFAULT 'owner',
-    org_name      TEXT NOT NULL DEFAULT 'Reygent',
-    password_hash TEXT NOT NULL,
-    created_at    TEXT NOT NULL
-  );
-`);
+/* Same reasoning as the seed script: one schema, applied, never copied. */
+db.exec(SCHEMA);
 
 const existing = db.prepare(`SELECT id FROM users WHERE lower(email) = ?`).get(email) as
   | { id: string }
@@ -86,8 +78,8 @@ if (existing) {
 } else {
   const id = `usr_${randomBytes(8).toString("hex")}`;
   db.prepare(
-    `INSERT INTO users (id, email, name, role, org_name, password_hash, created_at)
-     VALUES (?, ?, ?, ?, 'Reygent', ?, ?)`,
+    `INSERT INTO users (id, email, name, role, password_hash, created_at)
+     VALUES (?, ?, ?, ?, ?, ?)`,
   ).run(id, email, displayName, role, hash, new Date().toISOString());
   console.log(`Created ${email} (role: ${role}).`);
 }

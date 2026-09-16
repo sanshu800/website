@@ -55,7 +55,6 @@ export default async function ContentDocPage({
   return (
     <>
       <AdminHeader
-        eyebrow="Website"
         title={def.title}
         summary={def.blurb}
       />

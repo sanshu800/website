@@ -22,7 +22,6 @@ export default function NewsletterPage() {
   return (
     <>
       <PageHero
-        eyebrow={newsletter.hero.eyebrow}
         title={newsletter.hero.title}
         summary={newsletter.hero.summary}
         actions={undefined}

@@ -23,7 +23,6 @@ export default function GuidesPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={copy.hero.summary}
       />
@@ -31,7 +30,6 @@ export default function GuidesPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={copy.library.eyebrow}
             title={copy.library.titleTemplate.replace("{count}", String(items.length))}
           />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -5,7 +5,6 @@ export function servicesDoc() {
   return {
     items: services,
     index: {
-      eyebrow: "Services",
       title: "Five ways we take work off your team.",
       summary:
         "Most businesses start with the one that hurts most. Agents that answer, automation that connects, documents that process themselves, numbers you can question — and a retainer that keeps all of it working.",
@@ -14,7 +13,6 @@ export function servicesDoc() {
     detail: {
       captionSuffix: "illustrative interface",
       capabilities: {
-        eyebrow: "What it does",
         /** `{name}` is replaced with the service's name at render time. */
         titleTemplate: "Six jobs {name} takes off your team.",
         lede:
@@ -26,7 +24,6 @@ export function servicesDoc() {
           "Written as outcomes an owner would actually notice, rather than features to be impressed by.",
       },
       fits: {
-        eyebrow: "Where it fits",
         title: "It joins up with everything else we build.",
         lede:
           "Start with one service. They share the same connections and the same record, so the second one is always faster and cheaper than the first.",

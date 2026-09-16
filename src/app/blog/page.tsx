@@ -36,7 +36,6 @@ export default async function BlogIndex({
   return (
     <>
       <PageHero
-        eyebrow={copy.eyebrow}
         title={copy.title}
         summary={copy.summary}
       />

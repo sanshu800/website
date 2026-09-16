@@ -25,7 +25,6 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow={about.hero.eyebrow}
         title={about.hero.title}
         summary={about.hero.summary}
       />
@@ -47,10 +46,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 lg:p-10 xl:p-14">
               <RevealGroup>
                 <RevealItem>
-                  <p className="font-mono text-eyebrow uppercase text-accent">
-                    {about.story.eyebrow}
-                  </p>
-                  <h2 className="mt-5 text-display-m text-ink">{about.story.title}</h2>
+                  <h2 className="text-display-m text-ink">{about.story.title}</h2>
                   <p className="mt-5 text-body-lg text-fog">{about.story.body1}</p>
                   <p className="mt-4 text-body-lg text-fog">{about.story.body2}</p>
                 </RevealItem>
@@ -78,7 +74,6 @@ export default function AboutPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={about.values.eyebrow}
             title={about.values.title}
             lede={about.values.lede}
           />
@@ -97,7 +92,7 @@ export default function AboutPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow={about.history.eyebrow} title={about.history.title} />
+          <SectionHeading title={about.history.title} />
           <ol className="mt-12 border-t border-line">
             {history.map((item) => (
               <Reveal

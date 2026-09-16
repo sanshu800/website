@@ -23,7 +23,6 @@ export default function GetStartedPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={copy.hero.summary}
       />

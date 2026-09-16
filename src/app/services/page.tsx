@@ -37,7 +37,7 @@ export default function ProductsIndex() {
   return (
     <>
       <JsonLd data={serviceListSchema()} />
-      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
+      <PageHero title={copy.title} summary={copy.summary} />
 
       <section className="section bg-paper">
         <Container width="wide">

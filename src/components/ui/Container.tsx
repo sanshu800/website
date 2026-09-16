@@ -59,6 +59,27 @@ export function Section({
   );
 }
 
+/**
+ * A small monospace label above a heading.
+ *
+ * Used **three times on the whole site**, and the bar for a fourth is high: the
+ * label has to name something the heading cannot — a proper noun or a date.
+ *
+ * - `Compare · Big consultancy` — which comparison you are reading
+ * - `Solutions · Property, trades & field service` — which industry
+ * - `Last updated 2026-08-01` — when the policy changed
+ *
+ * Everywhere else the pattern was removed. A label that only restates the
+ * heading or its category ("What we do" over "Pick the one that hurts most",
+ * "How we work" over "Audit first, then build only what pays for itself") asks
+ * the reader to read the same idea twice before reaching the sentence that
+ * matters. The heading carries its own weight; let it.
+ *
+ * A heading *set in* this style is a different thing and is fine — the footer
+ * column headings and the "Keep reading" rail do that, and they are headings,
+ * not labels on a heading. So are the `404` and `403` codes on the error
+ * screens, which state a fact the heading does not.
+ */
 export function Eyebrow({
   children,
   className,
@@ -89,7 +110,6 @@ export function Eyebrow({
 }
 
 export function SectionHeading({
-  eyebrow,
   title,
   lede,
   align = "left",
@@ -98,7 +118,6 @@ export function SectionHeading({
   titleClassName,
   action,
 }: {
-  eyebrow?: string;
   title: React.ReactNode;
   lede?: React.ReactNode;
   align?: "left" | "center";
@@ -115,17 +134,9 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow && (
-        <Eyebrow
-          tone={onInk ? "on-ink" : "accent"}
-          className={align === "center" ? "justify-center" : undefined}
-        >
-          {eyebrow}
-        </Eyebrow>
-      )}
       <h2
         className={cn(
-          "mt-5 text-display-l",
+          "text-display-l",
           onInk ? "text-on-night" : "text-ink",
           titleClassName,
         )}

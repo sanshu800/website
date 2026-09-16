@@ -25,13 +25,8 @@ export function FinalCTA() {
 
       <Container width="wide" className="relative">
         <div className="mx-auto max-w-[46rem] text-center">
-          <Reveal variant="fade">
-            <p className="font-mono text-eyebrow uppercase text-white/70">
-              {copy.eyebrow}
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2 className="mt-5 text-display-xl text-white">
+          <Reveal>
+            <h2 className="text-display-xl text-white">
               {copy.titleLead}
               <br className="hidden sm:block" />{" "}
               <span className="text-white/70">{copy.titleAccent}</span>

@@ -40,8 +40,7 @@ export default async function AdminLoginPage({
         </Link>
 
         <div className="mt-8 rounded-2xl border border-line bg-paper p-7 sm:p-8">
-          <p className="font-mono text-eyebrow uppercase text-accent">Admin</p>
-          <h1 className="mt-4 text-display-m text-ink">Sign in to edit the site.</h1>
+          <h1 className="text-display-m text-ink">Sign in to edit the site.</h1>
           <p className="mt-3 text-micro text-fog">
             Accounts for this site are created from the command line, not from a public
             form. There is no sign-up here.

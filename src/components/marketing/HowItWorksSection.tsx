@@ -27,7 +27,6 @@ export function HowItWorksSection({
     <section className="section bg-mist">
       <Container width="wide">
         <SectionHeading
-          eyebrow={copy.eyebrow}
           title={copy.title}
           lede={copy.lede}
         />

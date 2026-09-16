@@ -158,7 +158,6 @@ export function AgentSection({ copy }: { copy: HomeDoc["walkthrough"] }) {
           <div className="lg:col-span-5">
             <SectionHeading
               tone="ink"
-              eyebrow={copy.eyebrow}
               title={<>{copy.title}</>}
               lede={copy.lede}
             />

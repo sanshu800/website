@@ -25,7 +25,6 @@ export function TestimonialWall() {
       <Container width="wide">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow={copy.eyebrow}
             title={
               <>
                 {copy.titleLines.map((line, index) => (

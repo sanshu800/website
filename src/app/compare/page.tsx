@@ -21,7 +21,7 @@ export default function CompareIndex() {
 
   return (
     <>
-      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
+      <PageHero title={copy.title} summary={copy.summary} />
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5 sm:grid-cols-2">

@@ -29,7 +29,6 @@ export default function BuildLogPage() {
   return (
     <>
       <PageHero
-        eyebrow={log.hero.eyebrow}
         title={log.hero.title}
         summary={log.hero.summary}
       />

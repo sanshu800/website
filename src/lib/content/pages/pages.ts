@@ -11,7 +11,6 @@ export function pagesDoc() {
   return {
     getStarted: {
       hero: {
-        eyebrow: "Book a free audit",
         title: "Thirty minutes to find out what is worth automating.",
         summary:
           "Tell us the one job that eats your week. We will map it live, say whether AI should touch it, and give you a straight answer on cost and timeframe. No slides, no obligation, and you keep the notes.",
@@ -42,7 +41,6 @@ export function pagesDoc() {
 
     contact: {
       hero: {
-        eyebrow: "Contact",
         title: "Ask us something specific.",
         summary:
           "Every message is read by a person who can actually answer it. If your question is technical, expect a technical reply rather than a brochure.",
@@ -82,13 +80,11 @@ export function pagesDoc() {
 
     customers: {
       hero: {
-        eyebrow: "Case studies",
         title: "Businesses that got the repetitive work off their team.",
         summary:
           "Written up as what changed, in what order, and what it cost — including the parts that took longer than we expected. Client names are withheld until each one has signed off the write-up.",
       },
       featured: {
-        eyebrow: "Featured",
         title: "“We stopped hiring for the job we should never have had.”",
       },
       narrative: [
@@ -99,12 +95,11 @@ export function pagesDoc() {
       ],
       narrativeNote:
         "Placeholder narrative — illustrative of the pattern, not a verified client result. Replace before publishing.",
-      quotes: { eyebrow: "In their words", title: "What owners tell us." },
+      quotes: { title: "What owners tell us." },
     },
 
     integrations: {
       hero: {
-        eyebrow: "What we connect",
         title: "We connect what you already pay for.",
         summary:
           "Agents sit on top of your existing CRM, inbox, calendar, accounting package, telephony, storage and industry software. Nothing gets ripped out, nothing gets migrated, and your team keeps the tools they already know.",
@@ -114,7 +109,6 @@ export function pagesDoc() {
         secondary: { href: "/security", label: "How we handle access" },
       },
       categories: {
-        eyebrow: "By category",
         title: "Described by what it does, not whose logo it is.",
         lede:
           "We list capabilities rather than partner marks, because displaying another company's trademark implies an endorsement neither of us has signed. If you use something unusual, ask — we have connected stranger things.",
@@ -146,7 +140,6 @@ export function pagesDoc() {
 
     security: {
       hero: {
-        eyebrow: "Security & data",
         title: "You are handing us access to your business. Here is how we treat that.",
         primary: { href: "/legal/security", label: "Full data handling notes" },
         secondary: { href: "/contact", label: "Request our DPA" },
@@ -160,7 +153,6 @@ export function pagesDoc() {
         { label: "Penetration test", value: "Annual, third party" },
       ],
       controls: {
-        eyebrow: "In practice",
         title: "The six things that actually protect you.",
       },
       disclosure: {
@@ -181,14 +173,13 @@ export function pagesDoc() {
 
     startups: {
       hero: {
-        eyebrow: "Founders programme",
         actions: {
           primary: { href: "/get-started", label: "Book a free audit" },
           secondary: { href: "/contact", label: "Ask about eligibility" },
         },
       },
       program: startupsProgram,
-      included: { eyebrow: "What is included", title: "Four things, no asterisks." },
+      included: { title: "Four things, no asterisks." },
       eligibility: {
         heading: "Who it is for",
         criteria: [
@@ -210,7 +201,6 @@ export function pagesDoc() {
 
     partners: {
       hero: {
-        eyebrow: "Partners",
         actions: {
           primary: { href: "/contact", label: "Become a partner" },
           secondary: { href: "/pricing", label: "See engagements" },
@@ -218,7 +208,6 @@ export function pagesDoc() {
       },
       program: partnersProgram,
       types: {
-        eyebrow: "Who partners with us",
         title: "You already do the diagnosis.",
         items: [
           {
@@ -239,8 +228,8 @@ export function pagesDoc() {
           },
         ],
       },
-      commercial: { eyebrow: "The commercial part", title: "What you get." },
-      steps: { eyebrow: "How it works", title: "Four steps, about a month." },
+      commercial: { title: "What you get." },
+      steps: { title: "Four steps, about a month." },
       cta: {
         title: "Become a partner",
         summary:
@@ -252,7 +241,6 @@ export function pagesDoc() {
 
     productTour: {
       hero: {
-        eyebrow: "How we work",
         title: "Audit, blueprint, build, run. In that order, always.",
         summary:
           "Most AI projects fail before anybody writes code, because the process was never understood. This is the method we run on every engagement, what you get at each stage, and when you can walk away.",
@@ -262,13 +250,11 @@ export function pagesDoc() {
         },
       },
       walkthrough: {
-        eyebrow: "The method",
         title: "Four stages. No stage you cannot stop at.",
         lede:
           "Each panel below is the interface our systems run in — inboxes, queues, review screens and reports. What you see is the density your team actually gets, not a marketing illustration.",
       },
       managed: {
-        eyebrow: "Still with you afterwards",
         cta: "See how the retainer works",
       },
       cta: {

@@ -5,13 +5,11 @@ export function companyDoc() {
   return {
     about: {
       hero: {
-        eyebrow: "About",
         title: "We take the routine work off your team, and we are the ones who build it.",
         summary:
           "We started by mapping how owner-run businesses actually work. The same six bottlenecks turned up everywhere, so we stopped writing reports about them and started building the systems that remove them — one business at a time.",
       },
       story: {
-        eyebrow: "Why we exist",
         title: "Most businesses do not need another tool. They need the work done.",
         body1:
           "Every audit we run starts the same way: an owner describing a problem they have quietly accepted as the cost of doing business. Enquiries answered late. Quotes never followed up. Invoices keyed in by hand. The same questions answered forty times a week.",
@@ -21,12 +19,11 @@ export function companyDoc() {
           "Three colleagues reviewing printed process diagrams on a wall during a working session",
       },
       values: {
-        eyebrow: "How we work",
         title: "Six principles that decide what we build.",
         lede: "Each one has killed a project or lost us a deal at some point. That is usually what makes a principle worth having.",
       },
       valuesList: companyValues,
-      history: { eyebrow: "History", title: "From audits to systems." },
+      history: { title: "From audits to systems." },
       timeline,
       proof: {
         heading: "What owners say",
@@ -44,13 +41,11 @@ export function companyDoc() {
 
     careers: {
       hero: {
-        eyebrow: "Careers",
         title: "Build things that keep working after you have moved on.",
         summary:
           "We are a small agency building automation for businesses that cannot afford to guess. You will meet the client, see the work running, and know whether it actually helped.",
       },
       openRoles: {
-        eyebrow: "Open roles",
         /** `{roles}` and `{teams}` are replaced with the live counts. */
         titleTemplate: "{roles} positions across {teams} teams.",
         lede:
@@ -58,7 +53,6 @@ export function companyDoc() {
       },
       roles,
       workingHere: {
-        eyebrow: "Working here",
         title: "What we actually offer.",
         lookingFor: "What we look for",
       },

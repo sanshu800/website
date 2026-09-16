@@ -24,7 +24,6 @@ export default function StartupsPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={program.headline}
         summary={program.summary}
         actions={
@@ -47,7 +46,7 @@ export default function StartupsPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.included.eyebrow} title={copy.included.title} />
+          <SectionHeading title={copy.included.title} />
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2">
             {program.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>

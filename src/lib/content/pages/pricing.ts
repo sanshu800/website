@@ -12,7 +12,6 @@ import { engagements, pricingFaqs } from "@/lib/content/company";
  */
 export const pricingCopy = {
   hero: {
-    eyebrow: "Engagements & pricing",
     title: "Fixed prices, agreed before we start.",
     summary:
       "You are buying work, not a licence. Every engagement is scoped in writing, priced up front, and paid against milestones — starting with a one-week audit that is credited against your build if you continue.",
@@ -34,7 +33,6 @@ export const pricingCopy = {
 
   /** The same engagements as a compact block on the homepage. */
   preview: {
-    eyebrow: "Engagements",
     title: "Three ways to work with us.",
     lede:
       "Start with the audit. Most businesses go on to a build, and the ones that want us to stay on afterwards keep a retainer. You are never locked in — the code and the accounts are yours from day one.",
@@ -45,7 +43,6 @@ export const pricingCopy = {
   },
 
   comparison: {
-    eyebrow: "Side by side",
     title: "Exactly what is included.",
     featureColumn: "Included",
     columnNames: ["Audit", "Build project", "Ongoing support"],

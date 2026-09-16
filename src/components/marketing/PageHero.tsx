@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export type Crumb = { label: string; href?: string };
 
 /**
- * Shared page hero. Every inner page opens the same way — breadcrumb, eyebrow,
+ * Shared page hero. Every inner page opens the same way — breadcrumb,
  * display heading, single-sentence summary — so the site reads as one product
  * rather than a set of landing pages.
  */
@@ -112,7 +112,8 @@ export function PageHero({
             <Reveal delay={0.05}>
               <h1
                 className={cn(
-                  "mt-5 text-display-xl",
+                  eyebrow ? "mt-5" : "mt-0",
+                  "text-display-xl",
                   onInk ? "text-on-night" : "text-ink",
                 )}
               >

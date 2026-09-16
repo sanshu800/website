@@ -33,7 +33,7 @@ export default function PricingPage() {
   return (
     <>
       <JsonLd data={faqSchema()} />
-      <PageHero eyebrow={hero.eyebrow} title={hero.title} summary={hero.summary} />
+      <PageHero title={hero.title} summary={hero.summary} />
 
       <section className="section bg-paper">
         <Container width="wide">
@@ -106,7 +106,7 @@ export default function PricingPage() {
 
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow={comparison.eyebrow} title={comparison.title} />
+          <SectionHeading title={comparison.title} />
           <div className="mt-10 overflow-x-auto">
             <table className="w-full min-w-[720px] border-collapse text-left">
               <thead>

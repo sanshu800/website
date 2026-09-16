@@ -36,7 +36,6 @@ export function homeDoc() {
     },
 
     modules: {
-      eyebrow: "What we do",
       titleLines: ["Find the work worth", "automating. Then build it."],
       lede:
         "Five services. Most clients start with the one that is costing them the most this quarter, then expand once it is running and paying for itself.",
@@ -44,14 +43,12 @@ export function homeDoc() {
 
     /** Headline for the tabbed walkthrough of the five services. */
     services: {
-      eyebrow: "The five services",
       title: "Pick the one that hurts most. Start there.",
       lede:
         "Each service solves a different kind of repetitive work, and they share the same connections to your systems — so the second one you take is always faster and cheaper than the first.",
     },
 
     problem: {
-      eyebrow: "The problem",
       titleLines: ["You are not short of tools.", "You are short of hands."],
       lede:
         "Every system you bought was supposed to save time. Instead your team spends its day moving information between them, chasing people, and assembling reports from four places. That work is invisible on any invoice and it grows with the business.",
@@ -101,7 +98,6 @@ export function homeDoc() {
      * rather than which technology it happens to use.
      */
     walkthrough: {
-      eyebrow: "See it working",
       title: "What it handles before your first coffee.",
       lede:
         "These are the three things owners tell us they want first: everything needing a decision in one place, context before a meeting, and an answer about the business without opening a spreadsheet.",
@@ -198,7 +194,6 @@ export function homeDoc() {
     },
 
     howItWorks: {
-      eyebrow: "How we work",
       title: "Audit first. Then build only what pays for itself.",
       lede:
         "The order matters. Most AI projects fail because somebody buys a tool before anyone has mapped the process. We start with four weeks of finding out, and you can stop after the first one.",
@@ -239,7 +234,6 @@ export function homeDoc() {
     },
 
     testimonials: {
-      eyebrow: "In their words",
       titleLines: ["Owners who got their", "evenings back."],
       cta: "All case studies",
       disclosure:
@@ -247,14 +241,12 @@ export function homeDoc() {
     },
 
     industries: {
-      eyebrow: "Who we work with",
       title: "Businesses that run on repeat work.",
       lede:
         "We work best with owner-run businesses between roughly five and two hundred people, where the same jobs happen every week and the processes live in people's heads rather than in software.",
     },
 
     integrations: {
-      eyebrow: "Connections",
       title: "We connect what you already pay for.",
       lede:
         "No migration, no rip-and-replace, no retraining week. It works inside your existing CRM, inbox, calendar, accounting package and industry systems.",
@@ -262,7 +254,6 @@ export function homeDoc() {
     },
 
     finalCta: {
-      eyebrow: "Start here",
       titleLead: "Thirty minutes to find out",
       titleAccent: "what is worth automating.",
       summary:

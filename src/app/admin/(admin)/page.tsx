@@ -45,7 +45,6 @@ export default function ContentAdminPage() {
   return (
     <>
       <AdminHeader
-        eyebrow="Website"
         title="Content"
         summary="Edit the words on the marketing site without a deploy. Saves are validated, logged and published immediately — every change is attributable and reversible from this screen."
       />

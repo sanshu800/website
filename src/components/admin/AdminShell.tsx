@@ -142,12 +142,10 @@ export function AdminShell({
 }
 
 export function AdminHeader({
-  eyebrow,
   title,
   summary,
   action,
 }: {
-  eyebrow?: string;
   title: string;
   summary?: string;
   action?: React.ReactNode;
@@ -155,12 +153,7 @@ export function AdminHeader({
   return (
     <div className="mb-6 flex flex-wrap items-start justify-between gap-5">
       <div>
-        {eyebrow && (
-          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-fog">
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="mt-2 text-display-m text-ink">{title}</h1>
+        <h1 className="text-display-m text-ink">{title}</h1>
         {summary && <p className="mt-3 max-w-[44rem] text-body-lg text-fog">{summary}</p>}
       </div>
       {action}

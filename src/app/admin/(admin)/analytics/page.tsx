@@ -36,7 +36,6 @@ export default function AnalyticsPage() {
   return (
     <>
       <AdminHeader
-        eyebrow="Website"
         title="Traffic"
         summary="First-party measurement, last 30 days. No cookies, no third parties, no IP addresses — and nothing is recorded at all until a visitor allows it."
       />

@@ -6,7 +6,6 @@ export function blogDoc() {
     posts,
     categories: blogCategories,
     index: {
-      eyebrow: "Blog",
       title: "Writing for owners, not for buyers.",
       summary:
         "No thought leadership. Practical methods, real numbers, and honest notes on where automation or AI helps and where it does not.",

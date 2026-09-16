@@ -103,6 +103,15 @@ own tab always works.
 - **Motion:** a staggered `fadeSlideUp` on the hero, a marquee strip, reveal-on-
   scroll sections and a scroll-progress rail. All of it collapses under
   `prefers-reduced-motion`, where the hero falls back to a still frame.
+- **No label above a heading.** A small monospace label sitting on top of a
+  heading, on every section, is the house style of generated pages and the
+  reader pays for it in time: they read the category, then the heading, and the
+  heading was the point. The pattern was removed from 68 places — 57 component
+  pass-sites, 6 hand-rolled ones, 5 admin headers. Three remain, and each names
+  something the heading cannot: `Compare · <name>`, `Solutions · <industry>`,
+  `Last updated <date>`. A label *above a heading* is what is out; a heading
+  set in this style (the footer columns) or a status code (`404`, `403`) is
+  not the same thing. The rule is repeated on the `Eyebrow` component.
 
 ### Voice
 

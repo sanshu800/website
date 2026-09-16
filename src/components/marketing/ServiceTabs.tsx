@@ -23,7 +23,7 @@ export function ServiceTabs({
   copy,
 }: {
   services: Service[];
-  copy: { eyebrow: string; title: string; lede: string };
+  copy: { title: string; lede: string };
 }) {
   const [active, setActive] = useState(0);
   const [interacted, setInteracted] = useState(false);
@@ -50,7 +50,7 @@ export function ServiceTabs({
   return (
     <section className="section bg-paper" id="services">
       <Container width="wide">
-        <SectionHeading eyebrow={copy.eyebrow} title={copy.title} lede={copy.lede} />
+        <SectionHeading title={copy.title} lede={copy.lede} />
 
         <div
           role="tablist"

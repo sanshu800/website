@@ -23,7 +23,6 @@ export default function SecurityPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={page.intro}
         actions={
@@ -62,7 +61,6 @@ export default function SecurityPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={copy.controls.eyebrow}
             title={copy.controls.title}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2">

@@ -20,7 +20,6 @@ export function IndustryGrid() {
     <section className="section bg-paper">
       <Container width="wide">
         <SectionHeading
-          eyebrow={copy.eyebrow}
           title={copy.title}
           lede={copy.lede}
         />

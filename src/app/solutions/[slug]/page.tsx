@@ -86,7 +86,6 @@ export default async function SolutionPage({
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={detail.pressure.eyebrow}
             title={detail.pressure.title}
             lede={detail.pressure.lede}
           />
@@ -107,7 +106,6 @@ export default async function SolutionPage({
       <section className="section bg-mist">
         <Container width="wide">
           <SectionHeading
-            eyebrow={detail.fits.eyebrow}
             title={detail.fits.title}
             lede={detail.fits.lede}
           />

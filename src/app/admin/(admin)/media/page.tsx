@@ -65,7 +65,6 @@ export default async function MediaPage() {
   return (
     <>
       <AdminHeader
-        eyebrow="Website"
         title="Media"
         summary="Every file this deployment is serving, with the path to paste into a content field. Uploads arrive through the intake URL; nothing here is editable from this page."
       />

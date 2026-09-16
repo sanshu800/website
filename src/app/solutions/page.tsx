@@ -22,11 +22,11 @@ export default function SolutionsPage() {
 
   return (
     <>
-      <PageHero eyebrow={copy.eyebrow} title={copy.title} summary={copy.summary} />
+      <PageHero title={copy.title} summary={copy.summary} />
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.sectorEyebrow} title={copy.sectorTitle} />
+          <SectionHeading title={copy.sectorTitle} />
           <RevealGroup className="mt-12 grid gap-6 lg:grid-cols-2">
             {solutions.map((solution, index) => (
               <RevealItem key={solution.slug}>

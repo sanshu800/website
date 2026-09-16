@@ -5,13 +5,11 @@ export function resourcesDoc() {
   return {
     guides: {
       hero: {
-        eyebrow: "Playbooks",
         title: "What we know, written down.",
         summary:
           "Every one of these came out of work we were paid to do. Take them, use them, and if you never speak to us they were still worth your afternoon.",
       },
       library: {
-        eyebrow: "Library",
         /** `{count}` is replaced with the number of guides. */
         titleTemplate: "{count} resources",
       },
@@ -28,7 +26,6 @@ export function resourcesDoc() {
 
     releaseNotes: {
       hero: {
-        eyebrow: "Build log",
         title: "What we built, and what it taught us.",
         summary:
           "We do not ship software, so this is not a changelog. Each entry is a real automation that went into production for a client, what it replaced, and the thing that turned out to be harder than expected. Clients are described by type, never by name.",
@@ -50,7 +47,6 @@ export function resourcesDoc() {
 
     newsletter: {
       hero: {
-        eyebrow: "Newsletter",
         title: "The Automation Briefing.",
         summary:
           "One email a month for business owners. A real problem we have solved, the numbers behind it, and something you can do this week without hiring anybody.",

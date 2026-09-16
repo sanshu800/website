@@ -26,7 +26,6 @@ export default function CustomersPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={copy.hero.summary}
       />
@@ -53,7 +52,7 @@ export default function CustomersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.featured.eyebrow} title={copy.featured.title} />
+          <SectionHeading title={copy.featured.title} />
           <div className="mt-10 grid gap-6 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <div className="rounded-2xl bg-night p-8 text-on-night sm:p-10">
@@ -90,7 +89,7 @@ export default function CustomersPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.quotes.eyebrow} title={copy.quotes.title} />
+          <SectionHeading title={copy.quotes.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((item) => (
               <RevealItem key={item.name}>

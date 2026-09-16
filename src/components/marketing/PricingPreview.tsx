@@ -19,7 +19,6 @@ export function PricingPreview() {
       <Container width="wide">
         <SectionHeading
           align="center"
-          eyebrow={preview.eyebrow}
           title={preview.title}
           lede={preview.lede}
         />

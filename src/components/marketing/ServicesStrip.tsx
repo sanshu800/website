@@ -25,7 +25,6 @@ export function ServicesStrip() {
     <section className="section-sm bg-paper">
       <Container width="wide">
         <SectionHeading
-          eyebrow={copy.eyebrow}
           title={
             <>
               {copy.titleLines.map((line, index) => (

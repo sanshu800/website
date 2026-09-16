@@ -52,7 +52,6 @@ export default async function ProductPage({
         { name: service.name, path: `/services/${service.slug}` },
       ])]} />
       <PageHero
-        eyebrow={service.kicker}
         crumbs={[{ label: "Services", href: "/services" }, { label: service.name }]}
         title={service.headline}
         summary={service.intro}
@@ -111,7 +110,6 @@ export default async function ProductPage({
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={detail.capabilities.eyebrow}
             title={detail.capabilities.titleTemplate.replace("{name}", service.name)}
             lede={detail.capabilities.lede}
           />
@@ -155,7 +153,6 @@ export default async function ProductPage({
       <section className="section bg-mist">
         <Container width="wide">
           <SectionHeading
-            eyebrow={detail.fits.eyebrow}
             title={detail.fits.title}
             lede={detail.fits.lede}
           />

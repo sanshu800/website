@@ -28,7 +28,6 @@ export function ProblemSection() {
       <Container width="wide" className="relative">
         <SectionHeading
           tone="ink"
-          eyebrow={copy.eyebrow}
           title={
             <>
               {copy.titleLines.map((line, index) => (

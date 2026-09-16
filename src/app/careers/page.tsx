@@ -25,7 +25,6 @@ export default function CareersPage() {
   return (
     <>
       <PageHero
-        eyebrow={careers.hero.eyebrow}
         title={careers.hero.title}
         summary={careers.hero.summary}
       />
@@ -33,7 +32,6 @@ export default function CareersPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={careers.openRoles.eyebrow}
             title={careers.openRoles.titleTemplate
               .replace("{roles}", String(roles.length))
               .replace("{teams}", String(teams.length))}
@@ -70,7 +68,6 @@ export default function CareersPage() {
       <section className="section bg-mist">
         <Container width="wide">
           <SectionHeading
-            eyebrow={careers.workingHere.eyebrow}
             title={careers.workingHere.title}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">

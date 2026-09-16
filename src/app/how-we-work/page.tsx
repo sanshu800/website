@@ -35,7 +35,6 @@ export default function HowWeWorkPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={copy.hero.summary}
         actions={
@@ -86,7 +85,6 @@ export default function HowWeWorkPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={copy.walkthrough.eyebrow}
             title={copy.walkthrough.title}
             lede={copy.walkthrough.lede}
           />
@@ -111,10 +109,7 @@ export default function HowWeWorkPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
-              <p className="font-mono text-eyebrow uppercase text-on-night-2">
-                {copy.managed.eyebrow}
-              </p>
-              <h2 className="mt-5 text-display-l text-on-night">{managed.name}</h2>
+              <h2 className="text-display-l text-on-night">{managed.name}</h2>
               <p className="mt-5 max-w-[36rem] text-body-lg text-on-night-2">
                 {managed.summary}
               </p>

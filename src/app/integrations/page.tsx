@@ -30,7 +30,6 @@ export default function IntegrationsPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         summary={copy.hero.summary}
         actions={
@@ -54,7 +53,6 @@ export default function IntegrationsPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={copy.categories.eyebrow}
             title={copy.categories.title}
             lede={copy.categories.lede}
           />

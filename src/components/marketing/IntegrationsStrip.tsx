@@ -18,7 +18,6 @@ export function IntegrationsStrip() {
       <Container width="wide">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow={copy.eyebrow}
             title={copy.title}
             lede={copy.lede}
             className="max-w-[40rem]"

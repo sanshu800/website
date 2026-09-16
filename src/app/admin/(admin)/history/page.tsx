@@ -36,7 +36,6 @@ export default function ContentHistoryPage() {
   return (
     <>
       <AdminHeader
-        eyebrow="Website"
         title="Change history"
         summary="Every content change, by whom and when, with the value it replaced. Restore any of them — restoring is itself logged."
       />

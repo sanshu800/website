@@ -23,7 +23,6 @@ export default function PartnersPage() {
   return (
     <>
       <PageHero
-        eyebrow={copy.hero.eyebrow}
         title={program.headline}
         summary={program.summary}
         actions={
@@ -46,7 +45,7 @@ export default function PartnersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.types.eyebrow} title={copy.types.title} />
+          <SectionHeading title={copy.types.title} />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {copy.types.items.map((type) => (
               <RevealItem key={type.title}>
@@ -60,7 +59,7 @@ export default function PartnersPage() {
 
       <section className="section bg-mist">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.commercial.eyebrow} title={copy.commercial.title} />
+          <SectionHeading title={copy.commercial.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {program.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>
@@ -76,7 +75,7 @@ export default function PartnersPage() {
 
       <section className="section bg-paper">
         <Container width="wide">
-          <SectionHeading eyebrow={copy.steps.eyebrow} title={copy.steps.title} />
+          <SectionHeading title={copy.steps.title} />
           <ol className="mt-12 grid gap-6 lg:grid-cols-4">
             {program.steps.map((step, index) => (
               <li key={step.title} className="border-t border-line-strong pt-5">

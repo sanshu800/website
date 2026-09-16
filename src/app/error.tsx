@@ -32,9 +32,7 @@ export default function Error({
   return (
     <section className="border-b border-line bg-paper pb-20 pt-32 sm:pt-36">
       <Container width="wide">
-        <p className="font-mono text-eyebrow uppercase text-fog">Something went wrong</p>
-
-        <h1 className="mt-8 max-w-[36rem] text-display-xl text-ink">
+        <h1 className="max-w-[36rem] text-display-xl text-ink">
           That did not load. It is us, not you.
         </h1>
         <p className="mt-5 max-w-[40rem] text-lead text-fog">

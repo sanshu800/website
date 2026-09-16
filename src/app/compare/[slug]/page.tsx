@@ -93,7 +93,6 @@ export default async function ComparePage({
       <section className="section bg-paper">
         <Container width="wide">
           <SectionHeading
-            eyebrow={detail.table.eyebrow}
             title={detail.table.title}
             lede={detail.table.lede}
           />

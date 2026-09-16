@@ -48,10 +48,10 @@ export function organizationSchema(): Node {
        in copy. `areaServed` is a claim about reach, not a registered address. */
     areaServed: { "@type": "Place", name: "Worldwide" },
     knowsAbout: [
-      "AI agents",
-      "workflow automation",
-      "document processing",
       "business process automation",
+      "AI assistants for customer enquiries",
+      "document processing",
+      "operations reporting",
       "AI adoption for small business",
     ],
     contactPoint: [

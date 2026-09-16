@@ -103,6 +103,28 @@ own tab always works.
 - **Motion:** a staggered `fadeSlideUp` on the hero, a marquee strip, reveal-on-
   scroll sections and a scroll-progress rail. All of it collapses under
   `prefers-reduced-motion`, where the hero falls back to a still frame.
+
+### Voice
+
+Four rules, learned by getting them wrong first:
+
+1. **Lead with the work, not the category.** "We take the routine work off your
+   team" beats "we are an AI agency" — one is checkable against a visitor's own
+   week, the other asks them to know our industry first. The category can appear
+   later, if at all.
+2. **Name services by what the buyer gets.** "Remove the manual admin", not
+   "workflow automation". The mechanics go in the kicker underneath, where they
+   are useful rather than required reading.
+3. **Ten seconds, one idea.** The homepage hero answers who, what, for whom and
+   what next, in a headline plus one paragraph of 30 words at roughly grade 6.
+   Anything longer is a second paragraph on a different page.
+4. **No word a business owner would have to look up.** "Agent", "orchestration",
+   "platform", "solution", "digital transformation" all came out. Where the
+   technology matters to the decision — whether AI should touch a process at all
+   — the copy says so plainly instead of gesturing at it.
+
+The CMS makes all of this editable, which is the point: the voice rules are for
+new copy, not a lock on what ships.
 - **One theme, and it is light.** There is deliberately no `prefers-color-scheme`
   palette. A dark theme was built and removed: it was verified by measured
   contrast but could not be *looked at* in this environment, and a dark-mode

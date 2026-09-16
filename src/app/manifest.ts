@@ -16,7 +16,10 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#0a0a0a",
+    /* Matches the viewport's `themeColor`: one theme, stated once in each place
+       the browser looks for it. A black toolbar over a white page was an old
+       inconsistency, not a decision. */
+    theme_color: "#ffffff",
     icons: [
       { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
       { src: "/apple-icon", sizes: "180x180", type: "image/png" },

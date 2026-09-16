@@ -88,17 +88,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 /**
- * The browser's own chrome, which is the part of "dark mode" a stylesheet
- * cannot reach: form controls, scrollbars, the mobile toolbar. `light dark`
- * tells the browser both are supported and lets the CSS decide, and the two
- * `themeColor` entries paint the toolbar to match whichever is in play.
+ * The browser's own chrome — the part of the page a stylesheet does not draw:
+ * form controls, scrollbars, the mobile toolbar.
+ *
+ * `colorScheme: "light"` is deliberate and load-bearing. Without it, a visitor
+ * whose operating system is set to dark gets *browser-drawn* dark furniture on a
+ * light page: dark `<select>` menus, a dark scrollbar, dark autofill. Declaring
+ * light is what keeps native controls matching the design when the site itself
+ * has one theme.
  */
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0b" },
-  ],
-  colorScheme: "light dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

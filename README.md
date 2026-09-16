@@ -136,6 +136,32 @@ instead. Blog prose is Markdown paragraphs; if emphasis is added to the body cop
 later, it needs a real italic file or a deliberate alternative (weight, colour,
 or the display face) rather than `font-style: italic`.
 
+### The mobile action bar
+
+Below `lg` the header's primary call to action lives inside the menu sheet: two
+taps from anywhere past the hero, to reach the single action the site exists to
+produce. `SiteHeader` therefore renders a small floating bar at the bottom of the
+screen on small viewports, carrying the same CTA — one tap, from anywhere.
+
+It is deliberately conditional, because a permanent banner has its own cost:
+
+| Condition | Why |
+| --- | --- |
+| Only past the hero (`scrollY > 0.9 × innerHeight`) | The hero has its own two CTAs; the bar would be a third |
+| Not within 720px of the page bottom | Every page already ends with the same link in the footer, and two copies on screen at once reads as pressure |
+| Not on `/get-started` or `/contact` | Those *are* the destination — and on `/get-started` it would sit over the submit button of the form it points at |
+| Not while the menu sheet is open | The sheet has its own copy of the same link |
+
+Two implementation notes worth keeping:
+
+- **It is mounted only while visible**, not hidden with opacity. An invisible link
+  is still a focus stop for a keyboard user, and `aria-hidden` on a focusable
+  element is worse than either.
+- **The trigger is measured in viewport heights, not pixels.** The hero is a full
+  screen on a phone and a fraction of one on a tablet, so a fixed pixel threshold
+  would fire halfway through the hero on one and long past it on the other.
+  Resize is listened to as well, so rotating a phone re-evaluates without a scroll.
+
 ## Design system
 
 - **Black is the brand.** The wordmark is plain type, the mark is a black square
@@ -628,6 +654,13 @@ Then, for the international/production pass:
   `/solutions` and `/compare` were **orphans** — in the sitemap, linked from nowhere,
   because their child pages' breadcrumbs passed a label without an `href` while the
   services breadcrumb passed one. Both are now linked from every child page;
+- **the mobile action bar's logic was verified in the compiled bundle** rather
+  than by eye, since there is no browser here: the shipped chunk contains
+  `scrollY > 0.9 * innerHeight`, `scrollY + innerHeight > scrollHeight - 720`,
+  the `/get-started` // `/contact` exclusion and the four-way gate
+  `pastHero && !nearBottom && !mobileOpen && !funnelPage`, and the bar is absent
+  from the server HTML (so it cannot flash before hydration). What a build cannot
+  confirm is how it feels to scroll into — that needs a phone;
 - the split between the two defects above is worth noting: the missing `og:image` was
   invisible on the site and only visible in a link preview, which is exactly the kind
   of thing an audit has to check for rather than assume;

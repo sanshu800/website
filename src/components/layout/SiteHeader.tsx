@@ -18,6 +18,9 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * On the homepage the bar floats over the hero film with white type, then
  * becomes a solid paper bar the moment the page moves or a menu opens — the
  * same pattern as the hero reference, implemented without a scroll library.
+ *
+ * It also owns the mobile action bar, which keeps the primary call to action one
+ * tap away on small screens instead of behind the menu. See `showActionBar`.
  */
 export function SiteHeader({
   brand,
@@ -28,6 +31,8 @@ export function SiteHeader({
 }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [nearBottom, setNearBottom] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
@@ -35,11 +40,55 @@ export function SiteHeader({
   const panelRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
+  /*
+   * Mobile action bar.
+   *
+   * Below `lg` the header's primary call to action lives inside the menu sheet,
+   * which costs two taps from anywhere past the hero — the single action this
+   * site exists to produce, hidden behind a menu. The bar puts it one tap away
+   * once the hero has gone.
+   *
+   * It is not shown everywhere, because a permanent banner is its own problem:
+   *
+   *  - **Not on the funnel pages.** `/get-started` and `/contact` are the
+   *    destination; a button to them is noise, and on `/get-started` it would
+   *    hover over the submit button of the form it points at.
+   *  - **Not near the bottom.** Every page already ends with the same call to
+   *    action in the footer, and two copies of one link on screen at once reads
+   *    as pressure rather than as help.
+   *  - **Not while the menu is open**, which has its own copy of the same link.
+   */
+  const funnelPage = pathname === "/get-started" || pathname === "/contact";
+  const showActionBar = pastHero && !nearBottom && !mobileOpen && !funnelPage;
+
+  /*
+   * One listener for every scroll-derived state: the bar's background, and the
+   * mobile action bar's two conditions.
+   *
+   * `pastHero` is measured in viewport heights rather than pixels, because the
+   * hero is a full screen on a phone and a fraction of one on a tablet — a fixed
+   * pixel threshold would fire halfway through the hero on one and well past it
+   * on the other. `nearBottom` is what stops the action bar from sitting on top
+   * of the page's own closing call to action.
+   *
+   * Resize is listened to as well, so rotating a phone re-evaluates both without
+   * waiting for the next scroll.
+   */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
+      setPastHero(window.scrollY > window.innerHeight * 0.9);
+      setNearBottom(
+        window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 720,
+      );
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Every navigation surface closes itself from its own handlers, so no
@@ -393,6 +442,33 @@ export function SiteHeader({
           </div>
         </nav>
       </div>
+
+      {/*
+        The bar sits below the menu sheet (z-40 against the sheet's z-[45]) so an
+        open menu always wins, and it is mounted only while visible rather than
+        hidden with opacity — an invisible link is still a focus stop, and
+        `aria-hidden` on a focusable element is worse than either.
+      */}
+      <AnimatePresence>
+        {showActionBar && (
+          <motion.div
+            initial={reduce ? false : { y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={reduce ? { opacity: 0 } : { y: 20, opacity: 0 }}
+            transition={{ duration: 0.34, ease: EASE }}
+            style={{ bottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+            className="fixed inset-x-3 z-40 lg:hidden"
+          >
+            <Link
+              href={header.actions.primary.href}
+              className="flex h-12 items-center justify-center gap-2 rounded-xl bg-accent text-[0.9375rem] font-medium text-on-accent shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-transform duration-300 active:scale-[0.98]"
+            >
+              {header.actions.primary.label}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

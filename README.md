@@ -443,9 +443,9 @@ Copy `.env.example` if you want to set them.
    supported way to run it as long as somebody opens that page.
    (There are no customer accounts and no SSO story, because there is no product to
    log into — the admin is the only authenticated surface.)
-6. **Postgres + object storage** — once there is more than one node, or document
+7. **Postgres + object storage** — once there is more than one node, or document
    uploads are needed.
-7. **Domain and DNS** — `reygent.ai` appears in metadata, robots and sitemap.
+8. **Domain and DNS** — `reygent.ai` appears in metadata, robots and sitemap.
 
 ## Hero film and other uploaded media
 

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Lock } from "lucide-react";
 import { AdminSignInForm } from "@/components/admin/SignInForm";
 import { ReygentWordmark } from "@/components/brand/Logo";
-import { getSession } from "@/lib/auth";
+import { getSession, userCount } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -16,6 +16,14 @@ export const metadata: Metadata = {
  *
  * Unlinked from the public site and marked `noindex`: the only way here is the
  * URL. A session that is already valid skips the form entirely.
+ *
+ * When the database has no accounts, this says so *before* anyone types a
+ * password. That state is the normal one on a fresh deployment — the seed that
+ * creates the demo logins is a development tool — and the credential failure it
+ * causes reads as a wrong password, which sends people looking for a typo that
+ * is not there. Telling them up front costs one count on a page only an
+ * administrator ever loads, and it is safe to say: a site with no accounts has
+ * nothing to guess.
  */
 export default async function AdminLoginPage({
   searchParams,
@@ -27,6 +35,7 @@ export default async function AdminLoginPage({
 
   const params = await searchParams;
   const target = params.next && params.next.startsWith("/admin") ? params.next : "/admin";
+  const noAccounts = userCount() === 0;
 
   return (
     <section className="relative flex min-h-[100svh] items-center border-b border-line bg-paper pb-16 pt-24">
@@ -45,6 +54,22 @@ export default async function AdminLoginPage({
             Accounts for this site are created from the command line, not from a public
             form. There is no sign-up here.
           </p>
+
+          {noAccounts && (
+            <div
+              role="status"
+              className="mt-6 rounded-lg border border-line bg-mist px-4 py-3 text-[0.8125rem] text-ink"
+            >
+              <p className="font-medium">This site has no admin accounts yet.</p>
+              <p className="mt-1.5 leading-relaxed text-fog">
+                A new deployment starts empty — the demo logins come from a development
+                seed. Create your account on the server:
+              </p>
+              <code className="mt-2 block rounded-md bg-paper px-2.5 py-1.5 font-mono text-[0.6875rem] text-ink">
+                npm run admin:create
+              </code>
+            </div>
+          )}
 
           <div className="mt-7">
             <AdminSignInForm next={target} />

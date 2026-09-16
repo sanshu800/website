@@ -18,7 +18,10 @@ import { cn } from "@/lib/utils";
  */
 
 const control =
-  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog outline-none transition-[border-color,box-shadow] duration-200 focus-visible:border-accent focus-visible:shadow-[0_0_0_3px_rgba(10,10,11,0.10)] disabled:opacity-60";
+  /* Focus is the site-wide accent outline (see :focus-visible in globals.css),
+     not a bespoke shadow halo, so a focused field looks like every other
+     focused control. The border darkens underneath it for a second cue. */
+  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog transition-[border-color] duration-200 focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed";
 
 export function Label({
   children,

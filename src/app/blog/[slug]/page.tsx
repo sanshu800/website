@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Info } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
@@ -65,12 +65,21 @@ function BlockView({ block }: { block: Block }) {
         </blockquote>
       );
     case "callout":
+      /*
+       * A callout, marked as one by an icon and a tinted surface rather than a
+       * thick coloured rule down the left edge. The rule is the single most
+       * recognisable tell of a generated interface, and it was doing no work
+       * the icon and the tint were not already doing better.
+       */
       return (
-        <aside className="rounded-xl border-l-2 border-accent bg-accent-soft/60 p-5">
-          <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
-            {block.title}
-          </p>
-          <p className="mt-2 text-[1rem] text-fg-2">{block.text}</p>
+        <aside className="flex gap-3.5 rounded-xl border border-line bg-mist p-5">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+          <div>
+            <p className="font-mono text-[0.6875rem] uppercase tracking-wide text-accent">
+              {block.title}
+            </p>
+            <p className="mt-2 text-[1rem] text-fg-2">{block.text}</p>
+          </div>
         </aside>
       );
     case "p":

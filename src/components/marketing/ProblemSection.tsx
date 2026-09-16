@@ -23,7 +23,7 @@ export function ProblemSection() {
     <section className="relative bg-night py-24 text-on-night sm:py-28 lg:py-32">
       <div
         aria-hidden="true"
-        className="grid-field-dark pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_0%,rgba(255,255,255,0.05),transparent_70%)]"
       />
       <Container width="wide" className="relative">
         <SectionHeading

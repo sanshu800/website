@@ -61,7 +61,7 @@ export function ContentEditor({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search every field on this surface…"
             aria-label="Search fields"
-            className="h-11 w-full rounded-lg border border-field bg-paper pl-9 pr-3 text-[0.9375rem] text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/10"
+            className="h-11 w-full rounded-lg border border-field bg-paper pl-9 pr-3 text-[0.9375rem] text-ink focus-visible:border-accent"
           />
         </div>
 

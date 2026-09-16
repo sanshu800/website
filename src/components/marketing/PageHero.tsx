@@ -43,9 +43,12 @@ export function PageHero({
       )}
     >
       {onInk ? (
+        /* A plain surface: the dark band already separates itself from the page
+           either side of it, and a hairline grid on top of that is decoration
+           that reads as generated rather than drawn. */
         <div
           aria-hidden="true"
-          className="grid-field-dark pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_0%,rgba(255,255,255,0.05),transparent_70%)]"
         />
       ) : (
         <div

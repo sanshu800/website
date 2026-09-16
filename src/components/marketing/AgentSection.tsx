@@ -39,9 +39,17 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
           <p className="text-[0.8125rem] text-fg-2">{copy.intro}</p>
           <ul className="mt-3 space-y-3">
             {copy.items.map((row) => (
-              <li key={row.name} className="border-l-2 border-danger/40 pl-3">
-                <p className="text-[0.8125rem] font-medium text-ink">{row.name}</p>
-                <p className="mt-0.5 text-[0.75rem] text-fog">{row.why}</p>
+              <li key={row.name} className="rounded-lg border border-line bg-mist/60 px-3 py-2.5">
+                <p className="flex items-center gap-2 text-[0.8125rem] font-medium text-ink">
+                  {/* The one row that needs a decision is marked by a dot, which
+                      says the same thing as a thick red rule without shouting. */}
+                  <span
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-danger"
+                    aria-hidden="true"
+                  />
+                  {row.name}
+                </p>
+                <p className="mt-0.5 pl-3.5 text-[0.75rem] text-fog">{row.why}</p>
               </li>
             ))}
           </ul>

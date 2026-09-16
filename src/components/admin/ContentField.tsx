@@ -85,8 +85,8 @@ export function ContentField({
   }
 
   const inputClass = cn(
-    "w-full rounded-lg border bg-paper px-3.5 py-2.5 text-[0.9375rem] text-ink outline-none transition-colors",
-    "focus:border-accent focus:ring-2 focus:ring-accent/10 disabled:opacity-60",
+    "w-full rounded-lg border bg-paper px-3.5 py-2.5 text-[0.9375rem] text-ink transition-colors",
+    "focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed",
     dirty ? "border-accent" : "border-field",
   );
 

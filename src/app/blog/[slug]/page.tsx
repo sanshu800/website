@@ -58,7 +58,7 @@ function BlockView({ block }: { block: Block }) {
         <blockquote>
           {block.text}
           {block.attribution && (
-            <footer className="mt-3 font-mono text-[0.75rem] not-italic text-fog">
+            <footer className="mt-3 font-mono text-label not-italic text-fog">
               — {block.attribution}
             </footer>
           )}
@@ -75,10 +75,10 @@ function BlockView({ block }: { block: Block }) {
         <aside className="flex gap-3.5 rounded-xl border border-line bg-mist p-5">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
           <div>
-            <p className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+            <p className="font-mono text-eyebrow uppercase tracking-label text-accent">
               {block.title}
             </p>
-            <p className="mt-2 text-[1rem] text-fg-2">{block.text}</p>
+            <p className="mt-2 text-body-lg text-fg-2">{block.text}</p>
           </div>
         </aside>
       );
@@ -120,12 +120,12 @@ export default async function PostPage({
           <Container width="narrow">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog transition-colors hover:text-ink"
+              className="inline-flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog transition-colors hover:text-ink"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               All articles
             </Link>
-            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+            <p className="mt-8 font-mono text-eyebrow uppercase tracking-label text-accent">
               {post.category}
             </p>
             <h1 className="mt-4 text-display-l text-ink">{post.title}</h1>
@@ -133,23 +133,23 @@ export default async function PostPage({
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-6">
               <span className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-[0.75rem] font-semibold text-accent-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-label font-semibold text-accent-2">
                   {initials(post.author.name)}
                 </span>
                 <span>
-                  <span className="block text-[0.875rem] font-medium text-ink">
+                  <span className="block text-small font-medium text-ink">
                     {post.author.name}
                   </span>
-                  <span className="block text-[0.75rem] text-fog">{post.author.role}</span>
+                  <span className="block text-label text-fog">{post.author.role}</span>
                 </span>
               </span>
-              <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
+              <span className="flex items-center gap-1.5 font-mono text-eyebrow text-fog">
                 <Clock className="h-3.5 w-3.5" />
                 {post.readingMinutes} min read
               </span>
               <time
                 dateTime={post.publishedAt}
-                className="font-mono text-[0.6875rem] text-fog"
+                className="font-mono text-eyebrow text-fog"
               >
                 {formatDate(post.publishedAt, "long")}
               </time>
@@ -166,7 +166,7 @@ export default async function PostPage({
             </div>
 
             <div className="mt-14 rounded-2xl border border-line bg-mist p-6 sm:p-7">
-              <p className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+              <p className="font-mono text-eyebrow uppercase tracking-label text-fog">
                 Run this on your own business
               </p>
               <p className="mt-3 text-body-lg text-fg-2">
@@ -177,13 +177,13 @@ export default async function PostPage({
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
                   href="/guides"
-                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-[0.875rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-small font-medium text-on-accent transition-colors hover:bg-accent-2"
                 >
                   Get the playbooks
                 </Link>
                 <Link
                   href="/get-started"
-                  className="inline-flex h-10 items-center rounded-full border border-line-strong bg-paper px-4 text-[0.875rem] font-medium text-ink transition-colors hover:bg-mist"
+                  className="inline-flex h-10 items-center rounded-full border border-line-strong bg-paper px-4 text-small font-medium text-ink transition-colors hover:bg-mist"
                 >
                   Book a free audit
                 </Link>
@@ -203,13 +203,13 @@ export default async function PostPage({
                   href={`/blog/${item.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-line p-5 transition-all duration-300 hover:border-line-strong hover:shadow-sm"
                 >
-                  <span className="font-mono text-[0.625rem] uppercase tracking-label text-accent">
+                  <span className="font-mono text-label uppercase tracking-label text-accent">
                     {item.category}
                   </span>
-                  <span className="mt-2 flex-1 font-display text-[1.0625rem] leading-snug text-ink">
+                  <span className="mt-2 flex-1 font-display text-body-lg leading-snug text-ink">
                     {item.title}
                   </span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-[0.8125rem] text-fog">
+                  <span className="mt-4 inline-flex items-center gap-2 text-micro text-fog">
                     {item.readingMinutes} min read
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>

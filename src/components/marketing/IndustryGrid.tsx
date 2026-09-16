@@ -34,7 +34,7 @@ export function IndustryGrid() {
                 <div className={cn("h-1.5 w-full", FIELD[solution.slug])} />
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display text-[1.25rem] text-ink">
+                    <h3 className="font-display text-display-s text-ink">
                       {solution.name}
                     </h3>
                     <ArrowRight className="h-4 w-4 text-fog transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-ink" />
@@ -45,7 +45,7 @@ export function IndustryGrid() {
                     {solution.metrics.slice(0, 3).map((metric) => (
                       <li
                         key={metric.label}
-                        className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
+                        className="rounded-full bg-mist px-2.5 py-1 font-mono text-label text-fog"
                       >
                         {metric.label}
                       </li>

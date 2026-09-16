@@ -10,8 +10,15 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     "bg-accent text-on-accent shadow-[0_1px_2px_rgba(11,11,16,0.12)] hover:bg-accent-2 hover:shadow-accent active:translate-y-px",
+  /*
+   * Deliberately more than a hairline. This variant is the "not the main action
+   * but still an action" button, and sitting next to a solid primary one on a
+   * tinted card it read as a footer rather than a control — a 1px #cfcfcf rule
+   * on #f2f2f2 asks the reader to work out whether it is clickable. A darker
+   * border and a 1px shadow say "button" without competing with the primary.
+   */
   secondary:
-    "border border-line-strong bg-paper text-ink hover:border-ink/25 hover:bg-mist active:translate-y-px",
+    "border border-ink/30 bg-paper text-ink shadow-[0_1px_2px_rgba(11,11,16,0.06)] hover:border-ink/45 hover:bg-mist active:translate-y-px",
   ghost: "text-fg-2 hover:bg-mist hover:text-ink",
   inverse:
     "bg-paper text-ink hover:bg-mist-2 active:translate-y-px border border-transparent",
@@ -27,9 +34,9 @@ const variants: Record<Variant, string> = {
  * input device that decides, not the viewport width.
  */
 const sizes: Record<Size, string> = {
-  sm: "h-8 pointer-coarse:h-9 px-3.5 text-[0.8125rem]",
-  md: "h-10 pointer-coarse:h-11 px-4.5 text-[0.875rem]",
-  lg: "h-12 px-6 text-[0.9375rem]",
+  sm: "h-8 pointer-coarse:h-9 px-3.5 text-micro",
+  md: "h-10 pointer-coarse:h-11 px-4.5 text-small",
+  lg: "h-12 px-6 text-body",
 };
 
 type CommonProps = {

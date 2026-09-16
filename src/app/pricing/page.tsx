@@ -47,9 +47,9 @@ export default function PricingPage() {
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <h2 className="font-display text-[1.25rem] text-ink">{tier.name}</h2>
+                    <h2 className="font-display text-display-s text-ink">{tier.name}</h2>
                     {tier.highlight && (
-                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
+                      <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-label uppercase tracking-label text-on-accent">
                         {plans.popularBadge}
                       </span>
                     )}
@@ -62,7 +62,7 @@ export default function PricingPage() {
                       <span className="text-micro text-fog">{plans.unit}</span>
                     )}
                   </p>
-                  <p className="mt-2 text-[0.75rem] text-fog">{tier.priceNote}</p>
+                  <p className="mt-2 text-label text-fog">{tier.priceNote}</p>
                   <p className="mt-5 text-micro text-fog">{tier.summary}</p>
 
                   <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
@@ -80,7 +80,7 @@ export default function PricingPage() {
                   <Link
                     href={tier.href}
                     className={cn(
-                      "mt-7 inline-flex h-11 items-center justify-center rounded-lg text-[0.9375rem] font-medium transition-colors",
+                      "mt-7 inline-flex h-11 items-center justify-center rounded-lg text-body font-medium transition-colors",
                       tier.highlight
                         ? "bg-accent text-on-accent hover:bg-accent-2"
                         : "border border-line-strong text-ink hover:bg-mist",
@@ -113,7 +113,7 @@ export default function PricingPage() {
                 <tr className="border-b border-line-strong">
                   <th
                     scope="col"
-                    className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog"
+                    className="py-3 pr-6 font-mono text-eyebrow uppercase tracking-label text-fog"
                   >
                     {comparison.featureColumn}
                   </th>
@@ -122,7 +122,7 @@ export default function PricingPage() {
                       key={`${name}-${index}`}
                       scope="col"
                       className={cn(
-                        "py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label",
+                        "py-3 pr-6 font-mono text-eyebrow uppercase tracking-label",
                         index === 1 ? "text-accent" : "text-fog",
                       )}
                     >
@@ -137,12 +137,12 @@ export default function PricingPage() {
                     key={`${row.row}-${index}`}
                     className={index % 2 === 1 ? "bg-paper/60" : undefined}
                   >
-                    <th scope="row" className="py-3.5 pr-6 text-[0.875rem] font-medium text-ink">
+                    <th scope="row" className="py-3.5 pr-6 text-small font-medium text-ink">
                       {row.row}
                     </th>
-                    <td className="py-3.5 pr-6 text-[0.875rem] text-fog">{row.core}</td>
-                    <td className="py-3.5 pr-6 text-[0.875rem] text-fg-2">{row.pro}</td>
-                    <td className="py-3.5 pr-6 text-[0.875rem] text-fog">{row.ent}</td>
+                    <td className="py-3.5 pr-6 text-small text-fog">{row.core}</td>
+                    <td className="py-3.5 pr-6 text-small text-fg-2">{row.pro}</td>
+                    <td className="py-3.5 pr-6 text-small text-fog">{row.ent}</td>
                   </tr>
                 ))}
               </tbody>
@@ -162,7 +162,7 @@ export default function PricingPage() {
               <dl className="divide-y divide-line border-t border-line">
                 {faqs.map((item, index) => (
                   <div key={`${item.q}-${index}`} className="py-6">
-                    <dt className="text-[1.0625rem] font-medium text-ink">{item.q}</dt>
+                    <dt className="text-body-lg font-medium text-ink">{item.q}</dt>
                     <dd className="mt-2.5 text-body-lg text-fog">{item.a}</dd>
                   </div>
                 ))}

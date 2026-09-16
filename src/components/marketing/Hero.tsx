@@ -82,7 +82,7 @@ export function Hero() {
         {/* Top: badge + headline */}
         <Container width="wide">
           <div className="max-w-[46rem]">
-            <p className="animate-[fadeSlideUp_0.8s_ease_0.2s_both] text-[0.75rem] text-on-night/90 sm:text-[0.875rem]">
+            <p className="animate-[fadeSlideUp_0.8s_ease_0.2s_both] text-label text-on-night sm:text-small">
               <span className="inline-flex items-center gap-2.5">
                 <span
                   aria-hidden="true"
@@ -107,7 +107,7 @@ export function Hero() {
         <Container width="wide">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div className="max-w-[26rem] sm:max-w-[32rem]">
-              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-[0.875rem] leading-relaxed text-on-night/60 sm:mb-6 sm:text-[1rem] md:text-[1.125rem]">
+              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-small leading-relaxed text-on-night-2 sm:mb-6 sm:text-body-lg md:text-display-s">
                 {hero.summary}
               </p>
 
@@ -115,21 +115,21 @@ export function Hero() {
                 <div className="flex flex-wrap items-center gap-3">
                   <Link
                     href={hero.primaryCta.href}
-                    className="inline-flex items-center gap-2 rounded-lg bg-on-ink px-5 py-2.5 text-[0.875rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:px-6 sm:py-3"
+                    className="inline-flex items-center gap-2 rounded-lg bg-on-ink px-5 py-2.5 text-small font-medium text-ink transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:px-6 sm:py-3"
                   >
                     {hero.primaryCta.label}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link
                     href={hero.secondaryCta.href}
-                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-[0.875rem] font-medium text-on-night backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
+                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-small font-medium text-on-night backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
                   >
                     <Play className="h-3.5 w-3.5" />
                     {hero.secondaryCta.label}
                   </Link>
                 </div>
 
-                <p className="mt-4 text-[0.75rem] text-on-night/45 sm:text-[0.8125rem]">
+                <p className="mt-4 text-label text-on-night-3 sm:text-micro">
                   {hero.footnote}
                 </p>
               </div>
@@ -142,10 +142,10 @@ export function Hero() {
                   key={fact.label}
                   className="animate-[fadeSlideUp_0.8s_ease_1.05s_both]"
                 >
-                  <dd className="tabular font-display text-[1.5rem] leading-none tracking-[-0.03em] text-on-night">
+                  <dd className="tabular font-display text-display-m leading-none tracking-[-0.03em] text-on-night">
                     {fact.value}
                   </dd>
-                  <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-on-night/45">
+                  <dt className="mt-2 font-mono text-label uppercase tracking-[0.14em] text-on-night-3">
                     {fact.label}
                   </dt>
                 </div>

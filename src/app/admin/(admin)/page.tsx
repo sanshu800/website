@@ -79,9 +79,9 @@ export default function ContentAdminPage() {
                     <FileText className="h-4 w-4" />
                   </span>
                   <div className="min-w-[180px] flex-1">
-                    <p className="text-[0.9375rem] font-medium text-ink">{doc.title}</p>
-                    <p className="mt-0.5 text-[0.75rem] leading-relaxed text-fog">{doc.blurb}</p>
-                    <p className="mt-1 flex flex-wrap items-center gap-2 text-[0.6875rem] text-fog">
+                    <p className="text-body font-medium text-ink">{doc.title}</p>
+                    <p className="mt-0.5 text-label leading-relaxed text-fog">{doc.blurb}</p>
+                    <p className="mt-1 flex flex-wrap items-center gap-2 text-eyebrow text-fog">
                       <span className="font-mono">{total} fields</span>
                       {edited > 0 && (
                         <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-accent">
@@ -106,7 +106,7 @@ export default function ContentAdminPage() {
                   </div>
                   <Link
                     href={`/admin/edit/${doc.id}`}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-night px-3.5 text-[0.8125rem] font-medium text-on-night transition-colors hover:bg-accent-2"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-night px-3.5 text-micro font-medium text-on-night transition-colors hover:bg-accent-2"
                   >
                     Edit
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -117,12 +117,12 @@ export default function ContentAdminPage() {
           </Card>
 
           <Card title="Deliberately not editable" className="mt-4">
-            <p className="text-[0.8125rem] leading-relaxed text-fog">
+            <p className="text-micro leading-relaxed text-fog">
               Every word a visitor reads is editable, along with the search metadata and the hero
               assets. What stays in code is structure: layout, components and the design tokens
               behind them.
             </p>
-            <ul className="mt-4 grid gap-2 text-[0.8125rem] text-fog sm:grid-cols-2">
+            <ul className="mt-4 grid gap-2 text-micro text-fog sm:grid-cols-2">
               {NOT_WIRED.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-line-strong" />
@@ -139,28 +139,28 @@ export default function ContentAdminPage() {
             action={
               <Link
                 href="/admin/history"
-                className="text-[0.75rem] font-medium text-accent underline underline-offset-2"
+                className="text-label font-medium text-accent underline underline-offset-2"
               >
                 Full history
               </Link>
             }
           >
             {revisions.length === 0 ? (
-              <p className="text-[0.8125rem] text-fog">
+              <p className="text-micro text-fog">
                 No edits yet. Everything on the site is the copy that shipped with the code.
               </p>
             ) : (
               <ul className="divide-y divide-line">
                 {revisions.map((revision) => (
                   <li key={revision.id} className="py-3.5 first:pt-0">
-                    <p className="font-mono text-[0.6875rem] text-fog">{revision.key}</p>
-                    <p className="mt-1 line-clamp-2 text-[0.8125rem] text-ink">
+                    <p className="font-mono text-eyebrow text-fog">{revision.key}</p>
+                    <p className="mt-1 line-clamp-2 text-micro text-ink">
                       {revision.action === "reset"
                         ? "reset to shipped copy"
                         : (revision.new_value ?? "—")}
                     </p>
                     <div className="mt-1.5 flex items-center justify-between gap-2">
-                      <span className="text-[0.6875rem] text-fog">
+                      <span className="text-eyebrow text-fog">
                         {revision.actor ?? "unknown"} · {relativeTime(revision.at)}
                       </span>
                       <RevertButton revisionId={revision.id} label="Undo" />

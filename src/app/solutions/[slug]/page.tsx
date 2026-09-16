@@ -57,13 +57,13 @@ export default async function SolutionPage({
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               Book a free audit
             </Link>
             <Link
               href="/how-we-work"
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               See how we work
             </Link>
@@ -76,7 +76,7 @@ export default async function SolutionPage({
                 <Screen name={SCREENS[items.indexOf(solution) % SCREENS.length]!} />
               </div>
             </div>
-            <p className="mt-3 font-mono text-[0.6875rem] text-fog">
+            <p className="mt-3 font-mono text-eyebrow text-fog">
               Illustrative interface · your configuration will differ
             </p>
           </Reveal>
@@ -94,7 +94,7 @@ export default async function SolutionPage({
               <RevealItem key={point.title}>
                 <div className="border-t border-line pt-5">
                   <Factory className="h-5 w-5 text-accent" aria-hidden="true" />
-                  <h3 className="mt-4 text-[1.0625rem] font-medium text-ink">{point.title}</h3>
+                  <h3 className="mt-4 text-body-lg font-medium text-ink">{point.title}</h3>
                   <p className="mt-2.5 text-micro text-fog">{point.body}</p>
                 </div>
               </RevealItem>
@@ -115,7 +115,7 @@ export default async function SolutionPage({
                 <div className="lg:col-span-3">
                   <Link
                     href={fit.href}
-                    className="group inline-flex items-center gap-2 font-display text-[1.25rem] text-ink"
+                    className="group inline-flex items-center gap-2 font-display text-display-s text-ink"
                   >
                     {fit.module}
                     <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -130,10 +130,10 @@ export default async function SolutionPage({
             <div className="mt-12 grid gap-6 rounded-2xl border border-line bg-paper p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4">
               {solution.metrics.map((metric) => (
                 <div key={metric.label}>
-                  <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                  <p className="font-mono text-label uppercase tracking-label text-fog">
                     {metric.label}
                   </p>
-                  <p className="mt-2 text-[0.9375rem] font-medium text-ink">{metric.value}</p>
+                  <p className="mt-2 text-body font-medium text-ink">{metric.value}</p>
                 </div>
               ))}
             </div>
@@ -147,7 +147,7 @@ export default async function SolutionPage({
             <div className="flex items-start gap-6 rounded-2xl bg-night p-7 text-on-night sm:p-9">
               <TrendingUp className="mt-1 h-6 w-6 shrink-0 text-accent-3" aria-hidden="true" />
               <div>
-                <blockquote className="font-display text-[1.25rem] leading-snug text-on-night">
+                <blockquote className="font-display text-display-s leading-snug text-on-night">
                   “{proof[0]!.quote}”
                 </blockquote>
                 <p className="mt-4 text-micro text-on-night-2">
@@ -169,7 +169,7 @@ export default async function SolutionPage({
                 href={`/solutions/${item.slug}`}
                 className="group flex items-center justify-between rounded-xl border border-line px-5 py-4 transition-colors hover:bg-mist"
               >
-                <span className="text-[0.9375rem] font-medium text-ink">{item.name}</span>
+                <span className="text-body font-medium text-ink">{item.name}</span>
                 <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             ))}

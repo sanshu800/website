@@ -73,7 +73,7 @@ export function ReygentWordmark({
       {withMark && <ReygentMark className="h-6 w-6 shrink-0" tone={tone} />}
       <span
         className={cn(
-          "font-display text-[1.25rem] font-semibold leading-none tracking-[-0.035em]",
+          "font-display text-display-s font-semibold leading-none tracking-[-0.035em]",
           tone === "on-ink" ? "text-on-night" : "text-ink",
         )}
       >
@@ -167,14 +167,14 @@ export function ClientWordmark({
       className={cn(
         "inline-flex items-center gap-2.5 whitespace-nowrap transition-colors duration-300",
         tone === "on-ink"
-          ? "text-white/65 hover:text-white"
-          : "text-ink/55 hover:text-ink",
+          ? "text-on-night hover:text-on-night"
+          : "text-fog hover:text-ink",
         className,
       )}
       title={`${client.name} — ${client.sector}`}
     >
       <Mark kind={client.mark} />
-      <span className="font-display text-[0.9375rem] font-medium tracking-[-0.015em]">
+      <span className="font-display text-body font-medium tracking-[-0.015em]">
         {client.name}
       </span>
     </span>

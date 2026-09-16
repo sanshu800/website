@@ -29,13 +29,13 @@ export default function SecurityPage() {
           <>
             <Link
               href={copy.hero.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.primary.label}
             </Link>
             <Link
               href={copy.hero.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {copy.hero.secondary.label}
             </Link>
@@ -48,10 +48,10 @@ export default function SecurityPage() {
           <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
             {copy.posture.map((item) => (
               <div key={item.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
-                <dt className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+                <dt className="font-mono text-eyebrow uppercase tracking-label text-fog">
                   {item.label}
                 </dt>
-                <dd className="text-[0.9375rem] font-medium text-ink">{item.value}</dd>
+                <dd className="text-body font-medium text-ink">{item.value}</dd>
               </div>
             ))}
           </dl>
@@ -67,11 +67,11 @@ export default function SecurityPage() {
             {page.sections.map((section, index) => (
               <RevealItem key={section.h}>
                 <div className="flex gap-5 border-t border-line pt-5">
-                  <span className="font-mono text-[0.6875rem] text-accent">
+                  <span className="font-mono text-eyebrow text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h2 className="text-[1.0625rem] font-medium text-ink">{section.h}</h2>
+                    <h2 className="text-body-lg font-medium text-ink">{section.h}</h2>
                     <p className="mt-2.5 text-micro text-fog">{section.p}</p>
                   </div>
                 </div>
@@ -101,12 +101,12 @@ export default function SecurityPage() {
                 <Lock className="h-5 w-5 text-accent-3" aria-hidden="true" />
                 <span className="text-body text-on-night">
                   {copy.disclosure.mailbox}
-                  <span className="mt-0.5 block text-[0.75rem] text-on-night-2">
+                  <span className="mt-0.5 block text-label text-on-night-2">
                     {copy.disclosure.pgp}
                   </span>
                 </span>
               </a>
-              <p className="mt-4 text-[0.75rem] text-on-night-2">
+              <p className="mt-4 text-label text-on-night-2">
                 {copy.disclosure.placeholderNote}
               </p>
             </div>

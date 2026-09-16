@@ -242,13 +242,17 @@ export const footerNav = {
     { label: "Partners", href: "/partners" },
     { label: "Newsletter", href: "/newsletter" },
   ],
+  /*
+   * Legal pages are absent here on purpose. Security, Privacy and Terms each
+   * appeared twice in the footer — once in this column and again in the utility
+   * bar at the bottom, where readers expect them — which is noise, not
+   * reassurance. The utility bar renders `footer.legalLinks`, so removing them
+   * here leaves every one of those pages linked exactly once.
+   */
   company: [
     { label: "About", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
-    { label: "Security", href: "/security" },
-    { label: "Privacy", href: "/legal/privacy" },
-    { label: "Terms", href: "/legal/terms" },
   ],
 } as const;
 

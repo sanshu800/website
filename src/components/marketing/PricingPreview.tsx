@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPricing } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
@@ -35,9 +35,9 @@ export function PricingPreview() {
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display text-[1.125rem] text-ink">{tier.name}</h3>
+                  <h3 className="font-display text-display-s text-ink">{tier.name}</h3>
                   {tier.highlight && (
-                    <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
+                    <span className="rounded-full bg-accent px-3 py-1 font-mono text-label uppercase tracking-label text-on-accent">
                       {plans.popularBadge}
                     </span>
                   )}
@@ -51,7 +51,7 @@ export function PricingPreview() {
                     <span className="text-micro text-fog">{plans.unit}</span>
                   )}
                 </div>
-                <p className="mt-2 text-[0.75rem] text-fog">{tier.priceNote}</p>
+                <p className="mt-2 text-label text-fog">{tier.priceNote}</p>
 
                 <p className="mt-5 text-micro text-fog">{tier.summary}</p>
 
@@ -72,6 +72,7 @@ export function PricingPreview() {
                   variant={tier.highlight ? "primary" : "secondary"}
                   className="mt-7"
                   full
+                  iconRight={<ArrowRight className="h-4 w-4" aria-hidden="true" />}
                 >
                   {tier.cta}
                 </ButtonLink>
@@ -81,13 +82,7 @@ export function PricingPreview() {
         </RevealGroup>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
-          <Link
-            href="/pricing"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
-          >
-            {preview.compareLink}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </Link>
+          <ArrowLink href="/pricing">{preview.compareLink}</ArrowLink>
           <span className="text-micro text-fog">{preview.footnote}</span>
         </div>
 

@@ -42,18 +42,18 @@ export default function ContentHistoryPage() {
 
       {orphans.length > 0 && (
         <Card title="Orphaned edits" className="mb-4">
-          <p className="text-[0.8125rem] leading-relaxed text-fog">
+          <p className="text-micro leading-relaxed text-fog">
             These stored values no longer match a field in the document — the copy they belonged to
             was renamed or deleted in code. Nothing is rendering them.
           </p>
           <ul className="mt-4 divide-y divide-line">
             {orphans.map((orphan) => (
               <li key={orphan.key} className="flex flex-wrap items-center gap-3 py-3">
-                <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.6875rem] text-fog">
+                <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-eyebrow text-fog">
                   {orphan.doc.title}
                 </span>
-                <span className="font-mono text-[0.6875rem] text-fog">{orphan.path}</span>
-                <span className="flex-1 text-[0.8125rem] text-fog">“{orphan.value.slice(0, 80)}”</span>
+                <span className="font-mono text-eyebrow text-fog">{orphan.path}</span>
+                <span className="flex-1 text-micro text-fog">“{orphan.value.slice(0, 80)}”</span>
                 <RevertButton keyName={orphan.key} label="Drop" />
               </li>
             ))}
@@ -63,7 +63,7 @@ export default function ContentHistoryPage() {
 
       <Card title={`${revisions.length} most recent changes`}>
         {revisions.length === 0 ? (
-          <p className="text-[0.8125rem] text-fog">
+          <p className="text-micro text-fog">
             Nothing has been edited yet — the site is running on the copy in code.{" "}
             <Link href="/admin" className="text-accent underline underline-offset-2">
               Start with a surface
@@ -77,27 +77,27 @@ export default function ContentHistoryPage() {
               return (
                 <li key={revision.id} className="py-4 first:pt-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.6875rem] text-fog">
+                    <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-eyebrow text-fog">
                       {doc?.title ?? revision.doc}
                     </span>
-                    <span className="text-[0.8125rem] font-medium text-ink">
+                    <span className="text-micro font-medium text-ink">
                       {titleForPath(revision.path)}
                     </span>
-                    <span className="text-[0.75rem] text-fog">
+                    <span className="text-label text-fog">
                       {ACTION_LABEL[revision.action] ?? revision.action}
                     </span>
                   </div>
 
-                  <div className="mt-2 grid gap-2 text-[0.8125rem] sm:grid-cols-2">
+                  <div className="mt-2 grid gap-2 text-micro sm:grid-cols-2">
                     <p className="rounded-lg bg-mist px-3 py-2 text-fog">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                      <span className="font-mono text-label uppercase tracking-label text-fog">
                         before
                       </span>
                       <br />
                       {revision.old_value ? revision.old_value : "— shipped copy —"}
                     </p>
                     <p className="rounded-lg bg-paper px-3 py-2 text-ink ring-1 ring-inset ring-line">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                      <span className="font-mono text-label uppercase tracking-label text-fog">
                         after
                       </span>
                       <br />
@@ -106,7 +106,7 @@ export default function ContentHistoryPage() {
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-[0.6875rem] text-fog">
+                    <span className="text-eyebrow text-fog">
                       {revision.actor ?? "unknown"}
                       {revision.actor_email ? ` · ${revision.actor_email}` : ""} ·{" "}
                       {relativeTime(revision.at)}

@@ -51,7 +51,7 @@ export default async function LegalPage({
           <div className="space-y-10">
             {page.sections.map((section) => (
               <div key={section.h}>
-                <h2 className="font-display text-[1.25rem] text-ink">{section.h}</h2>
+                <h2 className="font-display text-display-s text-ink">{section.h}</h2>
                 <p className="mt-3 text-body-lg text-fog">{section.p}</p>
               </div>
             ))}
@@ -64,7 +64,7 @@ export default async function LegalPage({
                 <li key={item}>
                   <Link
                     href={`/legal/${item}`}
-                    className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
+                    className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-micro text-fg-2 transition-colors hover:bg-mist"
                   >
                     {pages[item as keyof typeof pages].title}
                   </Link>
@@ -73,7 +73,7 @@ export default async function LegalPage({
               <li>
                 <Link
                   href="/security"
-                  className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-[0.8125rem] text-fg-2 transition-colors hover:bg-mist"
+                  className="inline-flex items-center rounded-lg border border-line px-3.5 py-1.5 text-micro text-fg-2 transition-colors hover:bg-mist"
                 >
                   Security
                 </Link>

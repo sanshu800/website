@@ -63,25 +63,38 @@ function StageRow({
     target: ref,
     offset: ["start 85%", "start 55%"],
   });
+  /*
+   * Opacity is the only thing the scroll drives. The marker used to scale from
+   * 0.7 to 1 as its row came into view, which meant the four markers were
+   * different sizes at any given moment — and a transform scales the 2px border
+   * with the circle, so the smaller one also looked thinner. Two steps could be
+   * compared side by side and look like different kinds of thing. The progress
+   * line down the left already carries "how far you are", so the marker does not
+   * need to.
+   */
   const opacity = useTransform(scrollYProgress, [0, 1], [0.45, 1]);
-  const dotScale = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
 
   return (
     <li
       ref={ref}
+      /* The two halves of a step are adjacent — columns 1-6 and 7-12 with only
+         the gutter between them. They used to be 1-5 and 9-12, which left three
+         empty columns down the middle: at a wide viewport the bullet list sat
+         most of a screen away from the sentence it belonged to, and reading down
+         the list meant losing track of which step you were in. */
       className="relative grid gap-6 pb-14 pl-12 last:pb-0 lg:grid-cols-12 lg:gap-10 lg:pb-20 lg:pl-16"
     >
       <motion.span
         aria-hidden="true"
-        style={reduce ? undefined : { scale: dotScale, opacity }}
+        style={reduce ? undefined : { opacity }}
         className="absolute left-[9px] top-[6px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-2 border-accent bg-paper"
       >
         <span className="h-[5px] w-[5px] rounded-full bg-accent" />
       </motion.span>
 
-      <motion.div style={reduce ? undefined : { opacity }} className="lg:col-span-5">
+      <motion.div style={reduce ? undefined : { opacity }} className="lg:col-span-6">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+          <span className="font-mono text-eyebrow uppercase tracking-label text-accent">
             {stage.index}
           </span>
           <Badge accent="neutral">{stage.duration}</Badge>
@@ -92,7 +105,8 @@ function StageRow({
 
       <motion.div
         style={reduce ? undefined : { opacity }}
-        className="lg:col-span-4 lg:col-start-9 lg:pt-12"
+        /* Aligned with the step title rather than floated 48px below it, so the list reads as part of the step. */
+        className="lg:col-span-6 lg:pt-7"
       >
         <ul className="space-y-2.5">
           {stage.detail.map((item) => (

@@ -45,14 +45,14 @@ export default function CareersPage() {
                   className="group grid gap-4 border-b border-line py-7 transition-colors hover:bg-mist/60 lg:grid-cols-12 lg:items-center"
                 >
                   <div className="lg:col-span-5">
-                    <h2 className="font-display text-[1.25rem] text-ink">{role.title}</h2>
-                    <p className="mt-1.5 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+                    <h2 className="font-display text-display-s text-ink">{role.title}</h2>
+                    <p className="mt-1.5 font-mono text-eyebrow uppercase tracking-label text-accent">
                       {role.team}
                     </p>
                   </div>
                   <p className="text-micro text-fog lg:col-span-4">{role.summary}</p>
                   <div className="flex flex-wrap items-center gap-x-5 gap-y-2 lg:col-span-3 lg:justify-end">
-                    <span className="flex items-center gap-1.5 text-[0.75rem] text-fog">
+                    <span className="flex items-center gap-1.5 text-label text-fog">
                       <MapPin className="h-3.5 w-3.5" />
                       {role.location}
                     </span>
@@ -73,7 +73,7 @@ export default function CareersPage() {
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {careers.perks.map((perk) => (
               <RevealItem key={perk.title}>
-                <h3 className="text-[1.0625rem] font-medium text-ink">{perk.title}</h3>
+                <h3 className="text-body-lg font-medium text-ink">{perk.title}</h3>
                 <p className="mt-2.5 text-micro text-fog">{perk.body}</p>
               </RevealItem>
             ))}
@@ -87,7 +87,7 @@ export default function CareersPage() {
               {valuesList.map((value) => (
                 <li
                   key={value.title}
-                  className="rounded-xl border border-line bg-paper px-5 py-4 text-[0.875rem] text-fg-2"
+                  className="rounded-xl border border-line bg-paper px-5 py-4 text-small text-fg-2"
                 >
                   {value.title}
                 </li>

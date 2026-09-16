@@ -43,14 +43,14 @@ export default function GuidesPage() {
                     <FileText className="h-5 w-5 text-accent" aria-hidden="true" />
                     <ArrowUpRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
-                  <p className="mt-6 font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                  <p className="mt-6 font-mono text-label uppercase tracking-label text-fog">
                     {guide.category}
                   </p>
-                  <h2 className="mt-3 font-display text-[1.25rem] text-ink">
+                  <h2 className="mt-3 font-display text-display-s text-ink">
                     {guide.title}
                   </h2>
                   <p className="mt-3 flex-1 text-micro text-fog">{guide.summary}</p>
-                  <p className="mt-6 border-t border-line pt-4 font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                  <p className="mt-6 border-t border-line pt-4 font-mono text-label uppercase tracking-label text-fog">
                     {guide.format}
                   </p>
                 </Link>

@@ -48,7 +48,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
     return (
       <div className="rounded-2xl border border-jade/30 bg-jade-soft p-7">
         <Check className="h-6 w-6 text-jade" />
-        <h2 className="mt-4 font-display text-[1.125rem] text-ink">
+        <h2 className="mt-4 font-display text-display-s text-ink">
           Application received
         </h2>
         <p className="mt-2.5 text-micro text-fg-2">
@@ -61,14 +61,14 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
 
   return (
     <form onSubmit={submit} className="rounded-2xl border border-line p-7">
-      <h2 className="font-display text-[1.125rem] text-ink">Apply for this role</h2>
+      <h2 className="font-display text-display-s text-ink">Apply for this role</h2>
       <p className="mt-2 text-micro text-fog">
         Two fields and a note. We ask for the work sample later, not now.
       </p>
 
       <div className="mt-6 space-y-4">
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <span className="font-mono text-label uppercase tracking-label text-fog">
             Name
           </span>
           <input
@@ -76,11 +76,11 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setName(event.target.value)}
             autoComplete="name"
             required
-            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] transition-colors focus-visible:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-body transition-colors focus-visible:border-accent"
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <span className="font-mono text-label uppercase tracking-label text-fog">
             Email
           </span>
           <input
@@ -89,22 +89,22 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             required
-            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] transition-colors focus-visible:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-body transition-colors focus-visible:border-accent"
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <span className="font-mono text-label uppercase tracking-label text-fog">
             Portfolio or profile
           </span>
           <input
             value={portfolio}
             onChange={(event) => setPortfolio(event.target.value)}
             placeholder="github.com, site, or a doc"
-            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] transition-colors focus-visible:border-accent"
+            className="mt-2 w-full rounded-lg border border-field bg-paper px-3.5 py-2.5 text-body transition-colors focus-visible:border-accent"
           />
         </label>
         <label className="block">
-          <span className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <span className="font-mono text-label uppercase tracking-label text-fog">
             Why this role
           </span>
           <textarea
@@ -112,12 +112,12 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
             onChange={(event) => setNote(event.target.value)}
             rows={4}
             placeholder="A few sentences. Specific beats polished."
-            className="mt-2 w-full resize-y rounded-lg border border-field bg-paper px-3.5 py-2.5 text-[0.9375rem] transition-colors focus-visible:border-accent"
+            className="mt-2 w-full resize-y rounded-lg border border-field bg-paper px-3.5 py-2.5 text-body transition-colors focus-visible:border-accent"
           />
         </label>
       </div>
 
-      {message && <p className="mt-4 text-[0.8125rem] text-danger-ink">{message}</p>}
+      {message && <p className="mt-4 text-micro text-danger-ink">{message}</p>}
 
       <Button type="submit" className="mt-6" full disabled={status === "sending"}>
         {status === "sending" ? (
@@ -131,7 +131,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
         )}
       </Button>
 
-      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog">
+      <p className="mt-4 text-eyebrow leading-relaxed text-fog">
         Applications are stored in our own database and read by the hiring manager for
         this role. No third-party ATS is involved.
       </p>
@@ -143,7 +143,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
 export function CancelApplication() {
   return (
     <div className="mt-4 flex items-center justify-between gap-4 rounded-xl border border-line bg-mist px-4 py-3">
-      <p className="text-[0.75rem] text-fog">
+      <p className="text-label text-fog">
         Already applied and changed your mind?
       </p>
       <ButtonLink href="/contact" variant="ghost" size="sm">

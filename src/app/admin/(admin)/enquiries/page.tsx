@@ -88,7 +88,7 @@ function CrmBadge({ row, configured }: { row: SubmissionRow; configured: boolean
 
   if (row.crm_status === "sent") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-jade-soft px-2.5 py-1 text-[0.6875rem] font-medium text-jade-ink">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-jade-soft px-2.5 py-1 text-eyebrow font-medium text-jade-ink">
         <CircleCheck className="h-3 w-3" aria-hidden="true" />
         Sent to CRM
       </span>
@@ -97,7 +97,7 @@ function CrmBadge({ row, configured }: { row: SubmissionRow; configured: boolean
   if (row.crm_status === "failed") {
     return (
       <span
-        className="inline-flex items-center gap-1.5 rounded-full bg-danger-soft px-2.5 py-1 text-[0.6875rem] font-medium text-danger-ink"
+        className="inline-flex items-center gap-1.5 rounded-full bg-danger-soft px-2.5 py-1 text-eyebrow font-medium text-danger-ink"
         title={row.crm_error ?? undefined}
       >
         <CircleAlert className="h-3 w-3" aria-hidden="true" />
@@ -107,14 +107,14 @@ function CrmBadge({ row, configured }: { row: SubmissionRow; configured: boolean
   }
   if (row.crm_status === "pending") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-2.5 py-1 text-[0.6875rem] font-medium text-fog">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-2.5 py-1 text-eyebrow font-medium text-fog">
         <Clock className="h-3 w-3" aria-hidden="true" />
         Sending to CRM
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center rounded-full bg-mist px-2.5 py-1 text-[0.6875rem] font-medium text-fog">
+    <span className="inline-flex items-center rounded-full bg-mist px-2.5 py-1 text-eyebrow font-medium text-fog">
       Not sent to CRM
     </span>
   );
@@ -175,14 +175,14 @@ export default async function EnquiriesPage({
           page cannot answer from the data alone. */}
       <div
         className={cn(
-          "mt-4 rounded-2xl border px-5 py-4 text-[0.8125rem] leading-relaxed",
+          "mt-4 rounded-2xl border px-5 py-4 text-micro leading-relaxed",
           webhook ? "border-jade/30 bg-jade-soft text-jade-ink" : "border-line bg-mist text-fg-2",
         )}
       >
         {webhook ? (
           <p>
             <strong className="font-medium">CRM hand-off is on.</strong> Leads matching{" "}
-            <code className="font-mono text-[0.75rem]">{webhookKinds}</code> are posted to your
+            <code className="font-mono text-label">{webhookKinds}</code> are posted to your
             webhook as they arrive, and the delivery result is shown against each one below. The
             record here is still the source of truth — the webhook is a copy.
           </p>
@@ -190,8 +190,8 @@ export default async function EnquiriesPage({
           <p>
             <strong className="font-medium">No CRM webhook is configured.</strong> Enquiries are
             saved here and nowhere else, so this page is the only place they appear. To push them
-            to your CRM or automation tool, set <code className="font-mono text-[0.75rem]">CRM_WEBHOOK_URL</code>{" "}
-            (and <code className="font-mono text-[0.75rem]">CRM_WEBHOOK_TOKEN</code> if it needs a
+            to your CRM or automation tool, set <code className="font-mono text-label">CRM_WEBHOOK_URL</code>{" "}
+            (and <code className="font-mono text-label">CRM_WEBHOOK_TOKEN</code> if it needs a
             bearer token). See the README for the exact payload shape.
           </p>
         )}
@@ -213,14 +213,14 @@ export default async function EnquiriesPage({
               title={option.hint}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
+                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-micro transition-colors",
                 isActive
                   ? "border-accent bg-accent text-on-accent"
                   : "border-line bg-paper text-fg-2 hover:bg-mist",
               )}
             >
               {option.label}
-              <span className={cn("font-mono text-[0.6875rem]", isActive ? undefined : "text-fog")}>
+              <span className={cn("font-mono text-eyebrow", isActive ? undefined : "text-fog")}>
                 {count}
               </span>
             </Link>
@@ -251,13 +251,13 @@ export default async function EnquiriesPage({
                     <details className="group">
                       <summary className="flex cursor-pointer flex-wrap items-center justify-between gap-x-5 gap-y-2 px-5 py-4 [&::-webkit-details-marker]:hidden">
                         <div className="min-w-0">
-                          <p className="flex flex-wrap items-center gap-2 text-[0.9375rem] font-medium text-ink">
+                          <p className="flex flex-wrap items-center gap-2 text-body font-medium text-ink">
                             {row.name ?? "No name given"}
-                            <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                            <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-label uppercase tracking-label text-fog">
                               {KIND_LABELS[row.kind] ?? row.kind}
                             </span>
                           </p>
-                          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.8125rem] text-fog">
+                          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-micro text-fog">
                             {row.email && (
                               <span className="inline-flex items-center gap-1.5">
                                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
@@ -274,7 +274,7 @@ export default async function EnquiriesPage({
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
                           <CrmBadge row={row} configured={Boolean(webhook)} />
-                          <span className="font-mono text-[0.6875rem] text-fog">
+                          <span className="font-mono text-eyebrow text-fog">
                             {when(row.created_at)}
                           </span>
                         </div>
@@ -282,17 +282,17 @@ export default async function EnquiriesPage({
 
                       <div className="border-t border-line px-5 py-4">
                         {entries.length === 0 ? (
-                          <p className="text-[0.8125rem] text-fog">
+                          <p className="text-micro text-fog">
                             This one arrived without readable content.
                           </p>
                         ) : (
                           <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                             {entries.map(([key, value]) => (
                               <div key={key} className={key === "message" ? "sm:col-span-2" : undefined}>
-                                <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                                <dt className="font-mono text-label uppercase tracking-label text-fog">
                                   {FIELD_LABELS[key]}
                                 </dt>
-                                <dd className="mt-1 whitespace-pre-wrap break-words text-[0.8125rem] text-fg-2">
+                                <dd className="mt-1 whitespace-pre-wrap break-words text-micro text-fg-2">
                                   {typeof value === "string" || typeof value === "number"
                                     ? String(value)
                                     : JSON.stringify(value)}
@@ -303,7 +303,7 @@ export default async function EnquiriesPage({
                         )}
 
                         {row.crm_status === "failed" && row.crm_error && (
-                          <p className="mt-4 rounded-lg border border-danger/30 bg-danger-soft px-3.5 py-2.5 text-[0.8125rem] text-danger-ink">
+                          <p className="mt-4 rounded-lg border border-danger/30 bg-danger-soft px-3.5 py-2.5 text-micro text-danger-ink">
                             The CRM hand-off failed: {row.crm_error}. The lead is safe here — use
                             the details above, and check the webhook URL and token.
                           </p>

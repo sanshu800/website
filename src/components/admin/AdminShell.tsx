@@ -64,11 +64,11 @@ export function AdminShell({
           <div className="flex items-center gap-3">
             <Link href="/admin" className="flex items-center gap-2.5">
               <ReygentMark className="h-6 w-6 text-accent" />
-              <span className="font-display text-[1.0625rem] tracking-[-0.02em] text-ink">
+              <span className="font-display text-body-lg tracking-[-0.02em] text-ink">
                 Reygent AI
               </span>
             </Link>
-            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-fog">
+            <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-label uppercase tracking-label text-fog">
               Admin
             </span>
           </div>
@@ -80,14 +80,14 @@ export function AdminShell({
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-9 items-center gap-2 rounded-lg px-3 text-[0.875rem] font-medium transition-colors",
+                  "inline-flex h-9 items-center gap-2 rounded-lg px-3 text-small font-medium transition-colors",
                   isActive(item.href) ? "bg-night text-on-night" : "text-fog hover:bg-mist hover:text-ink",
                 )}
               >
                 <item.icon className="h-3.5 w-3.5" />
                 {item.label}
                 {badgeFor(item.href) !== null && (
-                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-[0.625rem] text-on-accent">
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-label text-on-accent">
                     {badgeFor(item.href)}
                   </span>
                 )}
@@ -97,17 +97,17 @@ export function AdminShell({
 
           <div className="flex items-center gap-3">
             {editedCount > 0 && (
-              <span className="hidden rounded-full bg-accent-soft px-2.5 py-1 font-mono text-[0.6875rem] text-accent sm:inline">
+              <span className="hidden rounded-full bg-accent-soft px-2.5 py-1 font-mono text-eyebrow text-accent sm:inline">
                 {editedCount} live {editedCount === 1 ? "edit" : "edits"}
               </span>
             )}
             <div className="hidden text-right sm:block">
-              <p className="text-[0.8125rem] font-medium leading-tight text-ink">{user.name}</p>
-              <p className="font-mono text-[0.6875rem] leading-tight text-fog">{user.role}</p>
+              <p className="text-micro font-medium leading-tight text-ink">{user.name}</p>
+              <p className="font-mono text-eyebrow leading-tight text-fog">{user.role}</p>
             </div>
             <span
               aria-hidden="true"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-night font-mono text-[0.6875rem] text-on-night"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-night font-mono text-eyebrow text-on-night"
             >
               {initials(user.name)}
             </span>
@@ -115,7 +115,7 @@ export function AdminShell({
               type="button"
               onClick={signOut}
               disabled={signingOut}
-              className="inline-flex h-9 items-center gap-2 rounded-lg border border-line px-3 text-[0.8125rem] font-medium text-ink transition-colors hover:bg-mist disabled:opacity-60"
+              className="inline-flex h-9 items-center gap-2 rounded-lg border border-line px-3 text-micro font-medium text-ink transition-colors hover:bg-mist disabled:opacity-60"
             >
               <LogOut className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">{signingOut ? "Signing out" : "Sign out"}</span>
@@ -132,14 +132,14 @@ export function AdminShell({
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg text-[0.875rem] font-medium transition-colors",
+                  "inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg text-small font-medium transition-colors",
                   isActive(item.href) ? "bg-night text-on-night" : "text-fog hover:bg-mist hover:text-ink",
                 )}
               >
                 <item.icon className="h-3.5 w-3.5" />
                 {item.label}
                 {badgeFor(item.href) !== null && (
-                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-[0.625rem] text-on-accent">
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 font-mono text-label text-on-accent">
                     {badgeFor(item.href)}
                   </span>
                 )}
@@ -152,7 +152,7 @@ export function AdminShell({
       <main className="mx-auto w-full max-w-[1240px] px-5 py-8 sm:px-6">{children}</main>
 
       <footer className="mx-auto w-full max-w-[1240px] px-5 pb-10 sm:px-6">
-        <p className="text-[0.6875rem] leading-relaxed text-fog">
+        <p className="text-eyebrow leading-relaxed text-fog">
           Private admin. Not linked from the public site and excluded from search engines.
           Every save is validated, attributed and reversible from the History screen.
         </p>

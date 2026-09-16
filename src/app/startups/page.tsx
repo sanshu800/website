@@ -30,13 +30,13 @@ export default function StartupsPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href={copy.hero.actions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {copy.hero.actions.secondary.label}
             </Link>
@@ -53,7 +53,7 @@ export default function StartupsPage() {
                 <div className="flex h-full gap-4 rounded-2xl border border-line p-6">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <h3 className="text-[1.0625rem] font-medium text-ink">
+                    <h3 className="text-body-lg font-medium text-ink">
                       {benefit.title}
                     </h3>
                     <p className="mt-2 text-micro text-fog">{benefit.body}</p>
@@ -65,7 +65,7 @@ export default function StartupsPage() {
 
           <Reveal className="mt-12">
             <div className="rounded-2xl bg-mist p-7 sm:p-9">
-              <h2 className="font-display text-[1.25rem] text-ink">
+              <h2 className="font-display text-display-s text-ink">
                 {copy.eligibility.heading}
               </h2>
               <ul className="mt-5 grid gap-3 text-body-lg text-fog sm:grid-cols-2">
@@ -87,10 +87,10 @@ export default function StartupsPage() {
                 <dd className="font-display text-[2rem] leading-none text-ink">
                   {stat.value}
                 </dd>
-                <dt className="mt-2 font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                <dt className="mt-2 font-mono text-label uppercase tracking-label text-fog">
                   {stat.label}
                 </dt>
-                <dd className="mt-1.5 text-[0.75rem] text-fog">{stat.detail}</dd>
+                <dd className="mt-1.5 text-label text-fog">{stat.detail}</dd>
               </div>
             ))}
           </dl>

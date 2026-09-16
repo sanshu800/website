@@ -38,13 +38,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/"
-            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
           >
             Back to the homepage <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+            className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
           >
             Report a broken link
           </Link>
@@ -56,10 +56,10 @@ export default function NotFound() {
               <Link href={destination.href} className="group flex items-start gap-3">
                 <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-0.5" />
                 <span>
-                  <span className="block text-[0.9375rem] font-medium text-ink">
+                  <span className="block text-body font-medium text-ink">
                     {destination.label}
                   </span>
-                  <span className="mt-1 block text-[0.75rem] text-fog">
+                  <span className="mt-1 block text-label text-fog">
                     {destination.detail}
                   </span>
                 </span>

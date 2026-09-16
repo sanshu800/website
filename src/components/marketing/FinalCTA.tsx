@@ -26,14 +26,14 @@ export function FinalCTA() {
       <Container width="wide" className="relative">
         <div className="mx-auto max-w-[46rem] text-center">
           <Reveal>
-            <h2 className="text-display-xl text-white">
+            <h2 className="text-display-xl text-on-night">
               {copy.titleLead}
               <br className="hidden sm:block" />{" "}
-              <span className="text-white/70">{copy.titleAccent}</span>
+              <span className="text-on-night">{copy.titleAccent}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <p className="mx-auto mt-6 max-w-[34rem] text-lead text-white/80">
+            <p className="mx-auto mt-6 max-w-[34rem] text-lead text-on-night">
               {copy.summary}
             </p>
           </Reveal>
@@ -50,7 +50,7 @@ export function FinalCTA() {
               <ButtonLink
                 href={copy.secondaryCta.href}
                 size="lg"
-                className="border border-white/30 bg-white/10 text-white hover:bg-white/20"
+                className="border border-white/30 bg-white/10 text-on-night hover:bg-white/20"
               >
                 {copy.secondaryCta.label}
               </ButtonLink>

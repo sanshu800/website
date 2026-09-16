@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -54,13 +53,13 @@ export default function AboutPage() {
                   <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8">
                     {siteStats.slice(0, 4).map((stat) => (
                       <div key={stat.label}>
-                        <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                        <dt className="font-mono text-label uppercase tracking-label text-fog">
                           {stat.label}
                         </dt>
-                        <dd className="mt-2 font-display text-[1.5rem] leading-none text-ink">
+                        <dd className="mt-2 font-display text-display-m leading-none text-ink">
                           {stat.value}
                         </dd>
-                        <dd className="mt-1 text-[0.75rem] text-fog">{stat.detail}</dd>
+                        <dd className="mt-1 text-label text-fog">{stat.detail}</dd>
                       </div>
                     ))}
                   </dl>
@@ -81,7 +80,7 @@ export default function AboutPage() {
             {valuesList.map((value) => (
               <RevealItem key={value.title}>
                 <div className="border-t border-line pt-5">
-                  <h3 className="text-[1.0625rem] font-medium text-ink">{value.title}</h3>
+                  <h3 className="text-body-lg font-medium text-ink">{value.title}</h3>
                   <p className="mt-2.5 text-micro text-fog">{value.body}</p>
                 </div>
               </RevealItem>
@@ -100,10 +99,10 @@ export default function AboutPage() {
                 as="li"
                 className="grid gap-4 border-b border-line py-7 lg:grid-cols-12 lg:items-baseline"
               >
-                <span className="font-mono text-[0.875rem] text-accent lg:col-span-2">
+                <span className="font-mono text-small text-accent lg:col-span-2">
                   {item.year}
                 </span>
-                <h3 className="font-display text-[1.25rem] text-ink lg:col-span-4">
+                <h3 className="font-display text-display-s text-ink lg:col-span-4">
                   {item.title}
                 </h3>
                 <p className="text-body-lg text-fog lg:col-span-6">{item.body}</p>
@@ -119,25 +118,21 @@ export default function AboutPage() {
             <div className="lg:col-span-5">
               <h2 className="text-display-m text-ink">{about.proof.heading}</h2>
               <p className="mt-4 text-body-lg text-fog">{about.proof.note}</p>
-              <Link
-                href="/customers"
-                className="group mt-6 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
-              >
+              <ArrowLink href="/customers">
                 {about.proof.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
+              </ArrowLink>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
               {testimonials.slice(2, 6).map((item) => (
                 <figure key={item.name} className="rounded-2xl border border-line p-6">
-                  <blockquote className="text-[0.9375rem] text-fg-2">
+                  <blockquote className="text-body text-fg-2">
                     “{item.quote}”
                   </blockquote>
                   <figcaption className="mt-5 border-t border-line pt-4">
-                    <span className="block text-[0.875rem] font-medium text-ink">
+                    <span className="block text-small font-medium text-ink">
                       {item.name}
                     </span>
-                    <span className="block text-[0.75rem] text-fog">
+                    <span className="block text-label text-fog">
                       {item.role}, {item.company}
                     </span>
                   </figcaption>

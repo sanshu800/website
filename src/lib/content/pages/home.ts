@@ -41,7 +41,7 @@ export function homeDoc() {
     },
 
     proof: {
-      label: "Owner-run businesses we have built for",
+      label: "Built for",
       disclosure: "Placeholder client marks — invented for design purposes, not real customers.",
     },
 
@@ -270,7 +270,7 @@ export function homeDoc() {
         "Bring one process that annoys you. We will map it live, give you an honest view of whether AI should touch it, and tell you what it would take. No slides, no obligation, and the process map is yours either way.",
       primaryCta: { label: "Book a free audit", href: "/get-started" },
       secondaryCta: { label: "Talk to us first", href: "/contact" },
-      proofLabel: "Businesses we have built for",
+      proofLabel: "Built for",
     },
   };
 }

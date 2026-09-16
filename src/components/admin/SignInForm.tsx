@@ -114,7 +114,7 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
             type="button"
             onClick={() => setReveal((shown) => !shown)}
             aria-pressed={reveal}
-            className="rounded-md px-2 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="rounded-md px-2 py-1 font-mono text-label uppercase tracking-label text-fog transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             {reveal ? "Hide" : "Show"}
           </button>
@@ -138,7 +138,7 @@ export function AdminSignInForm({ next = "/admin" }: { next?: string }) {
       </Button>
 
       {locked && (
-        <p aria-live="polite" className="text-center text-[0.75rem] text-fog">
+        <p aria-live="polite" className="text-center text-label text-fog">
           Too many failed attempts from this connection. Sign-in unlocks in{" "}
           {minutes}:{seconds}.
         </p>

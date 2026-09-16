@@ -59,7 +59,7 @@ export default async function ContentDocPage({
         summary={def.blurb}
       />
 
-      <div className="mb-5 flex flex-wrap items-center gap-3 text-[0.75rem] text-fog">
+      <div className="mb-5 flex flex-wrap items-center gap-3 text-label text-fog">
         <span className="font-mono text-ink">{fields.length}</span> editable strings ·
         <span className="font-mono text-ink">{changed.length}</span> changed from the shipped copy
         <span className="h-4 w-px bg-line-strong" />
@@ -76,7 +76,7 @@ export default async function ContentDocPage({
       </div>
 
       {readOnly && (
-        <p className="mb-5 rounded-xl border border-magenta/30 bg-magenta-soft px-4 py-3 text-[0.8125rem] text-ink">
+        <p className="mb-5 rounded-xl border border-magenta/30 bg-magenta-soft px-4 py-3 text-micro text-ink">
           Your role can read the content admin but not publish. Ask an owner or admin in this
           workspace to make the change.
         </p>
@@ -87,19 +87,19 @@ export default async function ContentDocPage({
           <div className="flex items-start gap-3">
             <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-magenta" />
             <div className="flex-1">
-              <p className="text-[0.875rem] font-medium text-ink">
+              <p className="text-small font-medium text-ink">
                 {orphans.length} stored {orphans.length === 1 ? "edit" : "edits"} no longer match a
                 field
               </p>
-              <p className="mt-1 text-[0.8125rem] leading-relaxed text-fog">
+              <p className="mt-1 text-micro leading-relaxed text-fog">
                 The copy was renamed or removed in code, so these values are not rendered anywhere.
                 Drop them, or restore the field in code to bring the text back.
               </p>
               <ul className="mt-3 space-y-2">
                 {orphans.map((orphan) => (
                   <li key={orphan.key} className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[0.6875rem] text-fog">{orphan.path}</span>
-                    <span className="text-[0.75rem] text-fog">“{orphan.value.slice(0, 60)}”</span>
+                    <span className="font-mono text-eyebrow text-fog">{orphan.path}</span>
+                    <span className="text-label text-fog">“{orphan.value.slice(0, 60)}”</span>
                     <RevertButton keyName={orphan.key} label="Drop" />
                   </li>
                 ))}
@@ -111,7 +111,7 @@ export default async function ContentDocPage({
 
       <ContentEditor doc={def.id} fields={fields} readOnly={readOnly} />
 
-      <p className="mt-8 text-[0.75rem] text-fog">
+      <p className="mt-8 text-label text-fog">
         Looking for a different surface?{" "}
         <Link href="/admin" className="text-accent underline underline-offset-2">
           All content

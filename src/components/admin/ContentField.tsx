@@ -85,7 +85,7 @@ export function ContentField({
   }
 
   const inputClass = cn(
-    "w-full rounded-lg border bg-paper px-3.5 py-2.5 text-[0.9375rem] text-ink transition-colors",
+    "w-full rounded-lg border bg-paper px-3.5 py-2.5 text-body text-ink transition-colors",
     "focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed",
     dirty ? "border-accent" : "border-field",
   );
@@ -95,19 +95,19 @@ export function ContentField({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <label
           htmlFor={field.key}
-          className="flex items-center gap-2 text-[0.8125rem] font-medium text-ink"
+          className="flex items-center gap-2 text-micro font-medium text-ink"
         >
           {field.label}
           {edited && (
-            <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-accent">
+            <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-label uppercase tracking-label text-accent">
               edited
             </span>
           )}
         </label>
         {field.hint && (
-          <p className="mt-1 text-[0.75rem] text-fog">{field.hint}</p>
+          <p className="mt-1 text-label text-fog">{field.hint}</p>
         )}
-        <div className="flex items-center gap-3 text-[0.6875rem] text-fog">
+        <div className="flex items-center gap-3 text-eyebrow text-fog">
           {status.tone === "saving" && (
             <span className="inline-flex items-center gap-1 text-fog">
               <Loader2 className="h-3 w-3 animate-spin" /> saving
@@ -167,7 +167,7 @@ export function ContentField({
             type="button"
             onClick={() => void save()}
             disabled={readOnly || busy || !dirty || value.trim() === ""}
-            className="inline-flex h-10 items-center rounded-lg bg-night px-3.5 text-[0.8125rem] font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-40"
+            className="inline-flex h-10 items-center rounded-lg bg-night px-3.5 text-micro font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-40"
           >
             Save
           </button>
@@ -179,7 +179,7 @@ export function ContentField({
               title={`Restore the shipped copy: “${field.fallback.slice(0, 60)}${
                 field.fallback.length > 60 ? "…" : ""
               }”`}
-              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-field stg px-3 text-[0.8125rem] font-medium text-fog transition-colors hover:bg-mist hover:text-ink disabled:opacity-40"
+              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-field stg px-3 text-micro font-medium text-fog transition-colors hover:bg-mist hover:text-ink disabled:opacity-40"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               Reset
@@ -189,7 +189,7 @@ export function ContentField({
       </div>
 
       {edited && !dirty && (
-        <p className="mt-2 text-[0.6875rem] leading-relaxed text-fog">
+        <p className="mt-2 text-eyebrow leading-relaxed text-fog">
           Shipped copy: <span className="text-fog">{field.fallback.slice(0, 160)}</span>
           {field.fallback.length > 160 ? "…" : ""}
         </p>

@@ -5,10 +5,15 @@ import { cn } from "@/lib/utils";
 /**
  * Client marquee. The track is duplicated and translated -50%, which is a
  * single compositor transform for the whole strip — no per-item JavaScript.
+ *
+ * The label defaults to two words on purpose. It is set in all-caps, and
+ * all-caps costs the reader word shape: "BUSINESSES WE HAVE BUILT FOR" is
+ * twenty-eight characters that have to be read letter by letter. Caps are for
+ * short labels, and this one is short.
  */
 export function LogoMarquee({
   className,
-  label = "Businesses we have built for",
+  label = "Built for",
   tone = "ink",
 }: {
   className?: string;
@@ -20,10 +25,12 @@ export function LogoMarquee({
   return (
     <div className={cn("group/marquee", className)}>
       {label && (
-        <p className={cn(
-          "mb-7 text-center font-mono text-[0.6875rem] uppercase tracking-[0.14em]",
-          tone === "on-ink" ? "text-white/55" : "text-fog",
-        )}>
+        <p
+          className={cn(
+            "mb-7 text-center font-mono text-eyebrow uppercase",
+            tone === "on-ink" ? "text-on-night-2" : "text-fog",
+          )}
+        >
           {label}
         </p>
       )}

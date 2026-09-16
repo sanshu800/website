@@ -1,6 +1,5 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getHome, getShared } from "@/lib/cms/content";
 
@@ -22,20 +21,14 @@ export function IntegrationsStrip() {
             lede={copy.lede}
             className="max-w-[40rem]"
           />
-          <Link
-            href="/integrations"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
-          >
-            {copy.cta}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </Link>
+          <ArrowLink href="/integrations">{copy.cta}</ArrowLink>
         </div>
 
         <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {integrations.map((group) => (
             <RevealItem key={group.category}>
               <div className="flex h-full flex-col rounded-2xl border border-line p-6">
-                <h3 className="font-display text-[1.0625rem] text-ink">
+                <h3 className="font-display text-body-lg text-ink">
                   {group.category}
                 </h3>
                 <p className="mt-2.5 flex-1 text-micro text-fog">{group.blurb}</p>
@@ -43,7 +36,7 @@ export function IntegrationsStrip() {
                   {group.surfaces.map((surface) => (
                     <li
                       key={surface}
-                      className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
+                      className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"
                     >
                       {surface}
                     </li>

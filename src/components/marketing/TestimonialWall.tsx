@@ -39,7 +39,7 @@ export function TestimonialWall() {
           />
           <Link
             href="/customers"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
+            className="group inline-flex items-center gap-2 text-body font-medium text-accent"
           >
             {copy.cta}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -51,18 +51,18 @@ export function TestimonialWall() {
           <Reveal className="lg:col-span-5" variant="up">
             <figure className="flex h-full flex-col rounded-2xl bg-night p-7 text-on-night sm:p-9">
               <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
-              <blockquote className="mt-6 flex-1 font-display text-[1.375rem] leading-snug tracking-[-0.015em] text-on-night">
+              <blockquote className="mt-6 flex-1 font-display text-display-m leading-snug tracking-[-0.015em] text-on-night">
                 “{featured.quote}”
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-3 border-t border-white/10 pt-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-[0.8125rem] font-semibold text-on-night">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-micro font-semibold text-on-night">
                   {featured.name
                     .split(" ")
                     .map((part) => part[0])
                     .join("")}
                 </span>
                 <span>
-                  <span className="block text-[0.9375rem] font-medium text-on-night">
+                  <span className="block text-body font-medium text-on-night">
                     {featured.name}
                   </span>
                   <span className="block text-micro text-on-night-2">
@@ -86,10 +86,10 @@ export function TestimonialWall() {
                     “{item.quote}”
                   </blockquote>
                   <figcaption className="mt-6 border-t border-line pt-4">
-                    <span className="block text-[0.875rem] font-medium text-ink">
+                    <span className="block text-small font-medium text-ink">
                       {item.name}
                     </span>
-                    <span className="block text-[0.75rem] text-fog">
+                    <span className="block text-label text-fog">
                       {item.role}, {item.company}
                     </span>
                   </figcaption>
@@ -99,7 +99,7 @@ export function TestimonialWall() {
           </div>
         </div>
 
-        <p className="mt-6 font-mono text-[0.6875rem] text-fog">
+        <p className="mt-6 font-mono text-eyebrow text-fog">
           {copy.disclosure}
         </p>
       </Container>

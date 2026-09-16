@@ -76,7 +76,7 @@ export function NewsletterForm({
           onChange={(event) => setEmail(event.target.value)}
           placeholder="you@yourfirm.com"
           className={cn(
-            "h-11 w-full rounded-lg border bg-paper px-5 text-[0.9375rem] transition-[border-color] focus-visible:border-accent",
+            "h-11 w-full rounded-lg border bg-paper px-5 text-body transition-[border-color] focus-visible:border-accent",
             status === "error" ? "border-danger" : "border-field",
           )}
         />
@@ -101,7 +101,7 @@ export function NewsletterForm({
           <FormError>{error}</FormError>
         </div>
       )}
-      <p className="mt-3 text-[0.6875rem] text-fog">
+      <p className="mt-3 text-eyebrow text-fog">
         One email a month. No newsletter platform is connected on this build, so
         addresses are stored in our own database and nothing is sent yet.
       </p>

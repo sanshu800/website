@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
+import { ArrowLink } from "@/components/ui/ArrowLink";
+import { tabCard, tabHint, tabIndex, tabLabel } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/Badge";
 import type { HomeDoc } from "@/lib/content/pages/home";
 import { cn } from "@/lib/utils";
@@ -27,7 +28,7 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
   return (
     <div className="space-y-3">
       <div className="flex justify-end">
-        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-on-ink px-4 py-2.5 text-[0.8125rem] text-ink">
+        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-on-ink px-4 py-2.5 text-micro text-ink">
           {copy.question}
         </p>
       </div>
@@ -36,11 +37,11 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
           <Sparkles className="h-3.5 w-3.5 text-on-night" />
         </span>
         <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-paper p-4">
-          <p className="text-[0.8125rem] text-fg-2">{copy.intro}</p>
+          <p className="text-micro text-fg-2">{copy.intro}</p>
           <ul className="mt-3 space-y-3">
             {copy.items.map((row) => (
               <li key={row.name} className="rounded-lg border border-line bg-mist/60 px-3 py-2.5">
-                <p className="flex items-center gap-2 text-[0.8125rem] font-medium text-ink">
+                <p className="flex items-center gap-2 text-micro font-medium text-ink">
                   {/* The one row that needs a decision is marked by a dot, which
                       says the same thing as a thick red rule without shouting. */}
                   <span
@@ -49,7 +50,7 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
                   />
                   {row.name}
                 </p>
-                <p className="mt-0.5 pl-3.5 text-[0.75rem] text-fog">{row.why}</p>
+                <p className="mt-0.5 pl-3.5 text-label text-fog">{row.why}</p>
               </li>
             ))}
           </ul>
@@ -57,7 +58,7 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
             {copy.sources.map((source) => (
               <span
                 key={source}
-                className="rounded-full bg-mist px-2 py-0.5 font-mono text-[0.625rem] text-fog"
+                className="rounded-full bg-mist px-2 py-0.5 font-mono text-label text-fog"
               >
                 {source}
               </span>
@@ -74,12 +75,12 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
     <div className="rounded-2xl border border-line bg-paper p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-[0.8125rem] font-semibold text-accent-2">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-micro font-semibold text-accent-2">
             {copy.initials}
           </span>
           <div>
-            <p className="text-[0.875rem] font-medium text-ink">{copy.title}</p>
-            <p className="font-mono text-[0.6875rem] text-fog">{copy.meta}</p>
+            <p className="text-small font-medium text-ink">{copy.title}</p>
+            <p className="font-mono text-eyebrow text-fog">{copy.meta}</p>
           </div>
         </div>
         <Badge accent="ink">{copy.badge}</Badge>
@@ -88,19 +89,19 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
       <div className="mt-5 space-y-4">
         {copy.blocks.map((block) => (
           <div key={block.label}>
-            <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+            <p className="font-mono text-label uppercase tracking-label text-fog">
               {block.label}
             </p>
-            <p className="mt-1.5 text-[0.8125rem] text-fg-2">{block.body}</p>
+            <p className="mt-1.5 text-micro text-fg-2">{block.body}</p>
           </div>
         ))}
         <div>
-          <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <p className="font-mono text-label uppercase tracking-label text-fog">
             {copy.promisesLabel}
           </p>
           <ul className="mt-1.5 space-y-1.5">
             {copy.promises.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-[0.8125rem] text-fg-2">
+              <li key={item} className="flex items-start gap-2 text-micro text-fg-2">
                 <Check className="mt-[5px] h-3.5 w-3.5 shrink-0 text-jade" />
                 {item}
               </li>
@@ -108,7 +109,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
           </ul>
         </div>
         <div className="rounded-lg bg-caution-soft p-3">
-          <p className="text-[0.8125rem] text-caution-ink">{copy.risk}</p>
+          <p className="text-micro text-caution-ink">{copy.risk}</p>
         </div>
       </div>
     </div>
@@ -118,26 +119,26 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
 function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
   return (
     <div className="rounded-2xl border border-line bg-paper p-5">
-      <p className="text-[0.8125rem] text-fog">{copy.question}</p>
+      <p className="text-micro text-fog">{copy.question}</p>
       <div className="mt-4 rounded-xl bg-mist p-4">
-        <p className="font-mono text-[0.625rem] uppercase tracking-label text-accent">
+        <p className="font-mono text-label uppercase tracking-label text-accent">
           {copy.finding}
         </p>
         <ol className="mt-3 space-y-3">
           {copy.steps.map((row, index) => (
             <li key={row.step} className="flex gap-3">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-on-ink text-[0.625rem] font-semibold text-ink">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-on-ink text-label font-semibold text-ink">
                 {index + 1}
               </span>
               <span>
-                <span className="text-[0.8125rem] font-medium text-ink">{row.step}</span>
-                <span className="mt-0.5 block text-[0.75rem] text-fog">{row.detail}</span>
+                <span className="text-micro font-medium text-ink">{row.step}</span>
+                <span className="mt-0.5 block text-label text-fog">{row.detail}</span>
               </span>
             </li>
           ))}
         </ol>
       </div>
-      <p className="mt-4 text-[0.75rem] text-fog">{copy.note}</p>
+      <p className="mt-4 text-label text-fog">{copy.note}</p>
     </div>
   );
 }
@@ -191,45 +192,27 @@ export function AgentSection({ copy }: { copy: HomeDoc["walkthrough"] }) {
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => setActive(index)}
                     className={cn(
-                      "flex w-full gap-4 rounded-xl border p-4 text-left transition-all duration-300",
-                      isActive
-                        ? "border-accent-3/50 bg-white/[0.06]"
-                        : "border-white/10 hover:border-white/20 hover:bg-white/[0.03]",
+                      "flex w-full gap-4 p-4",
+                      tabCard({ active: isActive, tone: "dark" }),
                     )}
                   >
-                    <span
-                      className={cn(
-                        "font-mono text-[0.6875rem]",
-                        isActive ? "text-accent-3" : "text-on-night-2/60",
-                      )}
-                    >
+                    <span className={tabIndex({ active: isActive, tone: "dark" })}>
                       {tab.index}
                     </span>
                     <span className="min-w-0">
-                      <span
-                        className={cn(
-                          "block text-[0.9375rem] font-medium",
-                          isActive ? "text-on-night" : "text-on-night-2",
-                        )}
-                      >
+                      <span className={tabLabel({ active: isActive, tone: "dark" })}>
                         {tab.title}
                       </span>
-                      <span className="mt-1 block text-micro text-on-night-2">
-                        {tab.body}
-                      </span>
+                      <span className={tabHint({ tone: "dark" })}>{tab.body}</span>
                     </span>
                   </button>
                 );
               })}
             </div>
 
-            <Link
-              href="/services/ai-agents"
-              className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
-            >
+            <ArrowLink href="/services/ai-agents" tone="dark" className="mt-8">
               {copy.cta}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </Link>
+            </ArrowLink>
           </div>
 
           <div className="lg:col-span-7">
@@ -246,11 +229,11 @@ export function AgentSection({ copy }: { copy: HomeDoc["walkthrough"] }) {
               />
               <div className="relative rounded-2xl border border-white/10 bg-night-2 p-4 shadow-xl sm:p-6">
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="flex items-center gap-2 font-mono text-[0.6875rem] text-on-night-2">
+                  <span className="flex items-center gap-2 font-mono text-eyebrow text-on-night-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-jade" />
                     {copy.statusLabel}
                   </span>
-                  <span className="font-mono text-[0.6875rem] text-on-night-2/70">
+                  <span className="font-mono text-eyebrow text-on-night-3">
                     {copy.statusNote}
                   </span>
                 </div>

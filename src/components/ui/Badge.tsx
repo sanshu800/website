@@ -17,7 +17,7 @@ const accentSolid: Record<Accent, string> = {
   jade: "bg-jade-ink text-on-jade",
   azure: "bg-azure-ink text-on-azure",
   magenta: "bg-magenta-ink text-on-magenta",
-  neutral: "bg-night text-white",
+  neutral: "bg-night text-on-night",
 };
 
 const accentDot: Record<Accent, string> = {
@@ -51,7 +51,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.75rem] font-medium",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-label font-medium",
         variant === "solid"
           ? cn("border-transparent", accentSolid[accent])
           : accentChip[accent],
@@ -70,7 +70,7 @@ export function StatusPill({ status }: { status: string }) {
     qualified: "bg-accent-soft text-accent-2 border-accent-line",
     engaged: "bg-jade-soft text-jade-ink border-jade-line",
     proposal: "bg-caution-soft text-caution-ink border-caution-line",
-    won: "bg-jade text-white border-transparent",
+    won: "bg-jade text-on-jade border-transparent",
     lost: "bg-mist-2 text-fog border-line",
     stalled: "bg-danger-soft text-danger-ink border-danger-line",
     dormant: "bg-mist-2 text-fog border-line",
@@ -83,7 +83,7 @@ export function StatusPill({ status }: { status: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2 py-[2px] text-[0.6875rem] font-medium capitalize",
+        "inline-flex items-center rounded-full border px-2 py-[2px] text-eyebrow font-medium capitalize",
         map[status.toLowerCase()] ?? "bg-mist text-fg-2 border-line",
       )}
     >

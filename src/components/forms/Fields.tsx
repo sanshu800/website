@@ -21,7 +21,7 @@ const control =
   /* Focus is the site-wide accent outline (see :focus-visible in globals.css),
      not a bespoke shadow halo, so a focused field looks like every other
      focused control. The border darkens underneath it for a second cue. */
-  "w-full rounded-lg border bg-paper px-3.5 text-[0.9375rem] text-ink placeholder:text-fog transition-[border-color] duration-200 focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed";
+  "w-full rounded-lg border bg-paper px-3.5 text-body text-ink placeholder:text-fog transition-[border-color] duration-200 focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed";
 
 export function Label({
   children,
@@ -42,8 +42,8 @@ export function Label({
         htmlFor={htmlFor}
         className={
           variant === "text"
-            ? "text-[0.9375rem] font-medium text-ink"
-            : "font-mono text-[0.625rem] uppercase tracking-label text-fog"
+            ? "text-body font-medium text-ink"
+            : "font-mono text-label uppercase tracking-label text-fog"
         }
       >
         {children}
@@ -53,7 +53,7 @@ export function Label({
           </span>
         )}
       </label>
-      {hint && <span className="text-[0.6875rem] text-fog">{hint}</span>}
+      {hint && <span className="text-eyebrow text-fog">{hint}</span>}
     </span>
   );
 }
@@ -113,7 +113,7 @@ export function TextField({
         )}
       </div>
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
+        <p id={errorId} className="mt-1.5 text-label text-danger-ink">
           {error}
         </p>
       )}
@@ -152,7 +152,7 @@ export function TextArea({
         {...rest}
       />
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
+        <p id={errorId} className="mt-1.5 text-label text-danger-ink">
           {error}
         </p>
       )}
@@ -207,7 +207,7 @@ export function SelectField({
         ))}
       </select>
       {error && (
-        <p id={errorId} className="mt-1.5 text-[0.75rem] text-danger-ink">
+        <p id={errorId} className="mt-1.5 text-label text-danger-ink">
           {error}
         </p>
       )}
@@ -231,11 +231,11 @@ export function CheckboxField({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-field accent-ink"
           {...rest}
         />
-        <label htmlFor={id} className="text-[0.8125rem] leading-relaxed text-fog">
+        <label htmlFor={id} className="text-micro leading-relaxed text-fog">
           {label}
         </label>
       </div>
-      {error && <p className="mt-1.5 text-[0.75rem] text-danger-ink">{error}</p>}
+      {error && <p className="mt-1.5 text-label text-danger-ink">{error}</p>}
     </div>
   );
 }
@@ -257,7 +257,7 @@ export function ChipGroup({
     <fieldset>
       <legend
         id={fieldsetId}
-        className="font-mono text-[0.625rem] uppercase tracking-label text-fog"
+        className="font-mono text-label uppercase tracking-label text-fog"
       >
         {label}
       </legend>
@@ -277,7 +277,7 @@ export function ChipGroup({
                 )
               }
               className={cn(
-                "rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
+                "rounded-full border px-3.5 py-1.5 text-micro transition-colors",
                 active
                   ? "border-accent bg-accent-soft text-accent"
                   : "border-field text-fog hover:border-ink/25 hover:text-ink",
@@ -312,7 +312,7 @@ export function FormSuccess({
           <path d="M20 6 9 17l-5-5" />
         </svg>
       </div>
-      <h2 className="mt-5 font-display text-[1.25rem] text-ink">{title}</h2>
+      <h2 className="mt-5 font-display text-display-s text-ink">{title}</h2>
       <div className="mt-3 text-micro text-fg-2">{children}</div>
       {secondary && <div className="mt-6">{secondary}</div>}
     </div>
@@ -324,7 +324,7 @@ export function FormError({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="alert"
-      className="rounded-lg border border-danger-line bg-danger-soft px-4 py-3 text-[0.8125rem] text-danger-ink"
+      className="rounded-lg border border-danger-line bg-danger-soft px-4 py-3 text-micro text-danger-ink"
     >
       {children}
     </div>

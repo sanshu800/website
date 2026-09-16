@@ -60,12 +60,12 @@ export function PageHero({
       <Container width="wide" className="relative">
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-7">
-            <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[0.6875rem] uppercase tracking-label">
+            <ol className="flex flex-wrap items-center gap-1.5 font-mono text-eyebrow uppercase tracking-label">
               {crumbs.map((crumb, index) => (
                 <li key={crumb.label} className="flex items-center gap-1.5">
                   {index > 0 && (
                     <ChevronRight
-                      className={cn("h-3 w-3", onInk ? "text-white/35" : "text-fog")}
+                      className={cn("h-3 w-3", onInk ? "text-on-night-3" : "text-fog")}
                     />
                   )}
                   {crumb.href ? (
@@ -177,13 +177,13 @@ export function PageCTA({
           <div className="flex flex-wrap gap-3">
             <Link
               href={primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {primary.label}
             </Link>
             <Link
               href={secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {secondary.label}
             </Link>

@@ -52,18 +52,18 @@ export default function ProductsIndex() {
                     <div className="flex items-center gap-3">
                       <span
                         className={cn(
-                          "flex h-8 w-8 items-center justify-center rounded-lg font-mono text-[0.6875rem] font-medium",
+                          "flex h-8 w-8 items-center justify-center rounded-lg font-mono text-eyebrow font-medium",
                           FIELD[service.accent]?.fill,
                           FIELD[service.accent]?.on,
                         )}
                       >
                         {String(cardIndex + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+                      <span className="font-mono text-eyebrow uppercase tracking-label text-fog">
                         {service.kicker}
                       </span>
                     </div>
-                    <h2 className="mt-4 font-display text-[1.5rem] tracking-[-0.02em] text-ink">
+                    <h2 className="mt-4 font-display text-display-m tracking-[-0.02em] text-ink">
                       {service.name}
                     </h2>
                     <p className="mt-2 text-micro text-accent">{service.headline}</p>
@@ -74,7 +74,7 @@ export default function ProductsIndex() {
                       {service.flow.map((step) => (
                         <li
                           key={step.step}
-                          className="rounded-full bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
+                          className="rounded-full bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"
                         >
                           {step.step}
                         </li>
@@ -82,7 +82,7 @@ export default function ProductsIndex() {
                     </ul>
                   </div>
                   <div className="lg:col-span-2 lg:text-right">
-                    <span className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent">
+                    <span className="inline-flex items-center gap-2 text-body font-medium text-accent">
                       {copy.cardCta}
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>

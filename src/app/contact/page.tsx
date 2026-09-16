@@ -37,7 +37,7 @@ export default function ContactPage() {
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-8">
-              <h2 className="font-display text-[1.5rem] text-ink">{copy.formHeading}</h2>
+              <h2 className="font-display text-display-m text-ink">{copy.formHeading}</h2>
               <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
               <div className="mt-8">
                 <EnquiryForm kind="contact" />
@@ -47,7 +47,7 @@ export default function ContactPage() {
             <div className="lg:col-span-4">
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
-                  <h2 className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                  <h2 className="font-mono text-label uppercase tracking-label text-fog">
                     {copy.channelsHeading}
                   </h2>
                   <ul className="mt-6 space-y-6">
@@ -57,13 +57,13 @@ export default function ContactPage() {
                         <li key={channel.label} className="flex gap-4">
                           <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                           <div>
-                            <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                            <p className="font-mono text-label uppercase tracking-label text-fog">
                               {channel.label}
                             </p>
-                            <p className="mt-1.5 text-[0.9375rem] font-medium text-ink">
+                            <p className="mt-1.5 text-body font-medium text-ink">
                               {channel.value}
                             </p>
-                            <p className="mt-1 text-[0.75rem] text-fog">{channel.note}</p>
+                            <p className="mt-1 text-label text-fog">{channel.note}</p>
                           </div>
                         </li>
                       );
@@ -74,11 +74,11 @@ export default function ContactPage() {
 
               <Reveal delay={0.05}>
                 <div className="mt-6 rounded-2xl border border-line p-7">
-                  <h2 className="font-display text-[1.0625rem] text-ink">
+                  <h2 className="font-display text-body-lg text-ink">
                     {copy.evaluating.heading}
                   </h2>
                   <p className="mt-2.5 text-micro text-fog">{copy.evaluating.body}</p>
-                  <p className="mt-4 text-[0.6875rem] text-fog">{copy.evaluating.note}</p>
+                  <p className="mt-4 text-eyebrow text-fog">{copy.evaluating.note}</p>
                 </div>
               </Reveal>
             </div>

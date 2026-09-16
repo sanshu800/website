@@ -39,17 +39,17 @@ export default function BuildLogPage() {
             <Reveal>
               <article className="rounded-2xl border border-accent/30 bg-accent-soft p-7 sm:p-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-label text-on-accent">
+                  <span className="rounded-full bg-accent px-2.5 py-0.5 font-mono text-label uppercase tracking-label text-on-accent">
                     {log.latestBadge}
                   </span>
-                  <span className="font-mono text-[0.6875rem] text-accent">
+                  <span className="font-mono text-eyebrow text-accent">
                     {latest.issue}
                   </span>
-                  <time className="font-mono text-[0.6875rem] text-fog">
+                  <time className="font-mono text-eyebrow text-fog">
                     {latest.date}
                   </time>
                 </div>
-                <h2 className="mt-5 font-display text-[1.75rem] text-ink">
+                <h2 className="mt-5 font-display text-display-m text-ink">
                   {latest.title}
                 </h2>
                 <p className="mt-3 max-w-[42rem] text-body-lg text-fog">
@@ -60,7 +60,7 @@ export default function BuildLogPage() {
                     <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                       <span
                         className={cn(
-                          "rounded-full border px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label",
+                          "rounded-full border px-2 py-0.5 font-mono text-label uppercase tracking-label",
                           KIND_STYLE[item.kind],
                         )}
                       >
@@ -81,13 +81,13 @@ export default function BuildLogPage() {
                 className="grid gap-6 border-b border-line py-9 lg:grid-cols-12"
               >
                 <div className="lg:col-span-3">
-                  <p className="font-mono text-[0.75rem] text-ink">{note.issue}</p>
-                  <time className="mt-1.5 block font-mono text-[0.6875rem] text-fog">
+                  <p className="font-mono text-label text-ink">{note.issue}</p>
+                  <time className="mt-1.5 block font-mono text-eyebrow text-fog">
                     {note.date}
                   </time>
                 </div>
                 <div className="lg:col-span-9">
-                  <h2 className="font-display text-[1.25rem] text-ink">{note.title}</h2>
+                  <h2 className="font-display text-display-s text-ink">{note.title}</h2>
                   <p className="mt-2.5 max-w-[40rem] text-micro text-fog">
                     {note.summary}
                   </p>
@@ -96,7 +96,7 @@ export default function BuildLogPage() {
                       <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                         <span
                           className={cn(
-                            "rounded-full border px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-label",
+                            "rounded-full border px-2 py-0.5 font-mono text-label uppercase tracking-label",
                             KIND_STYLE[item.kind],
                           )}
                         >

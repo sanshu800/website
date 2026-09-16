@@ -53,7 +53,7 @@ export function UploadPanel({ token }: { token: string }) {
     return (
       <div className="rounded-2xl border border-jade/30 bg-jade-soft p-7">
         <Check className="h-6 w-6 text-jade" />
-        <h2 className="mt-4 font-display text-[1.25rem] text-ink">File received</h2>
+        <h2 className="mt-4 font-display text-display-s text-ink">File received</h2>
         <p className="mt-2 text-micro text-fg-2">
           Saved to <span className="font-mono text-ink">{result.file}</span> (
           {(result.bytes / 1048576).toFixed(1)}MB, {result.type}). Tell me in chat and I
@@ -61,7 +61,7 @@ export function UploadPanel({ token }: { token: string }) {
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex h-11 items-center rounded-lg bg-night px-5 text-[0.9375rem] font-medium text-on-night"
+          className="mt-6 inline-flex h-11 items-center rounded-lg bg-night px-5 text-body font-medium text-on-night"
         >
           Back to the site
         </Link>
@@ -96,10 +96,10 @@ export function UploadPanel({ token }: { token: string }) {
         }`}
       >
         <Upload className="h-6 w-6 text-fog" />
-        <span className="text-[0.9375rem] font-medium text-ink">
+        <span className="text-body font-medium text-ink">
           {file ? file.name : "Choose the video, or drop it here"}
         </span>
-        <span className="text-[0.75rem] text-fog">
+        <span className="text-label text-fog">
           {file
             ? `${(file.size / 1048576).toFixed(1)}MB · ${file.type || "unknown type"}`
             : "MP4, WebM or MOV · up to 80MB"}
@@ -114,12 +114,12 @@ export function UploadPanel({ token }: { token: string }) {
         onChange={(event) => setFile(event.target.files?.[0] ?? null)}
       />
 
-      {message && <p className="mt-4 text-[0.8125rem] text-danger-ink">{message}</p>}
+      {message && <p className="mt-4 text-micro text-danger-ink">{message}</p>}
 
       <button
         type="submit"
         disabled={status === "sending" || !file}
-        className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-night text-[0.9375rem] font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-45"
+        className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-night text-body font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-45"
       >
         {status === "sending" ? (
           <>
@@ -130,7 +130,7 @@ export function UploadPanel({ token }: { token: string }) {
         )}
       </button>
 
-      <p className="mt-4 text-[0.6875rem] leading-relaxed text-fog">
+      <p className="mt-4 text-eyebrow leading-relaxed text-fog">
         The file is written to <span className="font-mono">public/video/hero.*</span> in the
         project. Nothing is sent anywhere else.
       </p>

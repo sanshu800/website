@@ -16,10 +16,14 @@ export function SiteFooter({
     <footer className="border-t border-line bg-night text-on-night">
       <Container width="wide">
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+          {/* Three columns for the brand block, nine for the five nav columns:
+              at four-and-eight the longest service label ("Remove the manual
+              admin") wrapped to a second line, which broke the rhythm of that
+              column against its neighbours. */}
+          <div className="lg:col-span-3">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <ReygentMark className="h-7 w-7" />
-              <span className="font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-on-night">
+              <span className="font-display text-body-lg font-semibold tracking-[-0.02em] text-on-night">
                 {brand.name}
               </span>
             </Link>
@@ -29,26 +33,34 @@ export function SiteFooter({
             <div className="mt-6 flex flex-wrap gap-2">
               <Link
                 href={footer.actions.primary.href}
-                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-[0.8125rem] font-medium text-ink transition-colors pointer-coarse:min-h-11 hover:bg-mist-2"
+                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-micro font-medium text-ink transition-colors pointer-coarse:min-h-11 hover:bg-mist-2"
               >
                 {footer.actions.primary.label}
               </Link>
               <Link
                 href={footer.actions.secondary.href}
-                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-[0.8125rem] font-medium text-on-night transition-colors pointer-coarse:min-h-11 hover:border-white/40"
+                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-micro font-medium text-on-night transition-colors pointer-coarse:min-h-11 hover:border-white/40"
               >
                 {footer.actions.secondary.label}
               </Link>
             </div>
             <a
               href={`mailto:${brand.email}`}
-              className="mt-6 inline-block font-mono text-[0.75rem] text-on-night-2 transition-colors hover:text-on-night"
+              className="mt-6 inline-block font-mono text-label text-on-night-2 transition-colors hover:text-on-night"
             >
               {brand.email}
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
+          <div /*
+               * Five equal columns gave each one about 127px at the 1024px
+               * breakpoint, and the longest label needs roughly 150 — which is
+               * why "Remove the manual admin" broke onto a second line. The
+               * Services column is the one whose labels are phrases rather than
+               * nouns, so it gets the extra width instead of every column being
+               * sized for the worst case.
+               */
+              className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-9 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:gap-x-5">
             {footer.columns.map((column: ChromeDoc["footer"]["columns"][number]) => (
               <nav key={column.title} aria-label={column.title}>
                 <h2 className="font-mono text-eyebrow uppercase text-on-night-2">
@@ -72,18 +84,18 @@ export function SiteFooter({
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[0.75rem] text-on-night-2">
+          <p className="font-mono text-label text-on-night-2">
             © {year} {brand.name}. {brand.copyright}
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="font-mono text-[0.75rem] text-on-night-2">
+            <span className="font-mono text-label text-on-night-2">
               {footer.builtFor}
             </span>
             {Object.values(footer.legalLinks).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[0.75rem] text-on-night-2 transition-colors hover:text-on-night"
+                className="font-mono text-label text-on-night-2 transition-colors hover:text-on-night"
               >
                 {link.label}
               </Link>
@@ -95,7 +107,7 @@ export function SiteFooter({
           Placeholder disclosure. Client names and testimonials on this build are
           invented. Remove this line once real references are published.
         */}
-        <p className="border-t border-white/10 py-6 text-[0.6875rem] leading-relaxed text-on-night-2/70">
+        <p className="border-t border-white/10 py-6 text-eyebrow leading-relaxed text-on-night-3">
           {footer.disclosure}
         </p>
       </Container>

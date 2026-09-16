@@ -31,7 +31,7 @@ export default function GetStartedPage() {
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-8">
-              <h2 className="font-display text-[1.5rem] text-ink">{copy.formHeading}</h2>
+              <h2 className="font-display text-display-m text-ink">{copy.formHeading}</h2>
               <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
               <div className="mt-8">
                 {/* The CTA and the contact page open the same form; the topic is
@@ -48,7 +48,7 @@ export default function GetStartedPage() {
             <div className="lg:col-span-4">
               <Reveal>
                 <div className="rounded-2xl border border-line bg-mist p-7">
-                  <h2 className="font-display text-[1.0625rem] text-ink">
+                  <h2 className="font-display text-body-lg text-ink">
                     {copy.includedHeading}
                   </h2>
                   <ul className="mt-6 space-y-3">
@@ -64,13 +64,13 @@ export default function GetStartedPage() {
 
               <Reveal delay={0.05}>
                 <div className="mt-6 rounded-2xl border border-line p-7">
-                  <h2 className="text-[0.9375rem] font-medium text-ink">
+                  <h2 className="text-body font-medium text-ink">
                     {copy.nextSteps.heading}
                   </h2>
                   <ol className="mt-5 space-y-4 text-micro text-fog">
                     {copy.nextSteps.steps.map((step, index) => (
                       <li key={step} className="flex gap-3">
-                        <span className="font-mono text-[0.625rem] text-accent">
+                        <span className="font-mono text-label text-accent">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         {step}
@@ -81,7 +81,7 @@ export default function GetStartedPage() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <p className="mt-6 rounded-xl border border-line bg-mist px-5 py-4 text-[0.75rem] leading-relaxed text-fog">
+                <p className="mt-6 rounded-xl border border-line bg-mist px-5 py-4 text-label leading-relaxed text-fog">
                   {copy.billingNote}
                 </p>
               </Reveal>
@@ -90,20 +90,20 @@ export default function GetStartedPage() {
                   what happens next or what it costs. */}
               <Reveal delay={0.15}>
                 <div className="mt-6 rounded-2xl border border-line p-7">
-                  <h2 className="font-display text-[1.0625rem] text-ink">
+                  <h2 className="font-display text-body-lg text-ink">
                     If it is worth doing, here is how we would start
                   </h2>
                   <ul className="mt-5 divide-y divide-line">
                     {engagementsList.map((engagement) => (
                       <li key={engagement.slug} className="flex items-baseline justify-between gap-4 py-3 first:pt-0">
                         <span className="text-micro text-fog">{engagement.name}</span>
-                        <span className="shrink-0 font-mono text-[0.6875rem] text-ink">
+                        <span className="shrink-0 font-mono text-eyebrow text-ink">
                           {engagement.price}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-[0.75rem] leading-relaxed text-fog">
+                  <p className="mt-3 text-label leading-relaxed text-fog">
                     The audit fee is credited against your build if you continue, and you own
                     everything we produce either way.
                   </p>

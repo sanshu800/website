@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -41,13 +42,13 @@ export default function HowWeWorkPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href={copy.hero.actions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {copy.hero.actions.secondary.label}
             </Link>
@@ -68,10 +69,10 @@ export default function HowWeWorkPage() {
                 <div key={item.label} className="flex gap-4">
                   <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                    <dt className="font-mono text-label uppercase tracking-label text-fog">
                       {item.label}
                     </dt>
-                    <dd className="mt-1.5 text-[0.9375rem] font-medium text-ink">
+                    <dd className="mt-1.5 text-body font-medium text-ink">
                       {item.value}
                     </dd>
                   </div>
@@ -113,20 +114,20 @@ export default function HowWeWorkPage() {
               <p className="mt-5 max-w-[36rem] text-body-lg text-on-night-2">
                 {managed.summary}
               </p>
-              <Link
+              <ArrowLink
                 href={`/services/${managed.slug}`}
-                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
+                tone="dark"
+                className="mt-7"
               >
                 {copy.managed.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
+              </ArrowLink>
             </div>
             <div className="lg:col-span-7">
               <RevealGroup className="grid gap-5 sm:grid-cols-2">
                 {managed.features.slice(0, 4).map((capability) => (
                   <RevealItem key={capability.title}>
                     <div className="rounded-2xl border border-white/12 bg-night-2 p-5">
-                      <h3 className="text-[0.9375rem] font-medium text-on-night">
+                      <h3 className="text-body font-medium text-on-night">
                         {capability.title}
                       </h3>
                       <p className="mt-2 text-micro text-on-night-2">{capability.body}</p>

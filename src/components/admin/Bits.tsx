@@ -32,7 +32,7 @@ export function StatCard({
     >
       <p
         className={cn(
-          "font-mono text-[0.625rem] uppercase tracking-label",
+          "font-mono text-label uppercase tracking-label",
           tone === "ink" ? "text-on-night-2" : tone === "accent" ? "text-accent" : "text-fog",
         )}
       >
@@ -40,14 +40,14 @@ export function StatCard({
       </p>
       <p
         className={cn(
-          "tabular mt-3 font-display text-[1.75rem] leading-none tracking-[-0.03em]",
+          "tabular mt-3 font-display text-display-m leading-none tracking-[-0.03em]",
           tone === "ink" ? "text-on-night" : "text-ink",
         )}
       >
         {value}
       </p>
       {detail && (
-        <p className={cn("mt-2.5 text-[0.75rem]", tone === "ink" ? "text-on-night-2" : "text-fog")}>
+        <p className={cn("mt-2.5 text-label", tone === "ink" ? "text-on-night-2" : "text-fog")}>
           {detail}
         </p>
       )}
@@ -83,7 +83,7 @@ export function Card({
     >
       {(title || action) && (
         <header className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
-          <h2 className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+          <h2 className="font-mono text-label uppercase tracking-label text-fog">
             {title}
           </h2>
           {action}
@@ -105,7 +105,7 @@ export function EmptyState({
 }) {
   return (
     <div className="rounded-2xl border border-dashed border-line-strong bg-paper px-6 py-12 text-center">
-      <p className="font-display text-[1.0625rem] text-ink">{title}</p>
+      <p className="font-display text-body-lg text-ink">{title}</p>
       <p className="mx-auto mt-2 max-w-[34rem] text-micro text-fog">{body}</p>
       {action && <div className="mt-5">{action}</div>}
     </div>

@@ -29,13 +29,13 @@ export default function PartnersPage() {
           <>
             <Link
               href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href={copy.hero.actions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {copy.hero.actions.secondary.label}
             </Link>
@@ -49,7 +49,7 @@ export default function PartnersPage() {
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {copy.types.items.map((type) => (
               <RevealItem key={type.title}>
-                <h3 className="text-[1.0625rem] font-medium text-ink">{type.title}</h3>
+                <h3 className="text-body-lg font-medium text-ink">{type.title}</h3>
                 <p className="mt-2.5 text-micro text-fog">{type.body}</p>
               </RevealItem>
             ))}
@@ -64,7 +64,7 @@ export default function PartnersPage() {
             {program.benefits.map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
-                  <h3 className="font-display text-[1.0625rem] text-ink">{benefit.title}</h3>
+                  <h3 className="font-display text-body-lg text-ink">{benefit.title}</h3>
                   <p className="mt-2.5 flex-1 text-micro text-fog">{benefit.body}</p>
                 </div>
               </RevealItem>
@@ -79,10 +79,10 @@ export default function PartnersPage() {
           <ol className="mt-12 grid gap-6 lg:grid-cols-4">
             {program.steps.map((step, index) => (
               <li key={step.title} className="border-t border-line-strong pt-5">
-                <span className="font-mono text-[0.6875rem] text-accent">
+                <span className="font-mono text-eyebrow text-accent">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-display text-[1.125rem] text-ink">{step.title}</h3>
+                <h3 className="mt-3 font-display text-display-s text-ink">{step.title}</h3>
                 <p className="mt-2 text-micro text-fog">{step.body}</p>
               </li>
             ))}

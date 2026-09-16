@@ -1,10 +1,11 @@
 "use client";
 
 import { useId, useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
+import { ButtonLink } from "@/components/ui/Button";
+import { tabCard, tabHint, tabIndex, tabLabel } from "@/components/ui/tabs";
 import { Screen } from "@/components/screens/WorkScreens";
 import type { Service } from "@/lib/content/services";
 import { cn } from "@/lib/utils";
@@ -75,36 +76,22 @@ export function ServiceTabs({
                   setInteracted(true);
                 }}
                 className={cn(
-                  "group relative shrink-0 rounded-xl border px-4 py-3.5 text-left transition-all duration-300 lg:shrink",
-                  isActive
-                    ? "border-accent bg-accent-soft"
-                    : "border-line bg-paper hover:border-line-strong hover:bg-mist",
+                  "group flex shrink-0 flex-col px-4 py-3.5 lg:shrink",
+                  tabCard({ active: isActive, tone: "light" }),
                 )}
               >
-                <span
-                  className={cn(
-                    "font-mono text-[0.625rem] uppercase tracking-[0.14em]",
-                    isActive ? "text-accent" : "text-fog",
-                  )}
-                >
+                <span className={tabIndex({ active: isActive, tone: "light" })}>
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span
                   className={cn(
-                    "mt-2 block font-display text-[1.0625rem]",
-                    isActive ? "text-accent-2" : "text-ink",
+                    "mt-2 font-display text-body-lg",
+                    tabLabel({ active: isActive, tone: "light" }),
                   )}
                 >
                   {tab.name}
                 </span>
-                <span
-                  className={cn(
-                    "mt-1 block text-[0.6875rem]",
-                    isActive ? "text-accent-2/80" : "text-fog",
-                  )}
-                >
-                  {tab.kicker}
-                </span>
+                <span className={tabHint({ tone: "light" })}>{tab.kicker}</span>
               </button>
             );
           })}
@@ -138,7 +125,7 @@ export function ServiceTabs({
                         className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       />
                       <span>
-                        <span className="text-[0.9375rem] font-medium text-ink">
+                        <span className="text-body font-medium text-ink">
                           {feature.title}
                         </span>
                         <span className="mt-0.5 block text-micro text-fog">
@@ -149,13 +136,14 @@ export function ServiceTabs({
                   ))}
                 </ul>
 
-                <Link
+                <ButtonLink
                   href={`/services/${current.slug}`}
-                  className="group mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent"
+                  variant="secondary"
+                  className="mt-8"
+                  iconRight={<ArrowRight className="h-4 w-4" aria-hidden="true" />}
                 >
                   Explore {current.name}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </Link>
+                </ButtonLink>
               </div>
 
               <div className="lg:col-span-7">
@@ -164,7 +152,7 @@ export function ServiceTabs({
                     <Screen name={current.home.screen} />
                   </div>
                 </div>
-                <p className="mt-3 font-mono text-[0.6875rem] text-fog">
+                <p className="mt-3 font-mono text-eyebrow text-fog">
                   {current.panelCaption} · illustrative interface
                 </p>
               </div>

@@ -52,13 +52,13 @@ export default async function ComparePage({
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               Book a free audit
             </Link>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               Talk to us
             </Link>
@@ -71,7 +71,7 @@ export default async function ComparePage({
         <Container width="wide">
           <div className="grid gap-6 lg:grid-cols-2">
             <Reveal className="rounded-2xl border border-line p-6 sm:p-7">
-              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+              <p className="flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog">
                 <Check className="h-4 w-4 text-jade" /> What {comparison.name.toLowerCase()} does well
               </p>
               <p className="mt-4 text-body-lg text-fg-2">{comparison.theirStrength}</p>
@@ -80,7 +80,7 @@ export default async function ComparePage({
               delay={0.06}
               className="rounded-2xl border border-line bg-mist p-6 sm:p-7"
             >
-              <p className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+              <p className="flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog">
                 <X className="h-4 w-4 text-danger" /> Where it stops working
               </p>
               <p className="mt-4 text-body-lg text-fg-2">{comparison.theirWeakness}</p>
@@ -101,13 +101,13 @@ export default async function ComparePage({
             <table className="w-full min-w-[640px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-line-strong">
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+                  <th scope="col" className="py-3 pr-6 font-mono text-eyebrow uppercase tracking-label text-fog">
                     Dimension
                   </th>
-                  <th scope="col" className="py-3 pr-6 font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+                  <th scope="col" className="py-3 pr-6 font-mono text-eyebrow uppercase tracking-label text-fog">
                     {comparison.name}
                   </th>
-                  <th scope="col" className="py-3 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+                  <th scope="col" className="py-3 font-mono text-eyebrow uppercase tracking-label text-accent">
                     Reygent AI
                   </th>
                 </tr>
@@ -120,12 +120,12 @@ export default async function ComparePage({
                   >
                     <th
                       scope="row"
-                      className="py-4 pr-6 text-[0.875rem] font-medium text-ink align-top"
+                      className="py-4 pr-6 text-small font-medium text-ink align-top"
                     >
                       {row.dimension}
                     </th>
-                    <td className="py-4 pr-6 text-[0.875rem] text-fog align-top">{row.them}</td>
-                    <td className="py-4 text-[0.875rem] font-medium text-fg-2 align-top">
+                    <td className="py-4 pr-6 text-small text-fog align-top">{row.them}</td>
+                    <td className="py-4 text-small font-medium text-fg-2 align-top">
                       {row.us}
                     </td>
                   </tr>
@@ -142,7 +142,7 @@ export default async function ComparePage({
           <RevealGroup className="grid gap-x-10 gap-y-8 lg:grid-cols-3">
             {comparison.points.map((point) => (
               <RevealItem key={point.title}>
-                <h3 className="text-[1.0625rem] font-medium text-ink">{point.title}</h3>
+                <h3 className="text-body-lg font-medium text-ink">{point.title}</h3>
                 <p className="mt-3 text-micro text-fog">{point.body}</p>
               </RevealItem>
             ))}
@@ -154,7 +154,7 @@ export default async function ComparePage({
         <Container width="wide">
           <div className="grid gap-8 rounded-2xl border border-line bg-mist p-7 sm:p-9 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <h2 className="font-display text-[1.25rem] text-ink">{detail.goodFitHeading}</h2>
+              <h2 className="font-display text-display-s text-ink">{detail.goodFitHeading}</h2>
             </div>
             <ul className="space-y-3 lg:col-span-8">
               {comparison.bestFor.map((item) => (
@@ -174,7 +174,7 @@ export default async function ComparePage({
                 href={`/compare/${item.slug}`}
                 className="group flex items-center justify-between rounded-xl border border-line px-5 py-4 transition-colors hover:bg-mist"
               >
-                <span className="text-[0.9375rem] font-medium text-ink">{item.short}</span>
+                <span className="text-body font-medium text-ink">{item.short}</span>
                 <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             ))}

@@ -67,10 +67,10 @@ export default function AnalyticsPage() {
             <ul className="divide-y divide-line">
               {steps.map((step) => (
                 <li key={step.name} className="flex items-baseline justify-between gap-4 py-3">
-                  <span className="text-[0.875rem] text-ink">{step.label}</span>
+                  <span className="text-small text-ink">{step.label}</span>
                   <span className="flex items-baseline gap-3">
-                    <span className="font-mono text-[0.875rem] text-ink">{step.count}</span>
-                    <span className="w-14 text-right text-[0.75rem] text-fog">
+                    <span className="font-mono text-small text-ink">{step.count}</span>
+                    <span className="w-14 text-right text-label text-fog">
                       {step.ofPrevious}%
                     </span>
                   </span>
@@ -78,7 +78,7 @@ export default function AnalyticsPage() {
               ))}
             </ul>
           )}
-          <p className="mt-4 text-[0.75rem] leading-relaxed text-fog">
+          <p className="mt-4 text-label leading-relaxed text-fog">
             Each step is shown as a share of the one above it, because &ldquo;how many who started a
             form finished it&rdquo; is the number worth acting on.
           </p>
@@ -93,11 +93,11 @@ export default function AnalyticsPage() {
                 <li key={page.path} className="flex items-center justify-between gap-4 py-3">
                   <Link
                     href={page.path}
-                    className="truncate font-mono text-[0.8125rem] text-ink hover:text-accent"
+                    className="truncate font-mono text-micro text-ink hover:text-accent"
                   >
                     {page.path}
                   </Link>
-                  <span className="font-mono text-[0.8125rem] text-fog">{page.views}</span>
+                  <span className="font-mono text-micro text-fog">{page.views}</span>
                 </li>
               ))}
             </ul>
@@ -111,13 +111,13 @@ export default function AnalyticsPage() {
             <ul className="divide-y divide-line">
               {sources.map((source) => (
                 <li key={source.source} className="flex items-center justify-between gap-4 py-3">
-                  <span className="truncate text-[0.875rem] text-ink">{source.source}</span>
-                  <span className="font-mono text-[0.8125rem] text-fog">{source.visits}</span>
+                  <span className="truncate text-small text-ink">{source.source}</span>
+                  <span className="font-mono text-micro text-fog">{source.visits}</span>
                 </li>
               ))}
             </ul>
           )}
-          <p className="mt-4 text-[0.75rem] leading-relaxed text-fog">
+          <p className="mt-4 text-label leading-relaxed text-fog">
             Only the host a visit arrived from is kept — never the full link, so campaign tracking
             parameters stay out of this database.
           </p>
@@ -127,7 +127,7 @@ export default function AnalyticsPage() {
           title="Caught errors"
           action={
             exceptions.length > 0 ? (
-              <span className="inline-flex items-center gap-1 font-mono text-[0.625rem] uppercase tracking-label text-magenta-ink">
+              <span className="inline-flex items-center gap-1 font-mono text-label uppercase tracking-label text-magenta-ink">
                 <TriangleAlert className="h-3 w-3" /> {stats.errors} in 30 days
               </span>
             ) : undefined
@@ -142,10 +142,10 @@ export default function AnalyticsPage() {
             <ul className="divide-y divide-line">
               {exceptions.map((entry) => (
                 <li key={entry.id} className="py-3">
-                  <p className="truncate text-[0.8125rem] text-ink">
+                  <p className="truncate text-micro text-ink">
                     {entry.detail ?? "exception without a message"}
                   </p>
-                  <p className="mt-1 font-mono text-[0.6875rem] text-fog">
+                  <p className="mt-1 font-mono text-eyebrow text-fog">
                     {entry.path ?? "unknown page"} · {relativeTime(entry.created_at)}
                   </p>
                 </li>
@@ -156,7 +156,7 @@ export default function AnalyticsPage() {
       </div>
 
       <Card title="What this is not" className="mt-4">
-        <p className="text-[0.8125rem] leading-relaxed text-fog">
+        <p className="text-micro leading-relaxed text-fog">
           Not an analytics platform. There are no cookies, no user identifiers beyond the tab, no
           cross-site anything, and rows are deleted 90 days after they are written
           {first ? ` (the earliest row here is from ${first.slice(0, 10)})` : ""}. It exists so the
@@ -165,7 +165,7 @@ export default function AnalyticsPage() {
         </p>
         <Link
           href="/admin/edit/legal"
-          className="mt-4 inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-accent hover:underline"
+          className="mt-4 inline-flex items-center gap-1.5 text-micro font-medium text-accent hover:underline"
         >
           Edit the privacy notice that describes it
           <ArrowRight className="h-3.5 w-3.5" />

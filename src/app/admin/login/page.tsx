@@ -58,14 +58,14 @@ export default async function AdminLoginPage({
           {noAccounts && (
             <div
               role="status"
-              className="mt-6 rounded-lg border border-line bg-mist px-4 py-3 text-[0.8125rem] text-ink"
+              className="mt-6 rounded-lg border border-line bg-mist px-4 py-3 text-micro text-ink"
             >
               <p className="font-medium">This site has no admin accounts yet.</p>
               <p className="mt-1.5 leading-relaxed text-fog">
                 A new deployment starts empty — the demo logins come from a development
                 seed. Create your account on the server:
               </p>
-              <code className="mt-2 block rounded-md bg-paper px-2.5 py-1.5 font-mono text-[0.6875rem] text-ink">
+              <code className="mt-2 block rounded-md bg-paper px-2.5 py-1.5 font-mono text-eyebrow text-ink">
                 npm run admin:create
               </code>
             </div>
@@ -77,7 +77,7 @@ export default async function AdminLoginPage({
 
           <div className="mt-6 flex items-start gap-3 border-t border-line pt-5">
             <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fog" aria-hidden="true" />
-            <p className="text-[0.6875rem] leading-relaxed text-fog">
+            <p className="text-eyebrow leading-relaxed text-fog">
               Passwords are hashed with scrypt. Sessions are opaque tokens stored as
               SHA-256 hashes and sent in an httpOnly cookie; no third-party identity
               provider is involved.
@@ -85,7 +85,7 @@ export default async function AdminLoginPage({
           </div>
         </div>
 
-        <p className="mt-6 text-center text-[0.6875rem] text-fog">
+        <p className="mt-6 text-center text-eyebrow text-fog">
           Not an administrator?{" "}
           <Link href="/" className="text-accent underline underline-offset-2">
             Back to the site

@@ -21,7 +21,7 @@ export function MetricsBand() {
               <p className="font-display text-[2.25rem] leading-none tracking-[-0.03em] text-ink">
                 {fact.value}
               </p>
-              <p className="mt-3 text-[0.9375rem] font-medium text-ink">{fact.label}</p>
+              <p className="mt-3 text-body font-medium text-ink">{fact.label}</p>
               <p className="mt-1 text-micro text-fog">{fact.detail}</p>
             </RevealItem>
           ))}

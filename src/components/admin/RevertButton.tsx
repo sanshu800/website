@@ -45,14 +45,14 @@ export function RevertButton({
         onClick={() => void run()}
         disabled={disabled || pending}
         className={cn(
-          "inline-flex h-8 items-center gap-1.5 rounded-lg border border-field px-2.5 text-[0.75rem] font-medium text-fog transition-colors",
+          "inline-flex h-8 items-center gap-1.5 rounded-lg border border-field px-2.5 text-label font-medium text-fog transition-colors",
           "hover:bg-mist hover:text-ink disabled:opacity-40",
         )}
       >
         {pending ? <Loader2 className="h-3 w-3 animate-spin" /> : <Undo2 className="h-3 w-3" />}
         {label}
       </button>
-      {error && <span className="text-[0.6875rem] text-magenta-ink">{error}</span>}
+      {error && <span className="text-eyebrow text-magenta-ink">{error}</span>}
     </span>
   );
 }

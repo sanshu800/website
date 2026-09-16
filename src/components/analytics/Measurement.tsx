@@ -78,8 +78,8 @@ export function Measurement() {
       aria-label="Measurement"
       className="fixed inset-x-3 bottom-3 z-50 rounded-xl border border-line bg-paper p-4 shadow-lg sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-md"
     >
-      <p className="text-[0.8125rem] font-medium text-ink">Can we measure how the site is used?</p>
-      <p className="mt-1.5 text-[0.75rem] leading-relaxed text-fog">
+      <p className="text-micro font-medium text-ink">Can we measure how the site is used?</p>
+      <p className="mt-1.5 text-label leading-relaxed text-fog">
         First-party only: page views, where you arrived from and errors, stored on our own server.
         No cookies, no third-party scripts, no IP addresses, nothing that follows you off this
         site.{" "}
@@ -91,14 +91,14 @@ export function Measurement() {
         <button
           type="button"
           onClick={() => writeConsent("granted")}
-          className="inline-flex h-9 items-center rounded-lg bg-night px-3.5 text-[0.8125rem] font-medium text-on-accent transition-colors pointer-coarse:min-h-11 hover:bg-accent-2"
+          className="inline-flex h-9 items-center rounded-lg bg-night px-3.5 text-micro font-medium text-on-accent transition-colors pointer-coarse:min-h-11 hover:bg-accent-2"
         >
           Allow measurement
         </button>
         <button
           type="button"
           onClick={() => writeConsent("essential")}
-          className="inline-flex h-9 items-center rounded-lg border border-line px-3.5 text-[0.8125rem] font-medium text-fg-2 transition-colors pointer-coarse:min-h-11 hover:border-line-strong hover:text-ink"
+          className="inline-flex h-9 items-center rounded-lg border border-line px-3.5 text-micro font-medium text-fg-2 transition-colors pointer-coarse:min-h-11 hover:border-line-strong hover:text-ink"
         >
           Essential only
         </button>

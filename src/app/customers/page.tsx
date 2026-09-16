@@ -57,7 +57,7 @@ export default function CustomersPage() {
             <Reveal className="lg:col-span-7">
               <div className="rounded-2xl bg-night p-8 text-on-night sm:p-10">
                 <Quote className="h-7 w-7 text-accent-3" aria-hidden="true" />
-                <blockquote className="mt-6 font-display text-[1.5rem] leading-snug text-on-night">
+                <blockquote className="mt-6 font-display text-display-m leading-snug text-on-night">
                   “{testimonials[0]!.quote}”
                 </blockquote>
                 <p className="mt-7 border-t border-white/10 pt-6 text-micro text-on-night-2">
@@ -71,7 +71,7 @@ export default function CustomersPage() {
               {copy.narrative.map((item) => (
                 <Reveal key={item.label}>
                   <div className="rounded-2xl border border-line p-6">
-                    <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+                    <p className="font-mono text-label uppercase tracking-label text-fog">
                       {item.label}
                     </p>
                     <p className="mt-2 text-body-lg font-medium text-ink">{item.value}</p>
@@ -81,7 +81,7 @@ export default function CustomersPage() {
             </div>
           </div>
 
-          <p className="mt-6 font-mono text-[0.6875rem] text-fog">
+          <p className="mt-6 font-mono text-eyebrow text-fog">
             {copy.narrativeNote}
           </p>
         </Container>
@@ -98,10 +98,10 @@ export default function CustomersPage() {
                     “{item.quote}”
                   </blockquote>
                   <figcaption className="mt-6 border-t border-line pt-4">
-                    <span className="block text-[0.875rem] font-medium text-ink">
+                    <span className="block text-small font-medium text-ink">
                       {item.name}
                     </span>
-                    <span className="block text-[0.75rem] text-fog">
+                    <span className="block text-label text-fog">
                       {item.role}, {item.company} · {item.sector}
                     </span>
                   </figcaption>
@@ -109,7 +109,7 @@ export default function CustomersPage() {
               </RevealItem>
             ))}
           </RevealGroup>
-          <p className="mt-6 font-mono text-[0.6875rem] text-fog">
+          <p className="mt-6 font-mono text-eyebrow text-fog">
             {disclosures.customersPage}
           </p>
         </Container>
@@ -125,7 +125,7 @@ export default function CustomersPage() {
                 href={`/solutions/${solution.slug}`}
                 className="group flex items-center justify-between rounded-xl border border-line px-5 py-4 transition-colors hover:bg-mist"
               >
-                <span className="text-[0.9375rem] font-medium text-ink">{solution.name}</span>
+                <span className="text-body font-medium text-ink">{solution.name}</span>
                 <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             ))}

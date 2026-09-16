@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Plug, RefreshCw, Shield, Webhook } from "lucide-react";
+import { Plug, RefreshCw, Shield, Webhook } from "lucide-react";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -36,13 +37,13 @@ export default function IntegrationsPage() {
           <>
             <Link
               href={copy.heroActions.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               {copy.heroActions.primary.label}
             </Link>
             <Link
               href={copy.heroActions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               {copy.heroActions.secondary.label}
             </Link>
@@ -60,13 +61,13 @@ export default function IntegrationsPage() {
             {integrations.map((group) => (
               <RevealItem key={group.category}>
                 <div className="flex h-full flex-col rounded-2xl border border-line p-6">
-                  <h3 className="font-display text-[1.125rem] text-ink">{group.category}</h3>
+                  <h3 className="font-display text-display-s text-ink">{group.category}</h3>
                   <p className="mt-3 flex-1 text-micro text-fog">{group.blurb}</p>
                   <ul className="mt-5 flex flex-wrap gap-1.5">
                     {group.surfaces.map((surface) => (
                       <li
                         key={surface}
-                        className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-label text-fog"
+                        className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"
                       >
                         {surface}
                       </li>
@@ -87,7 +88,7 @@ export default function IntegrationsPage() {
               return (
                 <RevealItem key={capability.title}>
                   <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
-                  <h3 className="mt-4 text-[1.0625rem] font-medium text-ink">
+                  <h3 className="mt-4 text-body-lg font-medium text-ink">
                     {capability.title}
                   </h3>
                   <p className="mt-2.5 text-micro text-fog">{capability.body}</p>
@@ -104,16 +105,12 @@ export default function IntegrationsPage() {
             <div className="lg:col-span-5">
               <h2 className="text-display-m text-on-night">{copy.api.heading}</h2>
               <p className="mt-4 text-body-lg text-on-night-2">{copy.api.body}</p>
-              <Link
-                href="/contact"
-                className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-accent-3"
-              >
+              <ArrowLink href="/contact" tone="dark">
                 {copy.api.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
+              </ArrowLink>
             </div>
             <div className="lg:col-span-7">
-              <pre className="overflow-x-auto rounded-xl border border-white/10 bg-night-2 p-5 font-mono text-[0.75rem] leading-relaxed text-on-night-2">
+              <pre className="overflow-x-auto rounded-xl border border-white/10 bg-night-2 p-5 font-mono text-label leading-relaxed text-on-night-2">
 {`GET /v1/companies?stage=Onboarding&limit=2
 
 {

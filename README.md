@@ -198,6 +198,50 @@ instead. Blog prose is Markdown paragraphs; if emphasis is added to the body cop
 later, it needs a real italic file or a deliberate alternative (weight, colour,
 or the display face) rather than `font-style: italic`.
 
+### The scale
+
+Nine steps, all defined in `globals.css` and used by name — `text-display-2xl`
+through `text-label`. **Do not write `text-[0.9rem]` at a call site.** A one-off
+value is how the site ended up with thirty distinct font sizes, four of them
+within a pixel of each other, and no way to tell which were deliberate.
+
+| Step | Size | For |
+| --- | --- | --- |
+| `display-2xl` | 45.6 → 84px clamp | the hero headline, once per site |
+| `display-xl` | 36 → 62.4px clamp | page titles |
+| `display-l` | 29.6 → 48px clamp | section titles |
+| `display-m` | 22.4 → 32px clamp | cards, steps, sub-headings |
+| `display-s` | 19px | small headings, card titles, stat values |
+| `lead` | 17 → 21px clamp | the paragraph directly under a title |
+| `body-lg` | 16px | reading copy on marketing pages |
+| `body` | 15px | default copy, and control labels at `lg` |
+| `small` | 14px | dense copy: lists, meta, table cells |
+| `micro` | 13px | supporting lines under a label |
+| `label` / `eyebrow` | 12px | mono labels, and all-caps kickers |
+
+Three rules hold it together:
+
+1. **12px is the floor.** Nothing renders smaller, including the all-caps mono
+   kickers, which used to be 11px and 10px. Below 12px, tracking-heavy capitals
+   stop being readable on a phone.
+2. **All-caps is for short labels only.** Caps cost the reader word shape, so a
+   six-word kicker in caps has to be read letter by letter. Section labels are
+   two or three words: "Built for", not "Owner-run businesses we have built for".
+3. **`label` and `eyebrow` are the same size and differ only in tracking** —
+   0.1em for a control's own label, 0.14em for a standalone kicker. They count as
+   one step, not two.
+
+The display end stays in `clamp()` on purpose: those are the sizes that must
+shrink on a phone, and a fixed value there means a second number to maintain. The
+handful of remaining one-off sizes are the hero's breakpoint chain and the price
+and metric figures, which are tuned individually.
+
+**Colour works the same way.** Text on a light surface is `ink` (or `fg-2`), then
+`fog` for the quiet step. On a night surface it is `on-night`, `on-night-2`, then
+`on-night-3`. There is no fourth step, and no `text-white/70` — the numbers this
+replaced included `text-on-night/30` at 2.3:1 and `text-on-night/45` at 3.7:1,
+which is unreadable text wearing the costume of a deliberate decision.
+
 ### The mobile action bar
 
 Below `lg` the header's primary call to action lives inside the menu sheet: two

@@ -49,7 +49,7 @@ export default async function BlogIndex({
                 href={item === "All" ? "/blog" : `/blog?category=${encodeURIComponent(item)}`}
                 aria-current={item === active ? "page" : undefined}
                 className={cn(
-                  "shrink-0 rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors pointer-coarse:min-h-11",
+                  "shrink-0 rounded-full border px-3.5 py-1.5 text-micro transition-colors pointer-coarse:min-h-11",
                   item === active
                     ? "border-accent bg-accent text-on-accent"
                     : "border-line text-fg-2 hover:bg-mist",
@@ -77,24 +77,24 @@ export default async function BlogIndex({
                 className="group grid gap-8 rounded-2xl border border-line p-7 transition-all duration-300 hover:border-line-strong hover:shadow-md sm:p-9 lg:grid-cols-12"
               >
                 <div className="lg:col-span-7">
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+                  <span className="font-mono text-eyebrow uppercase tracking-label text-accent">
                     Featured · {featured.category}
                   </span>
-                  <h2 className="mt-4 font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-ink">
+                  <h2 className="mt-4 font-display text-display-m leading-tight tracking-[-0.02em] text-ink">
                     {featured.title}
                   </h2>
                   <p className="mt-4 text-body-lg text-fog">{featured.excerpt}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-[0.875rem] font-medium text-accent">
+                  <span className="mt-6 inline-flex items-center gap-2 text-small font-medium text-accent">
                     Read the article
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
                 </div>
                 <div className="lg:col-span-4 lg:col-start-9 lg:border-l lg:border-line lg:pl-8">
-                  <p className="text-[0.875rem] font-medium text-ink">
+                  <p className="text-small font-medium text-ink">
                     {featured.author.name}
                   </p>
-                  <p className="text-[0.75rem] text-fog">{featured.author.role}</p>
-                  <div className="mt-4 flex items-center gap-3 font-mono text-[0.6875rem] text-fog">
+                  <p className="text-label text-fog">{featured.author.role}</p>
+                  <div className="mt-4 flex items-center gap-3 font-mono text-eyebrow text-fog">
                     <time dateTime={featured.publishedAt}>
                       {formatDate(featured.publishedAt)}
                     </time>
@@ -115,14 +115,14 @@ export default async function BlogIndex({
                   href={`/blog/${post.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
-                  <span className="font-mono text-[0.625rem] uppercase tracking-label text-accent">
+                  <span className="font-mono text-label uppercase tracking-label text-accent">
                     {post.category}
                   </span>
-                  <h3 className="mt-3 font-display text-[1.125rem] leading-snug text-ink">
+                  <h3 className="mt-3 font-display text-display-s leading-snug text-ink">
                     {post.title}
                   </h3>
                   <p className="mt-3 flex-1 text-micro text-fog">{post.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between border-t border-line pt-4 font-mono text-[0.6875rem] text-fog">
+                  <div className="mt-5 flex items-center justify-between border-t border-line pt-4 font-mono text-eyebrow text-fog">
                     <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
                     <span>{post.readingMinutes} min</span>
                   </div>

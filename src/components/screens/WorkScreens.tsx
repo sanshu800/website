@@ -54,7 +54,7 @@ function Chrome({
         </div>
         <div
           className={cn(
-            "flex flex-1 items-center gap-2 rounded-md px-2.5 py-1 font-mono text-[0.6875rem]",
+            "flex flex-1 items-center gap-2 rounded-md px-2.5 py-1 font-mono text-eyebrow",
             dark ? "bg-white/5 text-on-night-2" : "bg-paper text-fog",
           )}
         >
@@ -84,7 +84,7 @@ function Avatar({ name, className }: { name: string; className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[0.625rem] font-semibold",
+        "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-label font-semibold",
         palette[idx],
         className,
       )}
@@ -112,8 +112,8 @@ export function IntakeScreen({ className }: { className?: string }) {
       <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
         <div className="flex items-center gap-2">
           <Inbox className="h-4 w-4 text-accent" />
-          <span className="text-[0.8125rem] font-medium text-ink">New enquiries</span>
-          <span className="rounded-full bg-mist-2 px-2 py-[1px] font-mono text-[0.625rem] text-fg-2">
+          <span className="text-micro font-medium text-ink">New enquiries</span>
+          <span className="rounded-full bg-mist-2 px-2 py-[1px] font-mono text-label text-fg-2">
             18 open
           </span>
         </div>
@@ -122,9 +122,9 @@ export function IntakeScreen({ className }: { className?: string }) {
             <span
               key={filter}
               className={cn(
-                "rounded-full px-2.5 py-1 text-[0.6875rem]",
+                "rounded-full px-2.5 py-1 text-eyebrow",
                 i === 0
-                  ? "bg-night text-white"
+                  ? "bg-night text-on-night"
                   : "border border-line text-fog",
               )}
             >
@@ -145,12 +145,12 @@ export function IntakeScreen({ className }: { className?: string }) {
           >
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="truncate text-[0.8125rem] font-medium text-ink">
+                <span className="truncate text-micro font-medium text-ink">
                   {row.client}
                 </span>
-                <span className="font-mono text-[0.625rem] text-fog">{row.ref}</span>
+                <span className="font-mono text-label text-fog">{row.ref}</span>
               </div>
-              <span className="truncate text-[0.75rem] text-fog">{row.matter}</span>
+              <span className="truncate text-label text-fog">{row.matter}</span>
             </div>
             <div className="hidden min-w-0 items-center gap-2 sm:flex">
               {row.source === "Shared inbox" ? (
@@ -160,22 +160,22 @@ export function IntakeScreen({ className }: { className?: string }) {
               ) : (
                 <FileText className="h-3.5 w-3.5 shrink-0 text-fog" />
               )}
-              <span className="truncate text-[0.75rem] text-fog">{row.source}</span>
+              <span className="truncate text-label text-fog">{row.source}</span>
             </div>
             <div className="hidden items-center gap-2 sm:flex">
               {row.owner === "—" ? (
-                <span className="flex items-center gap-1 text-[0.75rem] text-danger-ink">
+                <span className="flex items-center gap-1 text-label text-danger-ink">
                   <TriangleAlert className="h-3.5 w-3.5" /> Unassigned
                 </span>
               ) : (
                 <>
                   <Avatar name={row.owner} />
-                  <span className="text-[0.75rem] text-fg-2">{row.owner}</span>
+                  <span className="text-label text-fg-2">{row.owner}</span>
                 </>
               )}
             </div>
             <div className="flex items-center gap-3">
-              <span className="hidden font-mono text-[0.6875rem] text-fog sm:inline">
+              <span className="hidden font-mono text-eyebrow text-fog sm:inline">
                 {row.age}
               </span>
               <StatusPill status={row.status} />
@@ -185,11 +185,11 @@ export function IntakeScreen({ className }: { className?: string }) {
       </div>
 
       <div className="flex items-center justify-between border-t border-line bg-mist px-4 py-2.5">
-        <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
+        <span className="flex items-center gap-1.5 font-mono text-eyebrow text-fog">
           <Sparkles className="h-3.5 w-3.5 text-accent" />
           The agent answered 4 enquiries and booked 2 visits
         </span>
-        <span className="font-mono text-[0.6875rem] text-fog">median first reply 9s</span>
+        <span className="font-mono text-eyebrow text-fog">median first reply 9s</span>
       </div>
     </Chrome>
   );
@@ -210,8 +210,8 @@ export function EngageScreen({ className }: { className?: string }) {
   return (
     <Chrome title="agent console · follow-up" className={cn("h-full", className)}>
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <span className="text-[0.8125rem] font-medium text-ink">Active sequences</span>
-        <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-fog">
+        <span className="text-micro font-medium text-ink">Active sequences</span>
+        <span className="flex items-center gap-1.5 font-mono text-eyebrow text-fog">
           <span className="h-1.5 w-1.5 rounded-full bg-jade" /> sending
         </span>
       </div>
@@ -227,11 +227,11 @@ export function EngageScreen({ className }: { className?: string }) {
                     seq.live ? "bg-jade" : "bg-line-strong",
                   )}
                 />
-                <span className="truncate text-[0.8125rem] font-medium text-ink">
+                <span className="truncate text-micro font-medium text-ink">
                   {seq.name}
                 </span>
               </div>
-              <span className="shrink-0 font-mono text-[0.6875rem] text-fog">
+              <span className="shrink-0 font-mono text-eyebrow text-fog">
                 {seq.stage}
               </span>
             </div>
@@ -242,7 +242,7 @@ export function EngageScreen({ className }: { className?: string }) {
                   style={{ width: `${Math.round((seq.replied / seq.sent) * 100)}%` }}
                 />
               </div>
-              <span className="shrink-0 font-mono text-[0.6875rem] text-fog">
+              <span className="shrink-0 font-mono text-eyebrow text-fog">
                 {seq.sent} sent · {seq.replied} replied
               </span>
             </div>
@@ -253,7 +253,7 @@ export function EngageScreen({ className }: { className?: string }) {
       <div className="border-t border-line bg-accent-soft/60 px-4 py-3">
         <div className="flex items-start gap-2">
           <Sparkles className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
-          <p className="text-[0.75rem] leading-relaxed text-accent-2">
+          <p className="text-label leading-relaxed text-accent-2">
             <strong className="font-semibold">Escalation:</strong> Oakhill Group has not
             replied to 3 touches. Assigned to D. Kessler with the whole thread attached.
           </p>
@@ -282,12 +282,12 @@ export function DeliverScreen({ className }: { className?: string }) {
     <Chrome title="agent console · documents" className={cn("h-full", className)}>
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <div>
-          <p className="text-[0.8125rem] font-medium text-ink">Oakhill Group — roof replacement</p>
-          <p className="font-mono text-[0.6875rem] text-fog">
+          <p className="text-micro font-medium text-ink">Oakhill Group — roof replacement</p>
+          <p className="font-mono text-eyebrow text-fog">
             job 88-412 · day 4 · owner D. Kessler
           </p>
         </div>
-        <span className="shrink-0 rounded-full bg-caution-soft px-2.5 py-1 text-[0.6875rem] font-medium text-caution-ink">
+        <span className="shrink-0 rounded-full bg-caution-soft px-2.5 py-1 text-eyebrow font-medium text-caution-ink">
           2 outstanding
         </span>
       </div>
@@ -304,24 +304,24 @@ export function DeliverScreen({ className }: { className?: string }) {
             )}
             <span
               className={cn(
-                "flex-1 text-[0.8125rem]",
+                "flex-1 text-micro",
                 item.state === "todo" ? "text-fog" : "text-fg-2",
               )}
             >
               {item.label}
             </span>
             {item.state === "waiting" && (
-              <span className="font-mono text-[0.6875rem] text-caution-ink">chased 2×</span>
+              <span className="font-mono text-eyebrow text-caution-ink">chased 2×</span>
             )}
           </li>
         ))}
       </ol>
 
       <div className="flex items-center justify-between border-t border-line bg-mist px-4 py-2.5">
-        <span className="font-mono text-[0.6875rem] text-fog">
+        <span className="font-mono text-eyebrow text-fog">
           5 of 7 complete · everything filed against the job
         </span>
-        <span className="flex items-center gap-1 font-mono text-[0.6875rem] text-accent">
+        <span className="flex items-center gap-1 font-mono text-eyebrow text-accent">
           open job record <ArrowUpRight className="h-3 w-3" />
         </span>
       </div>
@@ -339,8 +339,8 @@ export function InsightScreen({ className }: { className?: string }) {
   return (
     <Chrome title="agent console · weekly review" className={cn("h-full", className)}>
       <div className="border-b border-line px-4 py-3">
-        <p className="text-[0.8125rem] font-medium text-ink">Weekly review pack</p>
-        <p className="font-mono text-[0.6875rem] text-fog">
+        <p className="text-micro font-medium text-ink">Weekly review pack</p>
+        <p className="font-mono text-eyebrow text-fog">
           assembled 06:00 · sent to you and your bookkeeper
         </p>
       </div>
@@ -352,13 +352,13 @@ export function InsightScreen({ className }: { className?: string }) {
           { label: "Gross margin", value: "41%", delta: "-1.4%" },
         ].map((metric) => (
           <div key={metric.label} className="px-4 py-3">
-            <p className="font-mono text-[0.625rem] uppercase tracking-label text-fog">
+            <p className="font-mono text-label uppercase tracking-label text-fog">
               {metric.label}
             </p>
-            <p className="mt-1 font-display text-[1.125rem] text-ink">{metric.value}</p>
+            <p className="mt-1 font-display text-display-s text-ink">{metric.value}</p>
             <p
               className={cn(
-                "font-mono text-[0.625rem]",
+                "font-mono text-label",
                 metric.delta.startsWith("-") ? "text-danger-ink" : "text-jade-ink",
               )}
             >
@@ -382,14 +382,14 @@ export function InsightScreen({ className }: { className?: string }) {
             </div>
           ))}
         </div>
-        <div className="mt-2 flex justify-between font-mono text-[0.625rem] text-fog">
+        <div className="mt-2 flex justify-between font-mono text-label text-fog">
           <span>Q1</span>
           <span>Q4</span>
         </div>
       </div>
 
       <div className="border-t border-line px-4 py-3">
-        <p className="flex items-center gap-2 text-[0.75rem] font-medium text-ink">
+        <p className="flex items-center gap-2 text-label font-medium text-ink">
           <TriangleAlert className="h-3.5 w-3.5 text-danger" />
           Needs attention
         </p>
@@ -398,7 +398,7 @@ export function InsightScreen({ className }: { className?: string }) {
             "Oakhill Group — 2 jobs below quoted margin",
             "Sterling Hoyt — no contact in 41 days",
           ].map((line) => (
-            <li key={line} className="text-[0.75rem] text-fog">
+            <li key={line} className="text-label text-fog">
               {line}
             </li>
           ))}

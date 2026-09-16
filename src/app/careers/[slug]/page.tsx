@@ -43,12 +43,12 @@ export default async function RolePage({
         <Container width="wide">
           <Link
             href="/careers"
-            className="inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-label text-fog transition-colors hover:text-ink"
+            className="inline-flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog transition-colors hover:text-ink"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             All roles
           </Link>
-          <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+          <p className="mt-8 font-mono text-eyebrow uppercase tracking-label text-accent">
             {role.team}
           </p>
           <h1 className="mt-4 text-display-xl text-ink">{role.title}</h1>
@@ -72,7 +72,7 @@ export default async function RolePage({
             <div className="lg:col-span-7">
               <p className="text-lead text-fg-2">{role.summary}</p>
 
-              <h2 className="mt-12 font-display text-[1.25rem] text-ink">
+              <h2 className="mt-12 font-display text-display-s text-ink">
                 What you will do
               </h2>
               <ul className="mt-5 space-y-3">
@@ -87,7 +87,7 @@ export default async function RolePage({
                 ))}
               </ul>
 
-              <h2 className="mt-10 font-display text-[1.25rem] text-ink">
+              <h2 className="mt-10 font-display text-display-s text-ink">
                 What we are looking for
               </h2>
               <ul className="mt-5 space-y-3">
@@ -103,7 +103,7 @@ export default async function RolePage({
               </ul>
 
               <div className="mt-12 rounded-2xl border border-line bg-mist p-6">
-                <h2 className="font-display text-[1.0625rem] text-ink">
+                <h2 className="font-display text-body-lg text-ink">
                   How our process works
                 </h2>
                 <ol className="mt-4 space-y-3 text-micro text-fog">
@@ -114,7 +114,7 @@ export default async function RolePage({
                     "A decision within five working days of the final conversation.",
                   ].map((step, index) => (
                     <li key={step} className="flex gap-3">
-                      <span className="font-mono text-[0.6875rem] text-accent">
+                      <span className="font-mono text-eyebrow text-accent">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       {step}

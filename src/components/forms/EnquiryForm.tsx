@@ -354,7 +354,7 @@ export function EnquiryForm({
         </Button>
       </div>
 
-      <p className="text-[0.75rem] leading-relaxed text-fog">
+      <p className="text-label leading-relaxed text-fog">
         We use these details to answer your enquiry and nothing else. No
         auto-responder loop, no list you did not ask for. Messages are stored in our own
         database, not a third-party form service.

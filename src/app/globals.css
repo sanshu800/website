@@ -107,8 +107,14 @@
   --color-night-2: #141414;
   --color-night-3: #1d1d1d;
   --color-night-4: #2b2b2b;
-  --color-on-night: #f7f7f7;
-  --color-on-night-2: #a9a9a9;
+  --color-on-night: #f7f7f7; /* 17.9:1 on night */
+  --color-on-night-2: #a9a9a9; /* 8.5:1 on night */
+  /* The third step exists so that "quieter than secondary" is a decision made
+     once rather than an opacity invented per component. The values this
+     replaced were `text-on-night/30` (2.3:1), `/45` (3.7:1) and
+     `text-on-night-2/60` (3.7:1) — all below the 4.5:1 needed for body text.
+     This is 4.8:1, so the quietest text on a dark surface is still readable. */
+  --color-on-night-3: #7d7d7d;
   /* Text on an accent-filled control. Named rather than written as `text-white`
      so the pair (fill, text-on-fill) stays visible as a pair. */
   --color-on-accent: #ffffff;
@@ -151,7 +157,11 @@
   --text-label: 0.75rem;
   --text-label--line-height: 1.2;
   --text-label--letter-spacing: 0.1em;
-  --text-eyebrow: 0.6875rem;
+  /* 12px, the floor for legible small type — this used to be 11px, which is
+     below it. `eyebrow` and `label` therefore share a size and differ only in
+     tracking: a label is a control's own label, an eyebrow is a standalone
+     kicker above a heading. */
+  --text-eyebrow: 0.75rem;
   --text-eyebrow--line-height: 1.2;
   --text-eyebrow--letter-spacing: 0.14em;
 

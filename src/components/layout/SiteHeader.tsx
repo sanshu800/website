@@ -171,7 +171,7 @@ export function SiteHeader({
   const overlay = mobileOpen || (pathname === "/" && !scrolled && !openMenu);
 
   const linkTone = overlay
-    ? "text-on-night/75 hover:text-on-night"
+    ? "text-on-night hover:text-on-night"
     : "text-fg-2 hover:text-ink";
 
   return (
@@ -244,7 +244,7 @@ export function SiteHeader({
               <Link
                 href={header.actions.primary.href}
                 className={cn(
-                  "inline-flex h-9 items-center rounded-lg px-4 text-[0.8125rem] font-medium transition-transform duration-300 pointer-coarse:min-h-11 hover:scale-[1.03] active:scale-95",
+                  "inline-flex h-9 items-center rounded-lg px-4 text-micro font-medium transition-transform duration-300 pointer-coarse:min-h-11 hover:scale-[1.03] active:scale-95",
                   overlay ? "bg-on-ink text-ink" : "bg-accent text-on-accent",
                 )}
               >
@@ -305,7 +305,7 @@ export function SiteHeader({
                         onClick={() => setOpenMenu(null)}
                         className="group flex flex-col gap-1 rounded-lg p-3 transition-colors duration-200 hover:bg-mist"
                       >
-                        <span className="flex items-center gap-2 text-[0.9375rem] font-medium text-ink">
+                        <span className="flex items-center gap-2 text-body font-medium text-ink">
                           {child.label}
                           <span className="h-px w-0 bg-accent transition-all duration-300 group-hover:w-4" />
                         </span>
@@ -375,12 +375,12 @@ export function SiteHeader({
                         aria-expanded={expanded}
                         className="flex w-full items-center justify-between py-4 text-left"
                       >
-                        <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-night/90">
+                        <span className="text-display-m font-medium tracking-[-0.02em] text-on-night">
                           {item.label}
                         </span>
                         <ChevronDown
                           className={cn(
-                            "h-5 w-5 text-on-night/50 transition-transform duration-300",
+                            "h-5 w-5 text-on-night-2 transition-transform duration-300",
                             expanded && "rotate-180",
                           )}
                         />
@@ -402,10 +402,10 @@ export function SiteHeader({
                                 <Link
                                   href={child.href}
                                   onClick={() => setMobileOpen(false)}
-                                  className="flex items-baseline justify-between gap-4 py-3 pl-4 text-[0.9375rem] text-on-night/60 transition-colors hover:text-on-night"
+                                  className="flex items-baseline justify-between gap-4 py-3 pl-4 text-body text-on-night-2 transition-colors hover:text-on-night"
                                 >
                                   {child.label}
-                                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-on-night/30" />
+                                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-on-night-3" />
                                 </Link>
                               </li>
                             ))}
@@ -419,10 +419,10 @@ export function SiteHeader({
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center justify-between py-4"
                     >
-                      <span className="text-[1.75rem] font-medium tracking-[-0.02em] text-on-night/90">
+                      <span className="text-display-m font-medium tracking-[-0.02em] text-on-night">
                         {item.label}
                       </span>
-                      <ArrowRight className="h-4 w-4 text-on-night/30" />
+                      <ArrowRight className="h-4 w-4 text-on-night-3" />
                     </Link>
                   )}
                 </li>
@@ -434,7 +434,7 @@ export function SiteHeader({
             <Link
               href={header.actions.primary.href}
               onClick={() => setMobileOpen(false)}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-[1rem] font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-body-lg font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
             >
               {header.actions.primary.label} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -461,7 +461,7 @@ export function SiteHeader({
           >
             <Link
               href={header.actions.primary.href}
-              className="flex h-12 items-center justify-center gap-2 rounded-xl bg-accent text-[0.9375rem] font-medium text-on-accent shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-transform duration-300 active:scale-[0.98]"
+              className="flex h-12 items-center justify-center gap-2 rounded-xl bg-accent text-body font-medium text-on-accent shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-transform duration-300 active:scale-[0.98]"
             >
               {header.actions.primary.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

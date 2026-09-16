@@ -73,10 +73,10 @@ export function ProblemSection() {
                   <p className="mt-3 text-small text-on-night-2">{problem.body}</p>
 
                   <div className="mt-6 flex items-baseline gap-3 border-t border-white/10 pt-5">
-                    <span className="tabular font-display text-[1.75rem] leading-none text-on-night">
+                    <span className="tabular font-display text-display-m leading-none text-on-night">
                       {problem.stat.value}
                     </span>
-                    <span className="text-[0.75rem] leading-snug text-on-night-2">
+                    <span className="text-label leading-snug text-on-night-2">
                       {problem.stat.label}
                     </span>
                   </div>
@@ -86,7 +86,7 @@ export function ProblemSection() {
                       aria-hidden="true"
                       className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-3"
                     />
-                    <p className="text-[0.8125rem] leading-snug text-on-night">
+                    <p className="text-micro leading-snug text-on-night">
                       {problem.fix}
                     </p>
                   </div>

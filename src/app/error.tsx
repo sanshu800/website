@@ -41,7 +41,7 @@ export default function Error({
         </p>
 
         {error.digest ? (
-          <p className="mt-4 font-mono text-[0.6875rem] text-fog">
+          <p className="mt-4 font-mono text-eyebrow text-fog">
             Reference: {error.digest}
           </p>
         ) : null}
@@ -50,19 +50,19 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex h-12 items-center justify-center rounded-lg bg-accent px-6 text-[0.9375rem] font-medium text-on-accent transition-colors duration-200 hover:bg-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="inline-flex h-12 items-center justify-center rounded-lg bg-accent px-6 text-body font-medium text-on-accent transition-colors duration-200 hover:bg-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             Try again
           </button>
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-lg border border-field bg-paper px-6 text-[0.9375rem] font-medium text-ink transition-colors duration-200 hover:bg-mist"
+            className="inline-flex h-12 items-center justify-center rounded-lg border border-field bg-paper px-6 text-body font-medium text-ink transition-colors duration-200 hover:bg-mist"
           >
             Back to the homepage
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-[0.9375rem] font-medium text-fg-2 transition-colors duration-200 hover:bg-mist hover:text-ink"
+            className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-body font-medium text-fg-2 transition-colors duration-200 hover:bg-mist hover:text-ink"
           >
             Report a problem
           </Link>

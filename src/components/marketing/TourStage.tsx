@@ -81,7 +81,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
               >
                 <span
                   className={cn(
-                    "font-mono text-[0.625rem]",
+                    "font-mono text-label",
                     selected ? "text-accent" : "text-fog",
                   )}
                 >
@@ -89,7 +89,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
                 </span>
                 <span
                   className={cn(
-                    "mt-1.5 block whitespace-nowrap font-display text-[1.0625rem] lg:whitespace-normal",
+                    "mt-1.5 block whitespace-nowrap font-display text-body-lg lg:whitespace-normal",
                     selected ? "text-ink" : "text-fg-2",
                   )}
                 >
@@ -127,10 +127,10 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
             <Screen name={current.screen} />
           </div>
           <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3">
-            <span className="text-[0.75rem] text-fog">{current.caption}</span>
+            <span className="text-label text-fog">{current.caption}</span>
             <Link
               href={current.href}
-              className="group inline-flex items-center gap-2 text-[0.8125rem] font-medium text-accent"
+              className="group inline-flex items-center gap-2 text-micro font-medium text-accent"
             >
               Learn more about {current.name}
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

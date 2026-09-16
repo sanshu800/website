@@ -59,13 +59,13 @@ export default async function ProductPage({
           <>
             <Link
               href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-[0.9375rem] font-medium text-on-accent transition-colors hover:bg-accent-2"
+              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
             >
               Book a free audit
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-5 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-mist"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
             >
               Talk to us
               <ArrowRight className="h-4 w-4" />
@@ -79,7 +79,7 @@ export default async function ProductPage({
                 <Screen name={screenName} />
               </div>
             </div>
-            <p className="mt-3 font-mono text-[0.6875rem] text-fog">
+            <p className="mt-3 font-mono text-eyebrow text-fog">
               {service.panelCaption} · {detail.captionSuffix}
             </p>
           </Reveal>
@@ -93,12 +93,12 @@ export default async function ProductPage({
             {service.flow.map((step, index) => (
               <RevealItem key={step.step} className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-label text-accent">
+                  <span className="font-mono text-eyebrow uppercase tracking-label text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span aria-hidden="true" className="h-px flex-1 bg-line-strong" />
                 </div>
-                <p className="mt-3 font-display text-[1.0625rem] text-ink">{step.step}</p>
+                <p className="mt-3 font-display text-body-lg text-ink">{step.step}</p>
                 <p className="mt-1 text-micro text-fog">{step.detail}</p>
               </RevealItem>
             ))}
@@ -117,7 +117,7 @@ export default async function ProductPage({
             {service.features.map((feature) => (
               <RevealItem key={feature.title}>
                 <div className="flex h-full flex-col border-t border-line pt-5">
-                  <h3 className="text-[1.0625rem] font-medium text-ink">{feature.title}</h3>
+                  <h3 className="text-body-lg font-medium text-ink">{feature.title}</h3>
                   <p className="mt-2.5 text-micro text-fog">{feature.body}</p>
                 </div>
               </RevealItem>
@@ -163,10 +163,10 @@ export default async function ProductPage({
                   href={`/services/${module.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-line-strong hover:shadow-md"
                 >
-                  <span className="font-mono text-[0.6875rem] uppercase tracking-label text-fog">
+                  <span className="font-mono text-eyebrow uppercase tracking-label text-fog">
                     {module.kicker}
                   </span>
-                  <span className="mt-2 flex items-center justify-between font-display text-[1.125rem] text-ink">
+                  <span className="mt-2 flex items-center justify-between font-display text-display-s text-ink">
                     {module.name}
                     <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>

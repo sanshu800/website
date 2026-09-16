@@ -61,7 +61,7 @@ export function ContentEditor({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search every field on this surface…"
             aria-label="Search fields"
-            className="h-11 w-full rounded-lg border border-field bg-paper pl-9 pr-3 text-[0.9375rem] text-ink focus-visible:border-accent"
+            className="h-11 w-full rounded-lg border border-field bg-paper pl-9 pr-3 text-body text-ink focus-visible:border-accent"
           />
         </div>
 
@@ -70,17 +70,17 @@ export function ContentEditor({
           onClick={() => setOnlyEdited((current) => !current)}
           aria-pressed={onlyEdited}
           className={cn(
-            "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-[0.8125rem] font-medium transition-colors",
+            "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-micro font-medium transition-colors",
             onlyEdited
               ? "border-accent bg-accent text-on-accent"
               : "border-field text-fog hover:bg-mist hover:text-ink",
           )}
         >
           Edited only
-          <span className="font-mono text-[0.6875rem] opacity-80">{editedCount}</span>
+          <span className="font-mono text-eyebrow opacity-80">{editedCount}</span>
         </button>
 
-        <p className="text-[0.75rem] text-fog">
+        <p className="text-label text-fog">
           <span className="font-mono text-ink">{visible.length}</span> of {fields.length} fields
         </p>
       </div>
@@ -95,9 +95,9 @@ export function ContentEditor({
         {groups.map(([group, groupFields]) => (
           <section key={group}>
             <div className="flex items-center gap-3">
-              <h2 className="font-display text-[1.0625rem] text-ink">{group}</h2>
+              <h2 className="font-display text-body-lg text-ink">{group}</h2>
               <span className="h-px flex-1 bg-line" />
-              <span className="font-mono text-[0.6875rem] text-fog">
+              <span className="font-mono text-eyebrow text-fog">
                 {groupFields.length} field{groupFields.length === 1 ? "" : "s"}
               </span>
             </div>
@@ -110,7 +110,7 @@ export function ContentEditor({
         ))}
       </div>
 
-      <p className="mt-10 rounded-xl border border-line bg-mist px-5 py-4 text-[0.75rem] leading-relaxed text-fog">
+      <p className="mt-10 rounded-xl border border-line bg-mist px-5 py-4 text-label leading-relaxed text-fog">
         Field keys are stable across edits, so renaming copy in code does not move anyone&apos;s work.
         If a key disappears from the page it came from, the admin reports it as an orphan under{" "}
         <Link href="/admin/history" className="text-accent underline underline-offset-2">

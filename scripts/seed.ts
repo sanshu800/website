@@ -12,7 +12,7 @@ import { DatabaseSync } from "node:sqlite";
 import { randomBytes, scryptSync } from "node:crypto";
 import { mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
-import { SCHEMA } from "../src/lib/db.ts";
+import { initialiseDatabase } from "../src/lib/db.ts";
 
 const DATA_DIR = process.env.REYGENT_DATA_DIR ?? path.join(process.cwd(), "data");
 const DB_PATH = process.env.REYGENT_DB_PATH ?? path.join(DATA_DIR, "reygent.db");
@@ -31,10 +31,16 @@ if (reset) {
 mkdirSync(path.dirname(DB_PATH), { recursive: true });
 const db = new DatabaseSync(DB_PATH);
 
-/* The schema lives in `src/lib/db.ts` and is applied here rather than copied.
-   It used to be duplicated, and drifted: a fresh install was missing the
-   `events` table until the app happened to open the database first. */
-db.exec(SCHEMA);
+/*
+ * One schema, one initialiser, applied rather than copied. This used to exec a
+ * private copy, which drifted; then it exec'd the shared `SCHEMA`, which was
+ * better but still missed the parts that are not in it — the per-connection
+ * `busy_timeout` and the one-time journal-mode switch. Both matter when a seed
+ * script runs against a database a running server also has open, so the script
+ * now calls the same function the app does.
+ */
+db.exec(`PRAGMA busy_timeout = ${Number(process.env.REYGENT_DB_TIMEOUT_MS ?? 5000)};`);
+initialiseDatabase(db);
 
 function hashPassword(password: string): string {
   const salt = randomBytes(16);

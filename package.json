@@ -11,7 +11,8 @@
     "seed": "node --experimental-strip-types scripts/seed.ts",
     "db:reset": "node --experimental-strip-types scripts/seed.ts --reset",
     "admin:create": "node --experimental-strip-types scripts/admin.ts",
-    "placeholders:check": "node --experimental-strip-types scripts/check-placeholders.ts"
+    "placeholders:check": "node --experimental-strip-types scripts/check-placeholders.ts",
+    "db:check": "node --experimental-strip-types scripts/db-check.ts"
   },
   "dependencies": {
     "lucide-react": "1.46.0",

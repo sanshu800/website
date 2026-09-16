@@ -1,4 +1,4 @@
-import { getDb, all, one, run, newId } from "@/lib/db";
+import { all, one, run, newId } from "@/lib/db";
 
 /**
  * Override store for site copy.
@@ -39,34 +39,17 @@ export type RevisionRow = {
 
 export type Actor = { id: string; name: string; email: string };
 
-export function ensureContentSchema(): void {
-  getDb().exec(`
-    CREATE TABLE IF NOT EXISTS content_overrides (
-      key        TEXT PRIMARY KEY,
-      doc        TEXT NOT NULL,
-      path       TEXT NOT NULL,
-      value      TEXT NOT NULL,
-      updated_at TEXT NOT NULL,
-      updated_by TEXT
-    );
-    CREATE INDEX IF NOT EXISTS idx_content_overrides_doc ON content_overrides(doc);
-
-    CREATE TABLE IF NOT EXISTS content_revisions (
-      id          TEXT PRIMARY KEY,
-      key         TEXT NOT NULL,
-      doc         TEXT NOT NULL,
-      path        TEXT NOT NULL,
-      action      TEXT NOT NULL,
-      old_value   TEXT,
-      new_value   TEXT,
-      actor       TEXT,
-      actor_email TEXT,
-      at          TEXT NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_content_revisions_key ON content_revisions(key);
-    CREATE INDEX IF NOT EXISTS idx_content_revisions_at ON content_revisions(at);
-  `);
-}
+/*
+ * The content tables are created by `getDb()` before it returns a connection
+ * (see `CONTENT_SCHEMA` in `src/lib/db.ts`), so there is nothing to ensure here.
+ *
+ * There used to be an `ensureContentSchema()` that ran `CREATE TABLE IF NOT
+ * EXISTS` from this side, and it was called from every read helper below —
+ * which meant rendering a page issued DDL. On a deploy, where several build
+ * workers open the database at once, that is a write-lock request per page
+ * render, and it is half of why `next build` could die with `database is
+ * locked`.
+ */
 
 /* ------------------------------------------------------------------ */
 /* In-process cache                                                    */
@@ -90,7 +73,6 @@ function bumpVersion(): void {
 
 /** Rows for one document, with who last touched each field. */
 export function overrideRowsFor(doc: string): OverrideRow[] {
-  ensureContentSchema();
   return all<OverrideRow>(
     `SELECT key, doc, path, value, updated_at, updated_by FROM content_overrides WHERE doc = ?`,
     [doc],
@@ -103,7 +85,6 @@ export function overridesFor(doc: string): Map<string, string> {
 
 export function allOverrides(): OverrideRow[] {
   if (cache && cache.version === version && Date.now() - cache.at < TTL_MS) return cache.rows;
-  ensureContentSchema();
   const rows = all<OverrideRow>(
     `SELECT key, doc, path, value, updated_at, updated_by FROM content_overrides ORDER BY updated_at DESC`,
   );
@@ -162,7 +143,6 @@ export function setOverride(input: {
   /** The value the site would show without this override — used to log the change. */
   fallback?: string;
 }): WriteResult {
-  ensureContentSchema();
   const value = normalise(input.value, input.kind ?? "text");
   if (value === null) return { ok: false, reason: "invalid" };
 
@@ -202,7 +182,6 @@ export function setOverride(input: {
 }
 
 export function resetOverride(input: { doc: string; path: string; actor: Actor }): WriteResult {
-  ensureContentSchema();
   const key = `${input.doc}#${input.path}`;
   const existing = one<OverrideRow>(`SELECT * FROM content_overrides WHERE key = ?`, [key]);
   if (!existing) return { ok: false, reason: "missing" };
@@ -222,7 +201,6 @@ export function resetOverride(input: { doc: string; path: string; actor: Actor }
 }
 
 export function revertRevision(input: { id: string; actor: Actor }): WriteResult {
-  ensureContentSchema();
   const revision = one<RevisionRow>(`SELECT * FROM content_revisions WHERE id = ?`, [input.id]);
   if (!revision) return { ok: false, reason: "missing" };
 
@@ -266,7 +244,6 @@ export function revertRevision(input: { id: string; actor: Actor }): WriteResult
 }
 
 export function deleteOverrideByKey(key: string, actor: Actor): boolean {
-  ensureContentSchema();
   const existing = one<OverrideRow>(`SELECT * FROM content_overrides WHERE key = ?`, [key]);
   if (!existing) return false;
   run(`DELETE FROM content_overrides WHERE key = ?`, [key]);
@@ -288,7 +265,6 @@ export function deleteOverrideByKey(key: string, actor: Actor): boolean {
 /* ------------------------------------------------------------------ */
 
 export function recentRevisions(limit = 40, doc?: string): RevisionRow[] {
-  ensureContentSchema();
   return doc
     ? all<RevisionRow>(
         `SELECT * FROM content_revisions WHERE doc = ? ORDER BY at DESC LIMIT ?`,
@@ -298,7 +274,6 @@ export function recentRevisions(limit = 40, doc?: string): RevisionRow[] {
 }
 
 export function revisionsForKey(key: string, limit = 12): RevisionRow[] {
-  ensureContentSchema();
   return all<RevisionRow>(`SELECT * FROM content_revisions WHERE key = ? ORDER BY at DESC LIMIT ?`, [
     key,
     limit,

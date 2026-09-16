@@ -15,7 +15,7 @@ import { mkdirSync } from "node:fs";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import path from "node:path";
-import { SCHEMA } from "../src/lib/db.ts";
+import { initialiseDatabase } from "../src/lib/db.ts";
 
 const DATA_DIR = process.env.REYGENT_DATA_DIR ?? path.join(process.cwd(), "data");
 const DB_PATH = process.env.REYGENT_DB_PATH ?? path.join(DATA_DIR, "reygent.db");
@@ -46,8 +46,9 @@ if (!["owner", "admin"].includes(role)) {
 
 mkdirSync(path.dirname(DB_PATH), { recursive: true });
 const db = new DatabaseSync(DB_PATH);
-/* Same reasoning as the seed script: one schema, applied, never copied. */
-db.exec(SCHEMA);
+/* Same reasoning as the seed script: one initialiser, applied, never copied. */
+db.exec(`PRAGMA busy_timeout = ${Number(process.env.REYGENT_DB_TIMEOUT_MS ?? 5000)};`);
+initialiseDatabase(db);
 
 const existing = db.prepare(`SELECT id FROM users WHERE lower(email) = ?`).get(email) as
   | { id: string }

@@ -50,7 +50,7 @@ npm run build
 npm start            # http://localhost:3000
 ```
 
-Development: `npm run dev`. Checks: `npm run typecheck && npm run lint`.
+Development: `npm run dev`. Checks: `npm run typecheck && npm run lint && npm run db:check`.
 
 ### Admin accounts
 
@@ -71,6 +71,40 @@ npm run admin:create -- --email you@yourfirm.com --name "Your Name"
 ```
 
 Running it again for an existing email resets that account's password.
+
+### Deploying
+
+The build renders pages, and pages read the database, so the data directory has
+to be **writable and persistent** on the host. On a platform with an ephemeral
+filesystem, point `REYGENT_DATA_DIR` at a mounted volume:
+
+```bash
+REYGENT_DATA_DIR=/var/lib/reygent npm run build   # then the same for `npm start`
+```
+
+Skip that and the database is rebuilt empty on every release: content edits and
+admin accounts disappear, and every deploy becomes a first deploy.
+
+Several processes touching a brand-new database at once used to be a crash.
+`next build` renders in parallel workers while whatever it is replacing may still
+be writing, and the losing process failed with `database is locked` before it
+rendered a single page. Three things fixed it, and all three matter:
+
+- **`busy_timeout` on every connection**, so contention waits instead of failing.
+  SQLite's default is to fail at once, with no waiting at all.
+- **Schema work behind `PRAGMA user_version`**, so once the database is current,
+  opening it writes nothing. Readers under WAL never block and are never blocked.
+- **The journal mode set once, during initialisation** — not per connection.
+  Changing it needs an exclusive lock, and SQLite does not let `busy_timeout`
+  cover that pragma, which is what made the failure instant rather than slow.
+
+`npm run db:check` reproduces both shapes of that race — six workers on a fresh
+database, and six workers against a database with a write held open — and exits
+non-zero if anyone fails to get in. Against the original code it fails; against
+the current code it passes. Run it after touching `src/lib/db.ts`.
+
+Existing databases are migrated in place on first open: columns are added, both
+schemas are brought up to date, and rows are kept.
 
 **If sign-in appears to do nothing**, the browser dropped the session cookie. The
 session cookie is set `SameSite=None; Secure; Partitioned` precisely so that it
@@ -486,7 +520,8 @@ Everything works with none set. Optional:
 
 | Variable | Effect |
 | --- | --- |
-| `REYGENT_DATA_DIR` / `REYGENT_DB_PATH` | Where the SQLite file lives (default `./data`) |
+| `REYGENT_DATA_DIR` / `REYGENT_DB_PATH` | Where the SQLite file lives (default `./data`). Must be persistent on a deploy host — see [Deploying](#deploying) |
+| `REYGENT_DB_TIMEOUT_MS` | How long a connection waits for a lock before failing (default 5000) |
 | `CRM_WEBHOOK_URL` | Mirrors every submission to a CRM/automation endpoint |
 | `CRM_WEBHOOK_TOKEN` | Bearer token for that webhook |
 

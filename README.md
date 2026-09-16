@@ -462,6 +462,28 @@ page is rendered — at build, and again on every cache purge — in this order:
 `public/images/hero-poster.jpg` is the poster frame and the fallback shown when the
 visitor has `prefers-reduced-motion` set.
 
+### The other artwork
+
+The images behind the three problem cards and the about-page story block are drawn,
+not photographed — thin luminous threads on near-black, which is the same language as
+the hero film. The source is `scripts/artwork/gen.mjs` and the JPEGs in
+`public/images/` are its committed output, so the artwork has a readable origin
+instead of being binaries nobody can adjust: change a number, run
+`node scripts/artwork/gen.mjs`, and the file changes with it. It is deterministic and
+it is **not** part of the build.
+
+The reason is not style for its own sake. The cards render their image under
+`mix-blend-luminosity` on a saturated field, so the field supplies all of the colour
+and the image only supplies light — a drawing of threads becomes a glowing neon
+shape, while a photograph of a tidy office stays a photograph of a tidy office. Stock
+photography also dates a page immediately, and "a desk buried in paper" is the visual
+cliché of small-business software. Two stock photographs weighed 2.2 MB each; these
+are 30–62 KB.
+
+If you replace them, keep two rules: the drawing must carry luminance only (it is
+blended, not overlaid) and it should stay abstract, because every concrete claim on
+this site is a placeholder until you supply the real one.
+
 **Moving a file in.** When this project runs somewhere that cannot reach the source
 of a clip (a locked-down sandbox, an air-gapped CI), start the server with the upload
 channel enabled and post the file from a browser:
@@ -481,7 +503,7 @@ deployment assets, not source. Copy the clip into `public/video/` (or commit it 
 
 ## Verified vs not verified
 
-Verified: production build (72 routes), TypeScript strict, ESLint, every marketing
+Verified: production build (79 routes), TypeScript strict, ESLint, every marketing
 route returning 200 (retired routes 404, unknown routes 404), every form endpoint
 accepting valid input and rejecting invalid input, and — for the admin and the
 content loop — the whole thing end to end over HTTP:
@@ -530,6 +552,34 @@ Then, for the international/production pass:
 - the enquiry form posts `fullName` and returns 201; the retired `firstName`/
   `lastName` payload returns 422;
 - 51 sitemap routes and every internal link in the rendered site return 200.
+
+Then, for the lead-capture pass:
+
+- **the acknowledgement is real, not assumed** — the success panel renders through the
+  actual component with `role="status"`, a jade circle and a jade-on-jade check, and
+  the name entered by the visitor interpolated into the copy. Rendered markup, not
+  source-reading; clicking the button itself still needs a browser;
+- **the CRM webhook, both directions.** With a receiver listening: the audit enquiry
+  returns 201, exactly one POST arrives, carrying `Authorization: Bearer <token>` and
+  `fields` as a parsed object with `name`, `email` and `company` populated; the row is
+  marked `sent`. With the receiver killed: the visitor still gets **201**, and the row
+  is marked `failed` with `fetch failed` attached. A newsletter signup posts nothing,
+  as `CRM_WEBHOOK_KINDS` intends, and lands in the inbox anyway;
+- **the lockout protects the owner.** Ten attempts per address per fifteen minutes,
+  five failures per account, and the account check runs *after* password verification —
+  so the sixth wrong guess answers **429 + `Retry-After: 900`** while the *correct*
+  password at the same moment still answers **200**;
+- **the placeholder guard fails the way it claims to.** `npm run placeholders:check`
+  passes with no public host configured and exits **1** naming `clients, testimonials`
+  when `REYGENT_LIVE_HOST=reygent.ai`; it runs first in `npm run build`;
+- **the inbox** filters, counts and empty-states verified over HTTP, and the nav badge
+  reads the same seven-day count.
+
+Then, for the artwork pass: every image on the site is served from `public/images/`
+(200 with the right content type), no page references the four stock photographs that
+were deleted (404), and the treatment was simulated pixel-exactly — CSS `luminosity`
+implemented from the spec, since neither sharp nor libvips ships it — before the
+images were accepted. The 9 MB of stock photography is now 316 KB.
 
 **Retired, all returning 404:** `/login`, `/signup`, the whole `/dashboard` tree,
 `POST /api/auth/signup`, `/api/ask`, `/api/tasks` and the sample CRM screens behind

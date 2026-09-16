@@ -8,9 +8,17 @@ import { cn } from "@/lib/utils";
  * The problem.
  *
  * Three concrete operational failures rather than an abstract argument, each
- * paired with a grayscale editorial photograph under a saturated colour field —
- * the same treatment our product pages use for product surfaces, applied here
- * to the problem to keep one visual language across the site.
+ * paired with a drawn image under a saturated colour field — the same treatment
+ * our product pages use for product surfaces, applied here to the problem to
+ * keep one visual language across the site.
+ *
+ * The images are abstract by design. The house language is the hero film: thin
+ * luminous threads in smoke on near-black. Stock office photography — a desk of
+ * paper, a person on a headset — says "small business software, 2014", and it
+ * dates a page that is otherwise about current work. A drawing only ever needs
+ * to carry luminance: the field supplies the colour and `mix-blend-luminosity`
+ * turns the drawing into light. The sources are in `scripts/artwork/`, so any of
+ * these can be adjusted by changing a number and re-running it.
  */
 
 /* The three problems are content: they live in the `home` document so the copy,

@@ -35,7 +35,7 @@ export default function AboutPage() {
             <div className="relative aspect-[16/10] lg:col-span-6 lg:aspect-auto lg:min-h-[420px]">
               <div className="absolute inset-0 bg-accent">
                 <Image
-                  src="/images/about-team.png"
+                  src="/images/about-converge.jpg"
                   alt={about.story.imageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

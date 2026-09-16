@@ -67,8 +67,8 @@ export function homeDoc() {
           title: "Enquiries sit unanswered",
           body:
             "A form nobody owns, a shared inbox and a phone nobody can answer during a job. By the time someone replies, the customer has already asked two other businesses.",
-          image: "/images/problem-scattered.png",
-          alt: "An overhead view of a desk buried in scattered printed spreadsheets, folders and paper notes",
+          image: "/images/problem-enquiries.jpg",
+          alt: "Thin lines of light crossing a dark frame, each fading out before it reaches a single bright marker",
           field: "bg-magenta",
           fix: "Every channel answered in seconds, and the job booked.",
           stat: { value: "7x", label: "more likely to qualify a lead by replying within the hour" },
@@ -77,8 +77,8 @@ export function homeDoc() {
           title: "Skilled people doing unskilled work",
           body:
             "Copying invoice lines, retyping order details, chasing the same document twice, moving a job from one system to the next. Expensive people, cheap work, every single day.",
-          image: "/images/problem-chasing.png",
-          alt: "A professional at an office desk on a headset, surrounded by open folders and paperwork",
+          image: "/images/problem-manual.jpg",
+          alt: "One line of light looping over itself again and again across a dark frame",
           field: "bg-tangerine",
           fix: "Automations that carry the work between systems on their own.",
           stat: { value: "Hours", label: "a week per person lost to work a system should do" },
@@ -87,8 +87,8 @@ export function homeDoc() {
           title: "No clear picture until month end",
           body:
             "You find out how the month went weeks after it finished, from numbers somebody assembled by hand. By then, the decisions it should have informed are already made.",
-          image: "/images/problem-reporting.png",
-          alt: "Hands at a keyboard in a dim office with spreadsheet grids visible on monitors behind",
+          image: "/images/problem-lag.jpg",
+          alt: "A line of light running flat and unreadable, then curving sharply upward at the far end",
           field: "bg-azure",
           fix: "Numbers that are current, and a summary in your inbox every morning.",
           stat: { value: "Days", label: "to assemble month-end numbers by hand in a typical business" },

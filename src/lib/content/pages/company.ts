@@ -16,7 +16,7 @@ export function companyDoc() {
         body2:
           "None of that is inevitable and none of it needs a new platform to fix. It needs someone to understand the process, build the system that removes the repetitive part, and stay around long enough to prove it works. That is what we do, and it is all we do.",
         imageAlt:
-          "Three colleagues reviewing printed process diagrams on a wall during a working session",
+          "Lines of light arriving from many directions and converging into one clean line",
       },
       values: {
         title: "Six principles that decide what we build.",

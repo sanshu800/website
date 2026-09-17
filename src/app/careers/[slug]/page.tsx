@@ -52,7 +52,7 @@ export default async function RolePage({
             {role.team}
           </p>
           <h1 className="mt-4 text-display-xl text-ink">{role.title}</h1>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-micro text-fog">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-small text-fog">
             <span className="flex items-center gap-1.5">
               <MapPin className="h-4 w-4" />
               {role.location}
@@ -77,7 +77,7 @@ export default async function RolePage({
               </h2>
               <ul className="mt-5 space-y-3">
                 {role.responsibilities.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-body-lg text-fog">
+                  <li key={item} className="flex items-start gap-3 text-body text-fog">
                     <span
                       aria-hidden="true"
                       className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
@@ -92,7 +92,7 @@ export default async function RolePage({
               </h2>
               <ul className="mt-5 space-y-3">
                 {role.requirements.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-body-lg text-fog">
+                  <li key={item} className="flex items-start gap-3 text-body text-fog">
                     <span
                       aria-hidden="true"
                       className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
@@ -103,10 +103,10 @@ export default async function RolePage({
               </ul>
 
               <div className="mt-12 rounded-2xl border border-line bg-mist p-6">
-                <h2 className="font-display text-body-lg text-ink">
+                <h2 className="font-display text-body text-ink">
                   How our process works
                 </h2>
-                <ol className="mt-4 space-y-3 text-micro text-fog">
+                <ol className="mt-4 space-y-3 text-small text-fog">
                   {[
                     "A 30-minute introduction call — your questions, ours.",
                     "A paid work sample based on a real problem, not a whiteboard puzzle.",

@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
+
+import { ButtonLink } from "@/components/ui/Button";
 import { Check, Loader2, Upload } from "lucide-react";
 
 type Result = { file: string; bytes: number; type: string };
@@ -54,17 +55,14 @@ export function UploadPanel({ token }: { token: string }) {
       <div className="rounded-2xl border border-jade/30 bg-jade-soft p-7">
         <Check className="h-6 w-6 text-jade" />
         <h2 className="mt-4 font-display text-display-s text-ink">File received</h2>
-        <p className="mt-2 text-micro text-fg-2">
+        <p className="mt-2 text-small text-fg-2">
           Saved to <span className="font-mono text-ink">{result.file}</span> (
           {(result.bytes / 1048576).toFixed(1)}MB, {result.type}). Tell me in chat and I
           will wire it into the hero and rebuild.
         </p>
-        <Link
-          href="/"
-          className="mt-6 inline-flex h-11 items-center rounded-lg bg-night px-5 text-body font-medium text-on-night"
-        >
+        <ButtonLink href="/" variant="primary" size="md" className="h-11">
           Back to the site
-        </Link>
+        </ButtonLink>
       </div>
     );
   }
@@ -114,7 +112,7 @@ export function UploadPanel({ token }: { token: string }) {
         onChange={(event) => setFile(event.target.files?.[0] ?? null)}
       />
 
-      {message && <p className="mt-4 text-micro text-danger-ink">{message}</p>}
+      {message && <p className="mt-4 text-small text-danger-ink">{message}</p>}
 
       <button
         type="submit"

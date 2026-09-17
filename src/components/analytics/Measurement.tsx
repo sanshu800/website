@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import { useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -78,7 +79,7 @@ export function Measurement() {
       aria-label="Measurement"
       className="fixed inset-x-3 bottom-3 z-50 rounded-xl border border-line bg-paper p-4 shadow-lg sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-md"
     >
-      <p className="text-micro font-medium text-ink">Can we measure how the site is used?</p>
+      <p className="text-small font-medium text-ink">Can we measure how the site is used?</p>
       <p className="mt-1.5 text-label leading-relaxed text-fog">
         First-party only: page views, where you arrived from and errors, stored on our own server.
         No cookies, no third-party scripts, no IP addresses, nothing that follows you off this
@@ -88,20 +89,21 @@ export function Measurement() {
         </Link>
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
-        <button
+        <Button
           type="button"
           onClick={() => writeConsent("granted")}
-          className="inline-flex h-9 items-center rounded-lg bg-night px-3.5 text-micro font-medium text-on-accent transition-colors pointer-coarse:min-h-11 hover:bg-accent-2"
+          className="pointer-coarse:min-h-11"
         >
           Allow measurement
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           onClick={() => writeConsent("essential")}
-          className="inline-flex h-9 items-center rounded-lg border border-line px-3.5 text-micro font-medium text-fg-2 transition-colors pointer-coarse:min-h-11 hover:border-line-strong hover:text-ink"
+          variant="secondary"
+          className="pointer-coarse:min-h-11"
         >
           Essential only
-        </button>
+        </Button>
       </div>
     </div>
   );

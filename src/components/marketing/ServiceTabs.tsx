@@ -85,7 +85,7 @@ export function ServiceTabs({
                 </span>
                 <span
                   className={cn(
-                    "mt-2 font-display text-body-lg",
+                    "mt-2 font-display text-body",
                     tabLabel({ active: isActive, tone: "light" }),
                   )}
                 >
@@ -115,7 +115,7 @@ export function ServiceTabs({
             >
               <div className="lg:col-span-5">
                 <h3 className="text-display-m text-ink">{current.headline}</h3>
-                <p className="mt-4 text-body-lg text-fog">{current.summary}</p>
+                <p className="mt-4 text-body text-fog">{current.summary}</p>
 
                 <ul className="mt-8 space-y-3 border-t border-line pt-6">
                   {current.features.slice(0, 4).map((feature) => (
@@ -128,7 +128,7 @@ export function ServiceTabs({
                         <span className="text-body font-medium text-ink">
                           {feature.title}
                         </span>
-                        <span className="mt-0.5 block text-micro text-fog">
+                        <span className="mt-0.5 block text-small text-fog">
                           {feature.body}
                         </span>
                       </span>

@@ -105,8 +105,8 @@ export function EmptyState({
 }) {
   return (
     <div className="rounded-2xl border border-dashed border-line-strong bg-paper px-6 py-12 text-center">
-      <p className="font-display text-body-lg text-ink">{title}</p>
-      <p className="mx-auto mt-2 max-w-[34rem] text-micro text-fog">{body}</p>
+      <p className="font-display text-body text-ink">{title}</p>
+      <p className="mx-auto mt-2 max-w-[34rem] text-small text-fog">{body}</p>
       {action && <div className="mt-5">{action}</div>}
     </div>
   );

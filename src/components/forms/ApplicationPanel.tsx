@@ -51,7 +51,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
         <h2 className="mt-4 font-display text-display-s text-ink">
           Application received
         </h2>
-        <p className="mt-2.5 text-micro text-fg-2">
+        <p className="mt-2.5 text-small text-fg-2">
           Thanks {name.split(" ")[0]}. A person reads every application for this role,
           and you will hear back either way within ten working days.
         </p>
@@ -62,7 +62,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
   return (
     <form onSubmit={submit} className="rounded-2xl border border-line p-7">
       <h2 className="font-display text-display-s text-ink">Apply for this role</h2>
-      <p className="mt-2 text-micro text-fog">
+      <p className="mt-2 text-small text-fog">
         Two fields and a note. We ask for the work sample later, not now.
       </p>
 
@@ -117,7 +117,7 @@ export function ApplicationPanel({ roleTitle, slug }: { roleTitle: string; slug:
         </label>
       </div>
 
-      {message && <p className="mt-4 text-micro text-danger-ink">{message}</p>}
+      {message && <p className="mt-4 text-small text-danger-ink">{message}</p>}
 
       <Button type="submit" className="mt-6" full disabled={status === "sending"}>
         {status === "sending" ? (

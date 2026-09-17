@@ -49,7 +49,7 @@ export default async function BlogIndex({
                 href={item === "All" ? "/blog" : `/blog?category=${encodeURIComponent(item)}`}
                 aria-current={item === active ? "page" : undefined}
                 className={cn(
-                  "shrink-0 rounded-full border px-3.5 py-1.5 text-micro transition-colors pointer-coarse:min-h-11",
+                  "shrink-0 rounded-full border px-3.5 py-1.5 text-small transition-colors pointer-coarse:min-h-11",
                   item === active
                     ? "border-accent bg-accent text-on-accent"
                     : "border-line text-fg-2 hover:bg-mist",
@@ -65,7 +65,7 @@ export default async function BlogIndex({
       <section className="section bg-paper">
         <Container width="wide">
           {filtered.length === 0 && (
-            <p className="text-body-lg text-fog">
+            <p className="text-body text-fog">
               {copy.emptyState}
             </p>
           )}
@@ -83,7 +83,7 @@ export default async function BlogIndex({
                   <h2 className="mt-4 font-display text-display-m leading-tight tracking-[-0.02em] text-ink">
                     {featured.title}
                   </h2>
-                  <p className="mt-4 text-body-lg text-fog">{featured.excerpt}</p>
+                  <p className="mt-4 text-body text-fog">{featured.excerpt}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-small font-medium text-accent">
                     Read the article
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -121,7 +121,7 @@ export default async function BlogIndex({
                   <h3 className="mt-3 font-display text-display-s leading-snug text-ink">
                     {post.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-micro text-fog">{post.excerpt}</p>
+                  <p className="mt-3 flex-1 text-small text-fog">{post.excerpt}</p>
                   <div className="mt-5 flex items-center justify-between border-t border-line pt-4 font-mono text-eyebrow text-fog">
                     <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
                     <span>{post.readingMinutes} min</span>

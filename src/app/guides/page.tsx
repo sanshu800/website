@@ -49,7 +49,7 @@ export default function GuidesPage() {
                   <h2 className="mt-3 font-display text-display-s text-ink">
                     {guide.title}
                   </h2>
-                  <p className="mt-3 flex-1 text-micro text-fog">{guide.summary}</p>
+                  <p className="mt-3 flex-1 text-small text-fog">{guide.summary}</p>
                   <p className="mt-6 border-t border-line pt-4 font-mono text-label uppercase tracking-label text-fog">
                     {guide.format}
                   </p>
@@ -58,7 +58,7 @@ export default function GuidesPage() {
             ))}
           </RevealGroup>
 
-          <p className="mt-8 rounded-xl border border-line bg-mist px-5 py-4 text-micro text-fog">
+          <p className="mt-8 rounded-xl border border-line bg-mist px-5 py-4 text-small text-fog">
             {copy.note}
           </p>
         </Container>

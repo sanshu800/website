@@ -52,7 +52,7 @@ export default function BuildLogPage() {
                 <h2 className="mt-5 font-display text-display-m text-ink">
                   {latest.title}
                 </h2>
-                <p className="mt-3 max-w-[42rem] text-body-lg text-fog">
+                <p className="mt-3 max-w-[42rem] text-body text-fog">
                   {latest.summary}
                 </p>
                 <ul className="mt-7 space-y-3 border-t border-accent/20 pt-6">
@@ -88,7 +88,7 @@ export default function BuildLogPage() {
                 </div>
                 <div className="lg:col-span-9">
                   <h2 className="font-display text-display-s text-ink">{note.title}</h2>
-                  <p className="mt-2.5 max-w-[40rem] text-micro text-fog">
+                  <p className="mt-2.5 max-w-[40rem] text-small text-fog">
                     {note.summary}
                   </p>
                   <ul className="mt-5 space-y-2.5">
@@ -102,7 +102,7 @@ export default function BuildLogPage() {
                         >
                           {item.kind}
                         </span>
-                        <span className="text-micro text-fg-2">{item.text}</span>
+                        <span className="text-small text-fg-2">{item.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -111,7 +111,7 @@ export default function BuildLogPage() {
             ))}
           </div>
 
-          <p className="mt-10 text-micro text-fog">
+          <p className="mt-10 text-small text-fog">
             {log.digest.before}{" "}
             <Link href="/newsletter" className="text-accent underline underline-offset-2">
               {log.digest.linkLabel}

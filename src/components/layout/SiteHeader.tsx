@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ReygentWordmark } from "@/components/brand/Logo";
 import type { ChromeDoc } from "@/lib/content/pages/chrome";
@@ -241,15 +242,14 @@ export function SiteHeader({
             </nav>
 
             <div className="hidden items-center gap-2 lg:flex">
-              <Link
+              <ButtonLink
                 href={header.actions.primary.href}
-                className={cn(
-                  "inline-flex h-9 items-center rounded-lg px-4 text-micro font-medium transition-transform duration-300 pointer-coarse:min-h-11 hover:scale-[1.03] active:scale-95",
-                  overlay ? "bg-on-ink text-ink" : "bg-accent text-on-accent",
-                )}
+                variant={overlay ? "inverse" : "primary"}
+                size="md"
+                className="hover:scale-[1.03] active:scale-95"
               >
                 {header.actions.primary.label}
-              </Link>
+              </ButtonLink>
             </div>
 
             {/* Mobile: icon-only toggle, Menu rotating out as X rotates in. */}
@@ -309,7 +309,7 @@ export function SiteHeader({
                           {child.label}
                           <span className="h-px w-0 bg-accent transition-all duration-300 group-hover:w-4" />
                         </span>
-                        <span className="text-micro text-fog">{child.blurb}</span>
+                        <span className="text-small text-fog">{child.blurb}</span>
                       </Link>
                     ))}
                   </div>
@@ -431,13 +431,16 @@ export function SiteHeader({
           </ul>
 
           <div className="mt-8 flex flex-col gap-3 sm:max-w-[24rem]">
-            <Link
+            <ButtonLink
               href={header.actions.primary.href}
               onClick={() => setMobileOpen(false)}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-on-ink text-body-lg font-medium text-ink transition-transform duration-300 hover:scale-[1.02] active:scale-95"
+              variant="inverse"
+              size="lg"
+              className="hover:scale-[1.02] active:scale-95"
+              iconRight={<ArrowRight className="h-4 w-4" aria-hidden="true" />}
             >
-              {header.actions.primary.label} <ArrowRight className="h-4 w-4" />
-            </Link>
+              {header.actions.primary.label}
+            </ButtonLink>
           </div>
           </div>
         </nav>
@@ -459,13 +462,15 @@ export function SiteHeader({
             style={{ bottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
             className="fixed inset-x-3 z-40 lg:hidden"
           >
-            <Link
+            <ButtonLink
               href={header.actions.primary.href}
-              className="flex h-12 items-center justify-center gap-2 rounded-xl bg-accent text-body font-medium text-on-accent shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-transform duration-300 active:scale-[0.98]"
+              size="lg"
+              full
+              className="rounded-xl shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-white/10 active:scale-[0.98]"
+              iconRight={<ArrowRight className="h-4 w-4" aria-hidden="true" />}
             >
               {header.actions.primary.label}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            </ButtonLink>
           </motion.div>
         )}
       </AnimatePresence>

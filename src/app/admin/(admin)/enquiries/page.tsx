@@ -175,7 +175,7 @@ export default async function EnquiriesPage({
           page cannot answer from the data alone. */}
       <div
         className={cn(
-          "mt-4 rounded-2xl border px-5 py-4 text-micro leading-relaxed",
+          "mt-4 rounded-2xl border px-5 py-4 text-small leading-relaxed",
           webhook ? "border-jade/30 bg-jade-soft text-jade-ink" : "border-line bg-mist text-fg-2",
         )}
       >
@@ -213,7 +213,7 @@ export default async function EnquiriesPage({
               title={option.hint}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-micro transition-colors",
+                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-small transition-colors",
                 isActive
                   ? "border-accent bg-accent text-on-accent"
                   : "border-line bg-paper text-fg-2 hover:bg-mist",
@@ -257,7 +257,7 @@ export default async function EnquiriesPage({
                               {KIND_LABELS[row.kind] ?? row.kind}
                             </span>
                           </p>
-                          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-micro text-fog">
+                          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-small text-fog">
                             {row.email && (
                               <span className="inline-flex items-center gap-1.5">
                                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
@@ -282,7 +282,7 @@ export default async function EnquiriesPage({
 
                       <div className="border-t border-line px-5 py-4">
                         {entries.length === 0 ? (
-                          <p className="text-micro text-fog">
+                          <p className="text-small text-fog">
                             This one arrived without readable content.
                           </p>
                         ) : (
@@ -292,7 +292,7 @@ export default async function EnquiriesPage({
                                 <dt className="font-mono text-label uppercase tracking-label text-fog">
                                   {FIELD_LABELS[key]}
                                 </dt>
-                                <dd className="mt-1 whitespace-pre-wrap break-words text-micro text-fg-2">
+                                <dd className="mt-1 whitespace-pre-wrap break-words text-small text-fg-2">
                                   {typeof value === "string" || typeof value === "number"
                                     ? String(value)
                                     : JSON.stringify(value)}
@@ -303,7 +303,7 @@ export default async function EnquiriesPage({
                         )}
 
                         {row.crm_status === "failed" && row.crm_error && (
-                          <p className="mt-4 rounded-lg border border-danger/30 bg-danger-soft px-3.5 py-2.5 text-micro text-danger-ink">
+                          <p className="mt-4 rounded-lg border border-danger/30 bg-danger-soft px-3.5 py-2.5 text-small text-danger-ink">
                             The CRM hand-off failed: {row.crm_error}. The lead is safe here — use
                             the details above, and check the webhook URL and token.
                           </p>

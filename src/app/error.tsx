@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { track } from "@/lib/track";
 
@@ -47,25 +47,15 @@ export default function Error({
         ) : null}
 
         <div className="mt-10 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={reset}
-            className="inline-flex h-12 items-center justify-center rounded-lg bg-accent px-6 text-body font-medium text-on-accent transition-colors duration-200 hover:bg-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
+          <Button type="button" onClick={reset} size="lg">
             Try again
-          </button>
-          <Link
-            href="/"
-            className="inline-flex h-12 items-center justify-center rounded-lg border border-field bg-paper px-6 text-body font-medium text-ink transition-colors duration-200 hover:bg-mist"
-          >
+          </Button>
+          <ButtonLink href="/" variant="secondary" size="lg">
             Back to the homepage
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-body font-medium text-fg-2 transition-colors duration-200 hover:bg-mist hover:text-ink"
-          >
+          </ButtonLink>
+          <ButtonLink href="/contact" variant="ghost" size="lg">
             Report a problem
-          </Link>
+          </ButtonLink>
         </div>
       </Container>
     </section>

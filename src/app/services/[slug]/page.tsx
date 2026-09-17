@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, Check } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, serviceSchema } from "@/lib/structured-data";
@@ -57,19 +58,13 @@ export default async function ProductPage({
         summary={service.intro}
         actions={
           <>
-            <Link
-              href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href="/get-started" variant="primary" size="md" className="h-11">
               Book a free audit
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href="/contact" variant="secondary" size="md" className="h-11">
               Talk to us
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </ButtonLink>
           </>
         }
         aside={
@@ -98,8 +93,8 @@ export default async function ProductPage({
                   </span>
                   <span aria-hidden="true" className="h-px flex-1 bg-line-strong" />
                 </div>
-                <p className="mt-3 font-display text-body-lg text-ink">{step.step}</p>
-                <p className="mt-1 text-micro text-fog">{step.detail}</p>
+                <p className="mt-3 font-display text-body text-ink">{step.step}</p>
+                <p className="mt-1 text-small text-fog">{step.detail}</p>
               </RevealItem>
             ))}
           </RevealGroup>
@@ -117,8 +112,8 @@ export default async function ProductPage({
             {service.features.map((feature) => (
               <RevealItem key={feature.title}>
                 <div className="flex h-full flex-col border-t border-line pt-5">
-                  <h3 className="text-body-lg font-medium text-ink">{feature.title}</h3>
-                  <p className="mt-2.5 text-micro text-fog">{feature.body}</p>
+                  <h3 className="text-body font-medium text-ink">{feature.title}</h3>
+                  <p className="mt-2.5 text-small text-fog">{feature.body}</p>
                 </div>
               </RevealItem>
             ))}
@@ -132,13 +127,13 @@ export default async function ProductPage({
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <h2 className="text-display-m text-ink">{detail.outcomes.heading}</h2>
-              <p className="mt-4 text-body-lg text-fog">{detail.outcomes.note}</p>
+              <p className="mt-4 text-body text-fog">{detail.outcomes.note}</p>
             </div>
             <ul className="lg:col-span-6 lg:col-start-7">
               {service.outcomes.map((outcome) => (
                 <Reveal as="li" key={outcome} className="flex items-start gap-3 border-b border-line py-4">
                   <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
-                  <span className="text-body-lg text-fg-2">{outcome}</span>
+                  <span className="text-body text-fg-2">{outcome}</span>
                 </Reveal>
               ))}
               <li className="pt-5">
@@ -170,7 +165,7 @@ export default async function ProductPage({
                     {module.name}
                     <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
-                  <span className="mt-2 text-micro text-fog">{module.summary}</span>
+                  <span className="mt-2 text-small text-fog">{module.summary}</span>
                 </Link>
               </RevealItem>
             ))}

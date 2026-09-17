@@ -37,7 +37,7 @@ export default function GlobalError({
             style={{
               margin: 0,
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontSize: "0.6875rem",
+              fontSize: "0.75rem",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "#6b6b6b",

@@ -89,7 +89,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
                 </span>
                 <span
                   className={cn(
-                    "mt-1.5 block whitespace-nowrap font-display text-body-lg lg:whitespace-normal",
+                    "mt-1.5 block whitespace-nowrap font-display text-body lg:whitespace-normal",
                     selected ? "text-ink" : "text-fg-2",
                   )}
                 >
@@ -110,11 +110,11 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
           className="rounded-2xl border border-line bg-paper p-6 sm:p-8"
         >
           <h3 className="text-display-s text-ink">{current.title}</h3>
-          <p className="mt-3 text-body-lg text-fog">{current.body}</p>
+          <p className="mt-3 text-body text-fog">{current.body}</p>
 
           <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             {current.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-center gap-2 text-micro text-fg-2">
+              <li key={bullet} className="flex items-center gap-2 text-small text-fg-2">
                 <Check className="h-3.5 w-3.5 text-accent" />
                 {bullet}
               </li>
@@ -130,7 +130,7 @@ export function TourStage({ stages }: { stages: TourStageData[] }) {
             <span className="text-label text-fog">{current.caption}</span>
             <Link
               href={current.href}
-              className="group inline-flex items-center gap-2 text-micro font-medium text-accent"
+              className="group inline-flex items-center gap-2 text-small font-medium text-accent"
             >
               Learn more about {current.name}
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

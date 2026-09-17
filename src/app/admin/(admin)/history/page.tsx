@@ -42,7 +42,7 @@ export default function ContentHistoryPage() {
 
       {orphans.length > 0 && (
         <Card title="Orphaned edits" className="mb-4">
-          <p className="text-micro leading-relaxed text-fog">
+          <p className="text-small leading-relaxed text-fog">
             These stored values no longer match a field in the document — the copy they belonged to
             was renamed or deleted in code. Nothing is rendering them.
           </p>
@@ -53,7 +53,7 @@ export default function ContentHistoryPage() {
                   {orphan.doc.title}
                 </span>
                 <span className="font-mono text-eyebrow text-fog">{orphan.path}</span>
-                <span className="flex-1 text-micro text-fog">“{orphan.value.slice(0, 80)}”</span>
+                <span className="flex-1 text-small text-fog">“{orphan.value.slice(0, 80)}”</span>
                 <RevertButton keyName={orphan.key} label="Drop" />
               </li>
             ))}
@@ -63,7 +63,7 @@ export default function ContentHistoryPage() {
 
       <Card title={`${revisions.length} most recent changes`}>
         {revisions.length === 0 ? (
-          <p className="text-micro text-fog">
+          <p className="text-small text-fog">
             Nothing has been edited yet — the site is running on the copy in code.{" "}
             <Link href="/admin" className="text-accent underline underline-offset-2">
               Start with a surface
@@ -80,7 +80,7 @@ export default function ContentHistoryPage() {
                     <span className="rounded-full bg-mist px-2 py-0.5 font-mono text-eyebrow text-fog">
                       {doc?.title ?? revision.doc}
                     </span>
-                    <span className="text-micro font-medium text-ink">
+                    <span className="text-small font-medium text-ink">
                       {titleForPath(revision.path)}
                     </span>
                     <span className="text-label text-fog">
@@ -88,7 +88,7 @@ export default function ContentHistoryPage() {
                     </span>
                   </div>
 
-                  <div className="mt-2 grid gap-2 text-micro sm:grid-cols-2">
+                  <div className="mt-2 grid gap-2 text-small sm:grid-cols-2">
                     <p className="rounded-lg bg-mist px-3 py-2 text-fog">
                       <span className="font-mono text-label uppercase tracking-label text-fog">
                         before

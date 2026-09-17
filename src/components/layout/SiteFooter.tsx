@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ReygentMark } from "@/components/brand/Logo";
 import type { ChromeDoc } from "@/lib/content/pages/chrome";
@@ -23,7 +24,7 @@ export function SiteFooter({
           <div className="lg:col-span-3">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <ReygentMark className="h-7 w-7" />
-              <span className="font-display text-body-lg font-semibold tracking-[-0.02em] text-on-night">
+              <span className="font-display text-body font-semibold tracking-[-0.02em] text-on-night">
                 {brand.name}
               </span>
             </Link>
@@ -31,18 +32,22 @@ export function SiteFooter({
               {brand.tagline}
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              <Link
+              <ButtonLink
                 href={footer.actions.primary.href}
-                className="inline-flex h-9 items-center rounded-lg bg-paper px-4 text-micro font-medium text-ink transition-colors pointer-coarse:min-h-11 hover:bg-mist-2"
+                variant="inverse"
+                size="sm"
+                className="rounded-lg"
               >
                 {footer.actions.primary.label}
-              </Link>
-              <Link
+              </ButtonLink>
+              <ButtonLink
                 href={footer.actions.secondary.href}
-                className="inline-flex h-9 items-center rounded-lg border border-white/20 px-4 text-micro font-medium text-on-night transition-colors pointer-coarse:min-h-11 hover:border-white/40"
+                variant="onNight"
+                size="sm"
+                className="rounded-lg"
               >
                 {footer.actions.secondary.label}
-              </Link>
+              </ButtonLink>
             </div>
             <a
               href={`mailto:${brand.email}`}

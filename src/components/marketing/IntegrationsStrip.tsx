@@ -28,10 +28,10 @@ export function IntegrationsStrip() {
           {integrations.map((group) => (
             <RevealItem key={group.category}>
               <div className="flex h-full flex-col rounded-2xl border border-line p-6">
-                <h3 className="font-display text-body-lg text-ink">
+                <h3 className="font-display text-body text-ink">
                   {group.category}
                 </h3>
-                <p className="mt-2.5 flex-1 text-micro text-fog">{group.blurb}</p>
+                <p className="mt-2.5 flex-1 text-small text-fog">{group.blurb}</p>
                 <ul className="mt-5 flex flex-wrap gap-1.5">
                   {group.surfaces.map((surface) => (
                     <li

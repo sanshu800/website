@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container, SectionHeading } from "@/components/ui/Container";
@@ -40,18 +41,12 @@ export default function HowWeWorkPage() {
         summary={copy.hero.summary}
         actions={
           <>
-            <Link
-              href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href={copy.hero.actions.primary.href} variant="primary" size="md" className="h-11">
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href={copy.hero.actions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href={copy.hero.actions.secondary.href} variant="secondary" size="md" className="h-11">
               {copy.hero.actions.secondary.label}
-            </Link>
+            </ButtonLink>
           </>
         }
       />
@@ -111,7 +106,7 @@ export default function HowWeWorkPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
               <h2 className="text-display-l text-on-night">{managed.name}</h2>
-              <p className="mt-5 max-w-[36rem] text-body-lg text-on-night-2">
+              <p className="mt-5 max-w-[36rem] text-body text-on-night-2">
                 {managed.summary}
               </p>
               <ArrowLink
@@ -130,7 +125,7 @@ export default function HowWeWorkPage() {
                       <h3 className="text-body font-medium text-on-night">
                         {capability.title}
                       </h3>
-                      <p className="mt-2 text-micro text-on-night-2">{capability.body}</p>
+                      <p className="mt-2 text-small text-on-night-2">{capability.body}</p>
                     </div>
                   </RevealItem>
                 ))}

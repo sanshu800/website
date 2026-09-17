@@ -50,7 +50,7 @@ export default async function AdminLoginPage({
 
         <div className="mt-8 rounded-2xl border border-line bg-paper p-7 sm:p-8">
           <h1 className="text-display-m text-ink">Sign in to edit the site.</h1>
-          <p className="mt-3 text-micro text-fog">
+          <p className="mt-3 text-small text-fog">
             Accounts for this site are created from the command line, not from a public
             form. There is no sign-up here.
           </p>
@@ -58,7 +58,7 @@ export default async function AdminLoginPage({
           {noAccounts && (
             <div
               role="status"
-              className="mt-6 rounded-lg border border-line bg-mist px-4 py-3 text-micro text-ink"
+              className="mt-6 rounded-lg border border-line bg-mist px-4 py-3 text-small text-ink"
             >
               <p className="font-medium">This site has no admin accounts yet.</p>
               <p className="mt-1.5 leading-relaxed text-fog">

@@ -50,7 +50,7 @@ export default function CareersPage() {
                       {role.team}
                     </p>
                   </div>
-                  <p className="text-micro text-fog lg:col-span-4">{role.summary}</p>
+                  <p className="text-small text-fog lg:col-span-4">{role.summary}</p>
                   <div className="flex flex-wrap items-center gap-x-5 gap-y-2 lg:col-span-3 lg:justify-end">
                     <span className="flex items-center gap-1.5 text-label text-fog">
                       <MapPin className="h-3.5 w-3.5" />
@@ -73,8 +73,8 @@ export default function CareersPage() {
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {careers.perks.map((perk) => (
               <RevealItem key={perk.title}>
-                <h3 className="text-body-lg font-medium text-ink">{perk.title}</h3>
-                <p className="mt-2.5 text-micro text-fog">{perk.body}</p>
+                <h3 className="text-body font-medium text-ink">{perk.title}</h3>
+                <p className="mt-2.5 text-small text-fog">{perk.body}</p>
               </RevealItem>
             ))}
           </RevealGroup>

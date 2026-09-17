@@ -72,7 +72,7 @@ export default async function MediaPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         {folders.map((folder) => (
           <Card key={folder.dir} title={folder.label}>
-            <p className="text-micro text-fog">{folder.note}</p>
+            <p className="text-small text-fog">{folder.note}</p>
             {folder.files.length === 0 ? (
               <div className="mt-4">
                 <EmptyState
@@ -88,7 +88,7 @@ export default async function MediaPage() {
                       <FileVideo className="h-4 w-4 text-fog" />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-mono text-micro text-ink">{file.name}</p>
+                      <p className="truncate font-mono text-small text-ink">{file.name}</p>
                       <p className="mt-0.5 text-label text-fog">
                         {formatBytes(file.bytes)} · {file.updatedAt.toISOString().slice(0, 10)}
                       </p>
@@ -113,7 +113,7 @@ export default async function MediaPage() {
       </div>
 
       <Card title="Pointing a page at a file" className="mt-4">
-        <p className="text-micro leading-relaxed text-fog">
+        <p className="text-small leading-relaxed text-fog">
           Copy the path above into the field it belongs to — the hero film and poster are on the{" "}
           <Link href="/admin/edit/assets" className="font-medium text-accent hover:underline">
             Hero film and poster

@@ -76,7 +76,7 @@ export default async function ContentDocPage({
       </div>
 
       {readOnly && (
-        <p className="mb-5 rounded-xl border border-magenta/30 bg-magenta-soft px-4 py-3 text-micro text-ink">
+        <p className="mb-5 rounded-xl border border-magenta/30 bg-magenta-soft px-4 py-3 text-small text-ink">
           Your role can read the content admin but not publish. Ask an owner or admin in this
           workspace to make the change.
         </p>
@@ -91,7 +91,7 @@ export default async function ContentDocPage({
                 {orphans.length} stored {orphans.length === 1 ? "edit" : "edits"} no longer match a
                 field
               </p>
-              <p className="mt-1 text-micro leading-relaxed text-fog">
+              <p className="mt-1 text-small leading-relaxed text-fog">
                 The copy was renamed or removed in code, so these values are not rendered anywhere.
                 Drop them, or restore the field in code to bring the text back.
               </p>

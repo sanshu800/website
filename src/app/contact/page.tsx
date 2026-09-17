@@ -38,7 +38,7 @@ export default function ContactPage() {
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-8">
               <h2 className="font-display text-display-m text-ink">{copy.formHeading}</h2>
-              <p className="mt-3 text-body-lg text-fog">{copy.formNote}</p>
+              <p className="mt-3 text-body text-fog">{copy.formNote}</p>
               <div className="mt-8">
                 <EnquiryForm kind="contact" />
               </div>
@@ -74,10 +74,10 @@ export default function ContactPage() {
 
               <Reveal delay={0.05}>
                 <div className="mt-6 rounded-2xl border border-line p-7">
-                  <h2 className="font-display text-body-lg text-ink">
+                  <h2 className="font-display text-body text-ink">
                     {copy.evaluating.heading}
                   </h2>
-                  <p className="mt-2.5 text-micro text-fog">{copy.evaluating.body}</p>
+                  <p className="mt-2.5 text-small text-fog">{copy.evaluating.body}</p>
                   <p className="mt-4 text-eyebrow text-fog">{copy.evaluating.note}</p>
                 </div>
               </Reveal>

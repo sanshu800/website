@@ -55,7 +55,7 @@ export function TestimonialWall() {
                 “{featured.quote}”
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-3 border-t border-white/10 pt-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-micro font-semibold text-on-night">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-display text-small font-semibold text-on-night">
                   {featured.name
                     .split(" ")
                     .map((part) => part[0])
@@ -65,7 +65,7 @@ export function TestimonialWall() {
                   <span className="block text-body font-medium text-on-night">
                     {featured.name}
                   </span>
-                  <span className="block text-micro text-on-night-2">
+                  <span className="block text-small text-on-night-2">
                     {featured.role}, {featured.company} · {featured.sector}
                   </span>
                 </span>
@@ -82,7 +82,7 @@ export function TestimonialWall() {
                     "flex h-full flex-col rounded-2xl border border-line bg-paper p-6",
                   )}
                 >
-                  <blockquote className="flex-1 text-body-lg text-fg-2">
+                  <blockquote className="flex-1 text-body text-fg-2">
                     “{item.quote}”
                   </blockquote>
                   <figcaption className="mt-6 border-t border-line pt-4">

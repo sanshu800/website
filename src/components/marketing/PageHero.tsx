@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container, Eyebrow } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
@@ -172,21 +173,15 @@ export function PageCTA({
         <div className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-[34rem]">
             <h2 className="text-display-m text-ink">{title}</h2>
-            <p className="mt-3 text-body-lg text-fog">{summary}</p>
+            <p className="mt-3 text-body text-fog">{summary}</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link
-              href={primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href={primary.href} size="lg">
               {primary.label}
-            </Link>
-            <Link
-              href={secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href={secondary.href} variant="secondary" size="lg">
               {secondary.label}
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </Container>

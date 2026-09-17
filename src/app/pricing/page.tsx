@@ -55,15 +55,15 @@ export default function PricingPage() {
                     )}
                   </div>
                   <p className="mt-5 flex items-baseline gap-2">
-                    <span className="tabular font-display text-[2.75rem] leading-none tracking-[-0.03em] text-ink">
+                    <span className="tabular font-display text-figure text-ink">
                       {tier.price}
                     </span>
                     {tier.price !== "Custom" && (
-                      <span className="text-micro text-fog">{plans.unit}</span>
+                      <span className="text-small text-fog">{plans.unit}</span>
                     )}
                   </p>
                   <p className="mt-2 text-label text-fog">{tier.priceNote}</p>
-                  <p className="mt-5 text-micro text-fog">{tier.summary}</p>
+                  <p className="mt-5 text-small text-fog">{tier.summary}</p>
 
                   <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
                     {tier.includes.map((item, index) => (
@@ -93,14 +93,14 @@ export default function PricingPage() {
             ))}
           </RevealGroup>
 
-          <p className="mt-6 text-center text-micro text-fog">
+          <p className="mt-6 text-center text-small text-fog">
             {plans.footnoteBefore}{" "}
             <Link href="/startups" className="text-accent underline underline-offset-2">
               {plans.footnoteLink}
             </Link>
             .
           </p>
-          <p className="mt-3 text-center text-micro text-fog">{plans.currencyNote}</p>
+          <p className="mt-3 text-center text-small text-fog">{plans.currencyNote}</p>
         </Container>
       </section>
 
@@ -156,14 +156,14 @@ export default function PricingPage() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <h2 className="text-display-m text-ink">{faq.title}</h2>
-              <p className="mt-4 text-body-lg text-fog">{faq.summary}</p>
+              <p className="mt-4 text-body text-fog">{faq.summary}</p>
             </div>
             <div className="lg:col-span-8">
               <dl className="divide-y divide-line border-t border-line">
                 {faqs.map((item, index) => (
                   <div key={`${item.q}-${index}`} className="py-6">
-                    <dt className="text-body-lg font-medium text-ink">{item.q}</dt>
-                    <dd className="mt-2.5 text-body-lg text-fog">{item.a}</dd>
+                    <dt className="text-body font-medium text-ink">{item.q}</dt>
+                    <dd className="mt-2.5 text-body text-fog">{item.a}</dd>
                   </div>
                 ))}
               </dl>

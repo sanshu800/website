@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { ButtonLink } from "@/components/ui/Button";
 import { Lock, ShieldCheck } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
@@ -27,18 +28,12 @@ export default function SecurityPage() {
         summary={page.intro}
         actions={
           <>
-            <Link
-              href={copy.hero.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href={copy.hero.primary.href} variant="primary" size="md" className="h-11">
               {copy.hero.primary.label}
-            </Link>
-            <Link
-              href={copy.hero.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href={copy.hero.secondary.href} variant="secondary" size="md" className="h-11">
               {copy.hero.secondary.label}
-            </Link>
+            </ButtonLink>
           </>
         }
       />
@@ -71,8 +66,8 @@ export default function SecurityPage() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h2 className="text-body-lg font-medium text-ink">{section.h}</h2>
-                    <p className="mt-2.5 text-micro text-fog">{section.p}</p>
+                    <h2 className="text-body font-medium text-ink">{section.h}</h2>
+                    <p className="mt-2.5 text-small text-fog">{section.p}</p>
                   </div>
                 </div>
               </RevealItem>
@@ -89,7 +84,7 @@ export default function SecurityPage() {
               <h2 className="mt-5 text-display-m text-on-night">
                 {copy.disclosure.heading}
               </h2>
-              <p className="mt-4 max-w-[38rem] text-body-lg text-on-night-2">
+              <p className="mt-4 max-w-[38rem] text-body text-on-night-2">
                 {copy.disclosure.body}
               </p>
             </div>

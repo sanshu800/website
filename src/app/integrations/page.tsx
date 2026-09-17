@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { ButtonLink } from "@/components/ui/Button";
 import { Plug, RefreshCw, Shield, Webhook } from "lucide-react";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container, SectionHeading } from "@/components/ui/Container";
@@ -35,18 +36,12 @@ export default function IntegrationsPage() {
         summary={copy.hero.summary}
         actions={
           <>
-            <Link
-              href={copy.heroActions.primary.href}
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href={copy.heroActions.primary.href} variant="primary" size="md" className="h-11">
               {copy.heroActions.primary.label}
-            </Link>
-            <Link
-              href={copy.heroActions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href={copy.heroActions.secondary.href} variant="secondary" size="md" className="h-11">
               {copy.heroActions.secondary.label}
-            </Link>
+            </ButtonLink>
           </>
         }
       />
@@ -62,7 +57,7 @@ export default function IntegrationsPage() {
               <RevealItem key={group.category}>
                 <div className="flex h-full flex-col rounded-2xl border border-line p-6">
                   <h3 className="font-display text-display-s text-ink">{group.category}</h3>
-                  <p className="mt-3 flex-1 text-micro text-fog">{group.blurb}</p>
+                  <p className="mt-3 flex-1 text-small text-fog">{group.blurb}</p>
                   <ul className="mt-5 flex flex-wrap gap-1.5">
                     {group.surfaces.map((surface) => (
                       <li
@@ -88,10 +83,10 @@ export default function IntegrationsPage() {
               return (
                 <RevealItem key={capability.title}>
                   <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
-                  <h3 className="mt-4 text-body-lg font-medium text-ink">
+                  <h3 className="mt-4 text-body font-medium text-ink">
                     {capability.title}
                   </h3>
-                  <p className="mt-2.5 text-micro text-fog">{capability.body}</p>
+                  <p className="mt-2.5 text-small text-fog">{capability.body}</p>
                 </RevealItem>
               );
             })}
@@ -104,7 +99,7 @@ export default function IntegrationsPage() {
           <div className="grid gap-10 rounded-2xl border border-line bg-night p-8 text-on-night sm:p-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <h2 className="text-display-m text-on-night">{copy.api.heading}</h2>
-              <p className="mt-4 text-body-lg text-on-night-2">{copy.api.body}</p>
+              <p className="mt-4 text-body text-on-night-2">{copy.api.body}</p>
               <ArrowLink href="/contact" tone="dark">
                 {copy.api.cta}
               </ArrowLink>

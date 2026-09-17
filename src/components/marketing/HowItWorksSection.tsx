@@ -100,7 +100,7 @@ function StageRow({
           <Badge accent="neutral">{stage.duration}</Badge>
         </div>
         <h3 className="mt-3 text-display-m text-ink">{stage.title}</h3>
-        <p className="mt-4 max-w-[32rem] text-body-lg text-fog">{stage.body}</p>
+        <p className="mt-4 max-w-[32rem] text-body text-fog">{stage.body}</p>
       </motion.div>
 
       <motion.div

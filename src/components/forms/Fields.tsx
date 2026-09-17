@@ -231,7 +231,7 @@ export function CheckboxField({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-field accent-ink"
           {...rest}
         />
-        <label htmlFor={id} className="text-micro leading-relaxed text-fog">
+        <label htmlFor={id} className="text-small leading-relaxed text-fog">
           {label}
         </label>
       </div>
@@ -277,7 +277,7 @@ export function ChipGroup({
                 )
               }
               className={cn(
-                "rounded-full border px-3.5 py-1.5 text-micro transition-colors",
+                "rounded-full border px-3.5 py-1.5 text-small transition-colors",
                 active
                   ? "border-accent bg-accent-soft text-accent"
                   : "border-field text-fog hover:border-ink/25 hover:text-ink",
@@ -313,7 +313,7 @@ export function FormSuccess({
         </svg>
       </div>
       <h2 className="mt-5 font-display text-display-s text-ink">{title}</h2>
-      <div className="mt-3 text-micro text-fg-2">{children}</div>
+      <div className="mt-3 text-small text-fg-2">{children}</div>
       {secondary && <div className="mt-6">{secondary}</div>}
     </div>
   );
@@ -324,7 +324,7 @@ export function FormError({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="alert"
-      className="rounded-lg border border-danger-line bg-danger-soft px-4 py-3 text-micro text-danger-ink"
+      className="rounded-lg border border-danger-line bg-danger-soft px-4 py-3 text-small text-danger-ink"
     >
       {children}
     </div>

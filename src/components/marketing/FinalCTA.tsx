@@ -47,11 +47,7 @@ export function FinalCTA() {
               >
                 {copy.primaryCta.label}
               </ButtonLink>
-              <ButtonLink
-                href={copy.secondaryCta.href}
-                size="lg"
-                className="border border-white/30 bg-white/10 text-on-night hover:bg-white/20"
-              >
+              <ButtonLink href={copy.secondaryCta.href} variant="onNight" size="lg">
                 {copy.secondaryCta.label}
               </ButtonLink>
             </div>

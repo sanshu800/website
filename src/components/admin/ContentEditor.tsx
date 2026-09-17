@@ -70,7 +70,7 @@ export function ContentEditor({
           onClick={() => setOnlyEdited((current) => !current)}
           aria-pressed={onlyEdited}
           className={cn(
-            "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-micro font-medium transition-colors",
+            "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-small font-medium transition-colors",
             onlyEdited
               ? "border-accent bg-accent text-on-accent"
               : "border-field text-fog hover:bg-mist hover:text-ink",
@@ -86,7 +86,7 @@ export function ContentEditor({
       </div>
 
       {groups.length === 0 && (
-        <p className="rounded-xl border border-dashed border-line-strong px-6 py-12 text-center text-micro text-fog">
+        <p className="rounded-xl border border-dashed border-line-strong px-6 py-12 text-center text-small text-fog">
           Nothing matches “{query}”. Try the section name, the words on the page, or the field key.
         </p>
       )}
@@ -95,7 +95,7 @@ export function ContentEditor({
         {groups.map(([group, groupFields]) => (
           <section key={group}>
             <div className="flex items-center gap-3">
-              <h2 className="font-display text-body-lg text-ink">{group}</h2>
+              <h2 className="font-display text-body text-ink">{group}</h2>
               <span className="h-px flex-1 bg-line" />
               <span className="font-mono text-eyebrow text-fog">
                 {groupFields.length} field{groupFields.length === 1 ? "" : "s"}

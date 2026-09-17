@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, FileText } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminShell";
 import { Card, StatCard } from "@/components/admin/Bits";
@@ -104,25 +105,25 @@ export default function ContentAdminPage() {
                       ))}
                     </p>
                   </div>
-                  <Link
+                  <ButtonLink
                     href={`/admin/edit/${doc.id}`}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-night px-3.5 text-micro font-medium text-on-night transition-colors hover:bg-accent-2"
+                    size="sm"
+                    iconRight={<ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />}
                   >
                     Edit
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
+                  </ButtonLink>
                 </li>
               ))}
             </ul>
           </Card>
 
           <Card title="Deliberately not editable" className="mt-4">
-            <p className="text-micro leading-relaxed text-fog">
+            <p className="text-small leading-relaxed text-fog">
               Every word a visitor reads is editable, along with the search metadata and the hero
               assets. What stays in code is structure: layout, components and the design tokens
               behind them.
             </p>
-            <ul className="mt-4 grid gap-2 text-micro text-fog sm:grid-cols-2">
+            <ul className="mt-4 grid gap-2 text-small text-fog sm:grid-cols-2">
               {NOT_WIRED.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-line-strong" />
@@ -146,7 +147,7 @@ export default function ContentAdminPage() {
             }
           >
             {revisions.length === 0 ? (
-              <p className="text-micro text-fog">
+              <p className="text-small text-fog">
                 No edits yet. Everything on the site is the copy that shipped with the code.
               </p>
             ) : (
@@ -154,7 +155,7 @@ export default function ContentAdminPage() {
                 {revisions.map((revision) => (
                   <li key={revision.id} className="py-3.5 first:pt-0">
                     <p className="font-mono text-eyebrow text-fog">{revision.key}</p>
-                    <p className="mt-1 line-clamp-2 text-micro text-ink">
+                    <p className="mt-1 line-clamp-2 text-small text-ink">
                       {revision.action === "reset"
                         ? "reset to shipped copy"
                         : (revision.new_value ?? "—")}

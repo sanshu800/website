@@ -66,10 +66,10 @@ export default function ProductsIndex() {
                     <h2 className="mt-4 font-display text-display-m tracking-[-0.02em] text-ink">
                       {service.name}
                     </h2>
-                    <p className="mt-2 text-micro text-accent">{service.headline}</p>
+                    <p className="mt-2 text-small text-accent">{service.headline}</p>
                   </div>
                   <div className="lg:col-span-6">
-                    <p className="text-body-lg text-fog">{service.summary}</p>
+                    <p className="text-body text-fog">{service.summary}</p>
                     <ul className="mt-4 flex flex-wrap gap-1.5">
                       {service.flow.map((step) => (
                         <li

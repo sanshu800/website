@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, Check } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
@@ -28,18 +29,12 @@ export default function StartupsPage() {
         summary={program.summary}
         actions={
           <>
-            <Link
-              href={copy.hero.actions.primary.href}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href={copy.hero.actions.primary.href} variant="primary" size="md" className="h-11">
               {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href={copy.hero.actions.secondary.href}
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href={copy.hero.actions.secondary.href} variant="secondary" size="md" className="h-11">
               {copy.hero.actions.secondary.label}
-            </Link>
+            </ButtonLink>
           </>
         }
       />
@@ -53,10 +48,10 @@ export default function StartupsPage() {
                 <div className="flex h-full gap-4 rounded-2xl border border-line p-6">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <h3 className="text-body-lg font-medium text-ink">
+                    <h3 className="text-body font-medium text-ink">
                       {benefit.title}
                     </h3>
-                    <p className="mt-2 text-micro text-fog">{benefit.body}</p>
+                    <p className="mt-2 text-small text-fog">{benefit.body}</p>
                   </div>
                 </div>
               </RevealItem>
@@ -68,12 +63,12 @@ export default function StartupsPage() {
               <h2 className="font-display text-display-s text-ink">
                 {copy.eligibility.heading}
               </h2>
-              <ul className="mt-5 grid gap-3 text-body-lg text-fog sm:grid-cols-2">
+              <ul className="mt-5 grid gap-3 text-body text-fog sm:grid-cols-2">
                 {copy.eligibility.criteria.map((criterion) => (
                   <li key={criterion}>{criterion}</li>
                 ))}
               </ul>
-              <p className="mt-6 text-micro text-fog">{copy.eligibility.note}</p>
+              <p className="mt-6 text-small text-fog">{copy.eligibility.note}</p>
             </div>
           </Reveal>
         </Container>
@@ -84,7 +79,7 @@ export default function StartupsPage() {
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {siteStats.map((stat) => (
               <div key={stat.label}>
-                <dd className="font-display text-[2rem] leading-none text-ink">
+                <dd className="font-display text-figure text-ink">
                   {stat.value}
                 </dd>
                 <dt className="mt-2 font-mono text-label uppercase tracking-label text-fog">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight, Clock, Info } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageCTA } from "@/components/marketing/PageHero";
@@ -78,7 +79,7 @@ function BlockView({ block }: { block: Block }) {
             <p className="font-mono text-eyebrow uppercase tracking-label text-accent">
               {block.title}
             </p>
-            <p className="mt-2 text-body-lg text-fg-2">{block.text}</p>
+            <p className="mt-2 text-body text-fg-2">{block.text}</p>
           </div>
         </aside>
       );
@@ -133,7 +134,7 @@ export default async function PostPage({
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-6">
               <span className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-label font-semibold text-accent-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-label font-semibold text-fg-2">
                   {initials(post.author.name)}
                 </span>
                 <span>
@@ -169,24 +170,18 @@ export default async function PostPage({
               <p className="font-mono text-eyebrow uppercase tracking-label text-fog">
                 Run this on your own business
               </p>
-              <p className="mt-3 text-body-lg text-fg-2">
+              <p className="mt-3 text-body text-fg-2">
                 Everything in this article is a method you can run yourself, and the
                 worksheets are free. If you would rather we ran the audit with you,
                 that is exactly what the first thirty minutes are for.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link
-                  href="/guides"
-                  className="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-small font-medium text-on-accent transition-colors hover:bg-accent-2"
-                >
+                <ButtonLink href="/guides" variant="primary" size="md">
                   Get the playbooks
-                </Link>
-                <Link
-                  href="/get-started"
-                  className="inline-flex h-10 items-center rounded-full border border-line-strong bg-paper px-4 text-small font-medium text-ink transition-colors hover:bg-mist"
-                >
+                </ButtonLink>
+                <ButtonLink href="/get-started" variant="secondary" size="md" className="rounded-full">
                   Book a free audit
-                </Link>
+                </ButtonLink>
               </div>
             </div>
           </Container>
@@ -206,10 +201,10 @@ export default async function PostPage({
                   <span className="font-mono text-label uppercase tracking-label text-accent">
                     {item.category}
                   </span>
-                  <span className="mt-2 flex-1 font-display text-body-lg leading-snug text-ink">
+                  <span className="mt-2 flex-1 font-display text-body leading-snug text-ink">
                     {item.title}
                   </span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-micro text-fog">
+                  <span className="mt-4 inline-flex items-center gap-2 text-small text-fog">
                     {item.readingMinutes} min read
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>

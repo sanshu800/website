@@ -28,7 +28,7 @@ export default async function AdminLayout({
       <div className="mx-auto flex min-h-[100svh] max-w-[40rem] flex-col items-center justify-center px-6 text-center">
         <p className="font-mono text-eyebrow uppercase text-fog">403</p>
         <h1 className="mt-4 text-display-m text-ink">This account cannot edit the site.</h1>
-        <p className="mt-4 text-body-lg text-fog">
+        <p className="mt-4 text-body text-fog">
           You are signed in as {session.email}, which has the role “{session.role}”. Editing
           requires the owner or admin role.
         </p>

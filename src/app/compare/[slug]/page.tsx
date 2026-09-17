@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, Check, X } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
@@ -50,18 +51,12 @@ export default async function ComparePage({
         summary={comparison.summary}
         actions={
           <>
-            <Link
-              href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href="/get-started" variant="primary" size="md" className="h-11">
               Book a free audit
-            </Link>
-            <Link
-              href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href="/get-started" variant="secondary" size="md" className="h-11">
               Talk to us
-            </Link>
+            </ButtonLink>
           </>
         }
       />
@@ -74,7 +69,7 @@ export default async function ComparePage({
               <p className="flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog">
                 <Check className="h-4 w-4 text-jade" /> What {comparison.name.toLowerCase()} does well
               </p>
-              <p className="mt-4 text-body-lg text-fg-2">{comparison.theirStrength}</p>
+              <p className="mt-4 text-body text-fg-2">{comparison.theirStrength}</p>
             </Reveal>
             <Reveal
               delay={0.06}
@@ -83,7 +78,7 @@ export default async function ComparePage({
               <p className="flex items-center gap-2 font-mono text-eyebrow uppercase tracking-label text-fog">
                 <X className="h-4 w-4 text-danger" /> Where it stops working
               </p>
-              <p className="mt-4 text-body-lg text-fg-2">{comparison.theirWeakness}</p>
+              <p className="mt-4 text-body text-fg-2">{comparison.theirWeakness}</p>
             </Reveal>
           </div>
         </Container>
@@ -142,8 +137,8 @@ export default async function ComparePage({
           <RevealGroup className="grid gap-x-10 gap-y-8 lg:grid-cols-3">
             {comparison.points.map((point) => (
               <RevealItem key={point.title}>
-                <h3 className="text-body-lg font-medium text-ink">{point.title}</h3>
-                <p className="mt-3 text-micro text-fog">{point.body}</p>
+                <h3 className="text-body font-medium text-ink">{point.title}</h3>
+                <p className="mt-3 text-small text-fog">{point.body}</p>
               </RevealItem>
             ))}
           </RevealGroup>
@@ -158,7 +153,7 @@ export default async function ComparePage({
             </div>
             <ul className="space-y-3 lg:col-span-8">
               {comparison.bestFor.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-body-lg text-fg-2">
+                <li key={item} className="flex items-start gap-3 text-body text-fg-2">
                   <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
                   {item}
                 </li>

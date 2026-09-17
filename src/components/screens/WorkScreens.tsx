@@ -75,7 +75,7 @@ function Avatar({ name, className }: { name: string; className?: string }) {
     .join("");
   // Deterministic tint so avatars are stable between server and client render.
   const palette = [
-    "bg-accent-soft text-accent-2",
+    "bg-accent-soft text-fg-2",
     "bg-tangerine-soft text-tangerine-ink",
     "bg-jade-soft text-jade-ink",
     "bg-azure-soft text-azure-ink",
@@ -112,7 +112,7 @@ export function IntakeScreen({ className }: { className?: string }) {
       <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
         <div className="flex items-center gap-2">
           <Inbox className="h-4 w-4 text-accent" />
-          <span className="text-micro font-medium text-ink">New enquiries</span>
+          <span className="text-small font-medium text-ink">New enquiries</span>
           <span className="rounded-full bg-mist-2 px-2 py-[1px] font-mono text-label text-fg-2">
             18 open
           </span>
@@ -145,7 +145,7 @@ export function IntakeScreen({ className }: { className?: string }) {
           >
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="truncate text-micro font-medium text-ink">
+                <span className="truncate text-small font-medium text-ink">
                   {row.client}
                 </span>
                 <span className="font-mono text-label text-fog">{row.ref}</span>
@@ -210,7 +210,7 @@ export function EngageScreen({ className }: { className?: string }) {
   return (
     <Chrome title="agent console · follow-up" className={cn("h-full", className)}>
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <span className="text-micro font-medium text-ink">Active sequences</span>
+        <span className="text-small font-medium text-ink">Active sequences</span>
         <span className="flex items-center gap-1.5 font-mono text-eyebrow text-fog">
           <span className="h-1.5 w-1.5 rounded-full bg-jade" /> sending
         </span>
@@ -227,7 +227,7 @@ export function EngageScreen({ className }: { className?: string }) {
                     seq.live ? "bg-jade" : "bg-line-strong",
                   )}
                 />
-                <span className="truncate text-micro font-medium text-ink">
+                <span className="truncate text-small font-medium text-ink">
                   {seq.name}
                 </span>
               </div>
@@ -253,7 +253,7 @@ export function EngageScreen({ className }: { className?: string }) {
       <div className="border-t border-line bg-accent-soft/60 px-4 py-3">
         <div className="flex items-start gap-2">
           <Sparkles className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
-          <p className="text-label leading-relaxed text-accent-2">
+          <p className="text-label leading-relaxed text-fg-2">
             <strong className="font-semibold">Escalation:</strong> Oakhill Group has not
             replied to 3 touches. Assigned to D. Kessler with the whole thread attached.
           </p>
@@ -282,7 +282,7 @@ export function DeliverScreen({ className }: { className?: string }) {
     <Chrome title="agent console · documents" className={cn("h-full", className)}>
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <div>
-          <p className="text-micro font-medium text-ink">Oakhill Group — roof replacement</p>
+          <p className="text-small font-medium text-ink">Oakhill Group — roof replacement</p>
           <p className="font-mono text-eyebrow text-fog">
             job 88-412 · day 4 · owner D. Kessler
           </p>
@@ -304,7 +304,7 @@ export function DeliverScreen({ className }: { className?: string }) {
             )}
             <span
               className={cn(
-                "flex-1 text-micro",
+                "flex-1 text-small",
                 item.state === "todo" ? "text-fog" : "text-fg-2",
               )}
             >
@@ -339,7 +339,7 @@ export function InsightScreen({ className }: { className?: string }) {
   return (
     <Chrome title="agent console · weekly review" className={cn("h-full", className)}>
       <div className="border-b border-line px-4 py-3">
-        <p className="text-micro font-medium text-ink">Weekly review pack</p>
+        <p className="text-small font-medium text-ink">Weekly review pack</p>
         <p className="font-mono text-eyebrow text-fog">
           assembled 06:00 · sent to you and your bookkeeper
         </p>

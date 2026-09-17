@@ -37,7 +37,7 @@ export default function CompareIndex() {
                   <h2 className="mt-4 font-display text-display-s text-ink">
                     {comparison.headline}
                   </h2>
-                  <p className="mt-3 flex-1 text-micro text-fog">{comparison.summary}</p>
+                  <p className="mt-3 flex-1 text-small text-fog">{comparison.summary}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-small font-medium text-accent">
                     {copy.cardCta}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

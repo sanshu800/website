@@ -28,7 +28,7 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
   return (
     <div className="space-y-3">
       <div className="flex justify-end">
-        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-on-ink px-4 py-2.5 text-micro text-ink">
+        <p className="max-w-[80%] rounded-2xl rounded-br-md bg-on-ink px-4 py-2.5 text-small text-ink">
           {copy.question}
         </p>
       </div>
@@ -37,11 +37,11 @@ function AlertAnswer({ copy }: { copy: Conversation["alerts"] }) {
           <Sparkles className="h-3.5 w-3.5 text-on-night" />
         </span>
         <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-paper p-4">
-          <p className="text-micro text-fg-2">{copy.intro}</p>
+          <p className="text-small text-fg-2">{copy.intro}</p>
           <ul className="mt-3 space-y-3">
             {copy.items.map((row) => (
               <li key={row.name} className="rounded-lg border border-line bg-mist/60 px-3 py-2.5">
-                <p className="flex items-center gap-2 text-micro font-medium text-ink">
+                <p className="flex items-center gap-2 text-small font-medium text-ink">
                   {/* The one row that needs a decision is marked by a dot, which
                       says the same thing as a thick red rule without shouting. */}
                   <span
@@ -75,7 +75,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
     <div className="rounded-2xl border border-line bg-paper p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-micro font-semibold text-accent-2">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-display text-small font-semibold text-fg-2">
             {copy.initials}
           </span>
           <div>
@@ -92,7 +92,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
             <p className="font-mono text-label uppercase tracking-label text-fog">
               {block.label}
             </p>
-            <p className="mt-1.5 text-micro text-fg-2">{block.body}</p>
+            <p className="mt-1.5 text-small text-fg-2">{block.body}</p>
           </div>
         ))}
         <div>
@@ -101,7 +101,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
           </p>
           <ul className="mt-1.5 space-y-1.5">
             {copy.promises.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-micro text-fg-2">
+              <li key={item} className="flex items-start gap-2 text-small text-fg-2">
                 <Check className="mt-[5px] h-3.5 w-3.5 shrink-0 text-jade" />
                 {item}
               </li>
@@ -109,7 +109,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
           </ul>
         </div>
         <div className="rounded-lg bg-caution-soft p-3">
-          <p className="text-micro text-caution-ink">{copy.risk}</p>
+          <p className="text-small text-caution-ink">{copy.risk}</p>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@ function BriefAnswer({ copy }: { copy: Conversation["brief"] }) {
 function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
   return (
     <div className="rounded-2xl border border-line bg-paper p-5">
-      <p className="text-micro text-fog">{copy.question}</p>
+      <p className="text-small text-fog">{copy.question}</p>
       <div className="mt-4 rounded-xl bg-mist p-4">
         <p className="font-mono text-label uppercase tracking-label text-accent">
           {copy.finding}
@@ -131,7 +131,7 @@ function AnswerAnswer({ copy }: { copy: Conversation["answer"] }) {
                 {index + 1}
               </span>
               <span>
-                <span className="text-micro font-medium text-ink">{row.step}</span>
+                <span className="text-small font-medium text-ink">{row.step}</span>
                 <span className="mt-0.5 block text-label text-fog">{row.detail}</span>
               </span>
             </li>

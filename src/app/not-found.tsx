@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ReygentMark } from "@/components/brand/Logo";
@@ -36,18 +37,12 @@ export default function NotFound() {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
-          <Link
-            href="/"
-            className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-          >
+          <ButtonLink href="/" variant="primary" size="md" className="h-11">
             Back to the homepage <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-          >
+          </ButtonLink>
+          <ButtonLink href="/contact" variant="secondary" size="md" className="h-11">
             Report a broken link
-          </Link>
+          </ButtonLink>
         </div>
 
         <ul className="mt-14 grid gap-x-10 gap-y-6 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-3">

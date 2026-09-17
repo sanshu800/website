@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 export type Accent = "ink" | "tangerine" | "jade" | "azure" | "magenta" | "neutral";
 
 const accentChip: Record<Accent, string> = {
-  ink: "bg-accent-soft text-accent-2 border-accent-line",
+  ink: "bg-accent-soft text-fg-2 border-accent-line",
   tangerine: "bg-tangerine-soft text-tangerine-ink border-tangerine-line",
   jade: "bg-jade-soft text-jade-ink border-jade-line",
   azure: "bg-azure-soft text-azure-ink border-azure-line",
@@ -67,7 +67,7 @@ export function Badge({
 export function StatusPill({ status }: { status: string }) {
   const map: Record<string, string> = {
     new: "bg-azure-soft text-azure-ink border-azure-line",
-    qualified: "bg-accent-soft text-accent-2 border-accent-line",
+    qualified: "bg-accent-soft text-fg-2 border-accent-line",
     engaged: "bg-jade-soft text-jade-ink border-jade-line",
     proposal: "bg-caution-soft text-caution-ink border-caution-line",
     won: "bg-jade text-on-jade border-transparent",
@@ -78,7 +78,7 @@ export function StatusPill({ status }: { status: string }) {
     risk: "bg-danger-soft text-danger-ink border-danger-line",
     healthy: "bg-jade-soft text-jade-ink border-jade-line",
     watch: "bg-caution-soft text-caution-ink border-caution-line",
-    onboarding: "bg-accent-soft text-accent-2 border-accent-line",
+    onboarding: "bg-accent-soft text-fg-2 border-accent-line",
   };
   return (
     <span

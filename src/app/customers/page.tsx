@@ -60,7 +60,7 @@ export default function CustomersPage() {
                 <blockquote className="mt-6 font-display text-display-m leading-snug text-on-night">
                   “{testimonials[0]!.quote}”
                 </blockquote>
-                <p className="mt-7 border-t border-white/10 pt-6 text-micro text-on-night-2">
+                <p className="mt-7 border-t border-white/10 pt-6 text-small text-on-night-2">
                   {testimonials[0]!.name}, {testimonials[0]!.role},{" "}
                   {testimonials[0]!.company}
                 </p>
@@ -74,7 +74,7 @@ export default function CustomersPage() {
                     <p className="font-mono text-label uppercase tracking-label text-fog">
                       {item.label}
                     </p>
-                    <p className="mt-2 text-body-lg font-medium text-ink">{item.value}</p>
+                    <p className="mt-2 text-body font-medium text-ink">{item.value}</p>
                   </div>
                 </Reveal>
               ))}

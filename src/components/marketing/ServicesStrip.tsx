@@ -62,7 +62,7 @@ export function ServicesStrip() {
                 <h3 className="mt-5 font-display text-display-s text-ink">
                   {module.name}
                 </h3>
-                <p className="mt-2 flex-1 text-micro text-fog">{module.summary}</p>
+                <p className="mt-2 flex-1 text-small text-fog">{module.summary}</p>
 
                 {/* The handover: what this job consumes and produces. */}
                 <dl className="mt-5 space-y-2 border-t border-line pt-4">

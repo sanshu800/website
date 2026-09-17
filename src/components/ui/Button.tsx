@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "inverse" | "danger";
+type Variant = "primary" | "secondary" | "ghost" | "inverse" | "onNight" | "danger";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -22,6 +22,15 @@ const variants: Record<Variant, string> = {
   ghost: "text-fg-2 hover:bg-mist hover:text-ink",
   inverse:
     "bg-paper text-ink hover:bg-mist-2 active:translate-y-px border border-transparent",
+  /*
+   * For a button on a night surface: the outline only, since a filled button is
+   * already `inverse`. The blur is for the one place this sits over the hero
+   * film; on a flat dark panel it costs nothing. Colours come from the `on-ink`
+   * tokens rather than literal whites so the pair (dark surface, light text)
+   * stays stated in one place.
+   */
+  onNight:
+    "border border-on-ink/25 text-on-night backdrop-blur-sm hover:border-on-ink/50 hover:bg-on-ink/10",
   danger:
     "bg-danger text-on-danger hover:brightness-95 active:translate-y-px shadow-xs",
 };
@@ -34,7 +43,7 @@ const variants: Record<Variant, string> = {
  * input device that decides, not the viewport width.
  */
 const sizes: Record<Size, string> = {
-  sm: "h-8 pointer-coarse:h-9 px-3.5 text-micro",
+  sm: "h-8 pointer-coarse:h-9 px-3.5 text-small",
   md: "h-10 pointer-coarse:h-11 px-4.5 text-small",
   lg: "h-12 px-6 text-body",
 };

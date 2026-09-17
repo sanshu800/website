@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, Factory, TrendingUp } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/Container";
 import { PageHero, PageCTA } from "@/components/marketing/PageHero";
@@ -55,18 +56,12 @@ export default async function SolutionPage({
         summary={solution.summary}
         actions={
           <>
-            <Link
-              href="/get-started"
-              className="inline-flex h-11 items-center rounded-lg bg-accent px-5 text-body font-medium text-on-accent transition-colors hover:bg-accent-2"
-            >
+            <ButtonLink href="/get-started" variant="primary" size="md" className="h-11">
               Book a free audit
-            </Link>
-            <Link
-              href="/how-we-work"
-              className="inline-flex h-11 items-center rounded-lg border border-line-strong bg-paper px-5 text-body font-medium text-ink transition-colors hover:bg-mist"
-            >
+            </ButtonLink>
+            <ButtonLink href="/how-we-work" variant="secondary" size="md" className="h-11">
               See how we work
-            </Link>
+            </ButtonLink>
           </>
         }
         aside={
@@ -94,8 +89,8 @@ export default async function SolutionPage({
               <RevealItem key={point.title}>
                 <div className="border-t border-line pt-5">
                   <Factory className="h-5 w-5 text-accent" aria-hidden="true" />
-                  <h3 className="mt-4 text-body-lg font-medium text-ink">{point.title}</h3>
-                  <p className="mt-2.5 text-micro text-fog">{point.body}</p>
+                  <h3 className="mt-4 text-body font-medium text-ink">{point.title}</h3>
+                  <p className="mt-2.5 text-small text-fog">{point.body}</p>
                 </div>
               </RevealItem>
             ))}
@@ -121,7 +116,7 @@ export default async function SolutionPage({
                     <ArrowRight className="h-4 w-4 text-fog transition-transform duration-300 group-hover:translate-x-0.5" />
                   </Link>
                 </div>
-                <p className="text-body-lg text-fog lg:col-span-7">{fit.line}</p>
+                <p className="text-body text-fog lg:col-span-7">{fit.line}</p>
               </Reveal>
             ))}
           </div>
@@ -150,7 +145,7 @@ export default async function SolutionPage({
                 <blockquote className="font-display text-display-s leading-snug text-on-night">
                   “{proof[0]!.quote}”
                 </blockquote>
-                <p className="mt-4 text-micro text-on-night-2">
+                <p className="mt-4 text-small text-on-night-2">
                   {proof[0]!.name}, {proof[0]!.role}, {proof[0]!.company}
                 </p>
               </div>

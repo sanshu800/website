@@ -44,16 +44,16 @@ export function PricingPreview() {
                 </div>
 
                 <div className="mt-5 flex items-baseline gap-2">
-                  <span className="font-display text-[2.5rem] leading-none tracking-[-0.03em] text-ink">
+                  <span className="font-display text-figure text-ink">
                     {tier.price}
                   </span>
                   {tier.price !== "Custom" && (
-                    <span className="text-micro text-fog">{plans.unit}</span>
+                    <span className="text-small text-fog">{plans.unit}</span>
                   )}
                 </div>
                 <p className="mt-2 text-label text-fog">{tier.priceNote}</p>
 
-                <p className="mt-5 text-micro text-fog">{tier.summary}</p>
+                <p className="mt-5 text-small text-fog">{tier.summary}</p>
 
                 <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
                   {tier.includes.slice(0, 5).map((item, index) => (
@@ -83,10 +83,10 @@ export function PricingPreview() {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
           <ArrowLink href="/pricing">{preview.compareLink}</ArrowLink>
-          <span className="text-micro text-fog">{preview.footnote}</span>
+          <span className="text-small text-fog">{preview.footnote}</span>
         </div>
 
-        <p className="mt-4 text-center text-micro text-fog">{preview.currencyNote}</p>
+        <p className="mt-4 text-center text-small text-fog">{preview.currencyNote}</p>
       </Container>
     </section>
   );

@@ -18,11 +18,11 @@ export function MetricsBand() {
         <RevealGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {platformFacts.map((fact) => (
             <RevealItem key={fact.label} className="lg:border-l lg:border-line lg:pl-6 lg:first:border-l-0 lg:first:pl-0">
-              <p className="font-display text-[2.25rem] leading-none tracking-[-0.03em] text-ink">
+              <p className="font-display text-figure text-ink">
                 {fact.value}
               </p>
               <p className="mt-3 text-body font-medium text-ink">{fact.label}</p>
-              <p className="mt-1 text-micro text-fog">{fact.detail}</p>
+              <p className="mt-1 text-small text-fog">{fact.detail}</p>
             </RevealItem>
           ))}
         </RevealGroup>

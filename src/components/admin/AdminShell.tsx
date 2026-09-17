@@ -64,7 +64,7 @@ export function AdminShell({
           <div className="flex items-center gap-3">
             <Link href="/admin" className="flex items-center gap-2.5">
               <ReygentMark className="h-6 w-6 text-accent" />
-              <span className="font-display text-body-lg tracking-[-0.02em] text-ink">
+              <span className="font-display text-body tracking-[-0.02em] text-ink">
                 Reygent AI
               </span>
             </Link>
@@ -102,7 +102,7 @@ export function AdminShell({
               </span>
             )}
             <div className="hidden text-right sm:block">
-              <p className="text-micro font-medium leading-tight text-ink">{user.name}</p>
+              <p className="text-small font-medium leading-tight text-ink">{user.name}</p>
               <p className="font-mono text-eyebrow leading-tight text-fog">{user.role}</p>
             </div>
             <span
@@ -115,7 +115,7 @@ export function AdminShell({
               type="button"
               onClick={signOut}
               disabled={signingOut}
-              className="inline-flex h-9 items-center gap-2 rounded-lg border border-line px-3 text-micro font-medium text-ink transition-colors hover:bg-mist disabled:opacity-60"
+              className="inline-flex h-9 items-center gap-2 rounded-lg border border-line px-3 text-small font-medium text-ink transition-colors hover:bg-mist disabled:opacity-60"
             >
               <LogOut className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">{signingOut ? "Signing out" : "Sign out"}</span>
@@ -174,7 +174,7 @@ export function AdminHeader({
     <div className="mb-6 flex flex-wrap items-start justify-between gap-5">
       <div>
         <h1 className="text-display-m text-ink">{title}</h1>
-        {summary && <p className="mt-3 max-w-[44rem] text-body-lg text-fog">{summary}</p>}
+        {summary && <p className="mt-3 max-w-[44rem] text-body text-fog">{summary}</p>}
       </div>
       {action}
     </div>

@@ -86,7 +86,7 @@ export function ProblemSection() {
                       aria-hidden="true"
                       className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-3"
                     />
-                    <p className="text-micro leading-snug text-on-night">
+                    <p className="text-small leading-snug text-on-night">
                       {problem.fix}
                     </p>
                   </div>
@@ -96,7 +96,7 @@ export function ProblemSection() {
           ))}
         </div>
 
-        <p className="mt-12 max-w-[46rem] border-t border-white/10 pt-8 text-body-lg text-on-night-2">
+        <p className="mt-12 max-w-[46rem] border-t border-white/10 pt-8 text-body text-on-night-2">
           {copy.closing}
         </p>
       </Container>

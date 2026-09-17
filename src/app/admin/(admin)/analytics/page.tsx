@@ -93,11 +93,11 @@ export default function AnalyticsPage() {
                 <li key={page.path} className="flex items-center justify-between gap-4 py-3">
                   <Link
                     href={page.path}
-                    className="truncate font-mono text-micro text-ink hover:text-accent"
+                    className="truncate font-mono text-small text-ink hover:text-accent"
                   >
                     {page.path}
                   </Link>
-                  <span className="font-mono text-micro text-fog">{page.views}</span>
+                  <span className="font-mono text-small text-fog">{page.views}</span>
                 </li>
               ))}
             </ul>
@@ -112,7 +112,7 @@ export default function AnalyticsPage() {
               {sources.map((source) => (
                 <li key={source.source} className="flex items-center justify-between gap-4 py-3">
                   <span className="truncate text-small text-ink">{source.source}</span>
-                  <span className="font-mono text-micro text-fog">{source.visits}</span>
+                  <span className="font-mono text-small text-fog">{source.visits}</span>
                 </li>
               ))}
             </ul>
@@ -142,7 +142,7 @@ export default function AnalyticsPage() {
             <ul className="divide-y divide-line">
               {exceptions.map((entry) => (
                 <li key={entry.id} className="py-3">
-                  <p className="truncate text-micro text-ink">
+                  <p className="truncate text-small text-ink">
                     {entry.detail ?? "exception without a message"}
                   </p>
                   <p className="mt-1 font-mono text-eyebrow text-fog">
@@ -156,7 +156,7 @@ export default function AnalyticsPage() {
       </div>
 
       <Card title="What this is not" className="mt-4">
-        <p className="text-micro leading-relaxed text-fog">
+        <p className="text-small leading-relaxed text-fog">
           Not an analytics platform. There are no cookies, no user identifiers beyond the tab, no
           cross-site anything, and rows are deleted 90 days after they are written
           {first ? ` (the earliest row here is from ${first.slice(0, 10)})` : ""}. It exists so the
@@ -165,7 +165,7 @@ export default function AnalyticsPage() {
         </p>
         <Link
           href="/admin/edit/legal"
-          className="mt-4 inline-flex items-center gap-1.5 text-micro font-medium text-accent hover:underline"
+          className="mt-4 inline-flex items-center gap-1.5 text-small font-medium text-accent hover:underline"
         >
           Edit the privacy notice that describes it
           <ArrowRight className="h-3.5 w-3.5" />

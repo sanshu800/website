@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroFilm } from "./HeroFilm";
 import { heroVideo } from "@/lib/content/marketing";
@@ -92,7 +92,7 @@ export function Hero() {
               </span>
             </p>
 
-            <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-[2rem] font-medium leading-[1.08] tracking-[-0.035em] text-on-night sm:mt-6 sm:text-[3rem] md:text-[3.75rem] lg:text-[4.25rem]">
+            <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-display-2xl font-medium text-on-night sm:mt-6">
               {hero.titleLines.map((line, index) => (
                 <span key={line}>
                   {index > 0 && <br />}
@@ -107,29 +107,30 @@ export function Hero() {
         <Container width="wide">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div className="max-w-[26rem] sm:max-w-[32rem]">
-              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-small leading-relaxed text-on-night-2 sm:mb-6 sm:text-body-lg md:text-display-s">
+              <p className="mb-5 animate-[fadeSlideUp_0.8s_ease_0.7s_both] text-small leading-relaxed text-on-night-2 sm:mb-6 sm:text-body md:text-display-s">
                 {hero.summary}
               </p>
 
               <div className="animate-[fadeSlideUp_0.8s_ease_0.9s_both]">
                 <div className="flex flex-wrap items-center gap-3">
-                  <Link
+                  <ButtonLink
                     href={hero.primaryCta.href}
-                    className="inline-flex items-center gap-2 rounded-lg bg-on-ink px-5 py-2.5 text-small font-medium text-ink transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:px-6 sm:py-3"
+                    variant="inverse"
+                    className="hover:scale-[1.03] active:scale-95"
+                    iconRight={<ArrowRight className="h-4 w-4" aria-hidden="true" />}
                   >
                     {hero.primaryCta.label}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link
+                  </ButtonLink>
+                  <ButtonLink
                     href={hero.secondaryCta.href}
-                    className="inline-flex items-center gap-2 rounded-lg border border-on-ink/25 px-5 py-2.5 text-small font-medium text-on-night backdrop-blur-sm transition-colors duration-300 hover:border-on-ink/50 hover:bg-on-ink/10 sm:px-6 sm:py-3"
+                    variant="onNight"
+                    icon={<Play className="h-3.5 w-3.5" aria-hidden="true" />}
                   >
-                    <Play className="h-3.5 w-3.5" />
                     {hero.secondaryCta.label}
-                  </Link>
+                  </ButtonLink>
                 </div>
 
-                <p className="mt-4 text-label text-on-night-3 sm:text-micro">
+                <p className="mt-4 text-label text-on-night-3 sm:text-small">
                   {hero.footnote}
                 </p>
               </div>

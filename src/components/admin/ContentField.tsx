@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Check, Loader2, RotateCcw, TriangleAlert } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export type EditableField = {
@@ -95,7 +96,7 @@ export function ContentField({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <label
           htmlFor={field.key}
-          className="flex items-center gap-2 text-micro font-medium text-ink"
+          className="flex items-center gap-2 text-small font-medium text-ink"
         >
           {field.label}
           {edited && (
@@ -163,27 +164,26 @@ export function ContentField({
         )}
 
         <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
-          <button
+          <Button
             type="button"
             onClick={() => void save()}
             disabled={readOnly || busy || !dirty || value.trim() === ""}
-            className="inline-flex h-10 items-center rounded-lg bg-night px-3.5 text-micro font-medium text-on-night transition-colors hover:bg-accent-2 disabled:opacity-40"
           >
             Save
-          </button>
+          </Button>
           {edited && (
-            <button
+            <Button
               type="button"
               onClick={() => void reset()}
               disabled={readOnly || busy}
               title={`Restore the shipped copy: “${field.fallback.slice(0, 60)}${
                 field.fallback.length > 60 ? "…" : ""
               }”`}
-              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-field stg px-3 text-micro font-medium text-fog transition-colors hover:bg-mist hover:text-ink disabled:opacity-40"
+              variant="secondary"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
+              <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
               Reset
-            </button>
+            </Button>
           )}
         </div>
       </div>

@@ -46,8 +46,8 @@ export default function AboutPage() {
               <RevealGroup>
                 <RevealItem>
                   <h2 className="text-display-m text-ink">{about.story.title}</h2>
-                  <p className="mt-5 text-body-lg text-fog">{about.story.body1}</p>
-                  <p className="mt-4 text-body-lg text-fog">{about.story.body2}</p>
+                  <p className="mt-5 text-body text-fog">{about.story.body1}</p>
+                  <p className="mt-4 text-body text-fog">{about.story.body2}</p>
                 </RevealItem>
                 <RevealItem>
                   <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8">
@@ -80,8 +80,8 @@ export default function AboutPage() {
             {valuesList.map((value) => (
               <RevealItem key={value.title}>
                 <div className="border-t border-line pt-5">
-                  <h3 className="text-body-lg font-medium text-ink">{value.title}</h3>
-                  <p className="mt-2.5 text-micro text-fog">{value.body}</p>
+                  <h3 className="text-body font-medium text-ink">{value.title}</h3>
+                  <p className="mt-2.5 text-small text-fog">{value.body}</p>
                 </div>
               </RevealItem>
             ))}
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <h3 className="font-display text-display-s text-ink lg:col-span-4">
                   {item.title}
                 </h3>
-                <p className="text-body-lg text-fog lg:col-span-6">{item.body}</p>
+                <p className="text-body text-fog lg:col-span-6">{item.body}</p>
               </Reveal>
             ))}
           </ol>
@@ -117,7 +117,7 @@ export default function AboutPage() {
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <h2 className="text-display-m text-ink">{about.proof.heading}</h2>
-              <p className="mt-4 text-body-lg text-fog">{about.proof.note}</p>
+              <p className="mt-4 text-body text-fog">{about.proof.note}</p>
               <ArrowLink href="/customers">
                 {about.proof.cta}
               </ArrowLink>

@@ -64,5 +64,5 @@ export function tabLabel({ active, tone }: { active: boolean; tone: "light" | "d
 
 /** Supporting line under the label. Not part of the selected signal. */
 export function tabHint({ tone }: { tone: "light" | "dark" }) {
-  return cn("mt-1 block text-micro", tone === "dark" ? "text-on-night-2" : "text-fog");
+  return cn("mt-1 block text-small", tone === "dark" ? "text-on-night-2" : "text-fog");
 }

@@ -40,7 +40,7 @@ export default function SolutionsPage() {
                   <h2 className="mt-4 font-display text-display-m text-ink">
                     {solution.name}
                   </h2>
-                  <p className="mt-3 text-body-lg text-fog">{solution.summary}</p>
+                  <p className="mt-3 text-body text-fog">{solution.summary}</p>
 
                   <ul className="mt-6 flex flex-1 flex-wrap gap-1.5">
                     {solution.moduleFit.map((fit) => (

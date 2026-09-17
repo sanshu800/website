@@ -86,8 +86,8 @@
   /* Every solid colour chip reads from this set. The chips sit on the text-safe
      `-ink` tone of their colour rather than the saturated graphic tone, because
      white on `tangerine` measured 2.9:1 — under AA for the 11px numerals they
-     carry. These tokens exist so that pairing is stated once and not repeated as
-     `text-white` in twenty components. */
+     carry. These tokens exist so that pairing is stated once, instead of a
+     literal white being written into twenty components. */
   --color-on-tangerine: #ffffff;
   --color-on-jade: #ffffff;
   --color-on-azure: #ffffff;
@@ -111,12 +111,13 @@
   --color-on-night-2: #a9a9a9; /* 8.5:1 on night */
   /* The third step exists so that "quieter than secondary" is a decision made
      once rather than an opacity invented per component. The values this
-     replaced were `text-on-night/30` (2.3:1), `/45` (3.7:1) and
-     `text-on-night-2/60` (3.7:1) — all below the 4.5:1 needed for body text.
+     replaced were the 30% and 45% variants of this colour (2.3:1 and 3.7:1)
+     and the 60% variant of the secondary step (3.7:1) — all below the 4.5:1
+     needed for body text.
      This is 4.8:1, so the quietest text on a dark surface is still readable. */
   --color-on-night-3: #7d7d7d;
-  /* Text on an accent-filled control. Named rather than written as `text-white`
-     so the pair (fill, text-on-fill) stays visible as a pair. */
+  /* Text on an accent-filled control. Named rather than written as a literal
+     white, so the pair (fill, text-on-fill) stays visible as a pair. */
   --color-on-accent: #ffffff;
 
   /* ---- Control boundaries ------------------------------------------------ */
@@ -127,8 +128,14 @@
   --color-field: #8c8c8c; /* 3.36:1 on paper, 3.08:1 on mist, 3.09:1 on a field */
 
   /* ---- Type scale ------------------------------------------------------- */
-  --text-display-2xl: clamp(2.85rem, 1.4rem + 5.4vw, 5.25rem);
-  --text-display-2xl--line-height: 0.96;
+  /* The site's largest headline, and the only one that stacks over a film. The
+     line-height is looser than the other display steps on purpose: at three
+     lines of 68px type, 0.96 collides. The curve is tuned to the hero's own
+     breakpoints (32px on a phone, 68px on a desktop) rather than being derived
+     from the step below, and it rises smoothly instead of jumping at each
+     breakpoint. */
+  --text-display-2xl: clamp(2rem, 0.7rem + 5.6vw, 4.25rem);
+  --text-display-2xl--line-height: 1.08;
   --text-display-2xl--letter-spacing: -0.035em;
   --text-display-xl: clamp(2.25rem, 1.3rem + 3.6vw, 3.9rem);
   --text-display-xl--line-height: 1;
@@ -146,20 +153,28 @@
   --text-lead: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);
   --text-lead--line-height: 1.55;
   --text-lead--letter-spacing: -0.011em;
-  --text-body: 0.9375rem;
-  --text-body--line-height: 1.62;
-  --text-body-lg: 1rem;
-  --text-body-lg--line-height: 1.6;
+  /* 16px, the size the browser itself defaults to and the size iOS needs before
+     it stops zooming the page when a field takes focus — which is why this
+     replaced a 15px default. The step that used to sit 1px above it is gone. */
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
   --text-small: 0.875rem;
   --text-small--line-height: 1.55;
-  --text-micro: 0.8125rem;
-  --text-micro--line-height: 1.5;
+  /* There is no step between `small` and `label`. The 13px step that used to sit
+     here was one pixel from `small` and did the same job — supporting prose —
+     and folding it upwards made every one of those lines easier to read. */
+  /* Numbers that are the point of their block: the metric band, the price on a
+     card, the price on /pricing, the stats on /startups. Four call sites had
+     four different values (32, 36, 40, 44px) for the same idea. */
+  --text-figure: clamp(2rem, 1.7rem + 1.5vw, 2.5rem);
+  --text-figure--line-height: 1;
+  --text-figure--letter-spacing: -0.03em;
   --text-label: 0.75rem;
   --text-label--line-height: 1.2;
   --text-label--letter-spacing: 0.1em;
   /* 12px, the floor for legible small type — this used to be 11px, which is
-     below it. `eyebrow` and `label` therefore share a size and differ only in
-     tracking: a label is a control's own label, an eyebrow is a standalone
+     below it. The eyebrow and label steps therefore share a size and differ only
+     in tracking: a label is a control's own label, an eyebrow is a standalone
      kicker above a heading. */
   --text-eyebrow: 0.75rem;
   --text-eyebrow--line-height: 1.2;
@@ -242,7 +257,7 @@
     color: var(--color-fg);
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    line-height: 1.62;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;

@@ -1,0 +1,141 @@
+import type { Metadata } from "next";
+
+import { ButtonLink } from "@/components/ui/Button";
+import { ArrowRight, Clock, MousePointerClick } from "lucide-react";
+import { ArrowLink } from "@/components/ui/ArrowLink";
+import { Container, SectionHeading } from "@/components/ui/Container";
+import { PageHero, PageCTA } from "@/components/marketing/PageHero";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { getPages, getServices } from "@/lib/cms/content";
+import { withSeo } from "@/lib/cms/seo";
+import { TourStage } from "@/components/marketing/TourStage";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return withSeo("/how-we-work", {
+    title: "How we work",
+    description:
+      "How a Reygent AI engagement runs: an audit of what is worth automating, a written blueprint, a fixed-price build, then a retainer that keeps it working.",
+    alternates: { canonical: "/how-we-work" },
+  });
+}
+
+export default function HowWeWorkPage() {
+  const { core, managed } = getServices();
+  const { productTour: copy } = getPages();
+
+  const stages = core.map((module) => ({
+    slug: module.slug,
+    name: module.name,
+    title: module.headline,
+    body: module.intro,
+    screen: module.home.screen,
+    caption: module.panelCaption,
+    bullets: module.features.slice(0, 4).map((feature) => feature.title),
+    href: `/services/${module.slug}`,
+  }));
+
+  return (
+    <>
+      <PageHero
+        title={copy.hero.title}
+        summary={copy.hero.summary}
+        actions={
+          <>
+            <ButtonLink href={copy.hero.actions.primary.href} variant="primary" size="md" className="h-11">
+              {copy.hero.actions.primary.label} <ArrowRight className="h-4 w-4" />
+            </ButtonLink>
+            <ButtonLink href={copy.hero.actions.secondary.href} variant="secondary" size="md" className="h-11">
+              {copy.hero.actions.secondary.label}
+            </ButtonLink>
+          </>
+        }
+      />
+
+      <section className="border-b border-line bg-mist">
+        <Container width="wide">
+          <dl className="grid gap-8 py-10 sm:grid-cols-3">
+            {[
+              { icon: Clock, label: "First stage", value: "One week, fixed fee" },
+              { icon: MousePointerClick, label: "First build", value: "Four to eight weeks" },
+              { icon: ArrowRight, label: "Your commitment", value: "Nothing until a scope is signed" },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="flex gap-4">
+                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  <div>
+                    <dt className="font-mono text-label uppercase tracking-label text-fog">
+                      {item.label}
+                    </dt>
+                    <dd className="mt-1.5 text-body font-medium text-ink">
+                      {item.value}
+                    </dd>
+                  </div>
+                </div>
+              );
+            })}
+          </dl>
+        </Container>
+      </section>
+
+      <section className="section bg-paper">
+        <Container width="wide">
+          <SectionHeading
+            title={copy.walkthrough.title}
+            lede={copy.walkthrough.lede}
+          />
+          <div className="mt-12">
+            <TourStage
+              stages={stages.map((stage) => ({
+                slug: stage.slug,
+                name: stage.name,
+                title: stage.title,
+                body: stage.body,
+                screen: stage.screen,
+                caption: stage.caption,
+                bullets: stage.bullets,
+                href: stage.href,
+              }))}
+            />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section bg-night text-on-night">
+        <Container width="wide">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5">
+              <h2 className="text-display-l text-on-night">{managed.name}</h2>
+              <p className="mt-5 max-w-[36rem] text-body text-on-night-2">
+                {managed.summary}
+              </p>
+              <ArrowLink
+                href={`/services/${managed.slug}`}
+                tone="dark"
+                className="mt-7"
+              >
+                {copy.managed.cta}
+              </ArrowLink>
+            </div>
+            <div className="lg:col-span-7">
+              <RevealGroup className="grid gap-5 sm:grid-cols-2">
+                {managed.features.slice(0, 4).map((capability) => (
+                  <RevealItem key={capability.title}>
+                    <div className="rounded-2xl border border-white/12 bg-night-2 p-5">
+                      <h3 className="text-body font-medium text-on-night">
+                        {capability.title}
+                      </h3>
+                      <p className="mt-2 text-small text-on-night-2">{capability.body}</p>
+                    </div>
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <PageCTA title={copy.cta.title} summary={copy.cta.summary} />
+    </>
+  );
+}

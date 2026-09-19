@@ -1,0 +1,38 @@
+{
+  "name": "reygent-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "npm run placeholders:check && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "seed": "node --experimental-strip-types scripts/seed.ts",
+    "db:reset": "node --experimental-strip-types scripts/seed.ts --reset",
+    "admin:create": "node --experimental-strip-types scripts/admin.ts",
+    "placeholders:check": "node --experimental-strip-types scripts/check-placeholders.ts",
+    "db:check": "node --experimental-strip-types scripts/db-check.ts"
+  },
+  "dependencies": {
+    "lucide-react": "1.46.0",
+    "motion": "13.3.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/space-grotesk": "5.3.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^22.15.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

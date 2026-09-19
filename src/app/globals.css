@@ -1,0 +1,608 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   REYGENT PLATFORM — DESIGN TOKENS
+   Light-first premium SaaS system. Violet primary, ink neutrals, and the
+   four saturated "block" accents used for editorial colour fields.
+   ========================================================================== */
+
+@theme static {
+  /* ---- Neutrals --------------------------------------------------------- */
+  /* A neutral, very slightly warm grey ramp. Keeping the greys on one axis
+     instead of tinting them is what lets a single black carry the brand. */
+  --color-paper: #ffffff;
+  --color-mist: #f5f5f5;
+  --color-mist-2: #ebebeb;
+  --color-mist-3: #e0e0e0;
+  --color-line: #e4e4e4;
+  --color-line-strong: #cfcfcf;
+
+  --color-ink: #0a0a0a;
+  --color-ink-2: #141414;
+  --color-ink-3: #1d1d1d;
+  --color-ink-4: #2b2b2b;
+
+  /* ---- Text ------------------------------------------------------------- */
+  --color-fg: #101010;
+  --color-fg-2: #3a3a3a;
+  --color-fog: #6b6b6b; /* 5.1:1 on paper, 4.9:1 on mist */
+  --color-on-ink: #f7f7f7;
+  --color-on-ink-2: #a9a9a9;
+
+  /* ---- Primary: accent -------------------------------------------------- */
+  /* The brand is black. Everything interactive is black or grey; colour is
+     reserved for data (status, charts) so it always means something. */
+  --color-accent: #0a0a0a;
+  --color-accent-2: #2e2e2e; /* hover on light surfaces */
+  --color-accent-3: #d8d8d8; /* accent text/links on ink surfaces */
+  --color-accent-soft: #f2f2f2;
+  --color-accent-soft-2: #e6e6e6;
+  --color-accent-line: #d4d4d4;
+
+  /* ---- Editorial block accents ------------------------------------------ */
+  --color-tangerine: #ff6a2b;
+  --color-tangerine-soft: #ffe9dd;
+  --color-jade: #0f9d63;
+  --color-jade-soft: #dcf5e9;
+  --color-azure: #1667e8;
+  --color-azure-soft: #e2ecff;
+  --color-magenta: #d6219c;
+  --color-magenta-soft: #fde3f4;
+
+  /* ---- Semantic --------------------------------------------------------- */
+  --color-positive: #0f9d63;
+  --color-positive-soft: #e4f6ed;
+  --color-caution: #b26a00;
+  --color-caution-soft: #fdf1dc;
+  --color-danger: #cf3b3b;
+  --color-danger-soft: #fdeaea;
+  --color-info: #1667e8;
+  --color-info-soft: #e5edfd;
+
+  /* ---- Text-safe colour pairs -------------------------------------------- */
+  /* The tokens above are *graphic* colours: on paper, on mist or on their own
+     soft tint they land between 2.9:1 and 5.1:1, so they may carry an icon, a
+     rule or a fill, but never a sentence. Measured worst case per token is
+     5.3:1 on paper and 5.4:1 on its soft tint for the `-ink` set below, so this
+     is the set to reach for whenever the colour has to be read. `-line` is the
+     matching hairline for a soft chip's border. Nothing outside this file
+     should contain a colour literal. */
+  --color-jade-ink: #0a6b45; /* 6.56:1 on paper, 5.71:1 on jade-soft */
+  --color-jade-line: #a9e2c8;
+  --color-azure-ink: #0f4bb0; /* 7.91:1 on paper, 6.66:1 on azure-soft */
+  --color-azure-line: #b9d0fb;
+  --color-magenta-ink: #9c1770; /* 7.58:1 on paper, 6.31:1 on magenta-soft */
+  --color-magenta-line: #f5bde0;
+  --color-tangerine-ink: #a83c05; /* 6.34:1 on paper, 5.42:1 on tangerine-soft */
+  --color-tangerine-line: #ffc9a8;
+  --color-caution-ink: #8a5200; /* 6.39:1 on paper, 5.72:1 on caution-soft */
+  --color-caution-line: #f0d3a0;
+  --color-danger-ink: #a82f2f; /* 6.75:1 on paper, 5.83:1 on danger-soft */
+  --color-danger-line: #f3c4c4;
+  --color-positive-ink: #0a6b45;
+  --color-info-ink: #0f4bb0;
+
+  /* ---- Text on a solid colour fill --------------------------------------- */
+  /* Every solid colour chip reads from this set. The chips sit on the text-safe
+     `-ink` tone of their colour rather than the saturated graphic tone, because
+     white on `tangerine` measured 2.9:1 — under AA for the 11px numerals they
+     carry. These tokens exist so that pairing is stated once, instead of a
+     literal white being written into twenty components. */
+  --color-on-tangerine: #ffffff;
+  --color-on-jade: #ffffff;
+  --color-on-azure: #ffffff;
+  --color-on-magenta: #ffffff;
+  --color-on-caution: #ffffff;
+  --color-on-danger: #ffffff;
+  --color-on-positive: #ffffff;
+  --color-on-info: #ffffff;
+
+  /* ---- Night surfaces ---------------------------------------------------- */
+  /* The site's high-contrast blocks: the hero, the screenshot frames, the dark
+     CTA panels, the footer. Named separately from `ink` because they are dark by
+     purpose rather than by position — `ink` is the text colour, and a fill that
+     happens to use the same value is a different decision. Every one of them
+     carries `text-on-night` for its copy. */
+  --color-night: #0a0a0a;
+  --color-night-2: #141414;
+  --color-night-3: #1d1d1d;
+  --color-night-4: #2b2b2b;
+  --color-on-night: #f7f7f7; /* 17.9:1 on night */
+  --color-on-night-2: #a9a9a9; /* 8.5:1 on night */
+  /* The third step exists so that "quieter than secondary" is a decision made
+     once rather than an opacity invented per component. The values this
+     replaced were the 30% and 45% variants of this colour (2.3:1 and 3.7:1)
+     and the 60% variant of the secondary step (3.7:1) — all below the 4.5:1
+     needed for body text.
+     This is 4.8:1, so the quietest text on a dark surface is still readable. */
+  --color-on-night-3: #7d7d7d;
+  /* Text on an accent-filled control. Named rather than written as a literal
+     white, so the pair (fill, text-on-fill) stays visible as a pair. */
+  --color-on-accent: #ffffff;
+
+  /* ---- Control boundaries ------------------------------------------------ */
+  /* A form field's border is the only thing identifying it, so it has to clear
+     3:1 against the surface behind it (WCAG 2.1 SC 1.4.11). `line-strong` is the
+     decorative hairline — dividers, table rules, the edge of a secondary
+     button that is already identified by its label. Fields use this instead. */
+  --color-field: #8c8c8c; /* 3.36:1 on paper, 3.08:1 on mist, 3.09:1 on a field */
+
+  /* ---- Type scale ------------------------------------------------------- */
+  /* The site's largest headline, and the only one that stacks over a film. The
+     line-height is looser than the other display steps on purpose: at three
+     lines of 68px type, 0.96 collides. The curve is tuned to the hero's own
+     breakpoints (32px on a phone, 68px on a desktop) rather than being derived
+     from the step below, and it rises smoothly instead of jumping at each
+     breakpoint. */
+  --text-display-2xl: clamp(2rem, 0.7rem + 5.6vw, 4.25rem);
+  --text-display-2xl--line-height: 1.08;
+  --text-display-2xl--letter-spacing: -0.035em;
+  --text-display-xl: clamp(2.25rem, 1.3rem + 3.6vw, 3.9rem);
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.032em;
+  --text-display-l: clamp(1.85rem, 1.2rem + 2.4vw, 3rem);
+  --text-display-l--line-height: 1.04;
+  --text-display-l--letter-spacing: -0.028em;
+  --text-display-m: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+  --text-display-m--line-height: 1.12;
+  --text-display-m--letter-spacing: -0.022em;
+  --text-display-s: 1.1875rem;
+  --text-display-s--line-height: 1.3;
+  --text-display-s--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-lead--letter-spacing: -0.011em;
+  /* 16px, the size the browser itself defaults to and the size iOS needs before
+     it stops zooming the page when a field takes focus — which is why this
+     replaced a 15px default. The step that used to sit 1px above it is gone. */
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+  /* There is no step between `small` and `label`. The 13px step that used to sit
+     here was one pixel from `small` and did the same job — supporting prose —
+     and folding it upwards made every one of those lines easier to read. */
+  /* Numbers that are the point of their block: the metric band, the price on a
+     card, the price on /pricing, the stats on /startups. Four call sites had
+     four different values (32, 36, 40, 44px) for the same idea. */
+  --text-figure: clamp(2rem, 1.7rem + 1.5vw, 2.5rem);
+  --text-figure--line-height: 1;
+  --text-figure--letter-spacing: -0.03em;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.1em;
+  /* 12px, the floor for legible small type — this used to be 11px, which is
+     below it. The eyebrow and label steps therefore share a size and differ only
+     in tracking: a label is a control's own label, an eyebrow is a standalone
+     kicker above a heading. */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.14em;
+
+  /* ---- Radius ----------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation -------------------------------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(11, 11, 16, 0.06);
+  --shadow-sm: 0 2px 6px rgba(11, 11, 16, 0.06), 0 1px 2px rgba(11, 11, 16, 0.04);
+  --shadow-md: 0 10px 30px -12px rgba(11, 11, 16, 0.16), 0 2px 6px rgba(11, 11, 16, 0.04);
+  --shadow-lg: 0 30px 60px -24px rgba(11, 11, 16, 0.26), 0 4px 12px rgba(11, 11, 16, 0.06);
+  --shadow-xl: 0 50px 100px -32px rgba(11, 11, 16, 0.34), 0 8px 24px rgba(11, 11, 16, 0.08);
+  --shadow-accent: 0 18px 40px -18px rgba(10, 10, 11, 0.30);
+  --shadow-ring: 0 0 0 1px rgba(11, 11, 16, 0.06);
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --container-narrow: 40rem;
+  --container-page: 76rem;
+  --container-wide: 86rem;
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-geist), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* ==========================================================================
+   KEYFRAMES  (top level: these are referenced by literal name in components)
+   ========================================================================== */
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Hero entrance: each line of the hero arrives on its own delay. */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /*
+     Browser surfaces.
+     -------------------------------------------------------------------------
+     The parts of the interface we did not draw still carry the design: text
+     selection, the caret, the autofill wash, native checkboxes, the file
+     picker, the search field's clear button, scrollbars, link underlines.
+     Unthemed, each one falls back to a browser default that belongs to no
+     design system — and on a black-and-white palette the defaults are loud
+     (Chrome autofill paints a blue wash, macOS paints a grey caret on white
+     inputs). Everything below is one line of intent per surface.
+  */
+
+  ::selection {
+    background: var(--color-accent-soft-2);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  /* The caret is drawn in the text colour, not the OS accent. */
+  html {
+    caret-color: var(--color-ink);
+    /* Every native control that draws itself with an accent — checkboxes,
+       radios, range thumbs, the progress bar — takes the brand's black. */
+    accent-color: var(--color-accent);
+    /* Long words in headings and user-typed URLs stop breaking the measure. */
+    overflow-wrap: break-word;
+  }
+
+  /* Chrome's autofill wash is a pale blue that no palette survives. The
+     `-webkit-box-shadow` inset is the only reliable override; the transition
+     delays the repaint Chrome forces on autofill. */
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-ink);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-mist) inset;
+    caret-color: var(--color-ink);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  /* The upload page's file input. Without this it renders as Chrome's grey
+     button with its own radius and font, inside our border. */
+  ::file-selector-button {
+    margin-right: 0.75rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 8px;
+    background: var(--color-paper);
+    padding: 0.5rem 0.875rem;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: background-color 160ms ease-out;
+  }
+  ::file-selector-button:hover {
+    background: var(--color-mist);
+  }
+
+  /* `type="search"` gets an OS-styled clear affordance and, on iOS, a
+     pill-shaped field. Neither is ours. */
+  input[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+    height: 0.875rem;
+    width: 0.875rem;
+    background: var(--color-fog);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    cursor: pointer;
+  }
+  input[type="search"] {
+    appearance: none;
+  }
+
+  /* A number input's spinners are a 1990s control placed next to a designed
+     form; the fields that take numbers here are text-like. */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Figures that sit in columns or get compared line up on the digit. Prose
+     numbers keep their natural spacing.
+
+     `table` carries this automatically; `.tabular` is for the places where
+     figures are compared without a table around them — a price, a stat, a
+     count. Both faces ship proportional figures by default with a `tnum`
+     feature, so this swaps in real tabular digits rather than faking them. */
+  table,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+     All-caps micro-labels: the tracking every small uppercase mono label shares.
+
+     Upper-case text has no ascenders and descenders to separate its letters, so
+     it needs tracking to be readable at small sizes — set to the same value as
+     the `eyebrow` token above, so the two cannot drift into two different
+     answers for the same kind of element. Was 0.025em, which at 9–11px set the
+     letters nearly touching and read as a dense block rather than a label.
+  */
+  .tracking-label {
+    letter-spacing: 0.1em;
+  }
+
+  /* Underlines that clear the descenders instead of striking through them. */
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: from-font;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border-radius: 999px;
+    border: 3px solid var(--color-paper);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+/* ==========================================================================
+   COMPONENT PRIMITIVES
+   ========================================================================== */
+
+@layer components {
+  .section {
+    padding-block: clamp(4.5rem, 8vw, 8.5rem);
+  }
+
+  .section-sm {
+    padding-block: clamp(3rem, 5.5vw, 5.5rem);
+  }
+
+  /* Infinite logo marquee: duplicated track, translate -50%. */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 42s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  .group\/marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+
+
+  .dot-field-dark {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.11) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  /* Browser-chrome frame used to present real product UI as a screenshot. */
+  .app-frame {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+
+
+  /* Long-form article typography (blog posts, legal pages). */
+  .prose-reygent {
+    color: var(--color-fg-2);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .prose-reygent > * + * {
+    margin-top: 1.15em;
+  }
+  .prose-reygent h2 {
+    font-size: 1.5rem;
+    margin-top: 2.4em;
+    margin-bottom: 0.7em;
+    letter-spacing: -0.02em;
+  }
+  .prose-reygent h3 {
+    font-size: 1.1875rem;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+  .prose-reygent strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .prose-reygent a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-reygent ul {
+    list-style: disc;
+    padding-left: 1.3em;
+  }
+  .prose-reygent ol {
+    list-style: decimal;
+    padding-left: 1.4em;
+  }
+  .prose-reygent li + li {
+    margin-top: 0.4em;
+  }
+  .prose-reygent blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.1em;
+    font-family: var(--font-display);
+    font-size: 1.2em;
+    color: var(--color-ink);
+  }
+  .prose-reygent code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-mist);
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+  }
+  .prose-reygent hr {
+    border-color: var(--color-line);
+    margin-block: 2.2em;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+/* Data-saver: the poster underneath is a finished composition, so the film is
+   the first thing to go when the visitor or their browser is being frugal. */
+@media (prefers-reduced-data: reduce) {
+  .hero-film {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/*
+ * An editor can clear a line. The value then reaches the component as an empty
+ * string, and the component still renders its element — an empty heading or
+ * paragraph is a hole in the page, and it keeps whatever margin the layout gave
+ * it. Collapse those, so clearing a line removes it the way people expect.
+ *
+ * Scoped to tags that hold copy. Decorative boxes — the dots, rules, scrims and
+ * bars that carry a background instead of text — are divs and spans and are
+ * untouched, which matters because there are around fifty of them and they are
+ * deliberately empty. React's hydration markers are comments, and comments do
+ * not count towards emptiness.
+ *
+ * This is the counterpart to the rule in `lib/cms/paths.ts`, which drops a list
+ * item once every line inside it has been cleared. Text alone hides the
+ * element; the lists are what stop a cleared item leaving a slot behind.
+ */
+h1:empty,
+h2:empty,
+h3:empty,
+h4:empty,
+h5:empty,
+h6:empty,
+p:empty,
+li:empty,
+dt:empty,
+dd:empty,
+a:empty,
+button:empty {
+  display: none;
+}

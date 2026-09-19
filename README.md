@@ -98,6 +98,15 @@ rendered a single page. Three things fixed it, and all three matter:
   Changing it needs an exclusive lock, and SQLite does not let `busy_timeout`
   cover that pragma, which is what made the failure instant rather than slow.
 
+**If a save reports success and the page never changes.** Saves publish through
+`revalidatePath`, which is what turns a prerendered page back into a fresh render
+on the next request. A long-running `next start` can stop doing that: the write
+lands, the editor shows the new value, and the public page keeps serving what it
+had. This was seen once, in a sandbox whose files were being restored underneath
+the running process; restarting the process cleared it and every save published
+again. So if an edit does not appear, restart the server before concluding the
+save failed — the database is the source of truth and it will have the change.
+
 `npm run db:check` reproduces both shapes of that race — six workers on a fresh
 database, and six workers against a database with a write held open — and exits
 non-zero if anyone fails to get in. Against the original code it fails; against

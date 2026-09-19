@@ -6,6 +6,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/guides", {
@@ -33,7 +34,7 @@ export default function GuidesPage() {
             title={copy.library.titleTemplate.replace("{count}", String(items.length))}
           />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((guide) => (
+            {withText(items).map((guide) => (
               <RevealItem key={guide.slug}>
                 <Link
                   href="/newsletter"

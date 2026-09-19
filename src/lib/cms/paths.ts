@@ -109,6 +109,58 @@ export function collectLeaves(doc: unknown, prefix = ""): Leaf[] {
  * every leaf, so a stored key is matched exactly the way `collectLeaves` wrote
  * it. Unknown keys are ignored here and reported as orphans by the admin.
  */
+/*
+ * An editor can clear a field. Emptying a single line is handled where it is
+ * rendered (an empty element collapses), but a *list item* is different: a stat
+ * card or a bullet whose every line has been cleared would still hold its slot
+ * in the row, leaving a hole the reader reads as a layout bug. So an item that
+ * no longer says anything drops out of the list entirely.
+ *
+ * Two guards keep that from being destructive. Machine keys do not count as
+ * something said — an item left holding only an icon is still empty. And an
+ * item carrying a `slug` never drops, because slugs are routes: clearing a
+ * service's copy must not turn its page into a 404.
+ *
+ * This is applied by the component that renders the list, not to the merged
+ * document. The first version of this filtered inside `applyOverrides` and it
+ * broke the homepage: `AgentSection` reads `tabs[0]` and reads the panel key off
+ * it, so dropping the last item left it indexing an empty array. Only the site
+ * that iterates knows whether an array is a rendered list.
+ */
+function textLeaves(value: unknown, found: string[] = []): string[] {
+  if (typeof value === "string") {
+    found.push(value);
+  } else if (Array.isArray(value)) {
+    for (const item of value) textLeaves(item, found);
+  } else if (isPlainObject(value)) {
+    for (const [key, child] of Object.entries(value)) {
+      if (key.startsWith("_") || READONLY_KEYS.has(key)) continue;
+      textLeaves(child, found);
+    }
+  }
+  return found;
+}
+
+export function saysNothing(item: unknown): boolean {
+  if (typeof item === "string") return item.trim() === "";
+  if (!isPlainObject(item)) return false;
+  if (typeof item.slug === "string" && item.slug) return false;
+  const texts = textLeaves(item);
+  return texts.length > 0 && texts.every((text) => text.trim() === "");
+}
+
+/**
+ * The items of a rendered list that still say something.
+ *
+ * Takes and returns a readonly array so it can wrap a list that was declared
+ * `as const` (the blog's category filter is one). Nothing is copied when no item
+ * has been cleared, which is the case on every page nobody has edited.
+ */
+export function withText<T>(items: readonly T[]): readonly T[] {
+  if (!items.some(saysNothing)) return items;
+  return items.filter((item) => !saysNothing(item));
+}
+
 export function applyOverrides<T>(doc: T, overrides: Map<string, string>): T {
   const clone = structuredClone(doc);
   if (overrides.size === 0) return clone;

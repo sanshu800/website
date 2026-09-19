@@ -5,6 +5,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPricing } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * The engagement block on the homepage. Reads the same `pricing` document as
@@ -24,7 +25,7 @@ export function PricingPreview() {
         />
 
         <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-3">
-          {engagementsList.map((tier) => (
+          {withText(engagementsList).map((tier) => (
             <RevealItem key={tier.slug}>
               <div
                 className={cn(

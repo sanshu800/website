@@ -58,6 +58,25 @@ type CommonProps = {
   full?: boolean;
 };
 
+/*
+ * A control with no accessible name is not a control — it is a shape that does
+ * something when clicked and tells a screen reader nothing. That only happens
+ * one way here: an editor clears a label in the CMS, which is how a link comes
+ * off a page. So a button whose text has been cleared returns nothing at all,
+ * rather than rendering an unlabelled box. Anything with an aria-label (an
+ * icon-only control) or with markup for children is left alone.
+ */
+function hasAccessibleName(children: React.ReactNode, ariaLabel?: string): boolean {
+  if (ariaLabel) return true;
+  if (typeof children === "string") return children.trim() !== "";
+  if (Array.isArray(children)) {
+    return children.some((child) =>
+      typeof child === "string" ? child.trim() !== "" : child !== null && child !== undefined,
+    );
+  }
+  return children !== null && children !== undefined;
+}
+
 export function Button({
   children,
   variant = "primary",
@@ -68,6 +87,8 @@ export function Button({
   full,
   ...rest
 }: CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  if (!hasAccessibleName(children, rest["aria-label"])) return null;
+
   return (
     <button
       className={cn(base, variants[variant], sizes[size], full && "w-full", className)}
@@ -94,6 +115,8 @@ export function ButtonLink({
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     "href"
   >) {
+  if (!hasAccessibleName(children, rest["aria-label"])) return null;
+
   const classes = cn(base, variants[variant], sizes[size], full && "w-full", className);
   const isExternal = /^(https?:|mailto:|tel:)/.test(href);
 

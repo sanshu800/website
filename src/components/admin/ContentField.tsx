@@ -67,13 +67,16 @@ export function ContentField({
   }
 
   async function save() {
-    if (!dirty || value.trim() === "") return;
+    if (!dirty) return;
     const ok = await post({ action: "set", path: field.key, value });
     if (ok) {
       const trimmed = value.trim();
       setValue(trimmed);
       setEdited(trimmed !== field.fallback);
-      setStatus({ tone: "saved", message: "Published" });
+      setStatus({
+        tone: "saved",
+        message: trimmed === "" ? "Removed from the page" : "Published",
+      });
     }
   }
 
@@ -90,6 +93,14 @@ export function ContentField({
     "focus-visible:border-accent disabled:opacity-60 disabled:cursor-not-allowed",
     dirty ? "border-accent" : "border-field",
   );
+
+  /*
+   * An empty box is a removal, not a mistake, so the button says what will
+   * happen rather than staying greyed out. The consequence is spelled out
+   * underneath for the two shapes it can take: a line that leaves a gap on a
+   * page versus an item that closes the list up.
+   */
+  const isClearing = dirty && value.trim() === "";
 
   return (
     <div className="border-b border-line py-5 last:border-b-0">
@@ -167,9 +178,9 @@ export function ContentField({
           <Button
             type="button"
             onClick={() => void save()}
-            disabled={readOnly || busy || !dirty || value.trim() === ""}
+            disabled={readOnly || busy || !dirty}
           >
-            Save
+            {isClearing ? "Remove from page" : "Save"}
           </Button>
           {edited && (
             <Button
@@ -188,8 +199,21 @@ export function ContentField({
         </div>
       </div>
 
+      {isClearing && (
+        <p className="mt-2 text-eyebrow leading-relaxed text-fog">
+          {field.kind === "link"
+            ? "A link needs a destination. To take this link off the page, clear its label instead."
+            : "This line will come off the page. Reset brings the shipped copy back."}
+        </p>
+      )}
+
       {edited && !dirty && (
         <p className="mt-2 text-eyebrow leading-relaxed text-fog">
+          {field.current === "" ? (
+            <span className="text-fog">
+              Removed from the page. Reset brings the shipped copy back.
+            </span>
+          ) : null}
           Shipped copy: <span className="text-fog">{field.fallback.slice(0, 160)}</span>
           {field.fallback.length > 160 ? "…" : ""}
         </p>

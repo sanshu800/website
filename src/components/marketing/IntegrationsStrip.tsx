@@ -2,6 +2,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getHome, getShared } from "@/lib/cms/content";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * Integrations described by capability rather than by partner logo. Naming and
@@ -25,7 +26,7 @@ export function IntegrationsStrip() {
         </div>
 
         <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {integrations.map((group) => (
+          {withText(integrations).map((group) => (
             <RevealItem key={group.category}>
               <div className="flex h-full flex-col rounded-2xl border border-line p-6">
                 <h3 className="font-display text-body text-ink">
@@ -33,7 +34,7 @@ export function IntegrationsStrip() {
                 </h3>
                 <p className="mt-2.5 flex-1 text-small text-fog">{group.blurb}</p>
                 <ul className="mt-5 flex flex-wrap gap-1.5">
-                  {group.surfaces.map((surface) => (
+                  {withText(group.surfaces).map((surface) => (
                     <li
                       key={surface}
                       className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"

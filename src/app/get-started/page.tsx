@@ -6,6 +6,7 @@ import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages, getPricing } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { Reveal } from "@/components/motion/Reveal";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/get-started", {
@@ -52,7 +53,7 @@ export default function GetStartedPage() {
                     {copy.includedHeading}
                   </h2>
                   <ul className="mt-6 space-y-3">
-                    {copy.included.map((item) => (
+                    {withText(copy.included).map((item) => (
                       <li key={item} className="flex items-start gap-3 text-small text-fog">
                         <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-accent" />
                         {item}
@@ -68,7 +69,7 @@ export default function GetStartedPage() {
                     {copy.nextSteps.heading}
                   </h2>
                   <ol className="mt-5 space-y-4 text-small text-fog">
-                    {copy.nextSteps.steps.map((step, index) => (
+                    {withText(copy.nextSteps.steps).map((step, index) => (
                       <li key={step} className="flex gap-3">
                         <span className="font-mono text-label text-accent">
                           {String(index + 1).padStart(2, "0")}
@@ -94,7 +95,7 @@ export default function GetStartedPage() {
                     If it is worth doing, here is how we would start
                   </h2>
                   <ul className="mt-5 divide-y divide-line">
-                    {engagementsList.map((engagement) => (
+                    {withText(engagementsList).map((engagement) => (
                       <li key={engagement.slug} className="flex items-baseline justify-between gap-4 py-3 first:pt-0">
                         <span className="text-small text-fog">{engagement.name}</span>
                         <span className="shrink-0 font-mono text-eyebrow text-ink">

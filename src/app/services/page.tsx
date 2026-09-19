@@ -9,6 +9,7 @@ import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getServices } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/services", {
@@ -42,7 +43,7 @@ export default function ProductsIndex() {
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5">
-            {services.map((service, cardIndex) => (
+            {withText(services).map((service, cardIndex) => (
               <RevealItem key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
@@ -71,7 +72,7 @@ export default function ProductsIndex() {
                   <div className="lg:col-span-6">
                     <p className="text-body text-fog">{service.summary}</p>
                     <ul className="mt-4 flex flex-wrap gap-1.5">
-                      {service.flow.map((step) => (
+                      {withText(service.flow).map((step) => (
                         <li
                           key={step.step}
                           className="rounded-full bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"

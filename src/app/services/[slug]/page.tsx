@@ -12,6 +12,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/WorkScreens";
 import { getServices } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return getServices().items.map((service) => ({ slug: service.slug }));
@@ -85,7 +86,7 @@ export default async function ProductPage({
       <section className="border-b border-line bg-mist py-12 sm:py-14">
         <Container width="wide">
           <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {service.flow.map((step, index) => (
+            {withText(service.flow).map((step, index) => (
               <RevealItem key={step.step} className="relative">
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-eyebrow uppercase tracking-label text-accent">
@@ -109,7 +110,7 @@ export default async function ProductPage({
             lede={detail.capabilities.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-            {service.features.map((feature) => (
+            {withText(service.features).map((feature) => (
               <RevealItem key={feature.title}>
                 <div className="flex h-full flex-col border-t border-line pt-5">
                   <h3 className="text-body font-medium text-ink">{feature.title}</h3>
@@ -130,7 +131,7 @@ export default async function ProductPage({
               <p className="mt-4 text-body text-fog">{detail.outcomes.note}</p>
             </div>
             <ul className="lg:col-span-6 lg:col-start-7">
-              {service.outcomes.map((outcome) => (
+              {withText(service.outcomes).map((outcome) => (
                 <Reveal as="li" key={outcome} className="flex items-start gap-3 border-b border-line py-4">
                   <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
                   <span className="text-body text-fg-2">{outcome}</span>
@@ -152,7 +153,7 @@ export default async function ProductPage({
             lede={detail.fits.lede}
           />
           <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-3">
-            {related.map((module) => (
+            {withText(related).map((module) => (
               <RevealItem key={module.slug}>
                 <Link
                   href={`/services/${module.slug}`}

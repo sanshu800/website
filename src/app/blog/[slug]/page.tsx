@@ -12,6 +12,7 @@ import { withSeo } from "@/lib/cms/seo";
 import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
 import { type Block } from "@/lib/content/blog";
 import { formatDate, initials } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return getBlog().posts.map((post) => ({ slug: post.slug }));
@@ -41,7 +42,7 @@ function BlockView({ block }: { block: Block }) {
     case "ul":
       return (
         <ul>
-          {block.items.map((item) => (
+          {withText(block.items).map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
@@ -49,7 +50,7 @@ function BlockView({ block }: { block: Block }) {
     case "ol":
       return (
         <ol>
-          {block.items.map((item) => (
+          {withText(block.items).map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ol>
@@ -161,7 +162,7 @@ export default async function PostPage({
         <div className="bg-paper py-14 sm:py-16">
           <Container width="narrow">
             <div className="prose-reygent">
-              {post.body.map((block, index) => (
+              {withText(post.body).map((block, index) => (
                 <BlockView key={index} block={block} />
               ))}
             </div>
@@ -192,7 +193,7 @@ export default async function PostPage({
         <Container width="narrow">
           <h2 className="font-mono text-eyebrow uppercase text-fog">Keep reading</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {suggestions.map((item) => (
+            {withText(suggestions).map((item) => (
               <Reveal key={item.slug}>
                 <Link
                   href={`/blog/${item.slug}`}

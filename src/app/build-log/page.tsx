@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/build-log", {
@@ -56,7 +57,7 @@ export default function BuildLogPage() {
                   {latest.summary}
                 </p>
                 <ul className="mt-7 space-y-3 border-t border-accent/20 pt-6">
-                  {latest.items.map((item) => (
+                  {withText(latest.items).map((item) => (
                     <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                       <span
                         className={cn(
@@ -75,7 +76,7 @@ export default function BuildLogPage() {
           )}
 
           <div className="mt-16 border-t border-line">
-            {rest.map((note) => (
+            {withText(rest).map((note) => (
               <Reveal
                 key={note.issue}
                 className="grid gap-6 border-b border-line py-9 lg:grid-cols-12"
@@ -92,7 +93,7 @@ export default function BuildLogPage() {
                     {note.summary}
                   </p>
                   <ul className="mt-5 space-y-2.5">
-                    {note.items.map((item) => (
+                    {withText(note.items).map((item) => (
                       <li key={item.text} className="flex flex-wrap items-baseline gap-3">
                         <span
                           className={cn(

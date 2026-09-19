@@ -8,6 +8,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getComparisons } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return getComparisons().items.map((item) => ({ slug: item.slug }));
@@ -108,7 +109,7 @@ export default async function ComparePage({
                 </tr>
               </thead>
               <tbody>
-                {comparison.rows.map((row, index) => (
+                {withText(comparison.rows).map((row, index) => (
                   <tr
                     key={row.dimension}
                     className={index % 2 === 1 ? "bg-mist/60" : undefined}
@@ -135,7 +136,7 @@ export default async function ComparePage({
       <section className="section-sm bg-mist">
         <Container width="wide">
           <RevealGroup className="grid gap-x-10 gap-y-8 lg:grid-cols-3">
-            {comparison.points.map((point) => (
+            {withText(comparison.points).map((point) => (
               <RevealItem key={point.title}>
                 <h3 className="text-body font-medium text-ink">{point.title}</h3>
                 <p className="mt-3 text-small text-fog">{point.body}</p>
@@ -152,7 +153,7 @@ export default async function ComparePage({
               <h2 className="font-display text-display-s text-ink">{detail.goodFitHeading}</h2>
             </div>
             <ul className="space-y-3 lg:col-span-8">
-              {comparison.bestFor.map((item) => (
+              {withText(comparison.bestFor).map((item) => (
                 <li key={item} className="flex items-start gap-3 text-body text-fg-2">
                   <Check className="mt-[5px] h-4 w-4 shrink-0 text-accent" />
                   {item}
@@ -163,7 +164,7 @@ export default async function ComparePage({
 
           <h2 className="mt-12 font-mono text-eyebrow uppercase text-fog">{detail.otherHeading}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {others.map((item) => (
+            {withText(others).map((item) => (
               <Link
                 key={item.slug}
                 href={`/compare/${item.slug}`}

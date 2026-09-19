@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
 import { getLegal } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return Object.keys(getLegal().pages).map((slug) => ({ slug }));
@@ -49,7 +50,7 @@ export default async function LegalPage({
       <section className="section bg-paper">
         <Container width="narrow">
           <div className="space-y-10">
-            {page.sections.map((section) => (
+            {withText(page.sections).map((section) => (
               <div key={section.h}>
                 <h2 className="font-display text-display-s text-ink">{section.h}</h2>
                 <p className="mt-3 text-body text-fog">{section.p}</p>

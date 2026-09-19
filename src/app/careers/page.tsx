@@ -6,6 +6,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getCompany } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/careers", {
@@ -20,7 +21,7 @@ export default function CareersPage() {
   const { about, careers } = getCompany();
   const valuesList = about.valuesList;
   const { roles } = careers;
-  const teams = [...new Set(roles.map((role) => role.team))];
+  const teams = [...new Set(withText(roles).map((role) => role.team))];
 
   return (
     <>
@@ -38,7 +39,7 @@ export default function CareersPage() {
             lede={careers.openRoles.lede}
           />
           <RevealGroup className="mt-12 border-t border-line">
-            {roles.map((role) => (
+            {withText(roles).map((role) => (
               <RevealItem key={role.slug}>
                 <Link
                   href={`/careers/${role.slug}`}
@@ -71,7 +72,7 @@ export default function CareersPage() {
             title={careers.workingHere.title}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {careers.perks.map((perk) => (
+            {withText(careers.perks).map((perk) => (
               <RevealItem key={perk.title}>
                 <h3 className="text-body font-medium text-ink">{perk.title}</h3>
                 <p className="mt-2.5 text-small text-fog">{perk.body}</p>
@@ -84,7 +85,7 @@ export default function CareersPage() {
               {careers.workingHere.lookingFor}
             </h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {valuesList.map((value) => (
+              {withText(valuesList).map((value) => (
                 <li
                   key={value.title}
                   className="rounded-xl border border-line bg-paper px-5 py-4 text-small text-fg-2"

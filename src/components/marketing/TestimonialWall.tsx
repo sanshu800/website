@@ -4,6 +4,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { getHome, getShared } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * Customer proof.
@@ -27,7 +28,7 @@ export function TestimonialWall() {
           <SectionHeading
             title={
               <>
-                {copy.titleLines.map((line, index) => (
+                {withText(copy.titleLines).map((line, index) => (
                   <span key={line}>
                     {index > 0 && <br className="hidden sm:block" />}
                     {index > 0 ? ` ${line}` : line}
@@ -75,7 +76,7 @@ export function TestimonialWall() {
 
           {/* Supporting quotes */}
           <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
-            {rest.map((item, index) => (
+            {withText(rest).map((item, index) => (
               <Reveal key={item.name} delay={0.06 + index * 0.06}>
                 <figure
                   className={cn(

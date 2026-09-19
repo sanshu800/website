@@ -3,6 +3,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { getHome } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * The problem.
@@ -38,7 +39,7 @@ export function ProblemSection() {
           tone="ink"
           title={
             <>
-              {copy.titleLines.map((line, index) => (
+              {withText(copy.titleLines).map((line, index) => (
                 <span key={line}>
                   {index > 0 && <br className="hidden sm:block" />}
                   {index > 0 ? ` ${line}` : line}
@@ -51,7 +52,7 @@ export function ProblemSection() {
         />
 
         <div className="mt-16 space-y-6 sm:mt-20 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0">
-          {copy.items.map((problem, index) => (
+          {withText(copy.items).map((problem, index) => (
             <Reveal
               key={problem.title}
               delay={index * 0.08 }

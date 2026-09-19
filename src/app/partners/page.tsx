@@ -7,6 +7,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/partners", {
@@ -42,7 +43,7 @@ export default function PartnersPage() {
         <Container width="wide">
           <SectionHeading title={copy.types.title} />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {copy.types.items.map((type) => (
+            {withText(copy.types.items).map((type) => (
               <RevealItem key={type.title}>
                 <h3 className="text-body font-medium text-ink">{type.title}</h3>
                 <p className="mt-2.5 text-small text-fog">{type.body}</p>
@@ -56,7 +57,7 @@ export default function PartnersPage() {
         <Container width="wide">
           <SectionHeading title={copy.commercial.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {program.benefits.map((benefit) => (
+            {withText(program.benefits).map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
                   <h3 className="font-display text-body text-ink">{benefit.title}</h3>
@@ -72,7 +73,7 @@ export default function PartnersPage() {
         <Container width="wide">
           <SectionHeading title={copy.steps.title} />
           <ol className="mt-12 grid gap-6 lg:grid-cols-4">
-            {program.steps.map((step, index) => (
+            {withText(program.steps).map((step, index) => (
               <li key={step.title} className="border-t border-line-strong pt-5">
                 <span className="font-mono text-eyebrow text-accent">
                   {String(index + 1).padStart(2, "0")}

@@ -6,6 +6,7 @@ import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getResources } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/newsletter", {
@@ -43,7 +44,7 @@ export default function NewsletterPage() {
               </div>
 
               <RevealGroup className="mt-6 grid gap-3 sm:grid-cols-3">
-                {newsletter.subscribe.facts.map((item) => (
+                {withText(newsletter.subscribe.facts).map((item) => (
                   <RevealItem key={item.label}>
                     <div className="rounded-xl border border-line px-4 py-3">
                       <p className="font-mono text-label uppercase tracking-label text-fog">
@@ -63,7 +64,7 @@ export default function NewsletterPage() {
                 {newsletter.issuesHeading}
               </h2>
               <ul className="mt-6 divide-y divide-line border-y border-line">
-                {newsletter.issues.map((issue) => (
+                {withText(newsletter.issues).map((issue) => (
                   <li key={issue.number} className="flex gap-5 py-6">
                     <span className="font-mono text-label text-accent">
                       {issue.number}

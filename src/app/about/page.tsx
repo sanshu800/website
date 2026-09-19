@@ -6,6 +6,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getCompany, getShared } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/about", {
@@ -77,7 +78,7 @@ export default function AboutPage() {
             lede={about.values.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-            {valuesList.map((value) => (
+            {withText(valuesList).map((value) => (
               <RevealItem key={value.title}>
                 <div className="border-t border-line pt-5">
                   <h3 className="text-body font-medium text-ink">{value.title}</h3>
@@ -93,7 +94,7 @@ export default function AboutPage() {
         <Container width="wide">
           <SectionHeading title={about.history.title} />
           <ol className="mt-12 border-t border-line">
-            {history.map((item) => (
+            {withText(history).map((item) => (
               <Reveal
                 key={item.year}
                 as="li"

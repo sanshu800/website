@@ -9,6 +9,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Screen } from "@/components/screens/WorkScreens";
 import { getShared, getSolutions } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return getSolutions().items.map((solution) => ({ slug: solution.slug }));
@@ -85,7 +86,7 @@ export default async function SolutionPage({
             lede={detail.pressure.lede}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {solution.pressurePoints.map((point) => (
+            {withText(solution.pressurePoints).map((point) => (
               <RevealItem key={point.title}>
                 <div className="border-t border-line pt-5">
                   <Factory className="h-5 w-5 text-accent" aria-hidden="true" />
@@ -105,7 +106,7 @@ export default async function SolutionPage({
             lede={detail.fits.lede}
           />
           <div className="mt-12 divide-y divide-line border-t border-line">
-            {solution.moduleFit.map((fit) => (
+            {withText(solution.moduleFit).map((fit) => (
               <Reveal key={fit.module} className="grid gap-4 py-6 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-3">
                   <Link
@@ -123,7 +124,7 @@ export default async function SolutionPage({
 
           <Reveal delay={0.1}>
             <div className="mt-12 grid gap-6 rounded-2xl border border-line bg-paper p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4">
-              {solution.metrics.map((metric) => (
+              {withText(solution.metrics).map((metric) => (
                 <div key={metric.label}>
                   <p className="font-mono text-label uppercase tracking-label text-fog">
                     {metric.label}
@@ -158,7 +159,7 @@ export default async function SolutionPage({
         <Container width="wide">
           <h2 className="font-mono text-eyebrow uppercase text-fog">Other industries</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {others.map((item) => (
+            {withText(others).map((item) => (
               <Link
                 key={item.slug}
                 href={`/solutions/${item.slug}`}

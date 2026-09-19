@@ -8,6 +8,7 @@ import { getBlog } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { formatDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/blog", {
@@ -43,7 +44,7 @@ export default async function BlogIndex({
       <section className="border-b border-line bg-paper py-5">
         <Container width="wide">
           <div className="flex gap-2 overflow-x-auto pb-1">
-            {categories.map((item) => (
+            {withText(categories).map((item) => (
               <Link
                 key={item}
                 href={item === "All" ? "/blog" : `/blog?category=${encodeURIComponent(item)}`}
@@ -109,7 +110,7 @@ export default async function BlogIndex({
           )}
 
           <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((post) => (
+            {withText(rest).map((post) => (
               <RevealItem key={post.slug}>
                 <Link
                   href={`/blog/${post.slug}`}

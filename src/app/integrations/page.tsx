@@ -8,6 +8,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/integrations", {
@@ -24,7 +25,7 @@ const CAPABILITY_ICONS = [Plug, RefreshCw, Webhook, Shield];
 export default function IntegrationsPage() {
   const { integrations } = getShared();
   const { integrations: copy } = getPages();
-  const capabilities = copy.capabilities.map((capability, index) => ({
+  const capabilities = withText(copy.capabilities).map((capability, index) => ({
     ...capability,
     icon: CAPABILITY_ICONS[index] ?? Plug,
   }));
@@ -53,13 +54,13 @@ export default function IntegrationsPage() {
             lede={copy.categories.lede}
           />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {integrations.map((group) => (
+            {withText(integrations).map((group) => (
               <RevealItem key={group.category}>
                 <div className="flex h-full flex-col rounded-2xl border border-line p-6">
                   <h3 className="font-display text-display-s text-ink">{group.category}</h3>
                   <p className="mt-3 flex-1 text-small text-fog">{group.blurb}</p>
                   <ul className="mt-5 flex flex-wrap gap-1.5">
-                    {group.surfaces.map((surface) => (
+                    {withText(group.surfaces).map((surface) => (
                       <li
                         key={surface}
                         className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"
@@ -78,7 +79,7 @@ export default function IntegrationsPage() {
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
           <RevealGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {capabilities.map((capability) => {
+            {withText(capabilities).map((capability) => {
               const Icon = capability.icon;
               return (
                 <RevealItem key={capability.title}>

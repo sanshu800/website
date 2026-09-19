@@ -7,6 +7,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getLegal, getPages } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/security", {
@@ -41,7 +42,7 @@ export default function SecurityPage() {
       <section className="section-sm border-b border-line bg-mist">
         <Container width="wide">
           <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {copy.posture.map((item) => (
+            {withText(copy.posture).map((item) => (
               <div key={item.label} className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
                 <dt className="font-mono text-eyebrow uppercase tracking-label text-fog">
                   {item.label}
@@ -59,7 +60,7 @@ export default function SecurityPage() {
             title={copy.controls.title}
           />
           <RevealGroup className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2">
-            {page.sections.map((section, index) => (
+            {withText(page.sections).map((section, index) => (
               <RevealItem key={section.h}>
                 <div className="flex gap-5 border-t border-line pt-5">
                   <span className="font-mono text-eyebrow text-accent">

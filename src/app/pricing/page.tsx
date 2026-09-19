@@ -9,6 +9,7 @@ import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPricing } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = getPricing();
@@ -38,7 +39,7 @@ export default function PricingPage() {
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-6 lg:grid-cols-3">
-            {engagementsList.map((tier) => (
+            {withText(engagementsList).map((tier) => (
               <RevealItem key={tier.slug ?? tier.name}>
                 <div
                   className={cn(
@@ -66,7 +67,7 @@ export default function PricingPage() {
                   <p className="mt-5 text-small text-fog">{tier.summary}</p>
 
                   <ul className="mt-6 flex-1 space-y-2.5 border-t border-line/70 pt-6">
-                    {tier.includes.map((item, index) => (
+                    {withText(tier.includes).map((item, index) => (
                       <li
                         key={`${tier.name}-${index}`}
                         className="flex items-start gap-2.5 text-small text-fg-2"
@@ -117,7 +118,7 @@ export default function PricingPage() {
                   >
                     {comparison.featureColumn}
                   </th>
-                  {comparison.columnNames.map((name, index) => (
+                  {withText(comparison.columnNames).map((name, index) => (
                     <th
                       key={`${name}-${index}`}
                       scope="col"
@@ -132,7 +133,7 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                {comparison.rows.map((row, index) => (
+                {withText(comparison.rows).map((row, index) => (
                   <tr
                     key={`${row.row}-${index}`}
                     className={index % 2 === 1 ? "bg-paper/60" : undefined}
@@ -160,7 +161,7 @@ export default function PricingPage() {
             </div>
             <div className="lg:col-span-8">
               <dl className="divide-y divide-line border-t border-line">
-                {faqs.map((item, index) => (
+                {withText(faqs).map((item, index) => (
                   <div key={`${item.q}-${index}`} className="py-6">
                     <dt className="text-body font-medium text-ink">{item.q}</dt>
                     <dd className="mt-2.5 text-body text-fog">{item.a}</dd>

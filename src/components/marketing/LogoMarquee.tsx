@@ -1,6 +1,7 @@
 import { getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * Client marquee. The track is duplicated and translated -50%, which is a
@@ -42,7 +43,7 @@ export function LogoMarquee({
               className="flex shrink-0 items-center gap-12 sm:gap-16"
               aria-hidden={copy === 1}
             >
-              {clients.map((client) => (
+              {withText(clients).map((client) => (
                 <ClientWordmark key={`${copy}-${client.name}`} client={client} tone={tone} />
               ))}
             </div>

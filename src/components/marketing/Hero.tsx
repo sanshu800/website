@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { HeroFilm } from "./HeroFilm";
 import { heroVideo } from "@/lib/content/marketing";
 import { getAssets, getHome } from "@/lib/cms/content";
+import { withText } from "@/lib/cms/paths";
 
 /**
  * Home hero — full-bleed motion, one message, two ways forward.
@@ -93,7 +94,7 @@ export function Hero() {
             </p>
 
             <h1 className="mt-5 animate-[fadeSlideUp_0.8s_ease_0.4s_both] text-display-2xl font-medium text-on-night sm:mt-6">
-              {hero.titleLines.map((line, index) => (
+              {withText(hero.titleLines).map((line, index) => (
                 <span key={line}>
                   {index > 0 && <br />}
                   {line}
@@ -138,7 +139,7 @@ export function Hero() {
 
             {/* Live proof, so the bottom right of the frame is not empty */}
             <dl className="hidden gap-10 lg:flex">
-              {hero.stats.map((fact) => (
+              {withText(hero.stats).map((fact) => (
                 <div
                   key={fact.label}
                   className="animate-[fadeSlideUp_0.8s_ease_1.05s_both]"

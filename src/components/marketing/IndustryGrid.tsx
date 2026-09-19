@@ -4,6 +4,7 @@ import { Container, SectionHeading } from "@/components/ui/Container";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getHome, getSolutions } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 const FIELD: Record<string, string> = {
   legal: "bg-magenta",
@@ -25,7 +26,7 @@ export function IndustryGrid() {
         />
 
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">
-          {solutions.map((solution) => (
+          {withText(solutions).map((solution) => (
             <RevealItem key={solution.slug}>
               <Link
                 href={`/solutions/${solution.slug}`}

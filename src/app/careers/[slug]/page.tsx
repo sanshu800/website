@@ -7,6 +7,7 @@ import { PageCTA } from "@/components/marketing/PageHero";
 import { getCompany } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { ApplicationPanel, CancelApplication } from "@/components/forms/ApplicationPanel";
+import { withText } from "@/lib/cms/paths";
 
 export function generateStaticParams() {
   return getCompany().careers.roles.map((role) => ({ slug: role.slug }));
@@ -76,7 +77,7 @@ export default async function RolePage({
                 What you will do
               </h2>
               <ul className="mt-5 space-y-3">
-                {role.responsibilities.map((item) => (
+                {withText(role.responsibilities).map((item) => (
                   <li key={item} className="flex items-start gap-3 text-body text-fog">
                     <span
                       aria-hidden="true"
@@ -91,7 +92,7 @@ export default async function RolePage({
                 What we are looking for
               </h2>
               <ul className="mt-5 space-y-3">
-                {role.requirements.map((item) => (
+                {withText(role.requirements).map((item) => (
                   <li key={item} className="flex items-start gap-3 text-body text-fog">
                     <span
                       aria-hidden="true"

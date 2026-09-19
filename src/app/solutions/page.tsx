@@ -6,6 +6,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getServices, getSolutions } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/solutions", {
@@ -28,7 +29,7 @@ export default function SolutionsPage() {
         <Container width="wide">
           <SectionHeading title={copy.sectorTitle} />
           <RevealGroup className="mt-12 grid gap-6 lg:grid-cols-2">
-            {solutions.map((solution, index) => (
+            {withText(solutions).map((solution, index) => (
               <RevealItem key={solution.slug}>
                 <Link
                   href={`/solutions/${solution.slug}`}
@@ -43,7 +44,7 @@ export default function SolutionsPage() {
                   <p className="mt-3 text-body text-fog">{solution.summary}</p>
 
                   <ul className="mt-6 flex flex-1 flex-wrap gap-1.5">
-                    {solution.moduleFit.map((fit) => (
+                    {withText(solution.moduleFit).map((fit) => (
                       <li
                         key={fit.module}
                         className="rounded-full border border-line bg-mist px-2.5 py-1 font-mono text-label uppercase tracking-label text-fog"
@@ -68,7 +69,7 @@ export default function SolutionsPage() {
         <Container width="wide">
           <h2 className="font-mono text-eyebrow uppercase text-fog">{copy.modulesTitle}</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {core.map((module) => (
+            {withText(core).map((module) => (
               <Link
                 key={module.slug}
                 href={`/services/${module.slug}`}

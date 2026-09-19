@@ -575,3 +575,34 @@
     animation: none !important;
   }
 }
+
+/*
+ * An editor can clear a line. The value then reaches the component as an empty
+ * string, and the component still renders its element — an empty heading or
+ * paragraph is a hole in the page, and it keeps whatever margin the layout gave
+ * it. Collapse those, so clearing a line removes it the way people expect.
+ *
+ * Scoped to tags that hold copy. Decorative boxes — the dots, rules, scrims and
+ * bars that carry a background instead of text — are divs and spans and are
+ * untouched, which matters because there are around fifty of them and they are
+ * deliberately empty. React's hydration markers are comments, and comments do
+ * not count towards emptiness.
+ *
+ * This is the counterpart to the rule in `lib/cms/paths.ts`, which drops a list
+ * item once every line inside it has been cleared. Text alone hides the
+ * element; the lists are what stop a cleared item leaving a slot behind.
+ */
+h1:empty,
+h2:empty,
+h3:empty,
+h4:empty,
+h5:empty,
+h6:empty,
+p:empty,
+li:empty,
+dt:empty,
+dd:empty,
+a:empty,
+button:empty {
+  display: none;
+}

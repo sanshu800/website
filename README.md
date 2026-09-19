@@ -516,6 +516,24 @@ nobody has deliberately changed.
 Array items that carry a `slug` are addressed by it (`items.ai-agents`, `posts.<slug>`)
 rather than by index, so reordering the source array does not move anyone's edits.
 
+**How a cleared line disappears.** Two mechanisms, because "empty" has two shapes.
+
+A single emptied field reaches the component as an empty string and the component still
+renders its element, so the element is collapsed in CSS — `:empty` on headings,
+paragraphs, list items, definition terms and controls. That rule is deliberately scoped
+to tags that hold copy: the site has around fifty decorative boxes (dots, rules, scrims,
+progress bars) that are *meant* to be empty, they are all `div`s and `span`s, and a
+blanket rule would have deleted them. React's hydration markers are comments, and
+comments do not count towards `:empty`.
+
+A cleared *list item* is different: hiding its lines would leave the card holding its
+slot in the row, which reads as a layout bug rather than a removal. So a list is
+rendered through `withText()` (`lib/cms/paths.ts`), which drops any item whose every line
+has been cleared. That decision sits at the render site rather than in the merged
+document on purpose — the first version filtered inside `applyOverrides` and broke the
+homepage, because `AgentSection` reads `tabs[0]` and then reads a key off it. Only the
+place that iterates knows an array is a rendered list.
+
 **Publishing.** Saves call `revalidatePath("/", "layout")`. The marketing pages are
 prerendered, so without that a change would sit invisible until the next build; with
 it, the next request regenerates the page. Verified: editing an engagement price, a
@@ -533,16 +551,23 @@ service headline or an industry name changes the served HTML of `/pricing`,
   look like a link (`/`, `https://`, `mailto:`, `tel:`).
 - **No markup.** Values are stored and rendered as plain text; there is no path from
   the editor to injected HTML. React escapes everything.
-- **Empty is not allowed.** A field cannot be blanked — use Reset to go back to the
-  shipped copy.
+- **Clearing a line takes it off the page.** Emptying a field is a removal, not an
+  error: the line stops rendering and the layout closes up, and clearing every line
+  inside a list item removes the item too — so a bullet, a stat, a placeholder client
+  mark or a testimonial genuinely disappears. **Reset** restores the shipped copy, and
+  undo from History works on a cleared line as well as an edited one. Two things are
+  protected on purpose: a link *destination* cannot be blanked (clear the label
+  instead, and the link comes off the page), and an item carrying a `slug` never drops,
+  so a service, solution or blog page cannot turn into a 404 by being emptied.
 - **Audit and undo.** Every set, reset and revert is logged with the previous value,
   the actor and the timestamp. Restoring an old value is itself logged.
 - **Orphans are surfaced.** If a field is renamed or deleted in code, its stored value
   is reported under *History → Orphaned edits* and can be dropped or restored, rather
   than silently hanging around.
 
-**Wired today** — 12 surfaces, **1,955 fields**. Every string a visitor reads on the
-marketing site is editable, including the header navigation and the footer.
+**Wired today** — 14 surfaces, **1,882 fields**, as the admin dashboard reports. Every
+string a visitor reads on the marketing site is editable, including the header navigation
+and the footer.
 
 | Surface | Includes |
 | --- | --- |

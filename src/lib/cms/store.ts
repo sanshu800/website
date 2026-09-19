@@ -200,12 +200,29 @@ export function resetOverride(input: { doc: string; path: string; actor: Actor }
   return { ok: true, value: null, action: "reset" };
 }
 
-export function revertRevision(input: { id: string; actor: Actor }): WriteResult {
+export function revisionById(id: string): RevisionRow | null {
+  return one<RevisionRow>(`SELECT * FROM content_revisions WHERE id = ?`, [id]);
+}
+
+export function revertRevision(input: {
+  id: string;
+  actor: Actor;
+  /**
+   * The copy that ships in code for this field. Reverting to a value that only
+   * restates the shipped copy should leave no override behind — otherwise the
+   * field keeps an "edited" badge for copy that is identical to the source. The
+   * caller passes it in because this module deliberately knows nothing about the
+   * content documents.
+   */
+  shippedValue?: string | null;
+}): WriteResult {
   const revision = one<RevisionRow>(`SELECT * FROM content_revisions WHERE id = ?`, [input.id]);
   if (!revision) return { ok: false, reason: "missing" };
 
   const now = new Date().toISOString();
-  if (revision.old_value === null || revision.old_value === "") {
+  const restatesShippedCopy =
+    input.shippedValue !== undefined && revision.old_value === input.shippedValue;
+  if (revision.old_value === null || revision.old_value === "" || restatesShippedCopy) {
     // There was no previous override — reverting means going back to the copy
     // that ships in code.
     run(`DELETE FROM content_overrides WHERE key = ?`, [revision.key]);

@@ -6,6 +6,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getComparisons } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/compare", {
@@ -25,7 +26,7 @@ export default function CompareIndex() {
       <section className="section bg-paper">
         <Container width="wide">
           <RevealGroup className="grid gap-5 sm:grid-cols-2">
-            {comparisons.map((comparison) => (
+            {withText(comparisons).map((comparison) => (
               <RevealItem key={comparison.slug}>
                 <Link
                   href={`/compare/${comparison.slug}`}

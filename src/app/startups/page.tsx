@@ -7,6 +7,7 @@ import { PageHero, PageCTA } from "@/components/marketing/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { getPages, getShared } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/startups", {
@@ -43,7 +44,7 @@ export default function StartupsPage() {
         <Container width="wide">
           <SectionHeading title={copy.included.title} />
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2">
-            {program.benefits.map((benefit) => (
+            {withText(program.benefits).map((benefit) => (
               <RevealItem key={benefit.title}>
                 <div className="flex h-full gap-4 rounded-2xl border border-line p-6">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -64,7 +65,7 @@ export default function StartupsPage() {
                 {copy.eligibility.heading}
               </h2>
               <ul className="mt-5 grid gap-3 text-body text-fog sm:grid-cols-2">
-                {copy.eligibility.criteria.map((criterion) => (
+                {withText(copy.eligibility.criteria).map((criterion) => (
                   <li key={criterion}>{criterion}</li>
                 ))}
               </ul>
@@ -77,7 +78,7 @@ export default function StartupsPage() {
       <section className="section-sm border-y border-line bg-mist">
         <Container width="wide">
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {siteStats.map((stat) => (
+            {withText(siteStats).map((stat) => (
               <div key={stat.label}>
                 <dd className="font-display text-figure text-ink">
                   {stat.value}

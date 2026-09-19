@@ -8,6 +8,7 @@ import { getPages, getShared } from "@/lib/cms/content";
 import { ClientWordmark } from "@/components/brand/Logo";
 import { getSolutions } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/customers", {
@@ -40,7 +41,7 @@ export default function CustomersPage() {
                   className="flex shrink-0 items-center gap-12"
                   aria-hidden={copy === 1}
                 >
-                  {clients.map((client) => (
+                  {withText(clients).map((client) => (
                     <ClientWordmark key={`${copy}-${client.name}`} client={client} />
                   ))}
                 </div>
@@ -68,7 +69,7 @@ export default function CustomersPage() {
             </Reveal>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              {copy.narrative.map((item) => (
+              {withText(copy.narrative).map((item) => (
                 <Reveal key={item.label}>
                   <div className="rounded-2xl border border-line p-6">
                     <p className="font-mono text-label uppercase tracking-label text-fog">
@@ -91,7 +92,7 @@ export default function CustomersPage() {
         <Container width="wide">
           <SectionHeading title={copy.quotes.title} />
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((item) => (
+            {withText(testimonials).map((item) => (
               <RevealItem key={item.name}>
                 <figure className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
                   <blockquote className="flex-1 text-body text-fg-2">
@@ -119,7 +120,7 @@ export default function CustomersPage() {
         <Container width="wide">
           <h2 className="font-mono text-eyebrow uppercase text-fog">By industry</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {solutions.map((solution) => (
+            {withText(solutions).map((solution) => (
               <Link
                 key={solution.slug}
                 href={`/solutions/${solution.slug}`}

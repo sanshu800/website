@@ -5,6 +5,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { getHome, getServices } from "@/lib/cms/content";
 import { cn } from "@/lib/utils";
+import { withText } from "@/lib/cms/paths";
 
 const ACCENT_FIELD: Record<string, { fill: string; on: string }> = {
   ink: { fill: "bg-accent", on: "text-on-accent" },
@@ -28,7 +29,7 @@ export function ServicesStrip() {
         <SectionHeading
           title={
             <>
-              {copy.titleLines.map((line, index) => (
+              {withText(copy.titleLines).map((line, index) => (
                 <span key={line}>
                   {index > 0 && <br className="hidden sm:block" />}
                   {index > 0 ? ` ${line}` : line}
@@ -40,7 +41,7 @@ export function ServicesStrip() {
         />
 
         <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {core.map((module, index) => (
+          {withText(core).map((module, index) => (
             <RevealItem key={module.slug}>
               <Link
                 href={`/services/${module.slug}`}

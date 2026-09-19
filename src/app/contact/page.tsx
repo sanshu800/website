@@ -6,6 +6,7 @@ import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getPages } from "@/lib/cms/content";
 import { withSeo } from "@/lib/cms/seo";
 import { Reveal } from "@/components/motion/Reveal";
+import { withText } from "@/lib/cms/paths";
 
 export async function generateMetadata(): Promise<Metadata> {
   return withSeo("/contact", {
@@ -21,7 +22,7 @@ const CHANNEL_ICONS = [Mail, MessageSquare, Clock, MapPin];
 
 export default function ContactPage() {
   const { contact: copy } = getPages();
-  const channels = copy.channels.map((channel, index) => ({
+  const channels = withText(copy.channels).map((channel, index) => ({
     ...channel,
     icon: CHANNEL_ICONS[index] ?? Mail,
   }));
@@ -51,7 +52,7 @@ export default function ContactPage() {
                     {copy.channelsHeading}
                   </h2>
                   <ul className="mt-6 space-y-6">
-                    {channels.map((channel) => {
+                    {withText(channels).map((channel) => {
                       const Icon = channel.icon;
                       return (
                         <li key={channel.label} className="flex gap-4">

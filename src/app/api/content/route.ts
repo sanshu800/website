@@ -8,6 +8,7 @@ import {
   normalise,
   resetOverride,
   revertRevision,
+  revisionById,
   setOverride,
   deleteOverrideByKey,
 } from "@/lib/cms/store";
@@ -62,7 +63,15 @@ export async function POST(request: Request) {
 
   if (body.action === "revert") {
     if (!body.id) return NextResponse.json({ error: "missing revision id" }, { status: 400 });
-    const result = revertRevision({ id: body.id, actor });
+    const revision = revisionById(body.id);
+    if (!revision) return NextResponse.json({ error: "revision not found" }, { status: 404 });
+    const revertedDef = docById(revision.doc);
+    const shippedValue = revertedDef
+      ? collectLeaves(getDocDefaults<unknown>(revertedDef.id)).find(
+          (leaf) => leaf.key === revision.path,
+        )?.value
+      : undefined;
+    const result = revertRevision({ id: body.id, actor, shippedValue });
     if (!result.ok) return NextResponse.json({ error: "revision not found" }, { status: 404 });
     revalidatePath("/", "layout");
     return NextResponse.json({ ok: true, action: "revert" });
@@ -107,13 +116,19 @@ export async function POST(request: Request) {
       { status: 422 },
     );
   }
-  if (value === "") {
+  /*
+   * Clearing a text or prose field is allowed: an empty line is how an editor
+   * removes a line from a page. A link is the exception — an empty destination
+   * is a control that goes nowhere, which is a fault rather than a removal. To
+   * take a link off a page, clear its label.
+   */
+  if (value === "" && field.kind === "link") {
     return NextResponse.json(
-      { error: "This field cannot be empty. Use Reset to restore the shipped copy." },
+      { error: "A link needs a destination. Clear its label to take the link off the page." },
       { status: 422 },
     );
   }
-  if (field.kind === "link" && !/^(\/|https?:\/\/|#|mailto:|tel:)/.test(value)) {
+  if (value !== "" && field.kind === "link" && !/^(\/|https?:\/\/|#|mailto:|tel:)/.test(value)) {
     return NextResponse.json(
       { error: "Links must start with / , https:// , mailto: or tel:" },
       { status: 422 },
